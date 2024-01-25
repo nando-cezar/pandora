@@ -7,6 +7,7 @@
 
 <p>
   Utilizando técnicas de probabilidade de estatistica, algoritmo determina quais variaveis são necessárias para um determinado evento extremo ocorra.
+  Para a analise dos dados serão considerados as seguintes variaveis:
 </p>
 <ul>
   <li> Temperatura </li>
@@ -34,8 +35,10 @@
 <h2> 🚦 Guia </h2>
 
 <ol>
-    <li> Identificação dos padrões utilizados para resolução do problema </li>
-    <li> Criação das classes que compõem cada padrão </li>
+    <li> Obtendo informações (Localização, Data inicio do desastre, Data fim do desastre) da base de dados EM-DAT de acordo com a categoria do desastre climático; </li>
+    <li> Obtendo informações de geolocalização (Latitude e longitude) do local onde ocorreu o desastre climático; </li>
+    <li> Obtendo informações de climaticas de acordo com a Latitude, Longitude, Data incio do desasatre e Data fim do desastre; </li>
+    <li> Analisando padrões comportamentais das variaveis de acordo com a categoria do evento. </li>
 </ol>
 
 <h2>🛠 Tecnologias</h2>
