@@ -2,7 +2,7 @@
 
 <h2>🎯 Objetivo do Projeto</h2>
 <p>
-  O projeto consiste na analise de dados com base de informações disponibilizadas na base dados EM-DAT (The international disaster database).
+  O projeto consiste na analise de dados com base nas informações disponibilizadas na base dados EM-DAT (The international disaster database).
 </p>
 
 <p>
