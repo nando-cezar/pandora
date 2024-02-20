@@ -1,4 +1,4 @@
-<h1>Pandora - Algoritmo para previsão de eventos extremos</h1>
+<h1>Pandora - Modelo para previsão de eventos extremos</h1>
 
 <h2>🎯 Objetivo do Projeto</h2>
 <p>
