@@ -1,74 +1,79 @@
-<h1>Pandora - Algoritmo para previsão de eventos extremos</h1>
+<h1>PANDORA: Statistical model for predicting climate disasters</h1>
 
-<h2>🎯 Objetivo do Projeto</h2>
+<h2>🎯 Objective</h2>
 <p>
-  O projeto consiste na analise de dados com base nas informações disponibilizadas na base dados EM-DAT (The international disaster database).
+  The project consists of predicting climate disasters using a statistical model.
 </p>
 
+<h2>🎯 Data base</h2>
 <p>
-  Utilizando técnicas de probabilidade de estatistica, algoritmo determina quais variaveis são necessárias para um determinado evento extremo ocorra.
-  Para a analise dos dados serão considerados as seguintes variaveis:
+  EM-DAT will be used, which is a global database that records information about natural and technological disasters. It is maintained by the Disaster Epidemiology Research Center (CRED) at the Catholic University of Louvain, Belgium. 
+  EM-DAT provides data on the occurrence, impact and response to disasters since the beginning of the 20th century.
 </p>
+  
+<h3>Data analysis will be separated by category, namely:</h2>
 <ul>
-  <li> Temperatura </li>
-  <li> Temperatura aparente </li>
-  <li> Precipitação </li>
-  <li> Chuva </li>
-  <li> Queda de neve </li>
-  <li> Velocidade do vento </li>
-  <li> Rajdas de vento </li>
-  <li> Direção de vento dominante </li>
-  <li> Radiação de ondas curtas </li>
-  <li> Evapotranspiração </li>
+  <li> Riverine flood </li>
+  <li> Cold wave </li>
+  <li> Flash flood </li>
+  <li> Mudslide </li>
+  <li> Tropical cyclone </li>
+  <li> Tornado </li>
+  <li> Drought </li>
+  <li> Heat wave </li>
+  <li> Lightning/Thunderstorms </li>
+  <li> Landslide, wet </li>
+  <li> Flood, General </li>
+  <li> Severe weather </li>
 </ul>
 
 <h2>
-🛑 Pré-requistos
+🛑 Prerequisites
 </h2>
 
-- [x] Conhecimento na linguagem Python (biblioteca Pandas)
+- [x] Knowledge of the Python language (Pandas library)
 
-- [x] Probabilidade e Estatistica
+- [x] Probability and statistics
 
-- [x] Analise de dados
+- [x] Data analysis
 
-<h2> 🚦 Guia </h2>
+<h2> 🚦 Guide </h2>
 
 <ol>
-    <li> Obtendo informações (Localização, Data inicio do desastre, Data fim do desastre) da base de dados EM-DAT de acordo com a categoria do desastre climático; </li>
-    <li> Obtendo informações de geolocalização (Latitude e longitude) do local onde ocorreu o desastre climático; </li>
-    <li> Obtendo informações de climaticas de acordo com a Latitude, Longitude, Data incio do desasatre e Data fim do desastre; </li>
-    <li> Analisando padrões comportamentais das variaveis de acordo com a categoria do evento. </li>
+    <li> Obtaining information (Location, Disaster start date, Disaster end date) from the EM-DAT database according to the climate disaster category; </li>
+    <li> Obtaining geolocation information (Latitude and longitude) of the location where the climate disaster occurred; </li>
+    <li> Obtaining weather information according to Latitude, Longitude, Disaster start date and Disaster end date; </li>
+    <li> Analyzing behavioral patterns of variables according to the event category. </li>
 </ol>
 
-<h2>🛠 Tecnologias</h2>
+<h2>🛠 Technologies</h2>
 
 <ul>
     <li> Python </li>
     <li> Google Colab </li>
 </ul>
 
-<h2>🛠 Serviços externos</h2>
+<h2>🛠 External services</h2>
 
 <ul>
-    <li> OPEN-METEO </li><a href="https://archive-api.open-meteo.com/v1/archive">API - Dados Climaticos</a></li>
-    <li> GEO-CODE </li><a href="https://geocode.maps.co/search">API - Dados Geolocalizados</a></li>
+    <li> OPEN-METEO </li><a href="https://open-meteo.com">Free Weather API</a></li>
+    <li> OPEN-CAGE </li><a href="https://opencagedata.com">OpenCage Geocoding API</a></li>
 </ul>
 
-<h2>🔗 Links Úteis</h2>
+<h2>🔗 Useful links</h2>
 <ul>
-    <li><a href="#">Em construção...</a></li>
+    <li><a href="https://www.emdat.be">EM-DAT - THE INTERNATIONAL DISASTER DATABASE</a></li>
 </ul>
 
 
-<h2> 🤝 Contribuindo </h2>
+<h2> 🤝 Contributing </h2>
 
-Este repositório foi criado para fins de estudo, então contribua com ele. Se te ajudei de alguma forma, ficarei feliz em
-saber. E caso você conheça alguém que se identidique com o conteúdo, não deixe de compatilhar.
+This repository was created for study purposes, so please contribute to it. If I helped you in any way, I will be happy to
+to know. And if you know someone who identifies with the content, be sure to share.
 
-Se possível:
+If possible:
 
-⭐️ Star o projeto
+⭐️ Star the project
 
-🐛 Encontrar e relatar issues
+🐛 Find and report issues
 
