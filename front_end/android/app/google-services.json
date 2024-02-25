@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "575192726483",
+    "project_id": "pandora-400014",
+    "storage_bucket": "pandora-400014.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575192726483:android:01c26730d51ea46d830d26",
+        "android_client_info": {
+          "package_name": "com.example.pandora_front"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575192726483-luqqctsb5ltk30s5redvevlje4hp5e0j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtvLXNEZR-husoRtId9d2aIfedaCdRdBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575192726483-luqqctsb5ltk30s5redvevlje4hp5e0j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "575192726483-ahp9bclnlanhb85bps26ucttvcgo123k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pandoraFront.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
