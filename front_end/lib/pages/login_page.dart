@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pandora_front/components/my_button.dart';
 import 'package:pandora_front/components/my_textfield.dart';
 import 'package:pandora_front/components/square_tile.dart';
 import 'package:pandora_front/services/auth_service.dart';
+
+import 'forgot_pw_page.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -54,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.deepPurple,
+          backgroundColor: Colors.blueAccent,
           title: Center(
             child: Text(
               message,
@@ -72,7 +73,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white70,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -135,9 +135,21 @@ class _LoginPageState extends State<LoginPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
-                        'Forgot Password?',
-                        style: TextStyle(color: Colors.grey[600]),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ForgotPasswordPage();
+                              },
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Forgot Password?',
+                          style: TextStyle(color: Colors.grey[600]),
+                        ),
                       ),
                     ],
                   ),
@@ -197,8 +209,9 @@ class _LoginPageState extends State<LoginPage> {
 
                     // apple button
                     SquareTile(
-                        onTap: () {},
-                        imagePath: 'lib/images/apple.png',)
+                      onTap: () {},
+                      imagePath: 'lib/images/apple.png',
+                    )
                   ],
                 ),
 
