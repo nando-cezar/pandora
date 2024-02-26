@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pandora_front/pages/login_page.dart';
 
 import 'home_page.dart';
+import 'login_or_register_page.dart';
 
 class AuthPage extends StatelessWidget{
   const AuthPage({super.key});
@@ -16,7 +17,7 @@ class AuthPage extends StatelessWidget{
           if(snapshot.hasData){
             return HomePage();
           }else{
-            return LoginPage();
+            return const LoginOrRegisterPage();
           }
         },
       )
