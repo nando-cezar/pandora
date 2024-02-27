@@ -1,5 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pandora_front/layout/desktop_scaffold.dart';
+import 'package:pandora_front/layout/mobile_scaffold.dart';
+import 'package:pandora_front/layout/responsive_layout.dart';
+import 'package:pandora_front/layout/tablet_scaffold.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -12,20 +16,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: signUserOut,
-            icon: const Icon(Icons.logout),
-          )
-        ],
-      ),
-      body: Center(
-        child: Text(
-          "LOGGED IN AS: ${user.email!}",
-          style: const TextStyle(fontSize: 20),
-        ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ResponsiveLayout(
+        mobileScaffold: const MobileScaffold(),
+        tabletScaffold: const TableScaffold(),
+        desktopScaffold: const DesktopScaffold(),
       ),
     );
   }
