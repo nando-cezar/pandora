@@ -1,4 +1,4 @@
-#Mon Feb 26 11:19:27 BRT 2024
+#Tue Feb 27 09:24:16 BRT 2024
 base.0=C\:\\Users\\Lukas\\OneDrive\\Documentos\\Projects\\pandora\\front_end\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 base.1=C\:\\Users\\Lukas\\OneDrive\\Documentos\\Projects\\pandora\\front_end\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes2.dex
 path.0=classes.dex
