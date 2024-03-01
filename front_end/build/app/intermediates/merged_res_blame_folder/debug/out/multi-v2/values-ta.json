@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.pandora_front.app-mergeDebugResources-14:/values-ta/values-ta.xml",
+            "outputFile": "com.example.pandora_front.app-mergeDebugResources-15:/values-ta/values-ta.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\20ce8ac0d85e1cd457090812f1e22b6c\\transformed\\jetified-play-services-base-18.0.1\\res\\values-ta\\values.xml",
+                    "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\9a78116e2974b935f683cb82647290ab\\transformed\\jetified-play-services-base-18.1.0\\res\\values-ta\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\44b65494bdfe241aa5d7da80df224b5b\\transformed\\browser-1.4.0\\res\\values-ta\\values-ta.xml",
+                    "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\0f575ee9f07a3370d225583464b9e9dd\\transformed\\browser-1.4.0\\res\\values-ta\\values-ta.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\e1912bbaddffdfa925357f7dff877a3d\\transformed\\jetified-play-services-basement-18.2.0\\res\\values-ta\\values.xml",
+                    "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\fd2fead0d3191dc86a26998cf6dc9af4\\transformed\\jetified-play-services-basement-18.2.0\\res\\values-ta\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -55,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\31ea95833697419f9a4d790fd02abdfe\\transformed\\core-1.6.0\\res\\values-ta\\values-ta.xml",
+                    "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\8d39ac276459a0328299c248790827c6\\transformed\\core-1.9.0\\res\\values-ta\\values-ta.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

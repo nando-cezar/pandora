@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../components/my_box.dart';
+import '../components/my_drawer.dart';
 import '../components/my_tile.dart';
 import '../constants.dart';
 
@@ -17,7 +17,7 @@ class _TableScaffoldState extends State<TableScaffold> {
     return Scaffold(
       appBar: myAppBar,
       backgroundColor: myDefaultBackground,
-      drawer: myDrawer,
+      drawer: MyDrawer(),
       body: Column(
         children: [
           AspectRatio(

@@ -16,6 +16,8 @@
             </array>
         </dict>
     </array>
+    <key>NSLocationUsageDescription</key>
+    <string>This app needs access to location.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

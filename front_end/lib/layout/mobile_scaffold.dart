@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pandora_front/components/my_tile.dart';
-
 import '../components/my_box.dart';
+import '../components/my_drawer.dart';
 import '../constants.dart';
 
 class MobileScaffold extends StatefulWidget {
@@ -17,7 +17,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
     return Scaffold(
       appBar: myAppBar,
       backgroundColor: myDefaultBackground,
-      drawer: myDrawer,
+      drawer: MyDrawer(),
       body: Column(
         children: [
           AspectRatio(
