@@ -86,17 +86,22 @@ androidx/core/app/NotificationCompat$Action$SemanticAction.class
 androidx/core/app/NotificationCompat$BadgeIconType.class
 androidx/core/app/NotificationCompat$GroupAlertBehavior.class
 androidx/core/app/NotificationCompat$NotificationVisibility.class
+androidx/core/app/NotificationCompat$ServiceNotificationBehavior.class
 androidx/core/app/NotificationCompat$StreamType.class
 androidx/core/app/RemoteInput$EditChoicesBeforeSending.class
 androidx/core/app/RemoteInput$Source.class
 androidx/core/app/ServiceCompat$StopForegroundFlags.class
+androidx/core/content/ContextCompat$RegisterReceiverFlags.class
+androidx/core/content/PackageManagerCompat$UnusedAppRestrictionsStatus.class
 androidx/core/content/PermissionChecker$PermissionResult.class
 androidx/core/content/pm/PermissionInfoCompat$Protection.class
 androidx/core/content/pm/PermissionInfoCompat$ProtectionFlags.class
+androidx/core/content/pm/ShortcutInfoCompat$Surface.class
 androidx/core/content/pm/ShortcutManagerCompat$ShortcutMatchFlags.class
 androidx/core/content/res/FontResourcesParserCompat$FetchStrategy.class
 androidx/core/graphics/drawable/IconCompat$IconType.class
 androidx/core/location/GnssStatusCompat$ConstellationType.class
+androidx/core/location/LocationRequestCompat$Quality.class
 androidx/core/net/ConnectivityManagerCompat$RestrictBackgroundStatus.class
 androidx/core/provider/FontsContractCompat$FontRequestCallback$FontRequestFailReason.class
 androidx/core/text/util/LinkifyCompat$LinkifyMask.class
@@ -141,6 +146,7 @@ com/google/android/gms/auth/api/phone/SmsCodeAutofillClient$PermissionState.clas
 com/google/android/gms/common/AccountPicker.class
 com/google/android/gms/common/BlockingServiceConnection.class
 com/google/android/gms/common/GmsSignatureVerifier.class
+com/google/android/gms/common/GoogleApiAvailability.class
 com/google/android/gms/common/GoogleApiAvailabilityLight.class
 com/google/android/gms/common/GooglePlayServicesUtilLight.class
 com/google/android/gms/common/GoogleSignatureVerifier.class
@@ -158,6 +164,9 @@ com/google/android/gms/common/config/GservicesValue.class
 com/google/android/gms/common/internal/GmsClientSupervisor.class
 com/google/android/gms/common/internal/HideFirstParty.class
 com/google/android/gms/common/internal/ShowFirstParty.class
+com/google/android/gms/common/internal/TelemetryLoggingClient.class
+com/google/android/gms/common/moduleinstall/ModuleAvailabilityResponse$AvailabilityStatus.class
+com/google/android/gms/common/moduleinstall/ModuleInstallStatusUpdate$InstallState.class
 com/google/android/gms/common/sqlite/CursorWrapper.class
 com/google/android/gms/common/stats/ConnectionTracker.class
 com/google/android/gms/common/util/Base64Utils.class
@@ -169,6 +178,8 @@ com/google/android/gms/common/wrappers/PackageManagerWrapper.class
 com/google/android/gms/dynamic/ObjectWrapper.class
 com/google/android/gms/dynamite/DynamiteModule.class
 com/google/android/gms/internal/auth/zzbv.class
+com/google/android/gms/internal/base/zad.class
+com/google/android/gms/internal/base/zae.class
 com/google/android/gms/internal/common/zzac.class
 com/google/android/gms/internal/common/zzag.class
 com/google/android/gms/internal/common/zzah.class
@@ -184,6 +195,10 @@ com/google/android/gms/internal/common/zzs.class
 com/google/android/gms/internal/common/zzx.class
 com/google/android/gms/internal/common/zzy.class
 com/google/android/gms/internal/common/zzz.class
+com/google/android/gms/internal/location/zze.class
+com/google/android/gms/location/ActivityTransition$SupportedActivityTransition.class
+com/google/android/gms/location/Granularity.class
+com/google/android/gms/location/Priority.class
 com/google/android/play/core/integrity/model/IntegrityErrorCode.class
 com/google/android/play/core/integrity/model/StandardIntegrityErrorCode.class
 com/google/android/recaptcha/internal/zzeu.class
@@ -355,6 +370,7 @@ kotlin/collections/unsigned/UArraysKt___UArraysKt.class
 kotlin/contracts/ExperimentalContracts.class
 kotlin/coroutines/RestrictsSuspension.class
 kotlin/coroutines/jvm/internal/DebugMetadata.class
+kotlin/experimental/ExperimentalNativeApi.class
 kotlin/experimental/ExperimentalObjCName.class
 kotlin/experimental/ExperimentalObjCRefinement.class
 kotlin/experimental/ExperimentalTypeInference.class
@@ -376,6 +392,9 @@ kotlin/io/encoding/ExperimentalEncodingApi.class
 kotlin/io/path/ExperimentalPathApi.class
 kotlin/io/path/PathsKt__PathUtilsKt.class
 kotlin/js/ExperimentalJsExport.class
+kotlin/js/ExperimentalJsFileName.class
+kotlin/js/ExperimentalJsReflectionCreateInstance.class
+kotlin/jvm/ImplicitlyActualizedByJvmDeclaration.class
 kotlin/jvm/JvmClassMappingKt.class
 kotlin/jvm/JvmDefault.class
 kotlin/jvm/JvmDefaultWithCompatibility.class
@@ -398,6 +417,7 @@ kotlin/jvm/Synchronized.class
 kotlin/jvm/Throws.class
 kotlin/jvm/Transient.class
 kotlin/jvm/Volatile.class
+kotlin/jvm/internal/CollectionToArray.class
 kotlin/jvm/internal/FunctionImpl.class
 kotlin/jvm/internal/RepeatableContainer.class
 kotlin/jvm/internal/SerializedIr.class
@@ -413,7 +433,6 @@ kotlin/sequences/SequencesKt___SequencesKt.class
 kotlin/text/CharsKt__CharJVMKt.class
 kotlin/text/StringsKt__StringBuilderJVMKt.class
 kotlin/text/StringsKt__StringBuilderKt.class
-kotlin/text/StringsKt__StringNumberConversionsJVMKt.class
 kotlin/text/StringsKt__StringsJVMKt.class
 kotlin/text/StringsKt__StringsKt.class
 kotlin/text/StringsKt___StringsJvmKt.class

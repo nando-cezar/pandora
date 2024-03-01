@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.pandora_front.app-mergeDebugResources-14:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "com.example.pandora_front.app-mergeDebugResources-15:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\44b65494bdfe241aa5d7da80df224b5b\\transformed\\browser-1.4.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\0f575ee9f07a3370d225583464b9e9dd\\transformed\\browser-1.4.0\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\31ea95833697419f9a4d790fd02abdfe\\transformed\\core-1.6.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\8d39ac276459a0328299c248790827c6\\transformed\\core-1.9.0\\res\\values-en-rXC\\values-en-rXC.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

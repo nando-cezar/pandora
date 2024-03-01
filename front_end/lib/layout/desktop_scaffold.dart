@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../components/my_box.dart';
+import '../components/my_drawer.dart';
 import '../components/my_tile.dart';
 import '../constants.dart';
 
@@ -20,7 +19,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
       backgroundColor: myDefaultBackground,
       body: Row(
         children: [
-          myDrawer,
+          MyDrawer(),
           Expanded(
             flex: 2,
             child: Column(
