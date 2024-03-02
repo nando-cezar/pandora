@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../components/my_box.dart';
 import '../components/my_drawer.dart';
+import '../components/my_navbar.dart';
 import '../components/my_tile.dart';
 import '../constants.dart';
 
@@ -16,7 +17,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: myAppBar,
-      backgroundColor: myDefaultBackground,
+      backgroundColor: myFifthColor,
       body: Row(
         children: [
           MyDrawer(),
@@ -35,7 +36,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                         crossAxisCount: 4,
                       ),
                       itemBuilder: (context, index) {
-                        return MyBox();
+                        return const MyBox();
                       },
                     ),
                   ),
@@ -44,7 +45,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                   child: ListView.builder(
                     itemCount: 5,
                     itemBuilder: (context, index) {
-                      return MyTile();
+                      return const MyTile();
                     },
                   ),
                 )

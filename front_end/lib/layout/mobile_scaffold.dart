@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pandora_front/components/my_tile.dart';
 import '../components/my_box.dart';
 import '../components/my_drawer.dart';
+import '../components/my_navbar.dart';
 import '../constants.dart';
 
 class MobileScaffold extends StatefulWidget {
@@ -16,7 +17,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: myAppBar,
-      backgroundColor: myDefaultBackground,
+      backgroundColor: myFifthColor,
       drawer: MyDrawer(),
       body: Column(
         children: [
@@ -45,6 +46,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
           )
         ],
       ),
+      bottomNavigationBar: const MyNavBar(),
     );
   }
 }

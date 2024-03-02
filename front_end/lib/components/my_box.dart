@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class MyBox extends StatelessWidget {
   const MyBox({super.key});
 
@@ -8,7 +10,7 @@ class MyBox extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        color: Colors.blueAccent,
+        color: myFirstColor,
       ),
     );
   }
