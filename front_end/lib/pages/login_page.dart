@@ -5,6 +5,7 @@ import 'package:pandora_front/components/my_textfield.dart';
 import 'package:pandora_front/components/square_tile.dart';
 import 'package:pandora_front/services/auth_service.dart';
 
+import '../constants.dart';
 import 'forgot_pw_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -55,12 +56,12 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: myFirstColor,
           title: Center(
             child: Text(
               message,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: myFifthColor,
                 fontSize: 16,
               ),
             ),
@@ -82,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 50),
 
                 Image.asset(
-                  'lib/images/pandora.png',
+                  'assets/images/pandora.png',
                   height: 100,
                 ),
 
@@ -92,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                 Text(
                   'PANDORA',
                   style: TextStyle(
-                    color: Colors.grey[900],
+                    color: myTenthColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                   ),
@@ -104,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                 Text(
                   'Welcome back you\'ve been missed!',
                   style: TextStyle(
-                    color: Colors.grey[700],
+                    color: myNinthColor,
                     fontSize: 16,
                   ),
                 ),
@@ -148,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: Text(
                           'Forgot Password?',
-                          style: TextStyle(color: Colors.grey[600]),
+                          style: TextStyle(color: myNinthColor),
                         ),
                       ),
                     ],
@@ -173,20 +174,20 @@ class _LoginPageState extends State<LoginPage> {
                       Expanded(
                         child: Divider(
                           thickness: 0.5,
-                          color: Colors.grey[400],
+                          color: mySixthColor,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
                           'Or continue with',
-                          style: TextStyle(color: Colors.grey[700]),
+                          style: TextStyle(color: myNinthColor),
                         ),
                       ),
                       Expanded(
                         child: Divider(
                           thickness: 0.5,
-                          color: Colors.grey[400],
+                          color: mySixthColor,
                         ),
                       ),
                     ],
@@ -202,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                     // google button
                     SquareTile(
                       onTap: () => AuthService().signInWithGoogle(),
-                      imagePath: 'lib/images/google.png',
+                      imagePath: 'assets/images/google.png',
                     ),
 
                     const SizedBox(width: 25),
@@ -210,7 +211,7 @@ class _LoginPageState extends State<LoginPage> {
                     // apple button
                     SquareTile(
                       onTap: () {},
-                      imagePath: 'lib/images/apple.png',
+                      imagePath: 'assets/images/apple.png',
                     )
                   ],
                 ),
@@ -223,15 +224,15 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Text(
                       'Not a member?',
-                      style: TextStyle(color: Colors.grey[700]),
+                      style: TextStyle(color: myNinthColor),
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
                       onTap: widget.onTap,
-                      child: const Text(
+                      child: Text(
                         'Register now',
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: myFirstColor,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

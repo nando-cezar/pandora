@@ -15,13 +15,14 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-  static String BASE_OPEN_WEATHER_MAP_KEY = dotenv.env['API_OPEN_WEATHER_MAP_KEY']!;
+  static String BASE_OPEN_WEATHER_MAP_KEY =
+      dotenv.env['API_OPEN_WEATHER_MAP_KEY']!;
   static String BASE_OPEN_CAGE_DATA_KEY = dotenv.env['API_OPEN_CAGE_DATA_KEY']!;
-  final _weatherService = WeatherService(BASE_OPEN_WEATHER_MAP_KEY, BASE_OPEN_CAGE_DATA_KEY);
+  final _weatherService =
+      WeatherService(BASE_OPEN_WEATHER_MAP_KEY, BASE_OPEN_CAGE_DATA_KEY);
   Weather? _weather;
 
   _fetchWeather() async {
-
     Location location = await _weatherService.getCurrentyCity();
 
     try {
@@ -35,26 +36,26 @@ class _WeatherPageState extends State<WeatherPage> {
   }
 
   String getWeatherAnimation(String? mainCondition) {
-    if(mainCondition == null) return 'assets/sunny.json';
+    if (mainCondition == null) return 'assets/images/sunny.json';
 
-    switch (mainCondition.toLowerCase()){
+    switch (mainCondition.toLowerCase()) {
       case 'clouds':
       case 'mist':
       case 'smoke':
       case 'haze':
       case 'dust':
       case 'fog':
-        return 'assets/cloud.json';
+        return 'assets/images/cloud.json';
       case 'rain':
       case 'drizzle':
       case 'shower rain':
-        return 'assets/rain.json';
+        return 'assets/images/rain.json';
       case 'thunderstorm':
-        return 'assets/thunder.json';
+        return 'assets/images/thunder.json';
       case 'clear':
-        return 'assets/sunny.json';
+        return 'assets/images/sunny.json';
       default:
-        return 'assets/sunny.json';
+        return 'assets/images/sunny.json';
     }
   }
 
@@ -63,12 +64,12 @@ class _WeatherPageState extends State<WeatherPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: myFirstColor,
           title: Center(
             child: Text(
               message,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: myFifthColor,
                 fontSize: 16,
               ),
             ),
@@ -88,15 +89,41 @@ class _WeatherPageState extends State<WeatherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: myAppBar,
-      backgroundColor: myDefaultBackground,
+      backgroundColor: myFifthColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(_weather?.cityName ?? "loading city..."),
-            Lottie.asset(getWeatherAnimation(_weather?.mainCondition)),
-            Text('${_weather?.temperature.round()} °C'),
-            Text(_weather?.mainCondition ?? ""),
+            const Icon(Icons.pin_drop),
+            const SizedBox(height: 10),
+            Text(
+              _weather?.cityName ?? "Loading...",
+              style: TextStyle(
+                color: myTenthColor,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(height: 100),
+            Lottie.asset(
+              getWeatherAnimation(_weather?.mainCondition),
+            ),
+            const SizedBox(height: 100),
+            Text(
+              '${_weather?.temperature.round()} °C',
+              style: TextStyle(
+                color: myNinthColor,
+                fontSize: 25,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              _weather?.mainCondition ?? "",
+              style: TextStyle(
+                color: myEighthColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
           ],
         ),
       ),

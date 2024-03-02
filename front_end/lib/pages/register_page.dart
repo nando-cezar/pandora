@@ -6,6 +6,8 @@ import 'package:pandora_front/components/my_textfield.dart';
 import 'package:pandora_front/components/square_tile.dart';
 import 'package:pandora_front/services/auth_service.dart';
 
+import '../constants.dart';
+
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
 
@@ -59,12 +61,12 @@ class _RegisterPage extends State<RegisterPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.deepPurple,
+          backgroundColor: myFirstColor,
           title: Center(
             child: Text(
               message,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: myFifthColor,
                 fontSize: 16,
               ),
             ),
@@ -77,7 +79,7 @@ class _RegisterPage extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white70,
+      backgroundColor: myFifthColor,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -88,7 +90,7 @@ class _RegisterPage extends State<RegisterPage> {
 
                 // logo
                 Image.asset(
-                  'lib/images/pandora.png',
+                  'assets/images/pandora.png',
                   height: 100,
                 ),
 
@@ -98,7 +100,7 @@ class _RegisterPage extends State<RegisterPage> {
                 Text(
                   'PANDORA',
                   style: TextStyle(
-                    color: Colors.grey[900],
+                    color: myTenthColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                   ),
@@ -110,7 +112,7 @@ class _RegisterPage extends State<RegisterPage> {
                 Text(
                   'Let\'s create an account for you!',
                   style: TextStyle(
-                    color: Colors.grey[700],
+                    color: myNinthColor,
                     fontSize: 16,
                   ),
                 ),
@@ -159,20 +161,20 @@ class _RegisterPage extends State<RegisterPage> {
                       Expanded(
                         child: Divider(
                           thickness: 0.5,
-                          color: Colors.grey[400],
+                          color: mySixthColor,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
                           'Or continue with',
-                          style: TextStyle(color: Colors.grey[700]),
+                          style: TextStyle(color: myNinthColor),
                         ),
                       ),
                       Expanded(
                         child: Divider(
                           thickness: 0.5,
-                          color: Colors.grey[400],
+                          color: mySixthColor,
                         ),
                       ),
                     ],
@@ -188,7 +190,7 @@ class _RegisterPage extends State<RegisterPage> {
                     // google button
                     SquareTile(
                       onTap: () => AuthService().signInWithGoogle(),
-                      imagePath: 'lib/images/google.png',
+                      imagePath: 'assets/images/google.png',
                     ),
 
                     const SizedBox(width: 25),
@@ -196,7 +198,7 @@ class _RegisterPage extends State<RegisterPage> {
                     // apple button
                     SquareTile(
                       onTap: () => {},
-                      imagePath: 'lib/images/apple.png',
+                      imagePath: 'assets/images/apple.png',
                     )
                   ],
                 ),
@@ -209,15 +211,15 @@ class _RegisterPage extends State<RegisterPage> {
                   children: [
                     Text(
                       'Already have an account?',
-                      style: TextStyle(color: Colors.grey[700]),
+                      style: TextStyle(color: myNinthColor),
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
                       onTap: widget.onTap,
-                      child: const Text(
+                      child: Text(
                         'Login now',
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: myFirstColor,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

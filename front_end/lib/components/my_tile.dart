@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class MyTile extends StatelessWidget {
   const MyTile({super.key});
 
@@ -8,7 +10,7 @@ class MyTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        color: Colors.green,
+        color: myEighthColor,
         height: 80,
       ),
     );

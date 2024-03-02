@@ -182,6 +182,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "google_nav_bar",
+      "rootUri": "file:///C:/Users/Lukas/AppData/Local/Pub/Cache/hosted/pub.dev/google_nav_bar-5.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "google_sign_in",
       "rootUri": "file:///C:/Users/Lukas/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in-6.2.1",
       "packageUri": "lib/",
@@ -380,7 +386,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-03-01T18:04:24.467632Z",
+  "generated": "2024-03-02T01:53:36.304664Z",
   "generator": "pub",
   "generatorVersion": "3.3.0"
 }

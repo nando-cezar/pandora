@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -17,11 +16,15 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: myDefaultBackground,
+      backgroundColor: myFifthColor,
       child: Column(
         children: [
-          const DrawerHeader(
-            child: Icon(Icons.favorite),
+          DrawerHeader(
+            child: Image.asset(
+              'assets/images/pandora.png',
+              width: 50,
+              height: 50
+            ),
           ),
           const ListTile(
             leading: Icon(Icons.home),

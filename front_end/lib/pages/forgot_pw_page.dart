@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
+import '../constants.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -48,8 +49,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           title: Center(
             child: Text(
               message,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: myFifthColor,
                 fontSize: 16,
               ),
             ),
@@ -62,10 +63,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
-        elevation: 0,
-      ),
+      appBar: myAppBar,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -75,7 +73,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 const SizedBox(height: 50),
 
                 Image.asset(
-                  'lib/images/pandora.png',
+                  'assets/images/pandora.png',
                   height: 100,
                 ),
 
@@ -83,31 +81,19 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
                 // welcome back, you've been missed!
                 Text(
-                  'PANDORA',
-                  style: TextStyle(
-                    color: Colors.grey[900],
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
-                  ),
-                ),
-
-                const SizedBox(height: 10),
-
-                // welcome back, you've been missed!
-                Text(
                   'Forgot password!',
                   style: TextStyle(
-                    color: Colors.grey[700],
+                    color: myTenthColor,
                     fontSize: 16,
                   ),
                 ),
 
                 const SizedBox(height: 25),
 
-                const Text(
+                Text(
                   'Enter your e-mail ans we will send you a password reset link.',
                   style: TextStyle(
-                    color: Colors.black54,
+                    color: myEighthColor,
                     fontSize: 13,
                   ),
                 ),

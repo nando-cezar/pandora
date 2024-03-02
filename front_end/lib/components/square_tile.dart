@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class SquareTile extends StatelessWidget {
   final String imagePath;
   final Function()? onTap;
@@ -16,9 +18,9 @@ class SquareTile extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.white),
+          border: Border.all(color: myFifthColor),
           borderRadius: BorderRadius.circular(16),
-          color: Colors.grey[200],
+          color: mySeventhColor,
         ),
         child: Image.asset(
           imagePath,
