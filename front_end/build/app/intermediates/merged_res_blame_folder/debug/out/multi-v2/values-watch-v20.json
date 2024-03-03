@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.pandora_front.app-mergeDebugResources-15:/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "com.example.pandora_front.app-mergeDebugResources-16:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\cb42bfd6a0683c853284c09ea1b5a334\\transformed\\jetified-play-services-auth-20.7.0\\res\\values-watch-v20\\values.xml",

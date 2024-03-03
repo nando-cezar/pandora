@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.pandora_front.app-mergeDebugResources-15:/values-iw/values-iw.xml",
+            "outputFile": "com.example.pandora_front.app-mergeDebugResources-16:/values-iw/values-iw.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\8d39ac276459a0328299c248790827c6\\transformed\\core-1.9.0\\res\\values-iw\\values-iw.xml",

@@ -21,7 +21,7 @@ Color? myNinthColor = Colors.grey[700];
 Color? myTenthColor = Colors.grey[900];
 
 var myAppBar = AppBar(
-  iconTheme: const IconThemeData(color: Colors.white),
+  iconTheme: IconThemeData(color: myFifthColor),
   backgroundColor: myFirstColor,
   title: Text(
     'P A N D O R A®',

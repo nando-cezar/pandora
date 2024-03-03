@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.pandora_front.app-mergeDebugResources-15:/values-it/values-it.xml",
+            "outputFile": "com.example.pandora_front.app-mergeDebugResources-16:/values-it/values-it.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\fd2fead0d3191dc86a26998cf6dc9af4\\transformed\\jetified-play-services-basement-18.2.0\\res\\values-it\\values.xml",

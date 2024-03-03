@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
+import '../pages/map_page.dart';
 import '../pages/weather_page.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -30,9 +32,21 @@ class MyDrawer extends StatelessWidget {
             leading: Icon(Icons.home),
             title: Text('D A S H B O A R D'),
           ),
-          const ListTile(
-            leading: Icon(Icons.message),
-            title: Text('M E S S A G E'),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const MapPage();
+                  },
+                ),
+              );
+            },
+            child: const ListTile(
+              leading: Icon(Icons.message),
+              title: Text('M E S S A G E'),
+            ),
           ),
           GestureDetector(
             onTap: () {

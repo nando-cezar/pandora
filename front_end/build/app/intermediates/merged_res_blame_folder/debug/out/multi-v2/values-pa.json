@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.pandora_front.app-mergeDebugResources-15:/values-pa/values-pa.xml",
+            "outputFile": "com.example.pandora_front.app-mergeDebugResources-16:/values-pa/values-pa.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Lukas\\.gradle\\caches\\transforms-3\\0f575ee9f07a3370d225583464b9e9dd\\transformed\\browser-1.4.0\\res\\values-pa\\values-pa.xml",

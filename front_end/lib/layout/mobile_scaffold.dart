@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pandora_front/components/my_tile.dart';
+import '../components/my_bargraph.dart';
 import '../components/my_box.dart';
 import '../components/my_drawer.dart';
 import '../components/my_navbar.dart';
@@ -21,26 +23,24 @@ class _MobileScaffoldState extends State<MobileScaffold> {
       drawer: MyDrawer(),
       body: Column(
         children: [
-          AspectRatio(
-            aspectRatio: 1,
+          const Expanded(
             child: SizedBox(
               width: double.infinity,
-              child: GridView.builder(
-                itemCount: 4,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 10.0,
+                  horizontal: 0,
                 ),
-                itemBuilder: (context, index) {
-                  return MyBox();
-                },
+                child: MyBarGraph(),
               ),
             ),
           ),
+
           Expanded(
             child: ListView.builder(
               itemCount: 5,
               itemBuilder: (context, index) {
-                return MyTile();
+                return const MyTile();
               },
             ),
           )

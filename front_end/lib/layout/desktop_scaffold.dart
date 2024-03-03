@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/my_bargraph.dart';
 import '../components/my_box.dart';
 import '../components/my_drawer.dart';
 import '../components/my_navbar.dart';
@@ -25,22 +26,19 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
             flex: 2,
             child: Column(
               children: [
-                AspectRatio(
-                  aspectRatio: 4,
+                const Expanded(
                   child: SizedBox(
                     width: double.infinity,
-                    child: GridView.builder(
-                      itemCount: 4,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10.0,
+                        horizontal: 0,
                       ),
-                      itemBuilder: (context, index) {
-                        return const MyBox();
-                      },
+                      child: MyBarGraph(),
                     ),
                   ),
                 ),
+
                 Expanded(
                   child: ListView.builder(
                     itemCount: 5,
