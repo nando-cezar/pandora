@@ -20,6 +20,10 @@ Color? myNinthColor = Colors.grey[700];
 
 Color? myTenthColor = Colors.grey[900];
 
+Color myActiveColor = Colors.pink;
+
+Color myPassiveColor = Colors.amber;
+
 var myAppBar = AppBar(
   iconTheme: IconThemeData(color: myFifthColor),
   backgroundColor: myFirstColor,

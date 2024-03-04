@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../components/my_bargraph.dart';
-import '../components/my_box.dart';
 import '../components/my_drawer.dart';
 import '../components/my_navbar.dart';
 import '../components/my_tile.dart';
@@ -24,21 +22,11 @@ class _TableScaffoldState extends State<TableScaffold> {
       body: Column(
         children: [
           const Expanded(
-            child: SizedBox(
-              width: double.infinity,
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 10.0,
-                  horizontal: 0,
-                ),
-                child: MyBarGraph(),
-              ),
-            ),
+            child: MyBarGraph(),
           ),
-
           Expanded(
             child: ListView.builder(
-              itemCount: 5,
+              itemCount: 20,
               itemBuilder: (context, index) {
                 return const MyTile();
               },

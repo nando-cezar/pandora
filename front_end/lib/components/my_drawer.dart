@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
+import '../pages/home_page.dart';
 import '../pages/map_page.dart';
 import '../pages/weather_page.dart';
 
@@ -13,6 +14,17 @@ class MyDrawer extends StatelessWidget {
 
   void signUserOut() {
     FirebaseAuth.instance.signOut();
+  }
+
+  void navigatorConfig(BuildContext context, Widget widget) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return widget;
+        },
+      ),
+    );
   }
 
   @override
@@ -28,37 +40,35 @@ class MyDrawer extends StatelessWidget {
               height: 50
             ),
           ),
-          const ListTile(
-            leading: Icon(Icons.home),
-            title: Text('D A S H B O A R D'),
-          ),
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const MapPage();
-                  },
-                ),
-              );
+              navigatorConfig(context, const HomePage());
             },
             child: const ListTile(
-              leading: Icon(Icons.message),
-              title: Text('M E S S A G E'),
+              leading: Icon(Icons.home),
+              title: Text('D A S H B O A R D'),
             ),
           ),
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const WeatherPage();
-                  },
-                ),
-              );
+              navigatorConfig(context, const MapPage());
             },
+            child: const ListTile(
+              leading: Icon(Icons.map),
+              title: Text('M A P'),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              navigatorConfig(context, const WeatherPage());
+            },
+            child: const ListTile(
+              leading: Icon(Icons.sunny),
+              title: Text('W E A T H E R'),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {},
             child: const ListTile(
               leading: Icon(Icons.settings),
               title: Text('S E T T I N G S'),
