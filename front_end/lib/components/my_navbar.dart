@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:pandora_front/pages/home_page.dart';
 
 import '../constants.dart';
+import '../pages/map_page.dart';
+import '../pages/weather_page.dart';
 
 class MyNavBar extends StatelessWidget {
   const MyNavBar({super.key});
+
+  void navigatorConfig(BuildContext context, Widget widget) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return widget;
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,20 +39,33 @@ class MyNavBar extends StatelessWidget {
           onTabChange: (index) {
             print(index);
           },
-          tabs: const [
+          tabs: [
             GButton(
               icon: Icons.home,
-              text: 'Home',
+              text: 'Dashboard',
+              onPressed: () {
+              navigatorConfig(context, const HomePage());
+              },
             ),
             GButton(
-              icon: Icons.favorite_border,
-              text: 'Likes',
+              icon: Icons.map,
+              text: 'Map',
+              onPressed: () {
+                navigatorConfig(context, const MapPage());
+              },
+            ),
+            const GButton(
+              icon: Icons.emergency,
+              text: 'Alert',
             ),
             GButton(
-              icon: Icons.search,
-              text: 'Search',
+              icon: Icons.sunny,
+              text: 'Weather',
+              onPressed: () {
+                navigatorConfig(context, const WeatherPage());
+              },
             ),
-            GButton(
+            const GButton(
               icon: Icons.settings,
               text: 'Settings',
             ),

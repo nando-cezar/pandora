@@ -45,7 +45,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: myFirstColor,
           title: Center(
             child: Text(
               message,

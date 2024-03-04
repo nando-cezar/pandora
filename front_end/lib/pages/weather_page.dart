@@ -94,7 +94,11 @@ class _WeatherPageState extends State<WeatherPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.pin_drop),
+            Icon(
+              Icons.pin_drop_sharp,
+              color: myActiveColor,
+              size: 40,
+            ),
             const SizedBox(height: 10),
             Text(
               _weather?.cityName ?? "Loading...",
