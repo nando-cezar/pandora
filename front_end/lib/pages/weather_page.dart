@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lottie/lottie.dart';
-import 'package:pandora_front/model/location_model.dart';
 import 'package:pandora_front/model/weather_model.dart';
 import 'package:pandora_front/services/weather_service.dart';
 
@@ -15,18 +14,17 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-  static String BASE_OPEN_WEATHER_MAP_KEY =
+  static String API_OPEN_WEATHER_MAP_KEY =
       dotenv.env['API_OPEN_WEATHER_MAP_KEY']!;
-  static String BASE_OPEN_CAGE_DATA_KEY = dotenv.env['API_OPEN_CAGE_DATA_KEY']!;
   final _weatherService =
-      WeatherService(BASE_OPEN_WEATHER_MAP_KEY, BASE_OPEN_CAGE_DATA_KEY);
+      WeatherService(API_OPEN_WEATHER_MAP_KEY);
   Weather? _weather;
 
   _fetchWeather() async {
-    Location location = await _weatherService.getCurrentyCity();
 
     try {
-      final weather = await _weatherService.getWeather(location.address);
+      final weather = await _weatherService.getCurrentWeather();
+
       setState(() {
         _weather = weather;
       });
@@ -88,7 +86,6 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar,
       backgroundColor: myFifthColor,
       body: Center(
         child: Column(

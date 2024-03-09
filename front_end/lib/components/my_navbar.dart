@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:pandora_front/pages/home_page.dart';
 
 import '../constants.dart';
-import '../pages/map_page.dart';
-import '../pages/weather_page.dart';
+import '../controller/pages_controller.dart';
 
 class MyNavBar extends StatelessWidget {
-  const MyNavBar({super.key});
+  final PagesController controller;
+  final int value;
 
-  void navigatorConfig(BuildContext context, Widget widget) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return widget;
-        },
-      ),
-    );
+  const MyNavBar({super.key, required this.controller, required this.value});
+
+  bool verifyActive(int target) {
+    return value == target;
   }
 
   @override
@@ -30,44 +24,42 @@ class MyNavBar extends StatelessWidget {
           vertical: 10,
         ),
         child: GNav(
+          haptic: true,
           backgroundColor: myFirstColor,
           color: myFifthColor,
           activeColor: myFifthColor,
           tabBackgroundColor: mySecondColor,
           gap: 10,
           padding: const EdgeInsets.all(15.0),
+          selectedIndex: controller.index.value,
           onTabChange: (index) {
-            print(index);
+            controller.index.value = index;
           },
           tabs: [
             GButton(
               icon: Icons.home,
               text: 'Dashboard',
-              onPressed: () {
-              navigatorConfig(context, const HomePage());
-              },
+              active: verifyActive(0),
             ),
             GButton(
               icon: Icons.map,
               text: 'Map',
-              onPressed: () {
-                navigatorConfig(context, const MapPage());
-              },
+              active: verifyActive(1),
             ),
-            const GButton(
+            GButton(
               icon: Icons.emergency,
               text: 'Alert',
+              active: verifyActive(2),
             ),
             GButton(
               icon: Icons.sunny,
               text: 'Weather',
-              onPressed: () {
-                navigatorConfig(context, const WeatherPage());
-              },
+              active: verifyActive(3),
             ),
-            const GButton(
+            GButton(
               icon: Icons.settings,
               text: 'Settings',
+              active: verifyActive(4),
             ),
           ],
         ),

@@ -46,6 +46,7 @@ dependencies:
   google_maps_flutter: ^2.5.3
   google_maps_flutter_web: ^0.5.4+3
   fl_chart: ^0.66.2
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:
