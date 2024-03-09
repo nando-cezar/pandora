@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../components/my_expansion_panel.dart';
 import '../components/my_bargraph.dart';
-import '../components/my_drawer.dart';
-import '../components/my_tile.dart';
 import '../constants.dart';
+import '../controller/extreme_event_controller.dart';
+import '../model/extreme_event _model.dart';
 
 class DesktopScaffold extends StatefulWidget {
   const DesktopScaffold({super.key});
@@ -12,14 +14,14 @@ class DesktopScaffold extends StatefulWidget {
 }
 
 class _DesktopScaffoldState extends State<DesktopScaffold> {
+  final ExtremeEventController controller = Get.put(ExtremeEventController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar,
       backgroundColor: myFifthColor,
       body: Row(
         children: [
-          MyDrawer(),
           Expanded(
             flex: 2,
             child: Column(
@@ -27,15 +29,33 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                 const Expanded(
                   child: MyBarGraph(),
                 ),
-
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: 20,
-                    itemBuilder: (context, index) {
-                      return const MyTile();
+                  child: MyExpansionPanel<ExtremeEventModel>(
+                    items: controller.items,
+                    headerBuilder: (ExtremeEventModel model) {
+                      return ListTile(
+                        title: Text(model.description),
+                        leading: CircleAvatar(
+                          backgroundColor: myActiveColor,
+                          child: Text(
+                            model.id.toString(),
+                            style: TextStyle(color: myFifthColor),
+                          ),
+                        ),
+                      );
+                    },
+                    bodyBuilder: (ExtremeEventModel model) {
+                      return ListTile(
+                        title: Text(model.description),
+                        subtitle:
+                            Text(model.apparent_temperature_max.max.toString()),
+                      );
+                    },
+                    expansionCallback: (int index, bool isExpanded) {
+                      controller.items[index].isExpanded = isExpanded;
                     },
                   ),
-                )
+                ),
               ],
             ),
           ),

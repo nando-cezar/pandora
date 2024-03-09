@@ -1,30 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
-import '../pages/home_page.dart';
-import '../pages/map_page.dart';
-import '../pages/weather_page.dart';
+import '../controller/pages_controller.dart';
 
 class MyDrawer extends StatelessWidget {
-  MyDrawer({super.key});
-
   final user = FirebaseAuth.instance.currentUser!;
+  final PagesController controller;
+
+  MyDrawer({super.key, required this.controller});
 
   void signUserOut() {
     FirebaseAuth.instance.signOut();
   }
 
-  void navigatorConfig(BuildContext context, Widget widget) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return widget;
-        },
-      ),
-    );
+  void navigatorConfig(int index, BuildContext context) {
+    controller.index.value = index;
+    Navigator.pop(context);
   }
 
   @override
@@ -34,15 +26,12 @@ class MyDrawer extends StatelessWidget {
       child: Column(
         children: [
           DrawerHeader(
-            child: Image.asset(
-              'assets/images/pandora.png',
-              width: 50,
-              height: 50
-            ),
+            child:
+                Image.asset('assets/images/pandora.png', width: 50, height: 50),
           ),
           GestureDetector(
             onTap: () {
-              navigatorConfig(context, const HomePage());
+              navigatorConfig(0, context);
             },
             child: const ListTile(
               leading: Icon(Icons.home),
@@ -51,7 +40,7 @@ class MyDrawer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigatorConfig(context, const MapPage());
+              navigatorConfig(1, context);
             },
             child: const ListTile(
               leading: Icon(Icons.map),
@@ -60,7 +49,7 @@ class MyDrawer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigatorConfig(context, const WeatherPage());
+              navigatorConfig(3, context);
             },
             child: const ListTile(
               leading: Icon(Icons.sunny),
@@ -68,7 +57,9 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              navigatorConfig(4, context);
+            },
             child: const ListTile(
               leading: Icon(Icons.settings),
               title: Text('S E T T I N G S'),

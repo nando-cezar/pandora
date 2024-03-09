@@ -92,7 +92,7 @@ MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Lukas\.gradle\cache
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Lukas\.gradle\caches\transforms-3\bce1361dee4a8c7a5f5e370a56fb7971\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Lukas\.gradle\caches\transforms-3\1349b4ebc34298e2fec1f89704f1d8a1\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Lukas\.gradle\caches\transforms-3\1c226c867306ac95800b5e5b925b8b4e\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Lukas\.gradle\caches\transforms-3\731790880b119b3c642b9ef78d569e62\transformed\multidex-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.multidex:multidex:2.0.1] C:\Users\Lukas\.gradle\caches\transforms-3\36d56bfc66225cfefc42cc8e69ec04a9\transformed\multidex-2.0.1\AndroidManifest.xml:17:1-22:12
 INJECTED from C:\Users\Lukas\OneDrive\Documentos\Projects\pandora\front_end\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\Lukas\OneDrive\Documentos\Projects\pandora\front_end\android\app\src\debug\AndroidManifest.xml:1:1-7:12
 INJECTED from C:\Users\Lukas\OneDrive\Documentos\Projects\pandora\front_end\android\app\src\debug\AndroidManifest.xml:1:1-7:12
@@ -226,8 +226,8 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Lukas\.gradl
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Lukas\.gradle\caches\transforms-3\1349b4ebc34298e2fec1f89704f1d8a1\transformed\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Lukas\.gradle\caches\transforms-3\1c226c867306ac95800b5e5b925b8b4e\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\Lukas\.gradle\caches\transforms-3\1c226c867306ac95800b5e5b925b8b4e\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Lukas\.gradle\caches\transforms-3\731790880b119b3c642b9ef78d569e62\transformed\multidex-2.0.0\AndroidManifest.xml:20:5-43
-MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\Lukas\.gradle\caches\transforms-3\731790880b119b3c642b9ef78d569e62\transformed\multidex-2.0.0\AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.1] C:\Users\Lukas\.gradle\caches\transforms-3\36d56bfc66225cfefc42cc8e69ec04a9\transformed\multidex-2.0.1\AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.1] C:\Users\Lukas\.gradle\caches\transforms-3\36d56bfc66225cfefc42cc8e69ec04a9\transformed\multidex-2.0.1\AndroidManifest.xml:20:5-43
 INJECTED from C:\Users\Lukas\OneDrive\Documentos\Projects\pandora\front_end\android\app\src\debug\AndroidManifest.xml
 INJECTED from C:\Users\Lukas\OneDrive\Documentos\Projects\pandora\front_end\android\app\src\debug\AndroidManifest.xml
 	tools:overrideLibrary
