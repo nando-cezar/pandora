@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../constants.dart';
+import '../controller/position_controller.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -13,69 +15,83 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  final Completer<GoogleMapController> _controller =
+  final FirebaseFirestore db = FirebaseFirestore.instance;
+  final PositionController _controllerPosition = Get.put(PositionController());
+  final Completer<GoogleMapController> _controllerMap =
       Completer<GoogleMapController>();
   final Map<String, Marker> _markers = {};
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
-  static const CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+  @override
+  void initState() {
+    _getMarkerData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
         mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-          addMarker('Test', const LatLng(37.42796133580664, -122.085749655962));
-        },
-        markers: _markers.values.toSet(),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        icon: Icon(
-          Icons.layers,
-          color: myFifthColor,
-        ),
-        backgroundColor: myActiveColor,
-        label: Text(
-          'Change layer!',
-          style: TextStyle(
-            color: myFifthColor,
-            fontWeight: FontWeight.w300,
-            fontSize: 20,
-          ),
-        ),
+        initialCameraPosition: _getInitialCameraPosition(),
+        onMapCreated: _onMapCreated,
+        markers: Set<Marker>.of(_markers.values),
       ),
     );
   }
 
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  _getMarkerData() async {
+    final collectionRef = db
+        .collection("Extreme Event")
+        .doc("South America")
+        .collection("Brazil");
+
+    await collectionRef.get().then(
+      (querySnapshot) {
+        querySnapshot.docs
+            .map((DocumentSnapshot doc) => {
+                  'id': doc['id'],
+                  'type': doc['type'],
+                  'latitude': doc['location_data']['latitude'],
+                  'longitude': doc['location_data']['longitude'],
+                  'formatted': doc['location_data']['formatted']
+                })
+            .forEach((docSnapshot) {
+          addMarker(docSnapshot);
+        });
+      },
+      onError: (e) => print("Error completing: $e"),
+    );
   }
 
-  void addMarker(String id, LatLng location) {
+  void addMarker(data) {
     var marker = Marker(
-      markerId: MarkerId(id),
-      position: location,
-      infoWindow: const InfoWindow(
-        title: 'Title of place',
-        snippet: 'Some description of the place',
+      markerId: MarkerId(data['id']),
+      position: LatLng(
+        double.parse(data['latitude']),
+        double.parse(data['longitude']),
+      ),
+      infoWindow: InfoWindow(
+        title: data['type'],
+        snippet: data['formatted'],
       ),
     );
 
-    _markers[id] = marker;
-    setState(() {});
+    setState(() {
+      _markers[data['id']] = marker;
+    });
+  }
+
+  CameraPosition _getInitialCameraPosition() {
+    return CameraPosition(
+      target: LatLng(
+        _controllerPosition.latitude.value,
+        _controllerPosition.longitude.value,
+      ),
+      zoom: 15,
+    );
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    _controllerMap.complete(controller);
   }
 }

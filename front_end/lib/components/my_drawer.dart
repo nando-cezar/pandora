@@ -1,21 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../constants.dart';
 import '../controller/pages_controller.dart';
 
 class MyDrawer extends StatelessWidget {
+  final PagesController _controller = Get.put(PagesController());
   final user = FirebaseAuth.instance.currentUser!;
-  final PagesController controller;
 
-  MyDrawer({super.key, required this.controller});
+  MyDrawer({super.key});
 
   void signUserOut() {
     FirebaseAuth.instance.signOut();
   }
 
   void navigatorConfig(int index, BuildContext context) {
-    controller.index.value = index;
+    _controller.index.value = index;
     Navigator.pop(context);
   }
 

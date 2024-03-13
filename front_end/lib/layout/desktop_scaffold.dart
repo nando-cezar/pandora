@@ -14,7 +14,7 @@ class DesktopScaffold extends StatefulWidget {
 }
 
 class _DesktopScaffoldState extends State<DesktopScaffold> {
-  final ExtremeEventController controller = Get.put(ExtremeEventController());
+  final ExtremeEventController _controller = Get.put(ExtremeEventController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +31,10 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                 ),
                 Expanded(
                   child: MyExpansionPanel<ExtremeEventModel>(
-                    items: controller.items,
+                    items: _controller.items,
                     headerBuilder: (ExtremeEventModel model) {
                       return ListTile(
+                        contentPadding: const EdgeInsets.all(5.0),
                         title: Text(model.description),
                         leading: CircleAvatar(
                           backgroundColor: myActiveColor,
@@ -52,7 +53,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                       );
                     },
                     expansionCallback: (int index, bool isExpanded) {
-                      controller.items[index].isExpanded = isExpanded;
+                      _controller.items[index].isExpanded = isExpanded;
                     },
                   ),
                 ),

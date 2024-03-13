@@ -14,7 +14,7 @@ class TableScaffold extends StatefulWidget {
 }
 
 class _TableScaffoldState extends State<TableScaffold> {
-  final ExtremeEventController controller = Get.put(ExtremeEventController());
+  final ExtremeEventController _controller = Get.put(ExtremeEventController());
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,10 @@ class _TableScaffoldState extends State<TableScaffold> {
           ),
           Expanded(
             child: MyExpansionPanel<ExtremeEventModel>(
-              items: controller.items,
+              items: _controller.items,
               headerBuilder: (ExtremeEventModel model) {
                 return ListTile(
+                  contentPadding: const EdgeInsets.all(5.0),
                   title: Text(model.description),
                   leading: CircleAvatar(
                     backgroundColor: myActiveColor,
@@ -47,7 +48,7 @@ class _TableScaffoldState extends State<TableScaffold> {
                 );
               },
               expansionCallback: (int index, bool isExpanded) {
-                controller.items[index].isExpanded = isExpanded;
+                _controller.items[index].isExpanded = isExpanded;
               },
             ),
           )

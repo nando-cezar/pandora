@@ -45,6 +45,29 @@
 </head>
 <body>
   <script>
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "firebase/app";
+    import { getAnalytics } from "firebase/analytics";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCNhjxsmVK4ulsBJKipX276jitCfLK_UJs",
+      authDomain: "pandora-400014.firebaseapp.com",
+      projectId: "pandora-400014",
+      storageBucket: "pandora-400014.appspot.com",
+      messagingSenderId: "575192726483",
+      appId: "1:575192726483:web:2e07ceab1cc2bc20830d26",
+      measurementId: "G-J3664D8QZN"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+  <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
