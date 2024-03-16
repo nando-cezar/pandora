@@ -22,13 +22,6 @@ class _MyBarGraphState extends State<MyBarGraph> {
       thurAmount: 100.20,
       friAmount: 80.90,
       satAmount: 90.10,
-      sunAmount0: 4.40,
-      monAmount1: 2.50,
-      tueAmount2: 42.00,
-      wedAmount3: 10.50,
-      thurAmount4: 100.20,
-      friAmount5: 80.90,
-      satAmount6: 90.10,
     );
 
     myBarData.initializeBarData();
@@ -95,7 +88,7 @@ class _MyBarGraphState extends State<MyBarGraph> {
                           BarChartRodData(
                             toY: data.y,
                             color: myNinthColor,
-                            width: 15,
+                            width: 30,
                             borderRadius: BorderRadius.circular(4),
                             backDrawRodData: BackgroundBarChartRodData(
                               show: true,
@@ -146,34 +139,16 @@ Widget getBottomTitles(double value, TitleMeta meta) {
       text = Text('FF', style: style);
       break;
     case 3:
-      text = Text('MS', style: style);
-      break;
-    case 4:
       text = Text('TC', style: style);
       break;
-    case 5:
-      text = Text('TD', style: style);
-      break;
-    case 6:
-      text = Text('DG', style: style);
-      break;
-    case 7:
+    case 4:
       text = Text('HW', style: style);
       break;
-    case 8:
+    case 5:
       text = Text('SG', style: style);
       break;
-    case 9:
-      text = Text('LT', style: style);
-      break;
-    case 10:
-      text = Text('LW', style: style);
-      break;
-    case 11:
+    case 6:
       text = Text('FG', style: style);
-      break;
-    case 12:
-      text = Text('SW', style: style);
       break;
     default:
       text = Text('', style: style);
@@ -196,34 +171,16 @@ BarTooltipItem getTooltipBottomItem(group, groupIndex, rod, rodIndex) {
       weekDay = 'Flash flood';
       break;
     case 3:
-      weekDay = 'Mudslide';
-      break;
-    case 4:
       weekDay = 'Tropical cyclone';
       break;
-    case 5:
-      weekDay = 'Tornado';
-      break;
-    case 6:
-      weekDay = 'Drought';
-      break;
-    case 7:
+    case 4:
       weekDay = 'Heat wave';
       break;
-    case 8:
+    case 5:
       weekDay = 'Storm, General';
       break;
-    case 9:
-      weekDay = 'Lightning/Thunderstorms';
-      break;
-    case 10:
-      weekDay = 'Landslide, wet';
-      break;
-    case 11:
+    case 6:
       weekDay = 'Flood, General';
-      break;
-    case 12:
-      weekDay = 'Severe weather';
       break;
     default:
       throw Error();
