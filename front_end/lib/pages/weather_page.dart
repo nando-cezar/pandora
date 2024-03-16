@@ -16,8 +16,7 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage> {
   static String API_OPEN_WEATHER_MAP_KEY =
       dotenv.env['API_OPEN_WEATHER_MAP_KEY']!;
-  final _weatherService =
-      WeatherService(API_OPEN_WEATHER_MAP_KEY);
+  final _weatherService = WeatherService(API_OPEN_WEATHER_MAP_KEY);
   Weather? _weather;
 
   _fetchWeather() async {
@@ -29,7 +28,7 @@ class _WeatherPageState extends State<WeatherPage> {
         _weather = weather;
       });
     } catch (e) {
-      ErrorMessage(e.toString());
+      myShowDialog(context, e.toString());
     }
   }
 
@@ -55,26 +54,6 @@ class _WeatherPageState extends State<WeatherPage> {
       default:
         return 'assets/images/sunny.json';
     }
-  }
-
-  void ErrorMessage(String message) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: myFirstColor,
-          title: Center(
-            child: Text(
-              message,
-              style: TextStyle(
-                color: myFifthColor,
-                fontSize: 16,
-              ),
-            ),
-          ),
-        );
-      },
-    );
   }
 
   @override

@@ -36,3 +36,21 @@ var myAppBar = AppBar(
   ),
   centerTitle: true,
 );
+
+var myShowDialog = (context, message) => showDialog(
+  context: context,
+  builder: (context) {
+    return AlertDialog(
+      backgroundColor: myFirstColor,
+      title: Center(
+        child: Text(
+          message,
+          style: TextStyle(
+            color: myFifthColor,
+            fontSize: 16,
+          ),
+        ),
+      ),
+    );
+  },
+);

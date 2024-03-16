@@ -40,7 +40,7 @@ class _RegisterPage extends State<RegisterPage> {
           password: passwordController.text,
         );
       } else {
-        ErrorMessage('Passwords don\'t match.');
+        myShowDialog(context, 'Passwords don\'t match.');
       }
 
       Navigator.pop(context);
@@ -48,31 +48,11 @@ class _RegisterPage extends State<RegisterPage> {
       Navigator.pop(context);
 
       if (e.code == 'weak-password') {
-        ErrorMessage('Weak password.');
+        myShowDialog(context, 'Weak password.');
       } else if (e.code == 'invalid-email') {
-        ErrorMessage('Invalid e-mail.');
+        myShowDialog(context, 'Invalid e-mail.');
       }
     }
-  }
-
-  void ErrorMessage(String message) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: myFirstColor,
-          title: Center(
-            child: Text(
-              message,
-              style: TextStyle(
-                color: myFifthColor,
-                fontSize: 16,
-              ),
-            ),
-          ),
-        );
-      },
-    );
   }
 
   @override
