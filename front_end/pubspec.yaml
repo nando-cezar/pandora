@@ -49,6 +49,7 @@ dependencies:
   get: ^4.6.6
   cloud_firestore: ^4.15.8
   cloud_firestore_web: ^3.10.8
+  custom_info_window: ^1.0.1
 
 dev_dependencies:
   flutter_test:

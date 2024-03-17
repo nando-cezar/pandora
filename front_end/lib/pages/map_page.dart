@@ -1,10 +1,13 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:custom_info_window/custom_info_window.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../controller/device_controller.dart';
 import '../controller/position_controller.dart';
 import '../model/marker_model.dart';
 
@@ -18,8 +21,11 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   final PositionController _controllerPosition = Get.put(PositionController());
+  final DeviceController _controllerDevice = Get.put(DeviceController());
   final Completer<GoogleMapController> _controllerMap =
       Completer<GoogleMapController>();
+  final CustomInfoWindowController _controllerInfoWindow =
+      CustomInfoWindowController();
   final Map<String, Marker> _markers = {};
 
   @override
@@ -31,11 +37,30 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: _getInitialCameraPosition(),
-        onMapCreated: _onMapCreated,
-        markers: Set<Marker>.of(_markers.values),
+      body: Stack(
+        children: [
+          GoogleMap(
+            mapType: MapType.normal,
+            rotateGesturesEnabled: false,
+            tiltGesturesEnabled: false,
+            mapToolbarEnabled: false,
+            compassEnabled: true,
+            myLocationButtonEnabled: false,
+            myLocationEnabled: true,
+            initialCameraPosition: _getInitialCameraPosition(),
+            onMapCreated: _onMapCreated,
+            markers: Set<Marker>.of(_markers.values),
+            onTap: (position) {
+              _controllerInfoWindow.hideInfoWindow!();
+            },
+          ),
+          CustomInfoWindow(
+            controller: _controllerInfoWindow,
+            height: 200,
+            width: 300,
+            offset: 35,
+          ),
+        ],
       ),
     );
   }
@@ -79,10 +104,79 @@ class _MapPageState extends State<MapPage> {
         metaData['latitude'],
         metaData['longitude'],
       ),
-      infoWindow: InfoWindow(
-        title: metaData['type'],
-        snippet: metaData['address'],
-      ),
+      infoWindow: _controllerDevice.index.value == 0
+          ? InfoWindow(
+              title: metaData['type'],
+              snippet: metaData['address'],
+            )
+          : const InfoWindow(),
+      onTap: () {
+        _controllerDevice.index.value != 0
+            ? _controllerInfoWindow.addInfoWindow!(
+                Container(
+                  height: 300,
+                  width: 200,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 300,
+                        height: 100,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                'https://img.freepik.com/fotos-gratis/foto-de-grande-angular-de-uma-unica-arvore-crescendo-sob-um-ceu-nublado-durante-um-por-do-sol-cercado-por-grama_181624-22807.jpg'),
+                            fit: BoxFit.fitWidth,
+                            filterQuality: FilterQuality.high,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 10, right: 10),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 100,
+                              child: Text(
+                                metaData['type'],
+                                maxLines: 1,
+                                overflow: TextOverflow.fade,
+                                softWrap: false,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text('*****')
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 10, right: 10),
+                        child: Text(
+                          metaData['address'],
+                          maxLines: 2,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                LatLng(
+                  metaData['latitude'],
+                  metaData['longitude'],
+                ),
+              )
+            : ();
+      },
     );
 
     _markers[metaData['id']] = marker;
@@ -100,6 +194,6 @@ class _MapPageState extends State<MapPage> {
   }
 
   void _onMapCreated(GoogleMapController controller) {
-    _controllerMap.complete(controller);
+    _controllerInfoWindow.googleMapController = controller;
   }
 }
