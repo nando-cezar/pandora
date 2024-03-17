@@ -1,9 +1,14 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../constants.dart';
+import '../controller/device_controller.dart';
+import '../controller/position_controller.dart';
+import '../model/marker_model.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -13,69 +18,176 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  final Completer<GoogleMapController> _controller =
+  final FirebaseFirestore db = FirebaseFirestore.instance;
+  final PositionController _controllerPosition = Get.put(PositionController());
+  final DeviceController _controllerDevice = Get.put(DeviceController());
+  final Completer<GoogleMapController> _controllerMap =
       Completer<GoogleMapController>();
+  final CustomInfoWindowController _controllerInfoWindow =
+      CustomInfoWindowController();
   final Map<String, Marker> _markers = {};
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
-  static const CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+  @override
+  void initState() {
+    _getMarkerData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-          addMarker('Test', const LatLng(37.42796133580664, -122.085749655962));
-        },
-        markers: _markers.values.toSet(),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        icon: Icon(
-          Icons.layers,
-          color: myFifthColor,
-        ),
-        backgroundColor: myActiveColor,
-        label: Text(
-          'Change layer!',
-          style: TextStyle(
-            color: myFifthColor,
-            fontWeight: FontWeight.w300,
-            fontSize: 20,
+      body: Stack(
+        children: [
+          GoogleMap(
+            mapType: MapType.normal,
+            rotateGesturesEnabled: false,
+            tiltGesturesEnabled: false,
+            mapToolbarEnabled: false,
+            compassEnabled: true,
+            myLocationButtonEnabled: false,
+            myLocationEnabled: true,
+            initialCameraPosition: _getInitialCameraPosition(),
+            onMapCreated: _onMapCreated,
+            markers: Set<Marker>.of(_markers.values),
+            onTap: (position) {
+              _controllerInfoWindow.hideInfoWindow!();
+            },
           ),
-        ),
+          CustomInfoWindow(
+            controller: _controllerInfoWindow,
+            height: 200,
+            width: 300,
+            offset: 35,
+          ),
+        ],
       ),
     );
   }
 
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  Future<Map<String, Marker>> _getMarkerData() async {
+    try {
+      final collectionRef = db
+          .collection("Extreme Event")
+          .doc("South America")
+          .collection("Brazil");
+
+      final querySnapshot = await collectionRef.get();
+      for (var docSnapshot in querySnapshot.docs) {
+        final locationDataRef =
+            collectionRef.doc(docSnapshot.id).collection("Location Data");
+        final locationSnapshot = await locationDataRef.get();
+        for (var locationDoc in locationSnapshot.docs) {
+          addMarker(MarkerModel.fromFirestore(docSnapshot.id, locationDoc));
+        }
+      }
+    } catch (e) {
+      print("Error completing: $e");
+    }
+    return _markers;
   }
 
-  void addMarker(String id, LatLng location) {
+  void addMarker(MarkerModel data) async {
+    var metaData = data.toFirestore();
+
+    var markerIcon = await BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(
+        size: Size(40, 40),
+      ),
+      metaData['icon'],
+    );
+
     var marker = Marker(
-      markerId: MarkerId(id),
-      position: location,
-      infoWindow: const InfoWindow(
-        title: 'Title of place',
-        snippet: 'Some description of the place',
+      icon: markerIcon,
+      markerId: MarkerId(metaData['id']),
+      position: LatLng(
+        metaData['latitude'],
+        metaData['longitude'],
       ),
+      infoWindow: _controllerDevice.index.value == 0 ? InfoWindow(
+        title: metaData['type'],
+        snippet: metaData['address'],
+      ): const InfoWindow(),
+      onTap: () {
+        _controllerDevice.index.value != 0
+            ? _controllerInfoWindow.addInfoWindow!(
+          Container(
+            height: 300,
+            width: 200,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 300,
+                  height: 100,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          'https://img.freepik.com/fotos-gratis/foto-de-grande-angular-de-uma-unica-arvore-crescendo-sob-um-ceu-nublado-durante-um-por-do-sol-cercado-por-grama_181624-22807.jpg'),
+                      fit: BoxFit.fitWidth,
+                      filterQuality: FilterQuality.high,
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 100,
+                        child: Text(
+                          metaData['type'],
+                          maxLines: 1,
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text('*****')
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+                  child: Text(
+                    metaData['address'],
+                    maxLines: 2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          LatLng(
+            metaData['latitude'],
+            metaData['longitude'],
+          ),
+        ) : ();
+      },
     );
 
-    _markers[id] = marker;
+    _markers[metaData['id']] = marker;
     setState(() {});
+  }
+
+  CameraPosition _getInitialCameraPosition() {
+    return CameraPosition(
+      target: LatLng(
+        _controllerPosition.latitude.value,
+        _controllerPosition.longitude.value,
+      ),
+      zoom: 15,
+    );
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    _controllerInfoWindow.googleMapController = controller;
   }
 }

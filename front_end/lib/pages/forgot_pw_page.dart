@@ -31,33 +31,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       );
 
       Navigator.pop(context);
-      ErrorMessage('Password reset link sent! \nCheck your e-mail.');
+      myShowDialog(context, 'Password reset link sent! \nCheck your e-mail.');
 
     } on FirebaseAuthException catch (e) {
 
       Navigator.pop(context);
-      ErrorMessage(e.message.toString());
+      myShowDialog(context, e.message.toString());
     }
-  }
-
-  void ErrorMessage(String message) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: myFirstColor,
-          title: Center(
-            child: Text(
-              message,
-              style: TextStyle(
-                color: myFifthColor,
-                fontSize: 16,
-              ),
-            ),
-          ),
-        );
-      },
-    );
   }
 
   @override

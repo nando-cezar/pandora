@@ -44,31 +44,11 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pop(context);
 
       if (e.code == 'invalid-credential') {
-        ErrorMessage('Invalid credential.');
+        myShowDialog(context, 'Invalid credential.');
       } else if (e.code == 'invalid-email') {
-        ErrorMessage('Invalid e-mail.');
+        myShowDialog(context, 'Invalid e-mail.');
       }
     }
-  }
-
-  void ErrorMessage(String message) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: myFirstColor,
-          title: Center(
-            child: Text(
-              message,
-              style: TextStyle(
-                color: myFifthColor,
-                fontSize: 16,
-              ),
-            ),
-          ),
-        );
-      },
-    );
   }
 
   @override

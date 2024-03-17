@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../constants.dart';
 import '../controller/pages_controller.dart';
 
 class MyNavBar extends StatelessWidget {
-  final PagesController controller;
+  final PagesController _controller = Get.put(PagesController());
   final int value;
 
-  const MyNavBar({super.key, required this.controller, required this.value});
+  MyNavBar({super.key, required this.value});
 
   bool verifyActive(int target) {
     return value == target;
@@ -31,9 +33,9 @@ class MyNavBar extends StatelessWidget {
           tabBackgroundColor: mySecondColor,
           gap: 10,
           padding: const EdgeInsets.all(15.0),
-          selectedIndex: controller.index.value,
+          selectedIndex: _controller.index.value,
           onTabChange: (index) {
-            controller.index.value = index;
+            _controller.index.value = index;
           },
           tabs: [
             GButton(

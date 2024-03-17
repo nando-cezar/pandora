@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../components/my_expansion_panel.dart';
 import '../components/my_bargraph.dart';
 import '../constants.dart';
+import '../controller/device_controller.dart';
 import '../controller/extreme_event_controller.dart';
 import '../model/extreme_event _model.dart';
 
@@ -14,7 +15,18 @@ class MobileScaffold extends StatefulWidget {
 }
 
 class _MobileScaffoldState extends State<MobileScaffold> {
-  final ExtremeEventController controller = Get.put(ExtremeEventController());
+  final ExtremeEventController _controllerExtremeEvent = Get.put(ExtremeEventController());
+  final DeviceController _controllerDevice = Get.put(DeviceController());
+
+  _fetchDevice() async {
+    _controllerDevice.index.value = 1;
+  }
+
+  @override
+  void initState() {
+    _fetchDevice();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +39,10 @@ class _MobileScaffoldState extends State<MobileScaffold> {
           ),
           Expanded(
             child: MyExpansionPanel<ExtremeEventModel>(
-              items: controller.items,
+              items: _controllerExtremeEvent.items,
               headerBuilder: (ExtremeEventModel model) {
                 return ListTile(
+                  contentPadding: const EdgeInsets.all(5.0),
                   title: Text(model.description),
                   leading: CircleAvatar(
                     backgroundColor: myActiveColor,
@@ -47,7 +60,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
                 );
               },
               expansionCallback: (int index, bool isExpanded) {
-                controller.items[index].isExpanded = isExpanded;
+                _controllerExtremeEvent.items[index].isExpanded = isExpanded;
               },
             ),
           )
