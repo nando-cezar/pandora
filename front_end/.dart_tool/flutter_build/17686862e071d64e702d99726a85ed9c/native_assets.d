@@ -1,1 +1,0 @@
- C:\\Users\\Lukas\\OneDrive\\Documentos\\Projects\\pandora\\front_end\\.dart_tool\\flutter_build\\17686862e071d64e702d99726a85ed9c\\native_assets.yaml: 
