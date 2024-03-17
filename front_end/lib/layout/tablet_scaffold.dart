@@ -28,6 +28,7 @@ class _TableScaffoldState extends State<TableScaffold> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -15,6 +15,7 @@ class DesktopScaffold extends StatefulWidget {
 }
 
 class _DesktopScaffoldState extends State<DesktopScaffold> {
+
   final ExtremeEventController _controllerExtremeEvent = Get.put(ExtremeEventController());
   final DeviceController _controllerDevice = Get.put(DeviceController());
 

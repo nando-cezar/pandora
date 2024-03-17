@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_info_window/custom_info_window.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -103,73 +104,78 @@ class _MapPageState extends State<MapPage> {
         metaData['latitude'],
         metaData['longitude'],
       ),
-      infoWindow: _controllerDevice.index.value == 0 ? InfoWindow(
-        title: metaData['type'],
-        snippet: metaData['address'],
-      ): const InfoWindow(),
+      infoWindow: _controllerDevice.index.value == 0
+          ? InfoWindow(
+              title: metaData['type'],
+              snippet: metaData['address'],
+            )
+          : const InfoWindow(),
       onTap: () {
         _controllerDevice.index.value != 0
             ? _controllerInfoWindow.addInfoWindow!(
-          Container(
-            height: 300,
-            width: 200,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
                 Container(
-                  width: 300,
-                  height: 100,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          'https://img.freepik.com/fotos-gratis/foto-de-grande-angular-de-uma-unica-arvore-crescendo-sob-um-ceu-nublado-durante-um-por-do-sol-cercado-por-grama_181624-22807.jpg'),
-                      fit: BoxFit.fitWidth,
-                      filterQuality: FilterQuality.high,
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
-                    ),
+                  height: 300,
+                  width: 200,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-                  child: Row(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 100,
-                        child: Text(
-                          metaData['type'],
-                          maxLines: 1,
-                          overflow: TextOverflow.fade,
-                          softWrap: false,
+                      Container(
+                        width: 300,
+                        height: 100,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                'https://img.freepik.com/fotos-gratis/foto-de-grande-angular-de-uma-unica-arvore-crescendo-sob-um-ceu-nublado-durante-um-por-do-sol-cercado-por-grama_181624-22807.jpg'),
+                            fit: BoxFit.fitWidth,
+                            filterQuality: FilterQuality.high,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
                         ),
                       ),
-                      const Spacer(),
-                      Text('*****')
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 10, right: 10),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 100,
+                              child: Text(
+                                metaData['type'],
+                                maxLines: 1,
+                                overflow: TextOverflow.fade,
+                                softWrap: false,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text('*****')
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 10, right: 10),
+                        child: Text(
+                          metaData['address'],
+                          maxLines: 2,
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-                  child: Text(
-                    metaData['address'],
-                    maxLines: 2,
-                  ),
+                LatLng(
+                  metaData['latitude'],
+                  metaData['longitude'],
                 ),
-              ],
-            ),
-          ),
-          LatLng(
-            metaData['latitude'],
-            metaData['longitude'],
-          ),
-        ) : ();
+              )
+            : ();
       },
     );
 
