@@ -9,7 +9,6 @@ class MarkerModel {
   final DateTime? timestamp;
   final double? latitude;
   final double? longitude;
-  final String? icon;
 
   MarkerModel(
       {this.id,
@@ -18,7 +17,7 @@ class MarkerModel {
       this.timestamp,
       this.latitude,
       this.longitude,
-      this.icon});
+      });
 
   factory MarkerModel.fromFirestore(
     String type,
@@ -43,7 +42,8 @@ class MarkerModel {
       if (timestamp != null) "timestamp": timestamp,
       if (latitude != null) "latitude": latitude,
       if (longitude != null) "longitude": longitude,
-      'icon': _getIcon(type!)
+      'icon': _getIcon(type!),
+      'image': _getImage(type!)
     };
   }
 
@@ -65,6 +65,27 @@ class MarkerModel {
         return 'assets/images/marker_green.png';
       default:
         return 'assets/images/marker_yellow.png';
+    }
+  }
+
+  _getImage(String target) {
+    switch (target) {
+      case 'Cold wave':
+        return 'assets/images/extreme_events/cold_wave.jpeg';
+      case 'Flash flood':
+        return 'assets/images/extreme_events/flash_flood.jpg';
+      case 'Flood, General':
+        return 'assets/images/extreme_events/flood_general.jpg';
+      case 'Heat wave':
+        return 'assets/images/extreme_events/heat_wave.jpg';
+      case 'Riverine flood':
+        return 'assets/images/extreme_events/riverine_flood.png';
+      case 'Storm, General':
+        return 'assets/images/extreme_events/storm_general.jpeg';
+      case 'Tropical cyclone':
+        return 'assets/images/extreme_events/tropical_cyclone.jpg';
+      default:
+        return 'assets/images/extreme_events/weather.jpg';
     }
   }
 }

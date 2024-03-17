@@ -128,14 +128,13 @@ class _MapPageState extends State<MapPage> {
                       Container(
                         width: 300,
                         height: 100,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: NetworkImage(
-                                'https://img.freepik.com/fotos-gratis/foto-de-grande-angular-de-uma-unica-arvore-crescendo-sob-um-ceu-nublado-durante-um-por-do-sol-cercado-por-grama_181624-22807.jpg'),
+                            image: AssetImage(metaData['image']),
                             fit: BoxFit.fitWidth,
                             filterQuality: FilterQuality.high,
                           ),
-                          borderRadius: BorderRadius.all(
+                          borderRadius: const BorderRadius.all(
                             Radius.circular(10.0),
                           ),
                         ),
