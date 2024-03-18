@@ -22,3 +22,154 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+
+# Do not remove or rename entries in this file, only add new ones
+# See https://github.com/flutter/flutter/issues/128635 for more context.
+
+# Miscellaneous
+/front_end/*.class
+/front_end/*.lock
+/front_end/*.log
+/front_end/*.pyc
+/front_end/*.swp
+/front_end/.DS_Store
+/front_end/.atom/
+/front_end/.buildlog/
+/front_end/.history
+/front_end/.svn/
+
+# IntelliJ related
+/front_end/*.iml
+/front_end/*.ipr
+/front_end/*.iws
+/front_end/.idea/
+
+# Visual Studio Code related
+/front_end/.classpath
+/front_end/.project
+/front_end/.settings/
+/front_end/.vscode/*
+
+# Flutter repo-specific
+/front_end/bin/cache/
+/front_end/bin/internal/bootstrap.bat
+/front_end/bin/internal/bootstrap.sh
+/front_end/bin/mingit/
+/front_end/dev/benchmarks/mega_gallery/
+/front_end/dev/bots/.recipe_deps
+/front_end/dev/bots/android_tools/
+/front_end/dev/devicelab/ABresults*.json
+/front_end/dev/docs/doc/
+/front_end/dev/docs/api_docs.zip
+/front_end/dev/docs/flutter.docs.zip
+/front_end/dev/docs/lib/
+/front_end/dev/docs/pubspec.yaml
+/front_end/dev/integration_tests/**/xcuserdata
+/front_end/dev/integration_tests/**/Pods
+/front_end/packages/flutter/coverage/
+version
+analysis_benchmark.json
+
+# packages file containing multi-root paths
+.packages.generated
+
+# Flutter/Dart/Pub related
+/front_end/**/doc/api/
+/front_end/.dart_tool/
+/front_end/.flutter-plugins
+/front_end/.flutter-plugins-dependencies
+/front_end/**/generated_plugin_registrant.dart
+/front_end/.packages
+/front_end/.pub-preload-cache/
+/front_end/.pub-cache/
+/front_end/.pub/
+/front_end/build/
+/front_end/flutter_*.png
+/front_end/linked_*.ds
+/front_end/unlinked.ds
+/front_end/unlinked_spec.ds
+
+# Android related
+/front_end/**/android/**/gradle-wrapper.jar
+/front_end/.gradle/
+/front_end/**/android/captures/
+/front_end/**/android/gradlew
+/front_end/**/android/gradlew.bat
+/front_end/**/android/local.properties
+/front_end/**/android/**/GeneratedPluginRegistrant.java
+/front_end/**/android/key.properties
+/front_end/*.jks
+
+# iOS/XCode related
+/front_end/**/ios/**/*.mode1v3
+/front_end/**/ios/**/*.mode2v3
+/front_end/**/ios/**/*.moved-aside
+/front_end/**/ios/**/*.pbxuser
+/front_end/**/ios/**/*.perspectivev3
+/front_end/**/ios/**/*sync/
+/front_end/**/ios/**/.sconsign.dblite
+/front_end/**/ios/**/.tags*
+/front_end/**/ios/**/.vagrant/
+/front_end/**/ios/**/DerivedData/
+/front_end/**/ios/**/Icon?
+/front_end/**/ios/**/Pods/
+/front_end/**/ios/**/.symlinks/
+/front_end/**/ios/**/profile
+/front_end/**/ios/**/xcuserdata
+/front_end/**/ios/.generated/
+/front_end/**/ios/Flutter/.last_build_id
+/front_end/**/ios/Flutter/App.framework
+/front_end/**/ios/Flutter/Flutter.framework
+/front_end/**/ios/Flutter/Flutter.podspec
+/front_end/**/ios/Flutter/Generated.xcconfig
+/front_end/**/ios/Flutter/ephemeral
+/front_end/**/ios/Flutter/app.flx
+/front_end/**/ios/Flutter/app.zip
+/front_end/**/ios/Flutter/flutter_assets/
+/front_end/**/ios/Flutter/flutter_export_environment.sh
+/front_end/**/ios/ServiceDefinitions.json
+/front_end/**/ios/Runner/GeneratedPluginRegistrant.*
+
+# macOS
+/front_end/**/Flutter/ephemeral/
+/front_end/**/Pods/
+/front_end/**/macos/Flutter/GeneratedPluginRegistrant.swift
+/front_end/**/macos/Flutter/ephemeral
+/front_end/**/xcuserdata/
+
+# Windows
+/front_end/**/windows/flutter/generated_plugin_registrant.cc
+/front_end/**/windows/flutter/generated_plugin_registrant.h
+/front_end/**/windows/flutter/generated_plugins.cmake
+
+# Linux
+/front_end/**/linux/flutter/generated_plugin_registrant.cc
+/front_end/**/linux/flutter/generated_plugin_registrant.h
+/front_end/**/linux/flutter/generated_plugins.cmake
+
+# Coverage
+/front_end/coverage/
+
+# Symbols
+/front_end/app.*.symbols
+
+# Exceptions to above rules.
+!**/ios/**/default.mode1v3
+!**/ios/**/default.mode2v3
+!**/ios/**/default.pbxuser
+!**/ios/**/default.perspectivev3
+!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+!/dev/ci/**/Gemfile.lock
+!.vscode/settings.json
+
+# Environment variables
+/back_end/.env
+/back_end/back_end.iml
+/back_end/*.json
+/back_end/*.toml
+/back_end/.idea/
+.idea/modules.xml
+.idea/pandora.iml
+.idea/vcs.xml
+
