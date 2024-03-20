@@ -111,7 +111,7 @@ class _MapPageState extends State<MapPage> {
             )
           : const InfoWindow(),
       onTap: () {
-        _controllerDevice.index.value != 0
+        _controllerDevice.index.value == 1 || _controllerDevice.index.value == 2
             ? _controllerInfoWindow.addInfoWindow!(
                 Container(
                   height: 300,

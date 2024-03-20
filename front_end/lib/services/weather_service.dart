@@ -12,7 +12,7 @@ class WeatherService {
 
   WeatherService(this.apiOpenWeatherKey);
 
-  Future<Weather> getCurrentWeather() async {
+  Future<Weather>  getCurrentWeather() async {
 
     final String apiUrl =
         '$API_OPEN_WEATHER_MAP_URL?'

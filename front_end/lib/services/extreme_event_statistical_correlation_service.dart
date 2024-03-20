@@ -13,30 +13,26 @@ class ExtremeEventStatisticalCorrelationService {
   ExtremeEventStatisticalCorrelationService(this.apiPandoraKey);
 
   Future<ExtremeEventStatisticalCorrelation> getStatisticalCorrelation() async {
-    Map<String, String> headers = {
-
-    };
 
     final String apiUrl =
         '$API_PANDORA_CORRELATION_URL?'
-        'Latitude=-12.8842389&'
-        'Longitude=-38.4237578&'
+        'Latitude=${_controllerPosition.latitude.value}&'
+        'Longitude=${_controllerPosition.latitude.value}&'
         'Timezone=America/Sao_Paulo&'
         'PastDays=0&'
         'ForecastDays=5&'
-        'Token=5d2c5c09e23ad9f7dc0600259554cee595256644';
+        'Token=$apiPandoraKey';
 
     try {
-      final http.Response response = await http.get(Uri.parse(apiUrl), headers: headers);
-      print(response.statusCode);
-      print(response.body);
+      final http.Response response = await http.get(Uri.parse(apiUrl));
+
       if (response.statusCode == 200) {
         return ExtremeEventStatisticalCorrelation.fromJson(jsonDecode(response.body));
       } else {
-        throw Exception('Failed to load weather data: ${response.statusCode}');
+        throw Exception('Failed to load data: ${response.statusCode}');
       }
     } catch (e) {
-      throw Exception('Failed to load weather data: $e');
+      throw Exception('Failed to load data: $e');
     }
   }
 }

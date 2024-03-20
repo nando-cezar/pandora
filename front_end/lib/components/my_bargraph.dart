@@ -1,7 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../constants.dart';
+import '../model/extreme_event_statistical_correlation_model.dart';
+import '../services/extreme_event_statistical_correlation_service.dart';
 import 'bar_graph/bar_data.dart';
 
 class MyBarGraph extends StatefulWidget {
@@ -12,19 +15,42 @@ class MyBarGraph extends StatefulWidget {
 }
 
 class _MyBarGraphState extends State<MyBarGraph> {
+  static String API_PANDORA_KEY =
+  dotenv.env['API_PANDORA_KEY']!;
+  final _extremeEventStatisticalCorrelationService = ExtremeEventStatisticalCorrelationService(API_PANDORA_KEY);
+  BarData? _myBarData;
+
+  _fetchExtremeEventStatisticalCorrelation() async {
+
+    try {
+      final extremeEventStatisticalCorrelation = await _extremeEventStatisticalCorrelationService.getStatisticalCorrelation();
+
+      setState(() {
+        _myBarData = BarData(
+          cold_wave: extremeEventStatisticalCorrelation.cold_wave,
+          flash_flood: extremeEventStatisticalCorrelation.flash_flood,
+          flood_general: extremeEventStatisticalCorrelation.flood_general,
+          heat_wave: extremeEventStatisticalCorrelation.heat_wave,
+          riverine_flood: extremeEventStatisticalCorrelation.riverine_flood,
+          storm_general: extremeEventStatisticalCorrelation.storm_general,
+          tropical_cyclone: extremeEventStatisticalCorrelation.tropical_cyclone,
+        );
+
+        _myBarData?.initializeBarData();
+      });
+    } catch (e) {
+      myShowDialog(context, e.toString());
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchExtremeEventStatisticalCorrelation();
+  }
+
   @override
   Widget build(BuildContext context) {
-    BarData myBarData = BarData(
-      sunAmount: 4.40,
-      monAmount: 2.50,
-      tueAmount: 42.00,
-      wedAmount: 10.50,
-      thurAmount: 100.20,
-      friAmount: 80.90,
-      satAmount: 90.10,
-    );
-
-    myBarData.initializeBarData();
 
     return Padding(
       padding: const EdgeInsets.all(15),
@@ -80,7 +106,7 @@ class _MyBarGraphState extends State<MyBarGraph> {
                     ),
                   ),
                 ),
-                barGroups: myBarData.barData
+                barGroups: _myBarData?.barData
                     .map(
                       (data) => BarChartGroupData(
                         x: data.x,
@@ -130,25 +156,25 @@ Widget getBottomTitles(double value, TitleMeta meta) {
 
   switch (value.toInt()) {
     case 0:
-      text = Text('RF', style: style);
-      break;
-    case 1:
       text = Text('CW', style: style);
       break;
-    case 2:
+    case 1:
       text = Text('FF', style: style);
       break;
+    case 2:
+      text = Text('FG', style: style);
+      break;
     case 3:
-      text = Text('TC', style: style);
+      text = Text('HW', style: style);
       break;
     case 4:
-      text = Text('HW', style: style);
+      text = Text('RF', style: style);
       break;
     case 5:
       text = Text('SG', style: style);
       break;
     case 6:
-      text = Text('FG', style: style);
+      text = Text('TC', style: style);
       break;
     default:
       text = Text('', style: style);
@@ -162,29 +188,30 @@ BarTooltipItem getTooltipBottomItem(group, groupIndex, rod, rodIndex) {
   String weekDay;
   switch (group.x) {
     case 0:
-      weekDay = 'Riverine flood';
-      break;
-    case 1:
       weekDay = 'Cold wave';
       break;
-    case 2:
+    case 1:
       weekDay = 'Flash flood';
       break;
+    case 2:
+      weekDay = 'Flood, General';
+      break;
     case 3:
-      weekDay = 'Tropical cyclone';
+      weekDay = 'Heat wave';
       break;
     case 4:
-      weekDay = 'Heat wave';
+      weekDay = 'Riverine flood';
       break;
     case 5:
       weekDay = 'Storm, General';
       break;
     case 6:
-      weekDay = 'Flood, General';
+      weekDay = 'Tropical cyclone';
       break;
     default:
       throw Error();
   }
+
   return BarTooltipItem(
     '$weekDay\n',
     TextStyle(
