@@ -3,7 +3,6 @@ import concurrent.futures
 import numpy as np
 import pandas as pd
 from scipy.stats import ttest_rel
-from multiprocessing import Pool
 import requests
 
 from flask import jsonify
@@ -17,7 +16,7 @@ class ExtremeEventStatisticalResource(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser(bundle_errors=True)
         self.reqparse.add_argument('Token', type=str, required=True,
-                                   help='Token is mandatory', location='headers')
+                                   help='Token is mandatory', location='args')
         self.reqparse.add_argument('Latitude', type=float, required=True,
                                    help='Latitude not given', location='args')
         self.reqparse.add_argument('Longitude', type=float, required=True,
@@ -30,6 +29,7 @@ class ExtremeEventStatisticalResource(Resource):
                                    help='Forecast days not given', location='args')
         args = self.reqparse.parse_args()
 
+        self.token = args['Token']
         self.latitude = args['Latitude']
         self.longitude = args['Longitude']
         self.timezone = args['Timezone']
@@ -40,46 +40,58 @@ class ExtremeEventStatisticalResource(Resource):
 
     def get(self):
 
+        if not self.token == "5d2c5c09e23ad9f7dc0600259554cee595256644":
+            abort(401)
+
         result = self._intercept_calculation()
 
         if not result:
             abort(404)
 
-        _data_rename = {
-            0: 'cold_wave',
-            1: 'flash_flood',
-            2: 'flood_general',
-            3: 'heat_wave',
-            4: 'riverine_flood',
-            5: 'storm_general',
-            6: 'tropical_cyclone'
-        }
         df = pd.DataFrame(result)
-        df = df.rename(_data_rename)
         return jsonify({"content": df.to_dict()[0]})
 
     def _intercept_calculation(self):
-        #forecast_corr = self._get_statistical_correlation_forecast()
-        #historical_corr = self._get_statistical_correlation_historical()
-        #historical_corr_matrices = [np.array(pd.DataFrame(historical_corr[i]).fillna(0)) for i in range(7)]
-        #    self._calculate(np.array(element), np.array(forecast_corr)) for element in historical_corr_matrices
-        #]
-        #return percentage_similarities
+        ordered = [
+            'temperature_2m_max',
+            'temperature_2m_min',
+            'apparent_temperature_max',
+            'apparent_temperature_min',
+            'precipitation_sum',
+            'rain_sum',
+            'snowfall_sum',
+            'precipitation_hours',
+            'wind_speed_10m_max',
+            'wind_gusts_10m_max',
+            'wind_direction_10m_dominant',
+            'shortwave_radiation_sum',
+            'et0_fao_evapotranspiration',
+        ]
+
         forecast_corr = self._get_statistical_correlation_forecast()
         historical_corr = self._get_statistical_correlation_historical()
-        historical_corr_matrices = [np.array(pd.DataFrame(historical_corr[i]).fillna(0)) for i in range(7)]
+        historical_corr_matrices = [
+            np.array(
+                pd.DataFrame(historical_corr[i])
+                .fillna(0)
+                .reindex(
+                    index=ordered,
+                    columns=ordered
+                )
+            ) for i in range(7)
+        ]
 
         def calculate_similarity(element):
-            return self._calculate(np.array(element), np.array(forecast_corr))
+            statistic, p_value = ttest_rel(
+                np.array(element).flatten(),
+                np.array(forecast_corr).flatten()
+            )
+            return p_value * 100
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
             percentage_similarities = list(executor.map(calculate_similarity, historical_corr_matrices))
 
         return percentage_similarities
-
-    def _calculate(self, correlation_1, correlation_2):
-        statistic, p_value = ttest_rel(correlation_1.flatten(), correlation_2.flatten())
-        return p_value * 100
 
     def _get_statistical_correlation_forecast(self):
 
@@ -111,7 +123,6 @@ class ExtremeEventStatisticalResource(Resource):
         data = response.json().get('daily', [])
         df = pd.DataFrame(data)
         forecast_corr = df.corr().fillna(0)
-
         return forecast_corr
 
     def _get_statistical_correlation_historical(self):
