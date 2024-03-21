@@ -13,7 +13,8 @@ from app.ext.database import db
 
 class ExtremeEventStatisticalResource(Resource):
 
-    def __init__(self):
+    def __init__(self, secret_key):
+        self.secret_key = secret_key
         self.reqparse = reqparse.RequestParser(bundle_errors=True)
         self.reqparse.add_argument('Token', type=str, required=True,
                                    help='Token is mandatory', location='args')
@@ -40,7 +41,7 @@ class ExtremeEventStatisticalResource(Resource):
 
     def get(self):
 
-        if not self.token == "5d2c5c09e23ad9f7dc0600259554cee595256644":
+        if not self.token == self.secret_key:
             abort(401)
 
         result = self._intercept_calculation()

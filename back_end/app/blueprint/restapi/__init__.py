@@ -8,6 +8,9 @@ api = Api(bp)
 
 
 def init_app(app):
-    api.add_resource(ExtremeEventStatisticalResource, "/extreme-events/statistical")
+    resource_params = {
+        "secret_key": app.config.SECRET_KEY,
+    }
+    api.add_resource(ExtremeEventStatisticalResource, "/extreme-events/statistical", resource_class_kwargs=resource_params)
     #.add_resource(ProductItemResource, "/product/<int:product_id>")
     app.register_blueprint(bp)
