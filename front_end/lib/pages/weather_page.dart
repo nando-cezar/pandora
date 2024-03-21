@@ -6,31 +6,13 @@ import 'package:pandora_front/services/weather_service.dart';
 
 import '../constants.dart';
 
-class WeatherPage extends StatefulWidget {
-  const WeatherPage({super.key});
+class WeatherPage extends StatelessWidget {
+  WeatherPage({super.key});
 
-  @override
-  State<WeatherPage> createState() => _WeatherPageState();
-}
-
-class _WeatherPageState extends State<WeatherPage> {
   static String API_OPEN_WEATHER_MAP_KEY =
       dotenv.env['API_OPEN_WEATHER_MAP_KEY']!;
-  final _weatherService = WeatherService(API_OPEN_WEATHER_MAP_KEY);
-  Weather? _weather;
-
-  _fetchWeather() async {
-
-    try {
-      final weather = await _weatherService.getCurrentWeather();
-
-      setState(() {
-        _weather = weather;
-      });
-    } catch (e) {
-      myShowDialog(context, e.toString());
-    }
-  }
+  final WeatherService _weatherService =
+      WeatherService(API_OPEN_WEATHER_MAP_KEY);
 
   String getWeatherAnimation(String? mainCondition) {
     if (mainCondition == null) return 'assets/images/sunny.json';
@@ -57,54 +39,63 @@ class _WeatherPageState extends State<WeatherPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    _fetchWeather();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: myFifthColor,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.pin_drop_sharp,
-              color: myActiveColor,
-              size: 40,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              _weather?.cityName ?? "Loading...",
-              style: TextStyle(
-                color: myTenthColor,
-                fontSize: 20,
-              ),
-            ),
-            const SizedBox(height: 100),
-            Lottie.asset(
-              getWeatherAnimation(_weather?.mainCondition),
-            ),
-            const SizedBox(height: 100),
-            Text(
-              '${_weather?.temperature.round()} °C',
-              style: TextStyle(
-                color: myNinthColor,
-                fontSize: 25,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              _weather?.mainCondition ?? "",
-              style: TextStyle(
-                color: myEighthColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-          ],
+        child: FutureBuilder<Weather>(
+          future: _weatherService.getCurrentWeather(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator(
+                color: myPassiveColor,
+              );
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else {
+              final weather = snapshot.data;
+
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.pin_drop_sharp,
+                    color: myActiveColor,
+                    size: 40,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    weather?.cityName ?? "Loading...",
+                    style: TextStyle(
+                      color: myTenthColor,
+                      fontSize: 20,
+                    ),
+                  ),
+                  const SizedBox(height: 100),
+                  Lottie.asset(
+                    getWeatherAnimation(weather?.mainCondition),
+                  ),
+                  const SizedBox(height: 100),
+                  Text(
+                    '${weather?.temperature.round()} °C',
+                    style: TextStyle(
+                      color: myNinthColor,
+                      fontSize: 25,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    weather?.mainCondition ?? "",
+                    style: TextStyle(
+                      color: myEighthColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              );
+            }
+          },
         ),
       ),
     );

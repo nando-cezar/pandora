@@ -15,133 +15,120 @@ class MyBarGraph extends StatefulWidget {
 }
 
 class _MyBarGraphState extends State<MyBarGraph> {
-  static String API_PANDORA_KEY =
-  dotenv.env['API_PANDORA_KEY']!;
-  final _extremeEventStatisticalCorrelationService = ExtremeEventStatisticalCorrelationService(API_PANDORA_KEY);
-  BarData? _myBarData;
-
-  _fetchExtremeEventStatisticalCorrelation() async {
-
-    try {
-      final extremeEventStatisticalCorrelation = await _extremeEventStatisticalCorrelationService.getStatisticalCorrelation();
-
-      setState(() {
-        _myBarData = BarData(
-          cold_wave: extremeEventStatisticalCorrelation.cold_wave,
-          flash_flood: extremeEventStatisticalCorrelation.flash_flood,
-          flood_general: extremeEventStatisticalCorrelation.flood_general,
-          heat_wave: extremeEventStatisticalCorrelation.heat_wave,
-          riverine_flood: extremeEventStatisticalCorrelation.riverine_flood,
-          storm_general: extremeEventStatisticalCorrelation.storm_general,
-          tropical_cyclone: extremeEventStatisticalCorrelation.tropical_cyclone,
-        );
-
-        _myBarData?.initializeBarData();
-      });
-    } catch (e) {
-      myShowDialog(context, e.toString());
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchExtremeEventStatisticalCorrelation();
-  }
+  static String API_PANDORA_KEY = dotenv.env['API_PANDORA_KEY']!;
+  final _extremeEventStatisticalCorrelationService =
+      ExtremeEventStatisticalCorrelationService(API_PANDORA_KEY);
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: _extremeEventStatisticalCorrelationService
+            .getStatisticalCorrelation(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: myPassiveColor,
+              ),
+            );
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            final barData = snapshot.data;
 
-    return Padding(
-      padding: const EdgeInsets.all(15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            'Extreme events',
-            style: TextStyle(
-              color: myActiveColor,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            'Prediction chart based on current location',
-            style: TextStyle(
-              color: myPassiveColor,
-              fontSize: 15,
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-          const SizedBox(height: 40),
-          Expanded(
-            child: BarChart(
-              BarChartData(
-                maxY: 100,
-                minY: 0,
-                gridData: const FlGridData(show: false),
-                borderData: FlBorderData(show: false),
-                titlesData: const FlTitlesData(
-                  show: true,
-                  topTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: false,
+            return Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    'Extreme events',
+                    style: TextStyle(
+                      color: myActiveColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  leftTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: false,
+                  const SizedBox(height: 5),
+                  Text(
+                    'Prediction chart based on current location',
+                    style: TextStyle(
+                      color: myPassiveColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
-                  rightTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: false,
-                    ),
-                  ),
-                  bottomTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      getTitlesWidget: getBottomTitles,
-                    ),
-                  ),
-                ),
-                barGroups: _myBarData?.barData
-                    .map(
-                      (data) => BarChartGroupData(
-                        x: data.x,
-                        barRods: [
-                          BarChartRodData(
-                            toY: data.y,
-                            color: myNinthColor,
-                            width: 30,
-                            borderRadius: BorderRadius.circular(4),
-                            backDrawRodData: BackgroundBarChartRodData(
-                              show: true,
-                              toY: 100,
-                              color: mySeventhColor,
+                  const SizedBox(height: 40),
+                  Expanded(
+                    child: BarChart(
+                      BarChartData(
+                        maxY: 100,
+                        minY: 0,
+                        gridData: const FlGridData(show: false),
+                        borderData: FlBorderData(show: false),
+                        titlesData: const FlTitlesData(
+                          show: true,
+                          topTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: false,
                             ),
                           ),
-                        ],
+                          leftTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: false,
+                            ),
+                          ),
+                          rightTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: false,
+                            ),
+                          ),
+                          bottomTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              getTitlesWidget: getBottomTitles,
+                            ),
+                          ),
+                        ),
+                        barGroups: barData
+                            ?.toList()
+                            .map(
+                              (data) => BarChartGroupData(
+                                x: data.x,
+                                barRods: [
+                                  BarChartRodData(
+                                    toY: data.y,
+                                    color: myNinthColor,
+                                    width: 30,
+                                    borderRadius: BorderRadius.circular(4),
+                                    backDrawRodData: BackgroundBarChartRodData(
+                                      show: true,
+                                      toY: 100,
+                                      color: mySeventhColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                            .toList(),
+                        barTouchData: BarTouchData(
+                          touchTooltipData: BarTouchTooltipData(
+                            tooltipBgColor: mySeventhColor,
+                            tooltipPadding: const EdgeInsets.symmetric(
+                              horizontal: 5,
+                              vertical: 0,
+                            ),
+                            getTooltipItem: getTooltipBottomItem,
+                          ),
+                        ),
                       ),
-                    )
-                    .toList(),
-                barTouchData: BarTouchData(
-                  touchTooltipData: BarTouchTooltipData(
-                    tooltipBgColor: mySeventhColor,
-                    tooltipPadding: const EdgeInsets.symmetric(
-                      horizontal: 5,
-                      vertical: 0,
                     ),
-                    getTooltipItem: getTooltipBottomItem,
                   ),
-                ),
+                ],
               ),
-            ),
-          ),
-        ],
-      ),
-    );
+            );
+          }
+        });
   }
 }
 

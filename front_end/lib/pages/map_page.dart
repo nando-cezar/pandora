@@ -154,7 +154,7 @@ class _MapPageState extends State<MapPage> {
                               ),
                             ),
                             const Spacer(),
-                            Text('*****')
+                            const Text('*****')
                           ],
                         ),
                       ),
