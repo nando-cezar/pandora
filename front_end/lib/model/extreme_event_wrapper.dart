@@ -15,9 +15,15 @@ class ExtremeEventWrapper {
           code_formatted: item['code_formatted'].toString(),
           description: item['description'].toString(),
           description_formatted: item['description_formatted'].toString(),
-          data_source: item['data_source'].toList(),
-          mean: item['central_measurement_data']['mean'].toMap(),
-          site_greatest_recurrence: item['site_greatest_recurrence'].toMap(),
+          data_source: (item['data_source'] is List)
+              ? List.from(item['data_source'])
+              : [],
+          mean: (item['central_measurement_data']['mean'] is Map)
+              ? Map<String, double>.from(item['central_measurement_data']['mean'])
+              : {},
+          site_greatest_recurrence: (item['site_greatest_recurrence'] is Map)
+              ? Map<String, dynamic>.from(item['site_greatest_recurrence'])
+              : {},
           medium_duration: item['medium_duration'].toDouble(),
           probability_occurrence: item['probability_occurrence'].toDouble(),
           total_location_records: item['total_location_records'].toInt(),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../components/my_base_graph.dart';
 import '../components/my_expansion_panel.dart';
-import '../components/my_bargraph.dart';
 import '../constants.dart';
 import '../controller/device_controller.dart';
 import '../controller/extreme_event_controller.dart';
@@ -16,8 +16,8 @@ class DesktopScaffold extends StatefulWidget {
 
 class _DesktopScaffoldState extends State<DesktopScaffold> {
 
-  final ExtremeEventController _controllerExtremeEvent = Get.put(ExtremeEventController());
   final DeviceController _controllerDevice = Get.put(DeviceController());
+  final ExtremeEventController _controllerExtremeEvent = Get.put(ExtremeEventController());
 
   _fetchDevice() async {
     _controllerDevice.index.value = 0;
@@ -40,7 +40,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
             child: Column(
               children: [
                 const Expanded(
-                  child: MyBarGraph(),
+                  child: MyBaseGraph(),
                 ),
                 Expanded(
                   child: MyExpansionPanel<ExtremeEventModel>(
@@ -52,7 +52,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                         leading: CircleAvatar(
                           backgroundColor: myActiveColor,
                           child: Text(
-                            model.id.toString(),
+                            model.code_formatted.toString(),
                             style: TextStyle(color: myFifthColor),
                           ),
                         ),
@@ -62,7 +62,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                       return ListTile(
                         title: Text(model.description),
                         subtitle:
-                            Text(model.apparent_temperature_max.max.toString()),
+                            Text(model.mean.values.toString()),
                       );
                     },
                     expansionCallback: (int index, bool isExpanded) {

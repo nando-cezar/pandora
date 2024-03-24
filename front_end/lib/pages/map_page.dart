@@ -22,8 +22,6 @@ class _MapPageState extends State<MapPage> {
   final FirebaseFirestore db = FirebaseFirestore.instance;
   final PositionController _controllerPosition = Get.put(PositionController());
   final DeviceController _controllerDevice = Get.put(DeviceController());
-  final Completer<GoogleMapController> _controllerMap =
-      Completer<GoogleMapController>();
   final CustomInfoWindowController _controllerInfoWindow =
       CustomInfoWindowController();
   final Map<String, Marker> _markers = {};
@@ -104,14 +102,15 @@ class _MapPageState extends State<MapPage> {
         metaData['latitude'],
         metaData['longitude'],
       ),
-      infoWindow: _controllerDevice.index.value == 0
+      infoWindow: _controllerDevice.index.value == 0 ||
+              _controllerDevice.index.value == 2
           ? InfoWindow(
               title: metaData['type'],
               snippet: metaData['address'],
             )
           : const InfoWindow(),
       onTap: () {
-        _controllerDevice.index.value == 1 || _controllerDevice.index.value == 2
+        _controllerDevice.index.value == 1
             ? _controllerInfoWindow.addInfoWindow!(
                 Container(
                   height: 300,

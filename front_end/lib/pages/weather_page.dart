@@ -47,9 +47,7 @@ class WeatherPage extends StatelessWidget {
           future: _weatherService.getCurrentWeather(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator(
-                color: myPassiveColor,
-              );
+              return Lottie.asset('assets/images/loading.json');
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {
