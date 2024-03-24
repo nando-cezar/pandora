@@ -8,11 +8,11 @@ import '../pages/weather_page.dart';
 class PagesController extends GetxController {
   RxInt index = 0.obs;
 
-  var pages = const [
-    HomePage(),
-    MapPage(),
-    Scaffold(),
+  var pages = [
+    const HomePage(),
+    const MapPage(),
+    const Scaffold(),
     WeatherPage(),
-    Scaffold(),
+    const Scaffold(),
   ];
 }

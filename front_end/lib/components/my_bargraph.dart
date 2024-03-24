@@ -1,11 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../constants.dart';
-import '../model/extreme_event_statistical_correlation_model.dart';
-import '../services/extreme_event_statistical_correlation_service.dart';
-import 'bar_graph/bar_data.dart';
+import '../controller/extreme_event_controller.dart';
 
 class MyBarGraph extends StatefulWidget {
   const MyBarGraph({super.key});
@@ -15,66 +14,16 @@ class MyBarGraph extends StatefulWidget {
 }
 
 class _MyBarGraphState extends State<MyBarGraph> {
-  static String API_PANDORA_KEY =
-  dotenv.env['API_PANDORA_KEY']!;
-  final _extremeEventStatisticalCorrelationService = ExtremeEventStatisticalCorrelationService(API_PANDORA_KEY);
-  BarData? _myBarData;
-
-  _fetchExtremeEventStatisticalCorrelation() async {
-
-    try {
-      final extremeEventStatisticalCorrelation = await _extremeEventStatisticalCorrelationService.getStatisticalCorrelation();
-
-      setState(() {
-        _myBarData = BarData(
-          cold_wave: extremeEventStatisticalCorrelation.cold_wave,
-          flash_flood: extremeEventStatisticalCorrelation.flash_flood,
-          flood_general: extremeEventStatisticalCorrelation.flood_general,
-          heat_wave: extremeEventStatisticalCorrelation.heat_wave,
-          riverine_flood: extremeEventStatisticalCorrelation.riverine_flood,
-          storm_general: extremeEventStatisticalCorrelation.storm_general,
-          tropical_cyclone: extremeEventStatisticalCorrelation.tropical_cyclone,
-        );
-
-        _myBarData?.initializeBarData();
-      });
-    } catch (e) {
-      myShowDialog(context, e.toString());
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchExtremeEventStatisticalCorrelation();
-  }
+  final ExtremeEventController _controllerExtremeEvent =
+      Get.put(ExtremeEventController());
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            'Extreme events',
-            style: TextStyle(
-              color: myActiveColor,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            'Prediction chart based on current location',
-            style: TextStyle(
-              color: myPassiveColor,
-              fontSize: 15,
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-          const SizedBox(height: 40),
           Expanded(
             child: BarChart(
               BarChartData(
@@ -106,13 +55,13 @@ class _MyBarGraphState extends State<MyBarGraph> {
                     ),
                   ),
                 ),
-                barGroups: _myBarData?.barData
+                barGroups: _controllerExtremeEvent.items
                     .map(
                       (data) => BarChartGroupData(
-                        x: data.x,
+                        x: data.code,
                         barRods: [
                           BarChartRodData(
-                            toY: data.y,
+                            toY: data.probability_occurrence,
                             color: myNinthColor,
                             width: 30,
                             borderRadius: BorderRadius.circular(4),

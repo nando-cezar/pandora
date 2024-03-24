@@ -21,11 +21,7 @@ class BarData {
 
   List<IndividualBar> barData = [];
 
-  void initializeBarData(){
-
-
-
-
+  List<IndividualBar> initializeBarData(){
     barData = [
       IndividualBar(x: 0, y: cold_wave),
       IndividualBar(x: 1, y: flash_flood),
@@ -35,6 +31,8 @@ class BarData {
       IndividualBar(x: 5, y: storm_general),
       IndividualBar(x: 6, y: tropical_cyclone),
     ];
+
+    return barData;
   }
 
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../components/my_base_graph.dart';
 import '../components/my_expansion_panel.dart';
-import '../components/my_bargraph.dart';
 import '../constants.dart';
 import '../controller/device_controller.dart';
 import '../controller/extreme_event_controller.dart';
@@ -15,8 +15,9 @@ class TableScaffold extends StatefulWidget {
 }
 
 class _TableScaffoldState extends State<TableScaffold> {
-  final ExtremeEventController _controllerExtremeEvent = Get.put(ExtremeEventController());
+
   final DeviceController _controllerDevice = Get.put(DeviceController());
+  final ExtremeEventController _controllerExtremeEvent = Get.put(ExtremeEventController());
 
   _fetchPosition() async {
     _controllerDevice.index.value = 2;
@@ -36,7 +37,7 @@ class _TableScaffoldState extends State<TableScaffold> {
       body: Column(
         children: [
           const Expanded(
-            child: MyBarGraph(),
+            child: MyBaseGraph(),
           ),
           Expanded(
             child: MyExpansionPanel<ExtremeEventModel>(
@@ -48,7 +49,7 @@ class _TableScaffoldState extends State<TableScaffold> {
                   leading: CircleAvatar(
                     backgroundColor: myActiveColor,
                     child: Text(
-                      model.id.toString(),
+                      model.code_formatted.toString(),
                       style: TextStyle(color: myFifthColor),
                     ),
                   ),
@@ -57,7 +58,7 @@ class _TableScaffoldState extends State<TableScaffold> {
               bodyBuilder: (ExtremeEventModel model) {
                 return ListTile(
                   title: Text(model.description),
-                  subtitle: Text(model.apparent_temperature_max.max.toString()),
+                  subtitle: Text(model.mean.values.toString()),
                 );
               },
               expansionCallback: (int index, bool isExpanded) {
