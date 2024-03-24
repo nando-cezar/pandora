@@ -19,7 +19,7 @@ class ExtremeEventStatisticalCorrelationService {
     final String apiUrl =
         '$API_PANDORA_CORRELATION_URL?'
         'Latitude=${_controllerPosition.latitude.value}&'
-        'Longitude=${_controllerPosition.latitude.value}&'
+        'Longitude=${_controllerPosition.longitude.value}&'
         'Timezone=America/Sao_Paulo&'
         'PastDays=0&'
         'ForecastDays=5&'
@@ -27,7 +27,6 @@ class ExtremeEventStatisticalCorrelationService {
 
     try {
       final http.Response response = await http.get(Uri.parse(apiUrl));
-
       if (response.statusCode == 200) {
         var data = ExtremeEventStatisticalCorrelation.fromJson(jsonDecode(response.body));
         var myBarData = BarData(

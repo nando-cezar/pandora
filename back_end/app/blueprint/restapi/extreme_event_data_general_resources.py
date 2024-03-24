@@ -11,7 +11,7 @@ from flask_restful import Resource, reqparse, abort
 from app.ext.database import db
 
 
-class ExtremeEventStatisticalResource(Resource):
+class ExtremeEventDataGeneralResource(Resource):
 
     def __init__(self, secret_key):
         self.secret_key = secret_key
@@ -37,20 +37,27 @@ class ExtremeEventStatisticalResource(Resource):
         self.past_days = args['PastDays']
         self.forecast_days = args['ForecastDays']
 
-        super(ExtremeEventStatisticalResource, self).__init__()
+        super(ExtremeEventDataGeneralResource, self).__init__()
 
     def get(self):
 
         if not self.token == self.secret_key:
             abort(401)
 
+        data = self._get_general_data_history()
+
+        if not data:
+            abort(404)
+
         result = self._intercept_calculation()
 
         if not result:
             abort(404)
 
-        df = pd.DataFrame(result)
-        return jsonify({"content": df.to_dict()[0]})
+        for i in range(len(data)):
+            data[i]["probability_occurrence"] = result[i]
+
+        return jsonify({"content": data})
 
     def _intercept_calculation(self):
         ordered = [
@@ -127,13 +134,45 @@ class ExtremeEventStatisticalResource(Resource):
         return forecast_corr
 
     def _get_statistical_correlation_historical(self):
+
+        response = []
+
+        extreme_event_ref = db.source.collection("Extreme Event").document("South America").collection("Brazil")
+        documents = extreme_event_ref.stream()
+        for doc in documents:
+            sub_docs = doc.reference.collection("Statistical Correlation Data").stream()
+            sub_docs_data = [sub_doc.to_dict() for sub_doc in sub_docs]
+            response.extend(sub_docs_data)
+
+        if not response:
+            abort(404)
+
+        return response
+
+    def _get_general_data_history(self):
+
         response = []
 
         extreme_event_ref = db.source.collection("Extreme Event").document("South America").collection("Brazil")
         for doc in extreme_event_ref.stream():
-            for sub_doc in doc.reference.collection("Statistical Correlation Data").stream():
-                response.append(sub_doc.to_dict())
 
+            data = {
+                "code": doc.get('code'),
+                "code_formatted": doc.get('code_formatted'),
+                "data_source": doc.get('data_source'),
+                "description": doc.get('description'),
+                "description_formatted": doc.get('description_formatted'),
+                "medium_duration": doc.get('medium_duration'),
+                "site_greatest_recurrence": doc.get('site_greatest_recurrence'),
+                "total_location_records": doc.get('total_location_records'),
+                "total_recurrence": doc.get('total_recurrence'),
+            }
+
+
+            for sub_doc in doc.reference.collection("Central Measurement Data").stream():
+                data["central_measurement_data"] = sub_doc.to_dict()
+
+            response.append(data)
         if not response:
             abort(404)
 
