@@ -74,7 +74,8 @@ class MyBaseGraph extends StatelessWidget {
                 )
               ],
             ),
-            Expanded(
+            const SizedBox(height: 20),
+            const Expanded(
               child: TabBarView(
                 children: [
                   MyBarGraph(),
@@ -82,6 +83,7 @@ class MyBaseGraph extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../constants.dart';
-import '../../controller/extreme_event_controller.dart';
-import '../../model/extreme_event _model.dart';
-
+import '../constants.dart';
+import '../controller/extreme_event_controller.dart';
+import '../model/extreme_event _model.dart';
+import 'my_expansion_panel.dart';
 
 class MyBaseExpansionPanel extends StatelessWidget {
-  const MyBaseExpansionPanel({super.key});
+  MyBaseExpansionPanel({super.key});
 
   final ExtremeEventController _controllerExtremeEvent =
-  Get.put(ExtremeEventController());
+      Get.put(ExtremeEventController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,9 @@ class MyBaseExpansionPanel extends StatelessWidget {
           contentPadding: const EdgeInsets.all(5.0),
           title: Text(model.description),
           leading: CircleAvatar(
-            backgroundColor: myActiveColor,
+            backgroundColor: model.color,
             child: Text(
-              model.code_formatted.toString(),
+              model.codeFormatted.toString(),
               style: TextStyle(color: myFifthColor),
             ),
           ),
@@ -36,26 +37,22 @@ class MyBaseExpansionPanel extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Center(
-                        child: Text(
-                          'Data source: ${model.data_source.first}',
-                          style: TextStyle(
-                            color: myTenthColor,
-                          ),
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Text(
+                        'Data source\n${model.dataSource.first}',
+                        style: TextStyle(
+                          color: myTenthColor,
                         ),
                       ),
                     ),
                   ),
                   Expanded(
                     child: Container(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Center(
-                        child: Text(
-                          'Medium Duration: ${model.medium_duration.floorToDouble().toString()} dia(s)',
-                          style: TextStyle(
-                            color: myTenthColor,
-                          ),
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Text(
+                        'Medium Duration\n${model.mediumDuration.floorToDouble().toString()} dia(s)',
+                        style: TextStyle(
+                          color: myTenthColor,
                         ),
                       ),
                     ),
@@ -66,25 +63,19 @@ class MyBaseExpansionPanel extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      child: Center(
-                        child: Text(
-                          'Probability Occurrence: ${model.probability_occurrence.floorToDouble().toString()} %',
-                          style: TextStyle(
-                              color: myTenthColor,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      child: Text(
+                        'Probability Occurrence\n${model.probabilityOccurrence.floorToDouble().toString()} %',
+                        style: TextStyle(
+                            color: myTenthColor, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
                   Expanded(
                     child: Container(
-                      child: Center(
-                        child: Text(
-                          'Total Location Records: ${model.total_location_records.toString()}',
-                          style: TextStyle(
-                              color: myTenthColor,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      child: Text(
+                        'Total Location Records\n${model.totalLocationRecords.toString()}',
+                        style: TextStyle(
+                            color: myTenthColor, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -94,14 +85,11 @@ class MyBaseExpansionPanel extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Center(
-                        child: Text(
-                          'Total Recurrence: ${model.total_recurrence.toString()}',
-                          style: TextStyle(
-                              color: myTenthColor,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Text(
+                        'Total Recurrence\n${model.totalRecurrence.toString()}',
+                        style: TextStyle(
+                            color: myTenthColor, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -112,8 +100,7 @@ class MyBaseExpansionPanel extends StatelessWidget {
         );
       },
       expansionCallback: (int index, bool isExpanded) {
-        _controllerExtremeEvent.items[index].isExpanded =
-            isExpanded;
+        _controllerExtremeEvent.items[index].isExpanded = isExpanded;
       },
     );
   }

@@ -1,29 +1,37 @@
+import 'package:flutter/material.dart';
+
 class ExtremeEventModel {
   final int code;
-  final String code_formatted;
+  final String codeFormatted;
   final String description;
-  final String description_formatted;
-  final List<String> data_source;
+  final String descriptionFormatted;
+  final List<String> dataSource;
   final Map<String, double> mean;
-  final Map<String, dynamic> site_greatest_recurrence;
-  final double medium_duration;
-  final double probability_occurrence;
-  final int total_location_records;
-  final int total_recurrence;
+  final Map<String, dynamic> siteGreatestRecurrence;
+  final String regionGreatestRecurrence;
+  final int totalRecordsRegionGreatestRecurrence;
+  final double mediumDuration;
+  final double probabilityOccurrence;
+  final int totalLocationRecords;
+  final int totalRecurrence;
+  final Color color;
   bool isExpanded;
 
   ExtremeEventModel({
     required this.code,
-    required this.code_formatted,
+    required this.codeFormatted,
     required this.description,
-    required this.description_formatted,
-    required this.data_source,
+    required this.descriptionFormatted,
+    required this.dataSource,
     required this.mean,
-    required this.site_greatest_recurrence,
-    required this.medium_duration,
-    required this.probability_occurrence,
-    required this.total_location_records,
-    required this.total_recurrence,
+    required this.siteGreatestRecurrence,
+    required this.regionGreatestRecurrence,
+    required this.totalRecordsRegionGreatestRecurrence,
+    required this.mediumDuration,
+    required this.probabilityOccurrence,
+    required this.totalLocationRecords,
+    required this.totalRecurrence,
+    required this.color,
     this.isExpanded = false
   });
 }
