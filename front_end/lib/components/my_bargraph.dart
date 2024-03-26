@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 import '../constants.dart';
 import '../controller/extreme_event_controller.dart';
@@ -61,8 +60,8 @@ class _MyBarGraphState extends State<MyBarGraph> {
                         x: data.code,
                         barRods: [
                           BarChartRodData(
-                            toY: data.probability_occurrence,
-                            color: myNinthColor,
+                            toY: data.probabilityOccurrence,
+                            color: data.color,
                             width: 30,
                             borderRadius: BorderRadius.circular(4),
                             backDrawRodData: BackgroundBarChartRodData(

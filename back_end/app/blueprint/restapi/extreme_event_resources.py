@@ -11,7 +11,7 @@ from flask_restful import Resource, reqparse, abort
 from app.ext.database import db
 
 
-class ExtremeEventDataGeneralResource(Resource):
+class ExtremeEventResource(Resource):
 
     def __init__(self, secret_key):
         self.secret_key = secret_key
@@ -37,7 +37,7 @@ class ExtremeEventDataGeneralResource(Resource):
         self.past_days = args['PastDays']
         self.forecast_days = args['ForecastDays']
 
-        super(ExtremeEventDataGeneralResource, self).__init__()
+        super(ExtremeEventResource, self).__init__()
 
     def get(self):
 
@@ -168,9 +168,21 @@ class ExtremeEventDataGeneralResource(Resource):
                 "total_recurrence": doc.get('total_recurrence'),
             }
 
-
             for sub_doc in doc.reference.collection("Central Measurement Data").stream():
                 data["central_measurement_data"] = sub_doc.to_dict()
+
+            regions = ["North", "South", "Northeast", "Southeast", "Midwest"]
+
+            region_greatest_recurrence = {"region": None, "recurrence": 0}
+
+            for region in regions:
+                count = len(list(doc.reference.collection("Location Data").where("region", "==", region).stream()))
+                if count > region_greatest_recurrence["recurrence"]:
+                    region_greatest_recurrence["region"] = region
+                    region_greatest_recurrence["recurrence"] = count
+
+            data["region_greatest_recurrence"] = region_greatest_recurrence
+
 
             response.append(data)
         if not response:

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'extreme_event _model.dart';
 
 class ExtremeEventWrapper {
@@ -12,27 +14,50 @@ class ExtremeEventWrapper {
       json['content'].forEach((item) {
         ExtremeEventModel event = ExtremeEventModel(
           code: item['code'].toInt(),
-          code_formatted: item['code_formatted'].toString(),
+          codeFormatted: item['code_formatted'].toString(),
           description: item['description'].toString(),
-          description_formatted: item['description_formatted'].toString(),
-          data_source: (item['data_source'] is List)
+          descriptionFormatted: item['description_formatted'].toString(),
+          dataSource: (item['data_source'] is List)
               ? List.from(item['data_source'])
               : [],
           mean: (item['central_measurement_data']['mean'] is Map)
               ? Map<String, double>.from(item['central_measurement_data']['mean'])
               : {},
-          site_greatest_recurrence: (item['site_greatest_recurrence'] is Map)
+          siteGreatestRecurrence: (item['site_greatest_recurrence'] is Map)
               ? Map<String, dynamic>.from(item['site_greatest_recurrence'])
               : {},
-          medium_duration: item['medium_duration'].toDouble(),
-          probability_occurrence: item['probability_occurrence'].toDouble(),
-          total_location_records: item['total_location_records'].toInt(),
-          total_recurrence: item['total_recurrence'].toInt(),
+          mediumDuration: item['medium_duration'].toDouble(),
+          probabilityOccurrence: item['probability_occurrence'].toDouble(),
+          totalLocationRecords: item['total_location_records'].toInt(),
+          totalRecurrence: item['total_recurrence'].toInt(),
+          regionGreatestRecurrence: item['region_greatest_recurrence']['region'].toString(),
+          totalRecordsRegionGreatestRecurrence: item['region_greatest_recurrence']['recurrence'].toInt(),
+          color: _getColor(item['code'].toInt())
         );
         eventList.add(event);
       });
     }
-
     return ExtremeEventWrapper(events: eventList);
+  }
+
+  static Color _getColor(int code){
+    switch (code) {
+      case 0:
+        return Colors.blue;
+      case 1:
+        return Colors.cyan;
+      case 2:
+        return Colors.redAccent;
+      case 3:
+        return Colors.orangeAccent;
+      case 4:
+        return Colors.black45;
+      case 5:
+        return Colors.purpleAccent;
+      case 6:
+        return Colors.green;
+      default:
+        return Colors.yellow;
+    }
   }
 }
