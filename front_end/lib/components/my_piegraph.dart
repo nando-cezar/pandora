@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pandora_front/components/pie_graph/indicator.dart';
 
+import '../controller/device_controller.dart';
 import '../controller/extreme_event_controller.dart';
 
 class MyPieGraph extends StatefulWidget {
@@ -14,6 +15,7 @@ class MyPieGraph extends StatefulWidget {
 
 class _MyPieGraph extends State {
   int touchedIndex = -1;
+  final DeviceController _controllerDevice = Get.put(DeviceController());
   final ExtremeEventController _controllerExtremeEvent =
       Get.put(ExtremeEventController());
 
@@ -45,6 +47,11 @@ class _MyPieGraph extends State {
                       });
                     },
                   ),
+                  borderData: FlBorderData(
+                    show: false,
+                  ),
+                  sectionsSpace: 0,
+                  centerSpaceRadius: _controllerDevice.index.value == 1 ? 0 : 60,
                   sections: showingSections(),
                 ),
               ),
@@ -86,8 +93,8 @@ class _MyPieGraph extends State {
     return _controllerExtremeEvent.items.map((item) {
       final isTouched =
           _controllerExtremeEvent.items.indexOf(item) == touchedIndex;
-      final fontSize = isTouched ? 18.0 : 14.0;
-      final radius = isTouched ? 100.0 : 90.0;
+      final fontSize = isTouched ? 20.0 : 16.0;
+      final radius = isTouched ? 55.0 : 50.0;
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
       var numFormatted = item.totalRecordsRegionGreatestRecurrence.floorToDouble().toDouble();
@@ -95,9 +102,10 @@ class _MyPieGraph extends State {
 
       return PieChartSectionData(
         color: item.color,
-        value: numFormatted,
         title: title.toString(),
         radius: radius,
+        titlePositionPercentageOffset: _controllerDevice.index.value == 1 ? 1.2 : 1.5,
+        //badgePositionPercentageOffset: 2.0,
         titleStyle: TextStyle(
           fontSize: fontSize,
           fontWeight: FontWeight.bold,
