@@ -20,19 +20,7 @@ class ExtremeEventService {
     try {
       final http.Response response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
-        var data = ExtremeEventWrapper.fromJson(jsonDecode(response.body));
-        return data;
-        // var myBarData = BarData(
-        //   cold_wave: data.cold_wave,
-        //   flash_flood: data.flash_flood,
-        //   flood_general: data.flood_general,
-        //   heat_wave: data.heat_wave,
-        //   riverine_flood: data.riverine_flood,
-        //   storm_general: data.storm_general,
-        //   tropical_cyclone: data.tropical_cyclone,
-        // );
-        //
-        // return myBarData.initializeBarData();
+        return ExtremeEventWrapper.fromJson(jsonDecode(response.body));
       } else {
         throw Exception('Failed to load data: ${response.statusCode}');
       }

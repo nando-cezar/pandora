@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pandora_front/model/marker_model.dart';
 
 class ExtremeEventModel {
   final int code;
@@ -6,6 +7,7 @@ class ExtremeEventModel {
   final String description;
   final String descriptionFormatted;
   final List<String> dataSource;
+  final List<MarkerModel> locations;
   final Map<String, double> mean;
   final Map<String, dynamic> siteGreatestRecurrence;
   final String regionGreatestRecurrence;
@@ -23,6 +25,7 @@ class ExtremeEventModel {
     required this.description,
     required this.descriptionFormatted,
     required this.dataSource,
+    required this.locations,
     required this.mean,
     required this.siteGreatestRecurrence,
     required this.regionGreatestRecurrence,

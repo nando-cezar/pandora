@@ -51,7 +51,7 @@ class MyBaseGraph extends StatelessWidget {
                     size: 20.0,
                   ),
                   child: Text(
-                    'Probability of Occurrence',
+                    'Chance of Occurrence',
                     style: TextStyle(
                       color: myFirstColor,
                       fontSize: 14.0,
