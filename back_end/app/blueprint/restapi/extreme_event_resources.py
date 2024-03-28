@@ -36,6 +36,8 @@ class ExtremeEventResource(Resource):
         self.timezone = args['Timezone']
         self.past_days = args['PastDays']
         self.forecast_days = args['ForecastDays']
+        self.continent = "South America"
+        self.country = "Brasil"
 
         super(ExtremeEventResource, self).__init__()
 
@@ -137,7 +139,7 @@ class ExtremeEventResource(Resource):
 
         response = []
 
-        extreme_event_ref = db.source.collection("Extreme Event").document("South America").collection("Brazil")
+        extreme_event_ref = db.source.collection("Extreme Event").document(self.continent).collection(self.country)
         documents = extreme_event_ref.stream()
         for doc in documents:
             sub_docs = doc.reference.collection("Statistical Correlation Data").stream()
@@ -153,7 +155,7 @@ class ExtremeEventResource(Resource):
 
         response = []
 
-        extreme_event_ref = db.source.collection("Extreme Event").document("South America").collection("Brazil")
+        extreme_event_ref = db.source.collection("Extreme Event").document(self.continent).collection(self.country)
         for doc in extreme_event_ref.stream():
 
             data = {

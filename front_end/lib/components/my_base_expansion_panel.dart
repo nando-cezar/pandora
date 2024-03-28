@@ -38,60 +38,121 @@ class MyBaseExpansionPanel extends StatelessWidget {
                   Expanded(
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: Text(
-                        'Data source\n${model.dataSource.first}',
-                        style: TextStyle(
-                          color: myTenthColor,
-                        ),
-                      ),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Data source:',
+                              style: TextStyle(
+                                color: myTenthColor,
+                              ),
+                            ),
+                            Text(
+                              model.dataSource.first.toString(),
+                              style: TextStyle(
+                                  color: myTenthColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ]),
                     ),
                   ),
                   Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: Text(
-                        'Medium Duration\n${model.mediumDuration.floorToDouble().toString()} dia(s)',
-                        style: TextStyle(
-                          color: myTenthColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      child: Text(
-                        'Probability Occurrence\n${model.probabilityOccurrence.floorToDouble().toString()} %',
-                        style: TextStyle(
-                            color: myTenthColor, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      child: Text(
-                        'Total Location Records\n${model.totalLocationRecords.toString()}',
-                        style: TextStyle(
-                            color: myTenthColor, fontWeight: FontWeight.bold),
-                      ),
-                    ),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'Medium Duration:',
+                            style: TextStyle(
+                              color: myTenthColor,
+                            ),
+                          ),
+                          Text(
+                            '${model.mediumDuration.floorToDouble().toString()} dia(s)',
+                            style: TextStyle(
+                                color: myTenthColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ]),
                   ),
                 ],
               ),
               Row(
                 children: [
                   Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: Text(
-                        'Total Recurrence\n${model.totalRecurrence.toString()}',
-                        style: TextStyle(
-                            color: myTenthColor, fontWeight: FontWeight.bold),
-                      ),
-                    ),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'Probability Occurrence:',
+                            style: TextStyle(
+                              color: myTenthColor,
+                            ),
+                          ),
+                          Text(
+                            '${model.probabilityOccurrence.floorToDouble().toString()} %',
+                            style: TextStyle(
+                                color: myTenthColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ]),
+                  ),
+                  Expanded(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'Total Location Records:',
+                            style: TextStyle(
+                              color: myTenthColor,
+                            ),
+                          ),
+                          Text(
+                            model.totalLocationRecords.toString(),
+                            style: TextStyle(
+                                color: myTenthColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ]),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'Region Greatest Recurrence:',
+                            style: TextStyle(
+                              color: myTenthColor,
+                            ),
+                          ),
+                          Text(
+                            model.regionGreatestRecurrence.toString(),
+                            style: TextStyle(
+                                color: myTenthColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ]),
+                  ),
+                  Expanded(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'Total Recurrence:',
+                            style: TextStyle(
+                              color: myTenthColor,
+                            ),
+                          ),
+                          Text(
+                            model.totalRecurrence.toString(),
+                            style: TextStyle(
+                                color: myTenthColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ]),
                   ),
                 ],
               ),

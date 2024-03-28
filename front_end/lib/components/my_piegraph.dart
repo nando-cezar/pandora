@@ -50,27 +50,29 @@ class _MyPieGraph extends State {
               ),
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              for (var data in _controllerExtremeEvent.items)
-                Column(
-                  children: <Widget>[
-                    Indicator(
-                      color: data.color,
-                      text: data.description,
-                      isSquare: true,
-                    ),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                  ],
+          SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                for (var data in _controllerExtremeEvent.items)
+                  Column(
+                    children: <Widget>[
+                      Indicator(
+                        color: data.color,
+                        text: data.description,
+                        isSquare: true,
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                    ],
+                  ),
+                const SizedBox(
+                  height: 18,
                 ),
-              const SizedBox(
-                height: 18,
-              ),
-            ],
+              ],
+            ),
           ),
           const SizedBox(
             width: 28,
@@ -89,11 +91,12 @@ class _MyPieGraph extends State {
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
       var numFormatted = item.totalRecordsRegionGreatestRecurrence.floorToDouble().toDouble();
+      var title = isTouched ? item.regionGreatestRecurrence : numFormatted;
 
       return PieChartSectionData(
         color: item.color,
         value: numFormatted,
-        title: '${item.regionGreatestRecurrence} ($numFormatted)',
+        title: title.toString(),
         radius: radius,
         titleStyle: TextStyle(
           fontSize: fontSize,

@@ -51,7 +51,7 @@ class MyBaseGraph extends StatelessWidget {
                     size: 20.0,
                   ),
                   child: Text(
-                    'Statistical Coefficient',
+                    'Probability of Occurrence',
                     style: TextStyle(
                       color: myFirstColor,
                       fontSize: 14.0,
@@ -65,7 +65,7 @@ class MyBaseGraph extends StatelessWidget {
                     size: 20.0,
                   ),
                   child: Text(
-                    'Kendall Coefficient',
+                    'Highest Recurrence',
                     style: TextStyle(
                       color: myFirstColor,
                       fontSize: 14.0,
