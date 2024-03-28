@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../controller/device_controller.dart';
+import '../controller/extreme_event_controller.dart';
 import '../controller/position_controller.dart';
 import '../model/marker_model.dart';
 
@@ -19,9 +19,10 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  final FirebaseFirestore db = FirebaseFirestore.instance;
-  final PositionController _controllerPosition = Get.put(PositionController());
   final DeviceController _controllerDevice = Get.put(DeviceController());
+  final PositionController _controllerPosition = Get.put(PositionController());
+  final ExtremeEventController _controllerExtremeEvent = Get.put(ExtremeEventController());
+
   final CustomInfoWindowController _controllerInfoWindow =
       CustomInfoWindowController();
   final Map<String, Marker> _markers = {};
@@ -63,20 +64,11 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  Future<Map<String, Marker>> _getMarkerData() async {
+  _getMarkerData() async {
     try {
-      final collectionRef = db
-          .collection("Extreme Event")
-          .doc("South America")
-          .collection("Brazil");
-
-      final querySnapshot = await collectionRef.get();
-      for (var docSnapshot in querySnapshot.docs) {
-        final locationDataRef =
-            collectionRef.doc(docSnapshot.id).collection("Location Data");
-        final locationSnapshot = await locationDataRef.get();
-        for (var locationDoc in locationSnapshot.docs) {
-          addMarker(MarkerModel.fromFirestore(docSnapshot.id, locationDoc));
+      for (var locationSnapshot in _controllerExtremeEvent.items) {
+        for (var locationDoc in locationSnapshot.locations) {
+          addMarker(locationDoc);
         }
       }
     } catch (e) {
