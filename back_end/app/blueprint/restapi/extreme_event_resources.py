@@ -37,7 +37,7 @@ class ExtremeEventResource(Resource):
         self.past_days = args['PastDays']
         self.forecast_days = args['ForecastDays']
         self.continent = "South America"
-        self.country = "Brasil"
+        self.country = "Brazil"
 
         super(ExtremeEventResource, self).__init__()
 
@@ -155,9 +155,12 @@ class ExtremeEventResource(Resource):
 
         response = []
 
-        extreme_event_ref = db.source.collection("Extreme Event").document(self.continent).collection(self.country)
-        for doc in extreme_event_ref.stream():
+        extreme_event_ref = db.source.collection("Extreme Event").document(self.continent).collection(self.country).stream()
+        extreme_events = [doc for doc in extreme_event_ref]
 
+        regions = ["North", "South", "Northeast", "Southeast", "Midwest"]
+
+        for doc in extreme_events:
             data = {
                 "code": doc.get('code'),
                 "code_formatted": doc.get('code_formatted'),
@@ -170,23 +173,32 @@ class ExtremeEventResource(Resource):
                 "total_recurrence": doc.get('total_recurrence'),
             }
 
-            for sub_doc in doc.reference.collection("Central Measurement Data").stream():
-                data["central_measurement_data"] = sub_doc.to_dict()
+            central_measurement_data_ref = doc.reference.collection("Central Measurement Data").stream()
+            central_measurement_data = [sub_doc.to_dict() for sub_doc in central_measurement_data_ref]
+            data["central_measurement_data"] = central_measurement_data[0] if central_measurement_data else {}
 
-            regions = ["North", "South", "Northeast", "Southeast", "Midwest"]
-
-            region_greatest_recurrence = {"region": None, "recurrence": 0}
-
+            region_counts = {region: 0 for region in regions}
+            location_data_ref = doc.reference.collection("Location Data")
             for region in regions:
-                count = len(list(doc.reference.collection("Location Data").where("region", "==", region).stream()))
-                if count > region_greatest_recurrence["recurrence"]:
-                    region_greatest_recurrence["region"] = region
-                    region_greatest_recurrence["recurrence"] = count
+                count = len(list(location_data_ref.where("region", "==", region).stream()))
+                region_counts[region] = count
+            region_greatest_recurrence = max(region_counts, key=region_counts.get)
+            data["region_greatest_recurrence"] = {"region": region_greatest_recurrence, "recurrence": region_counts[region_greatest_recurrence]}
 
-            data["region_greatest_recurrence"] = region_greatest_recurrence
+            location_data = []
+            for sub_doc in location_data_ref.stream():
+                location_data.append({
+                    "id": sub_doc.get('id'),
+                    "address": sub_doc.get('address'),
+                    "state": sub_doc.get('state'),
+                    "region": sub_doc.get('region'),
+                    "latitude": sub_doc.get('position').latitude,
+                    "longitude": sub_doc.get('position').longitude,
+                })
 
-
+            data["locations"] = location_data
             response.append(data)
+
         if not response:
             abort(404)
 
