@@ -4,16 +4,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pandora_front/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-class SettingsOnePage extends StatefulWidget {
+class SettingsPage extends StatefulWidget {
   static const String path = "lib/src/pages/settings/settings1.dart";
 
-  const SettingsOnePage({super.key});
+  const SettingsPage({super.key});
 
   @override
-  _SettingsOnePageState createState() => _SettingsOnePageState();
+  _SettingsPageState createState() => _SettingsPageState();
 }
 
-class _SettingsOnePageState extends State<SettingsOnePage> {
+class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();

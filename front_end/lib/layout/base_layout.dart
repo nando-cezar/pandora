@@ -62,7 +62,6 @@ class _BaseLayoutState extends State<BaseLayout> {
         } else {
           _controllerExtremeEvent.items.value = snapshot.data!.events;
           return Scaffold(
-            backgroundColor: Theme.of(context).colorScheme.background,
             appBar: myAppBar,
             drawer: MyDrawer(),
             body: Obx(() => _controllerPages.pages[_controllerPages.index.value]),

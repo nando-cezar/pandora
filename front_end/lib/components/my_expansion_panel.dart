@@ -27,6 +27,7 @@ class _MyExpansionPanelState<T> extends State<MyExpansionPanel<T>> {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(10.0),
       child: ExpansionPanelList.radio(
+        dividerColor: Theme.of(context).colorScheme.secondary,
         expansionCallback: widget.expansionCallback,
         children: widget.items.map<ExpansionPanel>((T model) {
           return ExpansionPanelRadio(

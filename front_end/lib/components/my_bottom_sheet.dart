@@ -53,7 +53,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       Text(
                         'EM-DAT - 2000-0019-BRA',
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -65,14 +65,14 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       Text(
                         'Extreme event type:',
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                         ),
                       ),
                       const SizedBox(width: 5),
                       Text(
                         widget.metaData['type'],
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -89,7 +89,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                     widget.metaData['address'],
                     overflow: TextOverflow.clip,
                     style: TextStyle(
-                      color: myTenthColor,
+                      color: Theme.of(context).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -99,14 +99,14 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       Text(
                         'State:',
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                         ),
                       ),
                       const SizedBox(width: 5),
                       Text(
                         'Bahia',
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -114,14 +114,14 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       Text(
                         'Region:',
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                         ),
                       ),
                       const SizedBox(width: 5),
                       Text(
                         'North',
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -133,14 +133,14 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       Text(
                         'Start date:',
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                         ),
                       ),
                       const SizedBox(width: 5),
                       Text(
                         '25-05-1997',
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -149,14 +149,14 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       Text(
                         'End date:',
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                         ),
                       ),
                       const SizedBox(width: 5),
                       Text(
                         '30-03-2024',
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -168,7 +168,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       Text(
                         'Total Deaths:',
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                         ),
                       ),
                       const SizedBox(width: 5),
@@ -176,7 +176,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                         '100.000',
                         overflow: TextOverflow.clip,
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -185,7 +185,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       Text(
                         'Total Affected:',
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                         ),
                       ),
                       const SizedBox(width: 5),
@@ -193,7 +193,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                         '70.000',
                         overflow: TextOverflow.clip,
                         style: TextStyle(
-                          color: myTenthColor,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

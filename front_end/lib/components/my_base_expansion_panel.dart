@@ -41,11 +41,17 @@ class MyBaseExpansionPanel extends StatelessWidget {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            const Text('Data source:'),
+                            Text(
+                              'Data source:',
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.tertiary,
+                              ),
+                            ),
                             Text(
                               model.dataSource.first.toString(),
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.tertiary,
                               ),
                             ),
                           ]),
@@ -53,16 +59,23 @@ class MyBaseExpansionPanel extends StatelessWidget {
                   ),
                   Expanded(
                     child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const Text('Medium Duration:'),
-                          Text(
-                            '${model.mediumDuration.floorToDouble().toString()} day(s)',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Medium Duration:',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
                           ),
-                        ]),
+                        ),
+                        Text(
+                          '${model.mediumDuration.floorToDouble().toString()} day(s)',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.tertiary,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -70,29 +83,43 @@ class MyBaseExpansionPanel extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const Text('Probability Occurrence:'),
-                          Text(
-                            '${model.probabilityOccurrence.floorToDouble().toString()} %',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Probability Occurrence:',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
                           ),
-                        ]),
+                        ),
+                        Text(
+                          '${model.probabilityOccurrence.floorToDouble().toString()} %',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.tertiary,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Expanded(
                     child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const Text('Total Location Records:'),
-                          Text(
-                            model.totalLocationRecords.toString(),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Total Location Records:',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
                           ),
-                        ]),
+                        ),
+                        Text(
+                          model.totalLocationRecords.toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.tertiary,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -100,29 +127,43 @@ class MyBaseExpansionPanel extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const Text('Region Greatest Recurrence:'),
-                          Text(
-                            model.regionGreatestRecurrence.toString(),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Region Greatest Recurrence:',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
                           ),
-                        ]),
+                        ),
+                        Text(
+                          model.regionGreatestRecurrence.toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.tertiary,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Expanded(
                     child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const Text('Total Recurrence:'),
-                          Text(
-                            model.totalRecurrence.toString(),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Total Recurrence:',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
                           ),
-                        ]),
+                        ),
+                        Text(
+                          model.totalRecurrence.toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.tertiary,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
