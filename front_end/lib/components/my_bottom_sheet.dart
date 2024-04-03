@@ -78,11 +78,14 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       ),
                     ],
                   ),
-                  const Divider(height: 20),
+                  Divider(
+                    height: 20,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
                   Text(
                     'Address:',
                     style: TextStyle(
-                      color: myTenthColor,
+                      color: Theme.of(context).colorScheme.tertiary,
                     ),
                   ),
                   Text(
@@ -127,7 +130,10 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       ),
                     ],
                   ),
-                  const Divider(height: 20),
+                  Divider(
+                    height: 20,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
                   Row(
                     children: [
                       Text(
