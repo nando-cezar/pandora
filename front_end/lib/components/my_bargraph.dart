@@ -22,7 +22,7 @@ class _MyBarGraphState extends State<MyBarGraph> {
       padding: const EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+        children: <Widget>[
           Expanded(
             child: BarChart(
               BarChartData(

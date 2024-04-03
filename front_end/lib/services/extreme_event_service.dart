@@ -14,7 +14,7 @@ class ExtremeEventService {
         'Longitude=$longitude&'
         'Timezone=America/Sao_Paulo&'
         'PastDays=0&'
-        'ForecastDays=5&'
+        'ForecastDays=14&'
         'Token=$token';
 
     try {

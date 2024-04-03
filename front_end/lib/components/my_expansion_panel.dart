@@ -31,7 +31,7 @@ class _MyExpansionPanelState<T> extends State<MyExpansionPanel<T>> {
         children: widget.items.map<ExpansionPanel>((T model) {
           return ExpansionPanelRadio(
             value: model as Object,
-            backgroundColor: myFifthColor,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             canTapOnHeader: true,
             headerBuilder: (BuildContext context, bool isExpanded) {
               return widget.headerBuilder(model);

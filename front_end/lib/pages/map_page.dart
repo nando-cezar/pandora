@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:custom_info_window/custom_info_window.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pandora_front/components/my_bottom_sheet.dart';
 
-import '../controller/device_controller.dart';
+import '../constants.dart';
 import '../controller/extreme_event_controller.dart';
 import '../controller/position_controller.dart';
 import '../model/marker_model.dart';
@@ -19,18 +18,21 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  final DeviceController _controllerDevice = Get.put(DeviceController());
+  bool _isInitialized = false;
   final PositionController _controllerPosition = Get.put(PositionController());
-  final ExtremeEventController _controllerExtremeEvent = Get.put(ExtremeEventController());
-
-  final CustomInfoWindowController _controllerInfoWindow =
-      CustomInfoWindowController();
+  final ExtremeEventController _controllerExtremeEvent =
+      Get.put(ExtremeEventController());
+  final Completer<GoogleMapController> _controllerMap =
+      Completer<GoogleMapController>();
   final Map<String, Marker> _markers = {};
 
   @override
   void initState() {
-    _getMarkerData();
     super.initState();
+    if (!_isInitialized) {
+      _getMarkerData();
+      _isInitialized = true;
+    }
   }
 
   @override
@@ -49,15 +51,6 @@ class _MapPageState extends State<MapPage> {
             initialCameraPosition: _getInitialCameraPosition(),
             onMapCreated: _onMapCreated,
             markers: Set<Marker>.of(_markers.values),
-            onTap: (position) {
-              _controllerInfoWindow.hideInfoWindow!();
-            },
-          ),
-          CustomInfoWindow(
-            controller: _controllerInfoWindow,
-            height: 200,
-            width: 300,
-            offset: 35,
           ),
         ],
       ),
@@ -72,7 +65,7 @@ class _MapPageState extends State<MapPage> {
         }
       }
     } catch (e) {
-      print("Error completing: $e");
+      myShowDialog(context, "Error completing: $e");
     }
     return _markers;
   }
@@ -94,79 +87,7 @@ class _MapPageState extends State<MapPage> {
         metaData['latitude'],
         metaData['longitude'],
       ),
-      infoWindow: _controllerDevice.index.value == 0 ||
-              _controllerDevice.index.value == 2
-          ? InfoWindow(
-              title: metaData['type'],
-              snippet: metaData['address'],
-            )
-          : const InfoWindow(),
-      onTap: () {
-        _controllerDevice.index.value == 1
-            ? _controllerInfoWindow.addInfoWindow!(
-                Container(
-                  height: 300,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 300,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(metaData['image']),
-                            fit: BoxFit.fitWidth,
-                            filterQuality: FilterQuality.high,
-                          ),
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(10.0),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 10, left: 10, right: 10),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 100,
-                              child: Text(
-                                metaData['type'],
-                                maxLines: 1,
-                                overflow: TextOverflow.fade,
-                                softWrap: false,
-                              ),
-                            ),
-                            const Spacer(),
-                            const Text('*****')
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 10, left: 10, right: 10),
-                        child: Text(
-                          metaData['address'],
-                          maxLines: 2,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                LatLng(
-                  metaData['latitude'],
-                  metaData['longitude'],
-                ),
-              )
-            : ();
-      },
+      onTap: () => _openBottomSheet(metaData),
     );
 
     _markers[metaData['id']] = marker;
@@ -184,6 +105,13 @@ class _MapPageState extends State<MapPage> {
   }
 
   void _onMapCreated(GoogleMapController controller) {
-    _controllerInfoWindow.googleMapController = controller;
+    _controllerMap.complete(controller);
+  }
+
+  void _openBottomSheet(Map<String, dynamic> metaData) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => MyBottomSheet(metaData: metaData),
+    );
   }
 }

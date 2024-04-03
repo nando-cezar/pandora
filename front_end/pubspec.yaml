@@ -49,7 +49,8 @@ dependencies:
   get: ^4.6.6
   cloud_firestore: ^4.15.8
   cloud_firestore_web: ^3.10.8
-  custom_info_window: ^1.0.1
+  font_awesome_flutter: ^10.7.0
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

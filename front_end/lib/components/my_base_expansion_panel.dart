@@ -41,17 +41,12 @@ class MyBaseExpansionPanel extends StatelessWidget {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              'Data source:',
-                              style: TextStyle(
-                                color: myTenthColor,
-                              ),
-                            ),
+                            const Text('Data source:'),
                             Text(
                               model.dataSource.first.toString(),
-                              style: TextStyle(
-                                  color: myTenthColor,
-                                  fontWeight: FontWeight.bold),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ]),
                     ),
@@ -60,17 +55,12 @@ class MyBaseExpansionPanel extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
+                          const Text('Medium Duration:'),
                           Text(
-                            'Medium Duration:',
-                            style: TextStyle(
-                              color: myTenthColor,
+                            '${model.mediumDuration.floorToDouble().toString()} day(s)',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
                             ),
-                          ),
-                          Text(
-                            '${model.mediumDuration.floorToDouble().toString()} dia(s)',
-                            style: TextStyle(
-                                color: myTenthColor,
-                                fontWeight: FontWeight.bold),
                           ),
                         ]),
                   ),
@@ -82,17 +72,12 @@ class MyBaseExpansionPanel extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            'Probability Occurrence:',
-                            style: TextStyle(
-                              color: myTenthColor,
-                            ),
-                          ),
+                          const Text('Probability Occurrence:'),
                           Text(
                             '${model.probabilityOccurrence.floorToDouble().toString()} %',
-                            style: TextStyle(
-                                color: myTenthColor,
-                                fontWeight: FontWeight.bold),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ]),
                   ),
@@ -100,17 +85,12 @@ class MyBaseExpansionPanel extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            'Total Location Records:',
-                            style: TextStyle(
-                              color: myTenthColor,
-                            ),
-                          ),
+                          const Text('Total Location Records:'),
                           Text(
                             model.totalLocationRecords.toString(),
-                            style: TextStyle(
-                                color: myTenthColor,
-                                fontWeight: FontWeight.bold),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ]),
                   ),
@@ -122,17 +102,12 @@ class MyBaseExpansionPanel extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            'Region Greatest Recurrence:',
-                            style: TextStyle(
-                              color: myTenthColor,
-                            ),
-                          ),
+                          const Text('Region Greatest Recurrence:'),
                           Text(
                             model.regionGreatestRecurrence.toString(),
-                            style: TextStyle(
-                                color: myTenthColor,
-                                fontWeight: FontWeight.bold),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ]),
                   ),
@@ -140,17 +115,12 @@ class MyBaseExpansionPanel extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            'Total Recurrence:',
-                            style: TextStyle(
-                              color: myTenthColor,
-                            ),
-                          ),
+                          const Text('Total Recurrence:'),
                           Text(
                             model.totalRecurrence.toString(),
-                            style: TextStyle(
-                                color: myTenthColor,
-                                fontWeight: FontWeight.bold),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ]),
                   ),
