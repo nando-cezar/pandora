@@ -11,6 +11,7 @@ import '../controller/extreme_event_controller.dart';
 import '../controller/pages_controller.dart';
 import '../controller/position_controller.dart';
 import '../model/extreme_event_wrapper.dart';
+import '../pages/loading_page.dart';
 import '../services/extreme_event_service.dart';
 import '../services/position_service.dart';
 
@@ -53,7 +54,7 @@ class _BaseLayoutState extends State<BaseLayout> {
       future: _fetchPositionAndEventData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: Lottie.asset('assets/images/loading.json'));
+          return const LoadingPage();
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (!snapshot.hasData || snapshot.data!.events.isEmpty) {
@@ -61,6 +62,7 @@ class _BaseLayoutState extends State<BaseLayout> {
         } else {
           _controllerExtremeEvent.items.value = snapshot.data!.events;
           return Scaffold(
+            backgroundColor: Theme.of(context).colorScheme.background,
             appBar: myAppBar,
             drawer: MyDrawer(),
             body: Obx(() => _controllerPages.pages[_controllerPages.index.value]),

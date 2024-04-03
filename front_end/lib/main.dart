@@ -1,7 +1,12 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:pandora_front/pages/auth_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pandora_front/theme/theme.dart';
+import 'package:pandora_front/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -10,7 +15,12 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await dotenv.load(fileName: ".env");
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -20,8 +30,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Roboto'),
       home: const AuthPage(),
+      theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }
 }

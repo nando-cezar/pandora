@@ -1,5 +1,11 @@
 import 'package:get/get.dart';
 
+import '../state/device_state.dart';
+
 class DeviceController extends GetxController {
-  RxInt index = 0.obs;
+  Rx<DeviceState> state = DeviceState.desktop.obs;
+
+  void changeState(DeviceState newState) {
+    state.value = newState;
+  }
 }

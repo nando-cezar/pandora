@@ -4,6 +4,7 @@ import '../components/my_base_expansion_panel.dart';
 import '../components/my_base_graph.dart';
 import '../constants.dart';
 import '../controller/device_controller.dart';
+import '../state/device_state.dart';
 
 class MobileScaffold extends StatefulWidget {
   const MobileScaffold({super.key});
@@ -13,11 +14,10 @@ class MobileScaffold extends StatefulWidget {
 }
 
 class _MobileScaffoldState extends State<MobileScaffold> {
-
   final DeviceController _controllerDevice = Get.put(DeviceController());
 
   _fetchDevice() async {
-    _controllerDevice.index.value = 1;
+    _controllerDevice.changeState(DeviceState.mobile);
   }
 
   @override
@@ -29,7 +29,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: myFifthColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
           const Expanded(

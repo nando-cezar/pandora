@@ -4,6 +4,7 @@ import '../components/my_base_expansion_panel.dart';
 import '../components/my_base_graph.dart';
 import '../constants.dart';
 import '../controller/device_controller.dart';
+import '../state/device_state.dart';
 
 class TableScaffold extends StatefulWidget {
   const TableScaffold({super.key});
@@ -13,24 +14,22 @@ class TableScaffold extends StatefulWidget {
 }
 
 class _TableScaffoldState extends State<TableScaffold> {
-
   final DeviceController _controllerDevice = Get.put(DeviceController());
 
-  _fetchPosition() async {
-    _controllerDevice.index.value = 2;
+  _fetchDevice() async {
+    _controllerDevice.changeState(DeviceState.tablet);
   }
 
   @override
   void initState() {
-    _fetchPosition();
+    _fetchDevice();
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: myFifthColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
           const Expanded(

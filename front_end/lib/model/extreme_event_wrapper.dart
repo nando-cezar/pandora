@@ -14,7 +14,7 @@ class ExtremeEventWrapper {
     if (json.containsKey('content') && json['content'] is List) {
       json['content'].forEach((item) {
         List<MarkerModel> locationMarkers = [];
-        (item['locations'] as List).forEach((location) {
+        for (var location in (item['locations'] as List)) {
           MarkerModel marker = MarkerModel(
             id: '${location['id']}_${location['latitude'].toDouble()}_${location['longitude'].toDouble()}',
             address: location['address'],
@@ -23,7 +23,7 @@ class ExtremeEventWrapper {
             longitude: location['longitude'].toDouble(),
           );
           locationMarkers.add(marker);
-        });
+        }
 
         ExtremeEventModel event = ExtremeEventModel(
             code: item['code'].toInt(),

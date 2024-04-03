@@ -1,8 +1,8 @@
 class Weather {
   final String cityName;
   final double temperature;
-  final double temperature_min;
-  final double temperature_max;
+  final double temperatureMin;
+  final double temperatureMax;
   final double pressure;
   final double humidity;
   final String mainCondition;
@@ -10,8 +10,8 @@ class Weather {
   Weather({
     required this.cityName,
     required this.temperature,
-    required this.temperature_min,
-    required this.temperature_max,
+    required this.temperatureMin,
+    required this.temperatureMax,
     required this.pressure,
     required this.humidity,
     required this.mainCondition,
@@ -21,8 +21,8 @@ class Weather {
     return Weather(
       cityName: json['name'],
       temperature: json['main']['temp'].toDouble(),
-      temperature_min: json['main']['temp_min'].toDouble(),
-      temperature_max: json['main']['temp_max'].toDouble(),
+      temperatureMin: json['main']['temp_min'].toDouble(),
+      temperatureMax: json['main']['temp_max'].toDouble(),
       pressure: json['main']['pressure'].toDouble(),
       humidity: json['main']['humidity'].toDouble(),
       mainCondition: json['weather'][0]['main'],

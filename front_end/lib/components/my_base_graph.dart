@@ -12,9 +12,9 @@ class MyBaseGraph extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: myFifthColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
-          backgroundColor: myFifthColor,
+          backgroundColor: Theme.of(context).colorScheme.background,
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -28,10 +28,9 @@ class MyBaseGraph extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 5),
-              Text(
+              const Text(
                 'Prediction chart based on current location',
                 style: TextStyle(
-                  color: myNinthColor,
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
                 ),
@@ -41,6 +40,8 @@ class MyBaseGraph extends StatelessWidget {
           ),
         ),
         body: Column(
+
+          mainAxisSize: MainAxisSize.max,
           children: [
             TabBar(
               tabs: [

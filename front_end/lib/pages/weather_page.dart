@@ -5,6 +5,7 @@ import 'package:pandora_front/model/weather_model.dart';
 import 'package:pandora_front/services/weather_service.dart';
 
 import '../constants.dart';
+import 'loading_page.dart';
 
 class WeatherPage extends StatelessWidget {
   WeatherPage({super.key});
@@ -13,30 +14,6 @@ class WeatherPage extends StatelessWidget {
       dotenv.env['API_OPEN_WEATHER_MAP_KEY']!;
   final WeatherService _weatherService =
       WeatherService(API_OPEN_WEATHER_MAP_KEY);
-
-  String getWeatherAnimation(String? mainCondition) {
-    if (mainCondition == null) return 'assets/images/sunny.json';
-
-    switch (mainCondition.toLowerCase()) {
-      case 'clouds':
-      case 'mist':
-      case 'smoke':
-      case 'haze':
-      case 'dust':
-      case 'fog':
-        return 'assets/images/cloud.json';
-      case 'rain':
-      case 'drizzle':
-      case 'shower rain':
-        return 'assets/images/rain.json';
-      case 'thunderstorm':
-        return 'assets/images/thunder.json';
-      case 'clear':
-        return 'assets/images/sunny.json';
-      default:
-        return 'assets/images/sunny.json';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +24,7 @@ class WeatherPage extends StatelessWidget {
           future: _weatherService.getCurrentWeather(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Lottie.asset('assets/images/loading.json');
+              return const LoadingPage();
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {
@@ -97,5 +74,29 @@ class WeatherPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String getWeatherAnimation(String? mainCondition) {
+    if (mainCondition == null) return 'assets/images/sunny.json';
+
+    switch (mainCondition.toLowerCase()) {
+      case 'clouds':
+      case 'mist':
+      case 'smoke':
+      case 'haze':
+      case 'dust':
+      case 'fog':
+        return 'assets/images/cloud.json';
+      case 'rain':
+      case 'drizzle':
+      case 'shower rain':
+        return 'assets/images/rain.json';
+      case 'thunderstorm':
+        return 'assets/images/thunder.json';
+      case 'clear':
+        return 'assets/images/sunny.json';
+      default:
+        return 'assets/images/sunny.json';
+    }
   }
 }

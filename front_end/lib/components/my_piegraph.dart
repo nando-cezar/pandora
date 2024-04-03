@@ -5,6 +5,7 @@ import 'package:pandora_front/components/pie_graph/indicator.dart';
 
 import '../controller/device_controller.dart';
 import '../controller/extreme_event_controller.dart';
+import '../state/device_state.dart';
 
 class MyPieGraph extends StatefulWidget {
   const MyPieGraph({super.key});
@@ -21,13 +22,11 @@ class _MyPieGraph extends State {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.3,
+    return Padding(
+      padding: const EdgeInsets.all(15),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          const SizedBox(
-            height: 18,
-          ),
           Expanded(
             child: AspectRatio(
               aspectRatio: 1,
@@ -51,7 +50,10 @@ class _MyPieGraph extends State {
                     show: false,
                   ),
                   sectionsSpace: 0,
-                  centerSpaceRadius: _controllerDevice.index.value == 1 ? 0 : 60,
+                  centerSpaceRadius:
+                      _controllerDevice.state.value == DeviceState.mobile
+                          ? 0
+                          : 60,
                   sections: showingSections(),
                 ),
               ),
@@ -75,14 +77,8 @@ class _MyPieGraph extends State {
                       ),
                     ],
                   ),
-                const SizedBox(
-                  height: 18,
-                ),
               ],
             ),
-          ),
-          const SizedBox(
-            width: 28,
           ),
         ],
       ),
@@ -93,19 +89,20 @@ class _MyPieGraph extends State {
     return _controllerExtremeEvent.items.map((item) {
       final isTouched =
           _controllerExtremeEvent.items.indexOf(item) == touchedIndex;
-      final fontSize = isTouched ? 20.0 : 16.0;
-      final radius = isTouched ? 55.0 : 50.0;
+      final fontSize = isTouched ? 18.0 : 15.0;
+      final radius = isTouched ? 65.0 : 60.0;
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
-      var numFormatted = item.totalRecordsRegionGreatestRecurrence.floorToDouble().toDouble();
+      var numFormatted =
+          item.totalRecordsRegionGreatestRecurrence.floorToDouble().toInt();
       var title = isTouched ? item.regionGreatestRecurrence : numFormatted;
 
       return PieChartSectionData(
         color: item.color,
         title: title.toString(),
         radius: radius,
-        titlePositionPercentageOffset: _controllerDevice.index.value == 1 ? 1.2 : 1.5,
-        //badgePositionPercentageOffset: 2.0,
+        titlePositionPercentageOffset:
+            _controllerDevice.state.value == DeviceState.mobile ? 0.6 : 0.5,
         titleStyle: TextStyle(
           fontSize: fontSize,
           fontWeight: FontWeight.bold,
