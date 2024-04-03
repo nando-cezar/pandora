@@ -67,7 +67,7 @@ class _MyBarGraphState extends State<MyBarGraph> {
                             backDrawRodData: BackgroundBarChartRodData(
                               show: true,
                               toY: 100,
-                              color: mySeventhColor,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
                         ],
@@ -76,7 +76,7 @@ class _MyBarGraphState extends State<MyBarGraph> {
                     .toList(),
                 barTouchData: BarTouchData(
                   touchTooltipData: BarTouchTooltipData(
-                    tooltipBgColor: mySeventhColor,
+                    tooltipBgColor: Theme.of(context).colorScheme.primary,
                     tooltipPadding: const EdgeInsets.symmetric(
                       horizontal: 5,
                       vertical: 0,
@@ -133,35 +133,35 @@ Widget getBottomTitles(double value, TitleMeta meta) {
 }
 
 BarTooltipItem getTooltipBottomItem(group, groupIndex, rod, rodIndex) {
-  String weekDay;
+  String event;
   switch (group.x) {
     case 0:
-      weekDay = 'Cold wave';
+      event = 'Cold wave';
       break;
     case 1:
-      weekDay = 'Flash flood';
+      event = 'Flash flood';
       break;
     case 2:
-      weekDay = 'Flood, General';
+      event = 'Flood, General';
       break;
     case 3:
-      weekDay = 'Heat wave';
+      event = 'Heat wave';
       break;
     case 4:
-      weekDay = 'Riverine flood';
+      event = 'Riverine flood';
       break;
     case 5:
-      weekDay = 'Storm, General';
+      event = 'Storm, General';
       break;
     case 6:
-      weekDay = 'Tropical cyclone';
+      event = 'Tropical cyclone';
       break;
     default:
       throw Error();
   }
 
   return BarTooltipItem(
-    '$weekDay\n',
+    '$event\n',
     TextStyle(
       color: myNinthColor,
       fontSize: 10,

@@ -18,7 +18,7 @@ class WeatherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: myFifthColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: FutureBuilder<Weather>(
           future: _weatherService.getCurrentWeather(),
@@ -42,7 +42,7 @@ class WeatherPage extends StatelessWidget {
                   Text(
                     weather?.cityName ?? "Loading...",
                     style: TextStyle(
-                      color: myTenthColor,
+                      color: Theme.of(context).colorScheme.tertiary,
                       fontSize: 20,
                     ),
                   ),
@@ -54,7 +54,7 @@ class WeatherPage extends StatelessWidget {
                   Text(
                     '${weather?.temperature.round()} °C',
                     style: TextStyle(
-                      color: myNinthColor,
+                      color: Theme.of(context).colorScheme.tertiary,
                       fontSize: 25,
                     ),
                   ),
@@ -62,7 +62,7 @@ class WeatherPage extends StatelessWidget {
                   Text(
                     weather?.mainCondition ?? "",
                     style: TextStyle(
-                      color: myEighthColor,
+                      color: Theme.of(context).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                     ),

@@ -26,19 +26,24 @@ class _MyExpansionPanelState<T> extends State<MyExpansionPanel<T>> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(10.0),
-      child: ExpansionPanelList.radio(
-        expansionCallback: widget.expansionCallback,
-        children: widget.items.map<ExpansionPanel>((T model) {
-          return ExpansionPanelRadio(
-            value: model as Object,
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            canTapOnHeader: true,
-            headerBuilder: (BuildContext context, bool isExpanded) {
-              return widget.headerBuilder(model);
-            },
-            body: widget.bodyBuilder(model),
-          );
-        }).toList(),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(4),
+        child: ExpansionPanelList.radio(
+          elevation: 8.0,
+          dividerColor: Theme.of(context).colorScheme.secondary,
+          expansionCallback: widget.expansionCallback,
+          children: widget.items.map<ExpansionPanel>((T model) {
+            return ExpansionPanelRadio(
+              value: model as Object,
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              canTapOnHeader: true,
+              headerBuilder: (BuildContext context, bool isExpanded) {
+                return widget.headerBuilder(model);
+              },
+              body: widget.bodyBuilder(model),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

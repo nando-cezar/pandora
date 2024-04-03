@@ -4,9 +4,10 @@ ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   fontFamily: 'Roboto',
   colorScheme: ColorScheme.light(
-    background: Colors.grey.shade400,
-    primary: Colors.grey.shade300,
+    background: Colors.white,
+    primary: Colors.grey.shade100,
     secondary: Colors.grey.shade200,
+    tertiary: Colors.grey.shade900,
   ),
 );
 
@@ -17,5 +18,6 @@ ThemeData darkMode = ThemeData(
     background: Colors.grey.shade900,
     primary: Colors.grey.shade800,
     secondary: Colors.grey.shade700,
+    tertiary: Colors.grey.shade200,
   ),
 );

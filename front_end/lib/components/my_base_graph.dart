@@ -28,11 +28,12 @@ class MyBaseGraph extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 5),
-              const Text(
+              Text(
                 'Prediction chart based on current location',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
+                  color: Theme.of(context).colorScheme.tertiary,
                 ),
               ),
               const SizedBox(height: 10),
@@ -40,10 +41,10 @@ class MyBaseGraph extends StatelessWidget {
           ),
         ),
         body: Column(
-
           mainAxisSize: MainAxisSize.max,
           children: [
             TabBar(
+              indicatorColor: Theme.of(context).colorScheme.secondary,
               tabs: [
                 Tab(
                   icon: Icon(
