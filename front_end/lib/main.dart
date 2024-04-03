@@ -1,10 +1,7 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:pandora_front/pages/auth_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:pandora_front/theme/theme.dart';
 import 'package:pandora_front/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
