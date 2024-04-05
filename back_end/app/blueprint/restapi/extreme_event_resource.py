@@ -2,13 +2,15 @@ import concurrent.futures
 
 import numpy as np
 import pandas as pd
-from scipy.stats import ttest_rel
+from scipy.stats import ttest_ind
 import requests
 
 from flask import jsonify
 from flask_restful import Resource, reqparse, abort
 
 from app.ext.database import db
+from app.model.extreme_event import ExtremeEvent
+from app.model.location import Location
 
 
 class ExtremeEventResource(Resource):
@@ -46,22 +48,14 @@ class ExtremeEventResource(Resource):
         if not self.token == self.secret_key:
             abort(401)
 
-        data = self._get_general_data_history()
+        data = self._get_general_data()
 
         if not data:
             abort(404)
 
-        result = self._intercept_calculation()
-
-        if not result:
-            abort(404)
-
-        for i in range(len(data)):
-            data[i]["probability_occurrence"] = result[i]
-
         return jsonify({"content": data})
 
-    def _intercept_calculation(self):
+    def _probability_occurrence(self):
         ordered = [
             'temperature_2m_max',
             'temperature_2m_min',
@@ -92,7 +86,7 @@ class ExtremeEventResource(Resource):
         ]
 
         def calculate_similarity(element):
-            statistic, p_value = ttest_rel(
+            statistic, p_value = ttest_ind(
                 np.array(element).flatten(),
                 np.array(forecast_corr).flatten()
             )
@@ -151,17 +145,36 @@ class ExtremeEventResource(Resource):
 
         return response
 
-    def _get_general_data_history(self):
-
+    def _get_general_data(self):
         response = []
 
-        extreme_event_ref = db.source.collection("Extreme Event").document(self.continent).collection(self.country).stream()
-        extreme_events = [doc for doc in extreme_event_ref]
+        probability_occurrence = self._probability_occurrence()
 
-        regions = ["North", "South", "Northeast", "Southeast", "Midwest"]
+        if not probability_occurrence:
+            abort(404)
 
-        for doc in extreme_events:
-            data = {
+        extreme_event_ref = db.source.collection("Extreme Event") \
+            .document(self.continent) \
+            .collection(self.country) \
+            .stream()
+
+        for count, doc in enumerate(extreme_event_ref):
+            location_data_ref = doc.reference.collection("Location Data").stream()
+            location_data = [
+                Location({
+                    "id": sub_doc.get('id'),
+                    "address": sub_doc.get('address'),
+                    "state": sub_doc.get('state'),
+                    "region": sub_doc.get('region'),
+                    "latitude": sub_doc.get('position').latitude,
+                    "longitude": sub_doc.get('position').longitude
+                }).to_dict() for sub_doc in location_data_ref
+            ]
+
+            central_measurement_data_ref = doc.reference.collection("Central Measurement Data").stream()
+            central_measurement_data = [sub_doc.to_dict() for sub_doc in central_measurement_data_ref]
+
+            extreme_event_data = {
                 "code": doc.get('code'),
                 "code_formatted": doc.get('code_formatted'),
                 "data_source": doc.get('data_source'),
@@ -171,34 +184,15 @@ class ExtremeEventResource(Resource):
                 "site_greatest_recurrence": doc.get('site_greatest_recurrence'),
                 "total_location_records": doc.get('total_location_records'),
                 "total_recurrence": doc.get('total_recurrence'),
+                "region_greatest_recurrence": doc.get('region_greatest_recurrence'),
+                "probability_occurrence": probability_occurrence[count],
+                "central_measurement_data": central_measurement_data[0],
+                "locations": location_data
             }
 
-            central_measurement_data_ref = doc.reference.collection("Central Measurement Data").stream()
-            central_measurement_data = [sub_doc.to_dict() for sub_doc in central_measurement_data_ref]
-            data["central_measurement_data"] = central_measurement_data[0] if central_measurement_data else {}
+            response.append(ExtremeEvent(extreme_event_data).to_dict())
 
-            region_counts = {region: 0 for region in regions}
-            location_data_ref = doc.reference.collection("Location Data")
-            for region in regions:
-                count = len(list(location_data_ref.where("region", "==", region).stream()))
-                region_counts[region] = count
-            region_greatest_recurrence = max(region_counts, key=region_counts.get)
-            data["region_greatest_recurrence"] = {"region": region_greatest_recurrence, "recurrence": region_counts[region_greatest_recurrence]}
-
-            location_data = []
-            for sub_doc in location_data_ref.stream():
-                location_data.append({
-                    "id": sub_doc.get('id'),
-                    "address": sub_doc.get('address'),
-                    "state": sub_doc.get('state'),
-                    "region": sub_doc.get('region'),
-                    "latitude": sub_doc.get('position').latitude,
-                    "longitude": sub_doc.get('position').longitude,
-                })
-
-            data["locations"] = location_data
-            response.append(data)
-
+        # Check if response is empty
         if not response:
             abort(404)
 

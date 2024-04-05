@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask_restful import Api
 
-from .extreme_event_resources import ExtremeEventResource
+from .extreme_event_resource import ExtremeEventResource
 
 bp = Blueprint("restapi", __name__, url_prefix="/api/v1")
 api = Api(bp)
