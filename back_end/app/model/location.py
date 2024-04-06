@@ -1,18 +1,20 @@
-class Location:
-    def __init__(self, data):
-        self.id = data.get('id')
-        self.address = data.get('address')
-        self.state = data.get('state')
-        self.region = data.get('region')
-        self.latitude = data.get('latitude')
-        self.longitude = data.get('longitude')
+from flask_restful import fields
 
-    def to_dict(self):
-        return {
-            "id": self.id,
-            "address": self.address,
-            "state": self.state,
-            "region": self.region,
-            "latitude": self.latitude,
-            "longitude": self.longitude
-        }
+resource_fields_locations = fields.List(
+    fields.Nested({
+        'id': fields.String,
+        'address': fields.String,
+        'state': fields.String,
+        'region': fields.String,
+        'latitude': fields.Float,
+        'longitude': fields.Float
+    }))
+
+class Location(object):
+    def __init__(self, data):
+        self.id = data['id']
+        self.address = data['address']
+        self.state = data['state']
+        self.region = data['region']
+        self.latitude = data['latitude']
+        self.longitude = data['longitude']
