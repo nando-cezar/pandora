@@ -11,9 +11,9 @@ class WeatherPage extends StatelessWidget {
   WeatherPage({super.key});
 
   static String API_OPEN_WEATHER_MAP_KEY =
-      dotenv.env['API_OPEN_WEATHER_MAP_KEY']!;
+  dotenv.env['API_OPEN_WEATHER_MAP_KEY']!;
   final WeatherService _weatherService =
-      WeatherService(API_OPEN_WEATHER_MAP_KEY);
+  WeatherService(API_OPEN_WEATHER_MAP_KEY);
 
   @override
   Widget build(BuildContext context) {

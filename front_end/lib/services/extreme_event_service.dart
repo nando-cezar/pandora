@@ -13,11 +13,12 @@ class ExtremeEventService {
         'Latitude=$latitude&'
         'Longitude=$longitude&'
         'Timezone=America/Sao_Paulo&'
-        'PastDays=0&'
+        'PastDays=3&'
         'ForecastDays=14&'
         'Token=$token';
 
     try {
+
       final http.Response response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
         return ExtremeEventWrapper.fromJson(jsonDecode(response.body));

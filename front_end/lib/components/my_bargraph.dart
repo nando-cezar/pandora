@@ -30,37 +30,14 @@ class _MyBarGraphState extends State<MyBarGraph> {
                 minY: 0,
                 gridData: const FlGridData(show: false),
                 borderData: FlBorderData(show: false),
-                titlesData: const FlTitlesData(
-                  show: true,
-                  topTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: false,
-                    ),
-                  ),
-                  leftTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: false,
-                    ),
-                  ),
-                  rightTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: false,
-                    ),
-                  ),
-                  bottomTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      getTitlesWidget: getBottomTitles,
-                    ),
-                  ),
-                ),
+                titlesData: titlesData,
                 barGroups: _controllerExtremeEvent.items
                     .map(
                       (data) => BarChartGroupData(
                         x: data.code,
                         barRods: [
                           BarChartRodData(
-                            toY: data.probabilityOccurrence,
+                            toY: data.probabilityOccurrence.roundToDouble(),
                             color: data.color,
                             width: 30,
                             borderRadius: BorderRadius.circular(4),
@@ -71,19 +48,11 @@ class _MyBarGraphState extends State<MyBarGraph> {
                             ),
                           ),
                         ],
+                        showingTooltipIndicators: [0],
                       ),
                     )
                     .toList(),
-                barTouchData: BarTouchData(
-                  touchTooltipData: BarTouchTooltipData(
-                    tooltipBgColor: Theme.of(context).colorScheme.primary,
-                    tooltipPadding: const EdgeInsets.symmetric(
-                      horizontal: 5,
-                      vertical: 0,
-                    ),
-                    getTooltipItem: getTooltipBottomItem,
-                  ),
-                ),
+                barTouchData: barTouchData(context),
               ),
             ),
           ),
@@ -92,6 +61,54 @@ class _MyBarGraphState extends State<MyBarGraph> {
     );
   }
 }
+
+FlTitlesData get titlesData => const FlTitlesData(
+  show: true,
+  topTitles: AxisTitles(
+    sideTitles: SideTitles(
+      showTitles: false,
+    ),
+  ),
+  leftTitles: AxisTitles(
+    sideTitles: SideTitles(
+      showTitles: false,
+    ),
+  ),
+  rightTitles: AxisTitles(
+    sideTitles: SideTitles(
+      showTitles: false,
+    ),
+  ),
+  bottomTitles: AxisTitles(
+    sideTitles: SideTitles(
+      showTitles: true,
+      getTitlesWidget: getBottomTitles,
+    ),
+  ),
+);
+
+BarTouchData barTouchData (context) => BarTouchData(
+  enabled: false,
+  touchTooltipData: BarTouchTooltipData(
+    tooltipBgColor: Colors.transparent,
+    tooltipPadding: EdgeInsets.zero,
+    tooltipMargin: 8,
+    getTooltipItem: (
+        BarChartGroupData group,
+        int groupIndex,
+        BarChartRodData rod,
+        int rodIndex,
+        ) {
+      return BarTooltipItem(
+        rod.toY.round().toString(),
+        TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Theme.of(context).colorScheme.tertiary,
+        ),
+      );
+    },
+  ),
+);
 
 Widget getBottomTitles(double value, TitleMeta meta) {
   var style = TextStyle(
@@ -130,52 +147,4 @@ Widget getBottomTitles(double value, TitleMeta meta) {
   }
 
   return SideTitleWidget(axisSide: meta.axisSide, child: text);
-}
-
-BarTooltipItem getTooltipBottomItem(group, groupIndex, rod, rodIndex) {
-  String event;
-  switch (group.x) {
-    case 0:
-      event = 'Cold wave';
-      break;
-    case 1:
-      event = 'Flash flood';
-      break;
-    case 2:
-      event = 'Flood, General';
-      break;
-    case 3:
-      event = 'Heat wave';
-      break;
-    case 4:
-      event = 'Riverine flood';
-      break;
-    case 5:
-      event = 'Storm, General';
-      break;
-    case 6:
-      event = 'Tropical cyclone';
-      break;
-    default:
-      throw Error();
-  }
-
-  return BarTooltipItem(
-    '$event\n',
-    TextStyle(
-      color: myNinthColor,
-      fontSize: 10,
-      fontWeight: FontWeight.bold,
-    ),
-    children: <TextSpan>[
-      TextSpan(
-        text: (rod.toY - 1).round().toString(),
-        style: TextStyle(
-          color: myActiveColor,
-          fontSize: 15,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    ],
-  );
 }
