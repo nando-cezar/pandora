@@ -1,6 +1,10 @@
 from flask_restful import fields
 
-resource_fields_central_measurement_data = fields.Nested({
+class CentralMeasurement(object):
+    def __init__(self, mean):
+        self.mean = mean
+
+    resource_fields = fields.Nested({
         'mean': fields.Nested({
             'et0_fao_evapotranspiration': fields.Float,
             'wind_gusts_10m_max': fields.Float,
@@ -17,7 +21,3 @@ resource_fields_central_measurement_data = fields.Nested({
             'precipitation_hours': fields.Float,
         }),
     })
-
-class CentralMeasurement(object):
-    def __init__(self, mean):
-        self.mean = mean

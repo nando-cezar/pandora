@@ -3,7 +3,7 @@ from flask_restful import Resource, reqparse, marshal_with
 from app.blueprint.restapi.exception.exception import abort_if_unauthorized, abort_if_not_exists
 from app.core.statistical_correlation import StatisticalCorrelation
 from app.ext.database import db
-from app.model.extreme_event import resource_fields_extreme_event, ExtremeEvent
+from app.model.extreme_event import ExtremeEvent
 from app.model.location import Location
 
 
@@ -37,7 +37,7 @@ class ExtremeEventResource(Resource):
 
         super(ExtremeEventResource, self).__init__()
 
-    @marshal_with(fields=resource_fields_extreme_event)
+    @marshal_with(fields=ExtremeEvent.resource_fields)
     def get(self):
 
         abort_if_unauthorized(self.token != self.secret_key)

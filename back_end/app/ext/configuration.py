@@ -13,3 +13,4 @@ def load_extensions(app):
 def init_app(app):
     FlaskDynaconf(app)
     CORS(app, resources={r"/api/*": {"origins": "*"}})
+
