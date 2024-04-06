@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../components/my_base_expansion_panel.dart';
+import '../components/my_expansion_panel.dart';
 import '../components/my_base_graph.dart';
 import '../constants.dart';
 import '../controller/device_controller.dart';
@@ -34,15 +34,16 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         children: [
           Expanded(
             flex: 2,
-            child: Column(
-              children: [
-                const Expanded(
-                  child: MyBaseGraph(),
-                ),
-                Expanded(
-                  child: MyBaseExpansionPanel(),
-                ),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 500,
+                    child: MyBaseGraph(),
+                  ),
+                  MyExpansionPanel(),
+                ],
+              ),
             ),
           ),
           Expanded(

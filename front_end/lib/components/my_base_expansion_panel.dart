@@ -1,179 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constants.dart';
-import '../controller/extreme_event_controller.dart';
-import '../model/extreme_event _model.dart';
-import 'my_expansion_panel.dart';
+class MyBaseExpansionPanel<T> extends StatefulWidget {
+  final RxList<T> items;
+  final Widget Function(T) headerBuilder;
+  final Widget Function(T) bodyBuilder;
+  final void Function(int, bool) expansionCallback;
 
-class MyBaseExpansionPanel extends StatelessWidget {
-  MyBaseExpansionPanel({super.key});
-
-  final ExtremeEventController _controllerExtremeEvent =
-      Get.put(ExtremeEventController());
+  const MyBaseExpansionPanel({
+    super.key,
+    required this.items,
+    required this.headerBuilder,
+    required this.bodyBuilder,
+    required this.expansionCallback,
+  });
 
   @override
+  State<MyBaseExpansionPanel<T>> createState() => _MyExpansionPanelState<T>();
+}
+
+class _MyExpansionPanelState<T> extends State<MyBaseExpansionPanel<T>> {
+  @override
   Widget build(BuildContext context) {
-    return MyExpansionPanel<ExtremeEventModel>(
-      items: _controllerExtremeEvent.items,
-      headerBuilder: (ExtremeEventModel model) {
-        return ListTile(
-          contentPadding: const EdgeInsets.all(5.0),
-          title: Text(model.description),
-          leading: CircleAvatar(
-            backgroundColor: model.color,
-            child: Text(
-              model.codeFormatted.toString(),
-              style: TextStyle(color: myFifthColor),
-            ),
-          ),
-        );
-      },
-      bodyBuilder: (ExtremeEventModel model) {
-        return ListTile(
-          subtitle: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'Data source:',
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.tertiary,
-                              ),
-                            ),
-                            Text(
-                              model.dataSource.first.toString(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.tertiary,
-                              ),
-                            ),
-                          ]),
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Medium Duration:',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                        ),
-                        Text(
-                          '${model.mediumDuration.floorToDouble().toString()} day(s)',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Probability Occurrence:',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                        ),
-                        Text(
-                          '${model.probabilityOccurrence.floorToDouble().toString()} %',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Total Location Records:',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                        ),
-                        Text(
-                          model.totalLocationRecords.toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Region Greatest Recurrence:',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                        ),
-                        Text(
-                          model.regionGreatestRecurrence.toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Total Recurrence:',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                        ),
-                        Text(
-                          model.totalRecurrence.toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.tertiary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        );
-      },
-      expansionCallback: (int index, bool isExpanded) {
-        _controllerExtremeEvent.items[index].isExpanded = isExpanded;
-      },
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(10.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(4),
+        child: ExpansionPanelList.radio(
+          elevation: 8.0,
+          dividerColor: Theme.of(context).colorScheme.secondary,
+          expansionCallback: widget.expansionCallback,
+          children: widget.items.map<ExpansionPanel>((T model) {
+            return ExpansionPanelRadio(
+              value: model as Object,
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              canTapOnHeader: true,
+              headerBuilder: (BuildContext context, bool isExpanded) {
+                return widget.headerBuilder(model);
+              },
+              body: widget.bodyBuilder(model),
+            );
+          }).toList(),
+        ),
+      ),
     );
   }
 }

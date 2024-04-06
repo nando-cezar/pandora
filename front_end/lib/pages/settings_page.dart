@@ -23,6 +23,10 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    var verifyDarkMode =
+        Provider.of<ThemeProvider>(context).themeData.brightness ==
+            Brightness.dark;
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Stack(
@@ -48,7 +52,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 SwitchListTile(
                   activeColor: myFirstColor,
                   contentPadding: const EdgeInsets.all(0),
-                  value: true,
+                  value: verifyDarkMode ? true : false,
                   title: const Text("Dark mode"),
                   onChanged: (val) {
                     Provider.of<ThemeProvider>(context, listen: false)

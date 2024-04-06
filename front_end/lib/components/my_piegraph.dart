@@ -25,43 +25,40 @@ class _MyPieGraph extends State {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: PieChart(
-                PieChartData(
-                  pieTouchData: PieTouchData(
-                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                      setState(() {
-                        if (!event.isInterestedForInteractions ||
-                            pieTouchResponse == null ||
-                            pieTouchResponse.touchedSection == null) {
-                          touchedIndex = -1;
-                          return;
-                        }
-                        touchedIndex = pieTouchResponse
-                            .touchedSection!.touchedSectionIndex;
-                      });
-                    },
-                  ),
-                  borderData: FlBorderData(
-                    show: false,
-                  ),
-                  sectionsSpace: 0,
-                  centerSpaceRadius:
-                      _controllerDevice.state.value == DeviceState.mobile
-                          ? 0
-                          : 60,
-                  sections: showingSections(),
+            child: PieChart(
+              PieChartData(
+                pieTouchData: PieTouchData(
+                  touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                    setState(() {
+                      if (!event.isInterestedForInteractions ||
+                          pieTouchResponse == null ||
+                          pieTouchResponse.touchedSection == null) {
+                        touchedIndex = -1;
+                        return;
+                      }
+                      touchedIndex =
+                          pieTouchResponse.touchedSection!.touchedSectionIndex;
+                    });
+                  },
                 ),
+                borderData: FlBorderData(
+                  show: false,
+                ),
+                sectionsSpace: 0,
+                centerSpaceRadius:
+                    _controllerDevice.state.value == DeviceState.mobile
+                        ? 50
+                        : 60,
+                sections: showingSections(),
               ),
             ),
           ),
           SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 for (var data in _controllerExtremeEvent.items)
@@ -101,8 +98,7 @@ class _MyPieGraph extends State {
         color: item.color,
         title: title.toString(),
         radius: radius,
-        titlePositionPercentageOffset:
-            _controllerDevice.state.value == DeviceState.mobile ? 0.6 : 0.5,
+        titlePositionPercentageOffset: 0.5,
         titleStyle: TextStyle(
           fontSize: fontSize,
           fontWeight: FontWeight.bold,

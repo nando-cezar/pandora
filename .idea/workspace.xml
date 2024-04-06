@@ -5,9 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0440a2c4-8985-454a-b829-f997edb3c4b8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back_end/app/blueprint/restapi/extreme_event_resources.py" beforeDir="false" afterPath="$PROJECT_DIR$/back_end/app/blueprint/restapi/extreme_event_resources.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front_end/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/lib/components/my_bargraph.dart" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/lib/components/my_bargraph.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/lib/components/my_base_expansion_panel.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/lib/components/my_expansion_panel.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/lib/components/my_piegraph.dart" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/lib/components/my_piegraph.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/lib/layout/base_layout.dart" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/lib/layout/base_layout.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/lib/layout/desktop_scaffold.dart" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/lib/layout/desktop_scaffold.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/lib/layout/mobile_scaffold.dart" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/lib/layout/mobile_scaffold.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/lib/layout/tablet_scaffold.dart" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/lib/layout/tablet_scaffold.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/lib/pages/map_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/lib/pages/map_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/lib/pages/settings_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/lib/pages/settings_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/lib/pages/weather_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/lib/pages/weather_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/lib/services/extreme_event_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/lib/services/extreme_event_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front_end/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/front_end/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +75,7 @@
       <workItem from="1708740533018" duration="184000" />
       <workItem from="1710705362451" duration="788000" />
       <workItem from="1710706168701" duration="173000" />
+      <workItem from="1712319693807" duration="120000" />
     </task>
     <servers />
   </component>

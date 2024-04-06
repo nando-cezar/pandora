@@ -41,7 +41,6 @@ class _MapPageState extends State<MapPage> {
       body: Stack(
         children: [
           GoogleMap(
-
             mapType: MapType.normal,
             rotateGesturesEnabled: false,
             tiltGesturesEnabled: false,

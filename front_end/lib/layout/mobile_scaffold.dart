@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../components/my_base_expansion_panel.dart';
+import '../components/my_expansion_panel.dart';
 import '../components/my_base_graph.dart';
-import '../constants.dart';
 import '../controller/device_controller.dart';
 import '../state/device_state.dart';
 
@@ -30,15 +29,16 @@ class _MobileScaffoldState extends State<MobileScaffold> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Column(
-        children: [
-          const Expanded(
-            child: MyBaseGraph(),
-          ),
-          Expanded(
-            child: MyBaseExpansionPanel(),
-          )
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 500,
+              child: MyBaseGraph(),
+            ),
+            MyExpansionPanel(),
+          ],
+        ),
       ),
     );
   }
