@@ -1,9 +1,7 @@
-import concurrent.futures
-
 import numpy as np
 import pandas as pd
 from flask_restful import abort
-from scipy.stats import ttest_ind
+from scipy.stats import ttest_ind, ttest_rel
 import requests
 
 from app.core.probability_occurrence import ProbabilityOccurrence
@@ -12,26 +10,8 @@ from app.ext.database import db
 
 class StatisticalCorrelation(ProbabilityOccurrence):
 
-    def __init__(self,
-                 latitude: float,
-                 longitude: float,
-                 timezone: str,
-                 past_days: int,
-                 forecast_days: int,
-                 continent: str,
-                 country: str):
-
-        self.latitude = latitude
-        self.longitude = longitude
-        self.timezone = timezone
-        self.past_days = past_days
-        self.forecast_days = forecast_days
-        self.continent = continent
-        self.country = country
-
-        super(StatisticalCorrelation, self).__init__()
-
-    def calculate(self):
+    def calculate(self, **kwargs):
+        percentage_similarities = []
         ordered = [
             'temperature_2m_max',
             'temperature_2m_min',
@@ -48,8 +28,8 @@ class StatisticalCorrelation(ProbabilityOccurrence):
             'et0_fao_evapotranspiration',
         ]
 
-        forecast_corr = self._get_statistical_correlation_forecast()
-        historical_corr = self._get_statistical_correlation_historical()
+        forecast_corr = self._get_statistical_correlation_forecast(**kwargs)
+        historical_corr = self._get_statistical_correlation_historical(**kwargs)
         historical_corr_matrices = [
             np.array(
                 pd.DataFrame(historical_corr[i])
@@ -62,22 +42,35 @@ class StatisticalCorrelation(ProbabilityOccurrence):
         ]
 
         def calculate_similarity(element):
-            statistic, p_value = ttest_ind(
-                np.array(element).flatten(),
-                np.array(forecast_corr).flatten()
-            )
-            return p_value * 100
+            historical = np.array(element).flatten()
+            forecast = np.array(forecast_corr).flatten()
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-            percentage_similarities = list(executor.map(calculate_similarity, historical_corr_matrices))
+            if np.var(historical) == 0 or np.var(forecast) == 0:
+                # Handle case where input arrays have zero variance
+                return np.nan, np.nan
+
+            try:
+                _, p_value1 = ttest_ind(historical, forecast)
+                _, p_value2 = ttest_rel(historical, forecast)
+                return p_value1 * 100, p_value2 * 100
+            except Exception as e:
+                print("Error occurred:", e)
+                return np.nan, np.nan
+
+        percentage_similarities = []
+
+        for element in historical_corr_matrices:
+            p_value_ind, p_value_rel = calculate_similarity(element)
+            percentage_similarities.append({p_value_ind, p_value_rel})
 
         return percentage_similarities
 
-    def _get_statistical_correlation_forecast(self):
+    @staticmethod
+    def _get_statistical_correlation_forecast(**kwargs):
 
         params = {
-            "latitude": self.latitude,
-            "longitude": self.longitude,
+            "latitude": kwargs['latitude'],
+            "longitude": kwargs['longitude'],
             "daily": [
                 "temperature_2m_max",
                 "temperature_2m_min",
@@ -93,9 +86,9 @@ class StatisticalCorrelation(ProbabilityOccurrence):
                 "shortwave_radiation_sum",
                 "et0_fao_evapotranspiration"
             ],
-            "timezone": self.timezone,
-            "past_days": self.past_days,
-            "forecast_days": self.forecast_days,
+            "timezone": kwargs['timezone'],
+            "past_days": kwargs['past_days'],
+            "forecast_days": kwargs['forecast_days'],
             "models": ["best_match"]
         }
 
@@ -109,11 +102,12 @@ class StatisticalCorrelation(ProbabilityOccurrence):
         forecast_corr = df.corr().fillna(0)
         return forecast_corr
 
-    def _get_statistical_correlation_historical(self):
+    @staticmethod
+    def _get_statistical_correlation_historical(**kwargs):
 
         response = []
 
-        extreme_event_ref = db.source.collection("Extreme Event").document(self.continent).collection(self.country)
+        extreme_event_ref = db.source.collection("Extreme Event").document(kwargs['continent']).collection(kwargs['country'])
         documents = extreme_event_ref.stream()
         for doc in documents:
             sub_docs = doc.reference.collection("Statistical Correlation Data").stream()

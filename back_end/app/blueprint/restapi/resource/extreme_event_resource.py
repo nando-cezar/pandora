@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse, marshal_with
 
 from app.blueprint.restapi.exception.exception import abort_if_unauthorized, abort_if_not_exists
-from app.core.statistical_correlation import StatisticalCorrelation
+from app.core.probability_occurrence import ProbabilityOccurrence
 from app.ext.database import db
 from app.model.extreme_event import ExtremeEvent
 from app.model.location import Location
@@ -9,8 +9,9 @@ from app.model.location import Location
 
 class ExtremeEventResource(Resource):
 
-    def __init__(self, secret_key):
+    def __init__(self, secret_key: str, probability_occurrence: ProbabilityOccurrence):
         self.secret_key = secret_key
+        self.probability_occurrence = probability_occurrence
         self.parser = reqparse.RequestParser(bundle_errors=True)
         self.parser.add_argument('Latitude', type=float, required=True,
                                    help='Latitude not given', location='args')
@@ -51,17 +52,20 @@ class ExtremeEventResource(Resource):
     def _get_extreme_event_data(self):
         response = []
 
-        probability_occurrence = StatisticalCorrelation(
-            latitude=self.latitude,
-            longitude=self.longitude,
-            timezone=self.timezone,
-            past_days=self.past_days,
-            forecast_days=self.forecast_days,
-            continent=self.continent,
-            country=self.country
-        ).calculate()
+        probability_occurrence_result = (
+            self.probability_occurrence
+            .calculate(
+                latitude=self.latitude,
+                longitude=self.longitude,
+                timezone=self.timezone,
+                past_days=self.past_days,
+                forecast_days=self.forecast_days,
+                continent=self.continent,
+                country=self.country
+            )
+        )
 
-        abort_if_not_exists(probability_occurrence)
+        abort_if_not_exists(probability_occurrence_result)
 
         extreme_event_ref = db.source.collection("Extreme Event") \
             .document(self.continent) \
@@ -95,7 +99,7 @@ class ExtremeEventResource(Resource):
                 "total_location_records": doc.get('total_location_records'),
                 "total_recurrence": doc.get('total_recurrence'),
                 "region_greatest_recurrences": doc.get('region_greatest_recurrence'),
-                "probability_occurrence": probability_occurrence[count],
+                "probability_occurrence": probability_occurrence_result[count],
                 "central_measurement_data": central_measurement_data[0],
                 "locations": location_data
             }

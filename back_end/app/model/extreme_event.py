@@ -30,7 +30,7 @@ class ExtremeEvent(object):
                 'region': fields.String,
                 'recurrence': fields.Integer,
             })),
-            'probability_occurrence': fields.Float,
+            'probability_occurrence': fields.List(fields.Float),
             'central_measurement_data': CentralMeasurement.resource_fields,
             'locations': Location.resource_fields
         }))
