@@ -5,6 +5,7 @@ import 'package:pandora_front/components/pie_graph/indicator.dart';
 
 import '../controller/device_controller.dart';
 import '../controller/extreme_event_controller.dart';
+import '../model/extreme_event _model.dart';
 import '../state/device_state.dart';
 
 class MyPieGraph extends StatefulWidget {
@@ -83,7 +84,7 @@ class _MyPieGraph extends State {
   }
 }
 
-List<PieChartSectionData> showingSections(items, index) {
+List<PieChartSectionData> showingSections(RxList<ExtremeEventModel> items, index) {
   return items.map((item) {
     final isTouched = items.indexOf(item) == index;
     final fontSize = isTouched ? 18.0 : 15.0;
