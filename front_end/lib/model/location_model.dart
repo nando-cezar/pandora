@@ -1,4 +1,4 @@
-class Location {
+class LocationModel {
   final String? markerID;
   final String? uid;
   final String? address;
@@ -8,7 +8,7 @@ class Location {
   final double? longitude;
   final String? type;
 
-  Location({
+  LocationModel({
     this.markerID,
     this.uid,
     this.address,

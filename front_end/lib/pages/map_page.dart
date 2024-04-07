@@ -19,11 +19,9 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   bool _isInitialized = false;
-  final PositionController _controllerPosition = Get.put(PositionController());
-  final ExtremeEventController _controllerExtremeEvent =
-      Get.put(ExtremeEventController());
-  final Completer<GoogleMapController> _controllerMap =
-      Completer<GoogleMapController>();
+  final _controllerPosition = Get.put(PositionController());
+  final _controllerExtremeEvent = Get.put(ExtremeEventController());
+  final _controllerMap = Completer<GoogleMapController>();
   final Map<String, Marker> _markers = {};
 
   @override
@@ -70,7 +68,7 @@ class _MapPageState extends State<MapPage> {
     return _markers;
   }
 
-  void addMarker(Location data, List<String> dataSource) async {
+  void addMarker(LocationModel data, List<String> dataSource) async {
     var metaData = data.toFirestore();
 
     var markerIcon = await BitmapDescriptor.fromAssetImage(

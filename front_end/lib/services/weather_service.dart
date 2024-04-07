@@ -6,13 +6,13 @@ import '../controller/position_controller.dart';
 import '../model/weather_model.dart';
 
 class WeatherService {
-  final PositionController _controllerPosition = Get.put(PositionController());
+  final _controllerPosition = Get.put(PositionController());
   static final String API_OPEN_WEATHER_MAP_URL = dotenv.env['API_OPEN_WEATHER_MAP_URL']!;
   final String apiOpenWeatherKey;
 
   WeatherService(this.apiOpenWeatherKey);
 
-  Future<Weather>  getCurrentWeather() async {
+  Future<WeatherModel>  getCurrentWeather() async {
 
     final String apiUrl =
         '$API_OPEN_WEATHER_MAP_URL?'
@@ -25,7 +25,7 @@ class WeatherService {
       final http.Response response = await http.get(Uri.parse(apiUrl));
 
       if (response.statusCode == 200) {
-        return Weather.fromJson(jsonDecode(response.body));
+        return WeatherModel.fromJson(jsonDecode(response.body));
       } else {
         throw Exception('Failed to load weather data: ${response.statusCode}');
       }

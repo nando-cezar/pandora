@@ -16,9 +16,9 @@ class ExtremeEventWrapper {
 
     if (json.containsKey('resource') && json['resource'] is List) {
       json['resource'].forEach((item) {
-        List<Location> locationMarkers = [];
+        List<LocationModel> locationMarkers = [];
         for (var location in (item['locations'] as List)) {
-          Location marker = Location(
+          LocationModel marker = LocationModel(
             markerID: const Uuid().v4(),
             uid: location['id'],
             address: location['address'],
@@ -31,9 +31,9 @@ class ExtremeEventWrapper {
           locationMarkers.add(marker);
         }
 
-        List<SiteGreatestRecurrence> siteGreatestRecurrences = [];
+        List<SiteGreatestRecurrenceModel> siteGreatestRecurrences = [];
         for (var location in (item['site_greatest_recurrences'] as List)) {
-          SiteGreatestRecurrence site = SiteGreatestRecurrence(
+          SiteGreatestRecurrenceModel site = SiteGreatestRecurrenceModel(
             address: location['address'],
             state: location['state'],
             region: location['region'],
@@ -42,9 +42,9 @@ class ExtremeEventWrapper {
           siteGreatestRecurrences.add(site);
         }
 
-        List<RegionGreatestRecurrence> regionGreatestRecurrences = [];
+        List<RegionGreatestRecurrenceModel> regionGreatestRecurrences = [];
         for (var location in (item['region_greatest_recurrences'] as List)) {
-          RegionGreatestRecurrence region = RegionGreatestRecurrence(
+          RegionGreatestRecurrenceModel region = RegionGreatestRecurrenceModel(
               region: location['region'],
               recurrence: location['recurrence']
           );

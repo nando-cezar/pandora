@@ -13,7 +13,7 @@ class MobileScaffold extends StatefulWidget {
 }
 
 class _MobileScaffoldState extends State<MobileScaffold> {
-  final DeviceController _controllerDevice = Get.put(DeviceController());
+  final _controllerDevice = Get.put(DeviceController());
 
   _fetchDevice() async {
     _controllerDevice.changeState(DeviceState.mobile);

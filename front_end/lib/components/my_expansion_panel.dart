@@ -9,8 +9,7 @@ import 'my_base_expansion_panel.dart';
 class MyExpansionPanel extends StatelessWidget {
   MyExpansionPanel({super.key});
 
-  final ExtremeEventController _controllerExtremeEvent =
-      Get.put(ExtremeEventController());
+  final _controllerExtremeEvent = Get.put(ExtremeEventController());
 
   @override
   Widget build(BuildContext context) {

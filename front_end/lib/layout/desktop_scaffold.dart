@@ -14,7 +14,7 @@ class DesktopScaffold extends StatefulWidget {
 }
 
 class _DesktopScaffoldState extends State<DesktopScaffold> {
-  final DeviceController _controllerDevice = Get.put(DeviceController());
+  final _controllerDevice = Get.put(DeviceController());
 
   _fetchDevice() async {
     _controllerDevice.changeState(DeviceState.desktop);
