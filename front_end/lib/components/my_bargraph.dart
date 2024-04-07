@@ -16,9 +16,8 @@ class MyBarGraph extends StatefulWidget {
 }
 
 class _MyBarGraphState extends State<MyBarGraph> {
-  final DeviceController _controllerDevice = Get.put(DeviceController());
-  final ExtremeEventController _controllerExtremeEvent =
-      Get.put(ExtremeEventController());
+  final _controllerDevice = Get.put(DeviceController());
+  final _controllerExtremeEvent = Get.put(ExtremeEventController());
 
   @override
   Widget build(BuildContext context) {

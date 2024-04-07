@@ -1,8 +1,8 @@
-class RegionGreatestRecurrence {
+class RegionGreatestRecurrenceModel {
   final String? region;
   final int? recurrence;
 
-  RegionGreatestRecurrence({
+  RegionGreatestRecurrenceModel({
     this.region,
     this.recurrence,
   });

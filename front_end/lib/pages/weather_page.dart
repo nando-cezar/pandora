@@ -20,7 +20,7 @@ class WeatherPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
-        child: FutureBuilder<Weather>(
+        child: FutureBuilder<WeatherModel>(
           future: _weatherService.getCurrentWeather(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -52,7 +52,7 @@ class WeatherPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 100),
                   Text(
-                    '${weather?.temperature.round()} °C',
+                    '${weather?.temperature?.round()} °C',
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                       fontSize: 25,

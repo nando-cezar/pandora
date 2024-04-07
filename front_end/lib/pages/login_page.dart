@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pandora_front/components/my_button.dart';
 import 'package:pandora_front/components/my_textfield.dart';
@@ -33,22 +32,7 @@ class _LoginPageState extends State<LoginPage> {
       },
     );
 
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
-
-      Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-
-      if (e.code == 'invalid-credential') {
-        myShowDialog(context, 'Invalid credential.');
-      } else if (e.code == 'invalid-email') {
-        myShowDialog(context, 'Invalid e-mail.');
-      }
-    }
+    AuthService().signIn(emailController.text, passwordController.text, context);
   }
 
   @override

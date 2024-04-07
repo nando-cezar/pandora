@@ -10,9 +10,9 @@ class ExtremeEventModel {
   final String description;
   final String descriptionFormatted;
   final List<String> dataSource;
-  final List<Location> locations;
-  final List<SiteGreatestRecurrence> siteGreatestRecurrences;
-  final List<RegionGreatestRecurrence> regionGreatestRecurrences;
+  final List<LocationModel> locations;
+  final List<SiteGreatestRecurrenceModel> siteGreatestRecurrences;
+  final List<RegionGreatestRecurrenceModel> regionGreatestRecurrences;
   final Map<String, double> average;
   final double mediumDuration;
   final List<double> probabilityOccurrence;

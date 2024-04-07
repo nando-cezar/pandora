@@ -6,7 +6,7 @@ import '../constants.dart';
 import '../controller/pages_controller.dart';
 
 class MyDrawer extends StatelessWidget {
-  final PagesController _controller = Get.put(PagesController());
+  final _controller = Get.put(PagesController());
   final user = FirebaseAuth.instance.currentUser!;
 
   MyDrawer({super.key});

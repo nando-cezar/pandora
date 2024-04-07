@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:pandora_front/controller/user_credential_controller.dart';
 
 import '../controller/device_controller.dart';
 import '../state/device_state.dart';
@@ -7,7 +9,8 @@ import '../state/device_state.dart';
 class MyCardProfile extends StatelessWidget {
   MyCardProfile({super.key});
 
-  final DeviceController _controllerDevice = Get.put(DeviceController());
+  final _controllerUserCredential = Get.put(UserCredentialController());
+  final _controllerDevice = Get.put(DeviceController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +25,15 @@ class MyCardProfile extends StatelessWidget {
               children: <Widget>[
                 ListTile(
                   title: Text(
-                    "Luís Fernando Cezar dos Santos",
+                    _controllerUserCredential.userCredential.value.displayName!,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  leading: const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png'),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(_controllerUserCredential
+                        .userCredential.value.photoURL!),
                   ),
                 ),
                 ListTile(
@@ -44,7 +47,7 @@ class MyCardProfile extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        'XXX.XXX.XXX.XXX.XXX',
+                        _controllerUserCredential.userCredential.value.uid!,
                         overflow: TextOverflow.clip,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
@@ -65,7 +68,53 @@ class MyCardProfile extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        'nandocezar22@gmail.com',
+                        _controllerUserCredential.userCredential.value.email!,
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                ListTile(
+                  title: Column(
+                    children: [
+                      Text(
+                        'Account creation date:',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        DateFormat('dd/MM/yyyy HH:mm:ss').format(
+                            _controllerUserCredential
+                                .userCredential.value.creationTime!),
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                ListTile(
+                  title: Column(
+                    children: [
+                      Text(
+                        'Last login date:',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        DateFormat('dd/MM/yyyy HH:mm:ss').format(
+                            _controllerUserCredential
+                                .userCredential.value.lastSignInTime!),
                         overflow: TextOverflow.clip,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
@@ -144,15 +193,15 @@ class MyCardProfile extends StatelessWidget {
               children: <Widget>[
                 ListTile(
                   title: Text(
-                    "John Doe",
+                    _controllerUserCredential.userCredential.value.displayName!,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  leading: const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png'),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(_controllerUserCredential
+                        .userCredential.value.photoURL!),
                   ),
                 ),
                 ListTile(
@@ -166,7 +215,7 @@ class MyCardProfile extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        'nandocezar22@gmail.com',
+                        _controllerUserCredential.userCredential.value.email!,
                         overflow: TextOverflow.clip,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
@@ -183,7 +232,49 @@ class MyCardProfile extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        'XXX.XXX.XXX.XXX.XXX',
+                        _controllerUserCredential.userCredential.value.uid!,
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                ListTile(
+                  title: Row(
+                    children: [
+                      Text(
+                        'Account creation date:',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        DateFormat('dd/MM/yyyy HH:mm:ss').format(
+                            _controllerUserCredential
+                                .userCredential.value.creationTime!),
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Spacer(),
+                      const SizedBox(width: 20),
+                      Text(
+                        'Last login date:',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        DateFormat('dd/MM/yyyy HH:mm:ss').format(
+                            _controllerUserCredential
+                                .userCredential.value.lastSignInTime!),
                         overflow: TextOverflow.clip,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,

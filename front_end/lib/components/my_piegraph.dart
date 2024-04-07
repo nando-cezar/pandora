@@ -17,9 +17,8 @@ class MyPieGraph extends StatefulWidget {
 
 class _MyPieGraph extends State {
   int touchedIndex = -1;
-  final DeviceController _controllerDevice = Get.put(DeviceController());
-  final ExtremeEventController _controllerExtremeEvent =
-      Get.put(ExtremeEventController());
+  final _controllerDevice = Get.put(DeviceController());
+  final _controllerExtremeEvent = Get.put(ExtremeEventController());
 
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,7 @@ class TableScaffold extends StatefulWidget {
 }
 
 class _TableScaffoldState extends State<TableScaffold> {
-  final DeviceController _controllerDevice = Get.put(DeviceController());
+  final _controllerDevice = Get.put(DeviceController());
 
   _fetchDevice() async {
     _controllerDevice.changeState(DeviceState.tablet);

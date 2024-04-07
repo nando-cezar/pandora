@@ -23,9 +23,9 @@ class BaseLayout extends StatefulWidget {
 
 class _BaseLayoutState extends State<BaseLayout> {
   static String API_PANDORA_KEY = dotenv.env['API_PANDORA_KEY']!;
-  final PagesController _controllerPages = Get.put(PagesController());
-  final PositionController _controllerPosition = Get.put(PositionController());
-  final ExtremeEventController _controllerExtremeEvent = Get.put(ExtremeEventController());
+  final _controllerPages = Get.put(PagesController());
+  final _controllerPosition = Get.put(PositionController());
+  final _controllerExtremeEvent = Get.put(ExtremeEventController());
 
   Future<ExtremeEventWrapper> _fetchPositionAndEventData() async {
     final Position position = await PositionService.getPosition();

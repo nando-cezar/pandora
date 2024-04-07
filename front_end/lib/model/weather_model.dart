@@ -1,24 +1,24 @@
-class Weather {
-  final String cityName;
-  final double temperature;
-  final double temperatureMin;
-  final double temperatureMax;
-  final double pressure;
-  final double humidity;
-  final String mainCondition;
+class WeatherModel {
+  final String? cityName;
+  final double? temperature;
+  final double? temperatureMin;
+  final double? temperatureMax;
+  final double? pressure;
+  final double? humidity;
+  final String? mainCondition;
 
-  Weather({
-    required this.cityName,
-    required this.temperature,
-    required this.temperatureMin,
-    required this.temperatureMax,
-    required this.pressure,
-    required this.humidity,
-    required this.mainCondition,
+  WeatherModel({
+    this.cityName,
+    this.temperature,
+    this.temperatureMin,
+    this.temperatureMax,
+    this.pressure,
+    this.humidity,
+    this.mainCondition,
 });
 
-  factory Weather.fromJson(Map<String, dynamic> json){
-    return Weather(
+  factory WeatherModel.fromJson(Map<String, dynamic> json){
+    return WeatherModel(
       cityName: json['name'],
       temperature: json['main']['temp'].toDouble(),
       temperatureMin: json['main']['temp_min'].toDouble(),

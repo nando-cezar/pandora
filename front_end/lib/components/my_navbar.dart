@@ -6,7 +6,7 @@ import '../constants.dart';
 import '../controller/pages_controller.dart';
 
 class MyNavBar extends StatelessWidget {
-  final PagesController _controller = Get.put(PagesController());
+  final _controller = Get.put(PagesController());
   final int value;
 
   MyNavBar({super.key, required this.value});
