@@ -1,26 +1,34 @@
-
-class MarkerModel {
-  final String? id;
+class Location {
+  final String? markerID;
+  final String? uid;
   final String? address;
-  final String? type;
+  final String? state;
+  final String? region;
   final double? latitude;
   final double? longitude;
+  final String? type;
 
-  MarkerModel(
-      {this.id,
-      this.address,
-      this.type,
-      this.latitude,
-      this.longitude,
-      });
+  Location({
+    this.markerID,
+    this.uid,
+    this.address,
+    this.state,
+    this.region,
+    this.latitude,
+    this.longitude,
+    this.type,
+  });
 
   Map<String, dynamic> toFirestore() {
     return {
-      if (id != null) "id": id,
+      if (markerID != null) "markerID": markerID,
+      if (uid != null) "uid": uid,
       if (address != null) "address": address,
-      if (type != null) "type": type,
+      if (address != null) "state": state,
+      if (address != null) "region": region,
       if (latitude != null) "latitude": latitude,
       if (longitude != null) "longitude": longitude,
+      if (type != null) "type": type,
       'icon': _getIcon(type!),
       'image': _getImage(type!)
     };

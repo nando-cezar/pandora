@@ -91,8 +91,8 @@ class _MyPieGraph extends State {
       const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
       var numFormatted =
-          item.totalRecordsRegionGreatestRecurrence.floorToDouble().toInt();
-      var title = isTouched ? item.regionGreatestRecurrence : numFormatted;
+          item.regionGreatestRecurrences[0].recurrence;
+      var title = isTouched ? item.regionGreatestRecurrences[0].region : numFormatted;
 
       return PieChartSectionData(
         color: item.color,

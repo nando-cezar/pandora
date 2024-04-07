@@ -136,7 +136,7 @@ class MyExpansionPanel extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          model.regionGreatestRecurrence.toString(),
+                          model.regionGreatestRecurrences[0].region.toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).colorScheme.tertiary,
