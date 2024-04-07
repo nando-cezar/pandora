@@ -1,14 +1,10 @@
-class SiteGreatestRecurrence {
-  final String? address;
-  final String? state;
+class RegionGreatestRecurrence {
   final String? region;
-  final int? subtotalRecords;
+  final int? recurrence;
 
-  SiteGreatestRecurrence({
-    this.address,
-    this.state,
+  RegionGreatestRecurrence({
     this.region,
-    this.subtotalRecords,
+    this.recurrence,
   });
 
 }

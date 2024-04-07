@@ -8,7 +8,7 @@ import 'package:pandora_front/components/my_bottom_sheet.dart';
 import '../constants.dart';
 import '../controller/extreme_event_controller.dart';
 import '../controller/position_controller.dart';
-import '../model/marker_model.dart';
+import '../model/location_model.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -70,7 +70,7 @@ class _MapPageState extends State<MapPage> {
     return _markers;
   }
 
-  void addMarker(MarkerModel data) async {
+  void addMarker(Location data) async {
     var metaData = data.toFirestore();
 
     var markerIcon = await BitmapDescriptor.fromAssetImage(
@@ -82,7 +82,7 @@ class _MapPageState extends State<MapPage> {
 
     var marker = Marker(
       icon: markerIcon,
-      markerId: MarkerId(metaData['id']),
+      markerId: MarkerId(metaData['markerID']),
       position: LatLng(
         metaData['latitude'],
         metaData['longitude'],
@@ -90,7 +90,7 @@ class _MapPageState extends State<MapPage> {
       onTap: () => _openBottomSheet(metaData),
     );
 
-    _markers[metaData['id']] = marker;
+    _markers[metaData['markerID']] = marker;
     setState(() {});
   }
 

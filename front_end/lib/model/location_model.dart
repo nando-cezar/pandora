@@ -1,6 +1,6 @@
-
 class Location {
-  final String? id;
+  final String? markerID;
+  final String? uid;
   final String? address;
   final String? state;
   final String? region;
@@ -9,7 +9,8 @@ class Location {
   final String? type;
 
   Location({
-    this.id,
+    this.markerID,
+    this.uid,
     this.address,
     this.state,
     this.region,
@@ -20,11 +21,14 @@ class Location {
 
   Map<String, dynamic> toFirestore() {
     return {
-      if (id != null) "id": id,
+      if (markerID != null) "markerID": markerID,
+      if (uid != null) "uid": uid,
       if (address != null) "address": address,
-      if (type != null) "type": type,
+      if (address != null) "state": state,
+      if (address != null) "region": region,
       if (latitude != null) "latitude": latitude,
       if (longitude != null) "longitude": longitude,
+      if (type != null) "type": type,
       'icon': _getIcon(type!),
       'image': _getImage(type!)
     };

@@ -51,7 +51,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                     children: [
                       const Spacer(),
                       Text(
-                        'EM-DAT - 2000-0019-BRA',
+                        'EM-DAT - ${widget.metaData['uid']}',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
@@ -107,7 +107,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        'Bahia',
+                        widget.metaData['state'],
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
@@ -122,7 +122,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        'North',
+                        widget.metaData['region'],
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,

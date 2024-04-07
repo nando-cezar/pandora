@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pandora_front/model/marker_model.dart';
+
+import 'site_greatest_recurrence_model.dart';
+import 'region_greatest_recurrence_model.dart';
+import 'location_model.dart';
 
 class ExtremeEventModel {
   final int code;
@@ -7,11 +10,10 @@ class ExtremeEventModel {
   final String description;
   final String descriptionFormatted;
   final List<String> dataSource;
-  final List<MarkerModel> locations;
-  final Map<String, double> mean;
-  final Map<String, dynamic> siteGreatestRecurrence;
-  final String regionGreatestRecurrence;
-  final int totalRecordsRegionGreatestRecurrence;
+  final List<Location> locations;
+  final List<SiteGreatestRecurrence> siteGreatestRecurrences;
+  final List<RegionGreatestRecurrence> regionGreatestRecurrences;
+  final Map<String, double> average;
   final double mediumDuration;
   final double probabilityOccurrence;
   final int totalLocationRecords;
@@ -26,10 +28,9 @@ class ExtremeEventModel {
     required this.descriptionFormatted,
     required this.dataSource,
     required this.locations,
-    required this.mean,
-    required this.siteGreatestRecurrence,
-    required this.regionGreatestRecurrence,
-    required this.totalRecordsRegionGreatestRecurrence,
+    required this.siteGreatestRecurrences,
+    required this.regionGreatestRecurrences,
+    required this.average,
     required this.mediumDuration,
     required this.probabilityOccurrence,
     required this.totalLocationRecords,
