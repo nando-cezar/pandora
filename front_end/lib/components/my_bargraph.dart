@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../constants.dart';
 import '../controller/device_controller.dart';
 import '../controller/extreme_event_controller.dart';
+import '../model/extreme_event _model.dart';
 import '../state/device_state.dart';
 
 class MyBarGraph extends StatefulWidget {
@@ -110,7 +111,8 @@ Widget getBottomTitles(double value, TitleMeta meta) {
   return SideTitleWidget(axisSide: meta.axisSide, child: text);
 }
 
-List<BarChartGroupData>? barGroups(context, controllerDevice, items) =>
+List<BarChartGroupData>? barGroups(
+        context, controllerDevice, RxList<ExtremeEventModel> items) =>
     items.map((data) {
       final probabilityLength = data.probabilityOccurrence.length;
       final showingTooltipIndicators =
