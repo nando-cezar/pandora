@@ -66,7 +66,9 @@ class ExtremeEventWrapper {
                 : {},
             siteGreatestRecurrences: siteGreatestRecurrences,
             mediumDuration: item['medium_duration'].toDouble(),
-            probabilityOccurrence: item['probability_occurrence'].toDouble(),
+            probabilityOccurrence: (item['probability_occurrence'] is List)
+                ? List.from(item['probability_occurrence'])
+                : [],
             totalLocationRecords: item['total_location_records'].toInt(),
             totalRecurrence: item['total_recurrence'].toInt(),
             regionGreatestRecurrences: regionGreatestRecurrences,

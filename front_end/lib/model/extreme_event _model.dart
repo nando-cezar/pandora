@@ -15,7 +15,7 @@ class ExtremeEventModel {
   final List<RegionGreatestRecurrence> regionGreatestRecurrences;
   final Map<String, double> average;
   final double mediumDuration;
-  final double probabilityOccurrence;
+  final List<double> probabilityOccurrence;
   final int totalLocationRecords;
   final int totalRecurrence;
   final Color color;

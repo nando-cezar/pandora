@@ -61,7 +61,7 @@ class _MapPageState extends State<MapPage> {
     try {
       for (var locationSnapshot in _controllerExtremeEvent.items) {
         for (var locationDoc in locationSnapshot.locations) {
-          addMarker(locationDoc);
+          addMarker(locationDoc, locationSnapshot.dataSource);
         }
       }
     } catch (e) {
@@ -70,7 +70,7 @@ class _MapPageState extends State<MapPage> {
     return _markers;
   }
 
-  void addMarker(Location data) async {
+  void addMarker(Location data, List<String> dataSource) async {
     var metaData = data.toFirestore();
 
     var markerIcon = await BitmapDescriptor.fromAssetImage(
@@ -87,7 +87,7 @@ class _MapPageState extends State<MapPage> {
         metaData['latitude'],
         metaData['longitude'],
       ),
-      onTap: () => _openBottomSheet(metaData),
+      onTap: () => _openBottomSheet(metaData, dataSource),
     );
 
     _markers[metaData['markerID']] = marker;
@@ -108,10 +108,10 @@ class _MapPageState extends State<MapPage> {
     _controllerMap.complete(controller);
   }
 
-  void _openBottomSheet(Map<String, dynamic> metaData) {
+  void _openBottomSheet(Map<String, dynamic> metaData, List<String> dataSource) {
     showModalBottomSheet(
       context: context,
-      builder: (context) => MyBottomSheet(metaData: metaData),
+      builder: (context) => MyBottomSheet(metaData: metaData, dataSource: dataSource),
     );
   }
 }

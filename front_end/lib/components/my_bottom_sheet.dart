@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-
 class MyBottomSheet extends StatefulWidget {
   final Map<String, dynamic> metaData;
+  final List<String> dataSource;
 
-  const MyBottomSheet({super.key, required this.metaData});
+  const MyBottomSheet({super.key, required this.metaData, required this.dataSource});
 
   @override
   State<MyBottomSheet> createState() => _MyBottomSheetState();
@@ -51,7 +50,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                     children: [
                       const Spacer(),
                       Text(
-                        'EM-DAT - ${widget.metaData['uid']}',
+                        '${widget.dataSource.first} - ${widget.metaData['uid']}',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
