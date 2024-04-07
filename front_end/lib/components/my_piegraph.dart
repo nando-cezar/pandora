@@ -51,9 +51,9 @@ class _MyPieGraph extends State {
                 sectionsSpace: 0,
                 centerSpaceRadius:
                     _controllerDevice.state.value == DeviceState.mobile
-                        ? 50
+                        ? 40
                         : 60,
-                sections: showingSections(),
+                sections: showingSections(_controllerExtremeEvent.items, touchedIndex),
               ),
             ),
           ),
@@ -81,31 +81,32 @@ class _MyPieGraph extends State {
       ),
     );
   }
+}
 
-  List<PieChartSectionData> showingSections() {
-    return _controllerExtremeEvent.items.map((item) {
-      final isTouched =
-          _controllerExtremeEvent.items.indexOf(item) == touchedIndex;
-      final fontSize = isTouched ? 18.0 : 15.0;
-      final radius = isTouched ? 65.0 : 60.0;
-      const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
+List<PieChartSectionData> showingSections(items, index) {
+  return items.map((item) {
+    final isTouched = items.indexOf(item) == index;
+    final fontSize = isTouched ? 18.0 : 15.0;
+    final radius = isTouched ? 65.0 : 60.0;
+    const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
-      var numFormatted =
-          item.regionGreatestRecurrences[0].recurrence;
-      var title = isTouched ? item.regionGreatestRecurrences[0].region : numFormatted;
+    var numFormatted =
+        item.regionGreatestRecurrences[0].recurrence;
+    var title = isTouched
+        ? item.regionGreatestRecurrences[0].region
+        : numFormatted;
 
-      return PieChartSectionData(
-        color: item.color,
-        title: title.toString(),
-        radius: radius,
-        titlePositionPercentageOffset: 0.5,
-        titleStyle: TextStyle(
-          fontSize: fontSize,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-          shadows: shadows,
-        ),
-      );
-    }).toList();
-  }
+    return PieChartSectionData(
+      color: item.color,
+      title: title.toString(),
+      radius: radius,
+      titlePositionPercentageOffset: 0.5,
+      titleStyle: TextStyle(
+        fontSize: fontSize,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+        shadows: shadows,
+      ),
+    );
+  }).toList();
 }

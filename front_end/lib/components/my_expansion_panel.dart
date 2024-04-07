@@ -92,7 +92,7 @@ class MyExpansionPanel extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '${model.probabilityOccurrence.round().toString()} %',
+                          'Ind: ${model.probabilityOccurrence[0].roundToDouble().toString()}% - Rel: ${model.probabilityOccurrence[1].roundToDouble().toString()}%',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).colorScheme.tertiary,
