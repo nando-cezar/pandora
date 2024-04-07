@@ -18,7 +18,7 @@ class ExtremeEvent(object):
             'description': fields.String,
             'description_formatted': fields.String,
             'medium_duration': fields.Float,
-            'site_greatest_recurrence': fields.List(fields.Nested({
+            'site_greatest_recurrences': fields.List(fields.Nested({
                 'address': fields.String,
                 'region': fields.String,
                 'state': fields.String,
@@ -26,7 +26,7 @@ class ExtremeEvent(object):
             })),
             'total_location_records': fields.Integer,
             'total_recurrence': fields.Integer,
-            'region_greatest_recurrence': fields.List(fields.Nested({
+            'region_greatest_recurrences': fields.List(fields.Nested({
                 'region': fields.String,
                 'recurrence': fields.Integer,
             })),

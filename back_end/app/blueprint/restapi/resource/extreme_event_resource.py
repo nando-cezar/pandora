@@ -91,10 +91,10 @@ class ExtremeEventResource(Resource):
                 "description": doc.get('description'),
                 "description_formatted": doc.get('description_formatted'),
                 "medium_duration": doc.get('medium_duration'),
-                "site_greatest_recurrence": doc.get('site_greatest_recurrence'),
+                "site_greatest_recurrences": doc.get('site_greatest_recurrence'),
                 "total_location_records": doc.get('total_location_records'),
                 "total_recurrence": doc.get('total_recurrence'),
-                "region_greatest_recurrence": doc.get('region_greatest_recurrence'),
+                "region_greatest_recurrences": doc.get('region_greatest_recurrence'),
                 "probability_occurrence": probability_occurrence[count],
                 "central_measurement_data": central_measurement_data[0],
                 "locations": location_data

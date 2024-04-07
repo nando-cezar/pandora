@@ -1,18 +1,22 @@
 
-class MarkerModel {
+class Location {
   final String? id;
   final String? address;
-  final String? type;
+  final String? state;
+  final String? region;
   final double? latitude;
   final double? longitude;
+  final String? type;
 
-  MarkerModel(
-      {this.id,
-      this.address,
-      this.type,
-      this.latitude,
-      this.longitude,
-      });
+  Location({
+    this.id,
+    this.address,
+    this.state,
+    this.region,
+    this.latitude,
+    this.longitude,
+    this.type,
+  });
 
   Map<String, dynamic> toFirestore() {
     return {
