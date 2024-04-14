@@ -32,40 +32,15 @@ class _MapPageState extends State<MapPage> {
   final _controllerForecastTile = Get.put(ForecastTileController());
   final _controllerMap = Completer<GoogleMapController>();
   final Map<String, Marker> _markers = {};
-  bool _isInitialized = false;
   DateTime _forecastDate = DateTime.now();
   TileOverlay? _tileOverlay;
-
-  Future<String> _loadMapStyle() async {
-    String value = await DefaultAssetBundle.of(context).loadString(
-        Provider.of<ThemeProvider>(context, listen: false).getMapStyle());
-    return value;
-  }
-
-  _initTiles(DateTime date) async {
-    final String overlayId = date.millisecondsSinceEpoch.toString();
-
-    final TileOverlay tileOverlay = TileOverlay(
-      tileOverlayId: TileOverlayId(overlayId),
-      tileProvider: ForecastTileProvider(
-        dateTime: date,
-        mapType: _controllerForecastTile.label.value,
-        opacity: 0.4,
-      ),
-    );
-    setState(() {
-      _tileOverlay = tileOverlay;
-    });
-  }
+  late Future<String> _mapStyleFuture;
 
   @override
   void initState() {
     super.initState();
-    if (!_isInitialized) {
-      _getMarkerData();
-      _isInitialized = true;
-    }
-    _loadMapStyle();
+    _mapStyleFuture = _loadMapStyle();
+    _getMarkerData();
     ever(_controllerForecastTile.label, (_) {
       _initTiles(_forecastDate);
     });
@@ -74,7 +49,7 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _loadMapStyle(),
+      future: _mapStyleFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const LoadingPage();
@@ -96,6 +71,7 @@ class _MapPageState extends State<MapPage> {
       children: [
         GoogleMap(
           zoomControlsEnabled: false,
+          myLocationButtonEnabled: false,
           mapType: MapType.normal,
           style: mapStyle,
           initialCameraPosition: _getInitialCameraPosition(),
@@ -126,6 +102,28 @@ class _MapPageState extends State<MapPage> {
       _forecastDate = _forecastDate.subtract(const Duration(hours: 3));
     });
     _initTiles(_forecastDate);
+  }
+
+  Future<String> _loadMapStyle() async {
+    var themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    String value = await DefaultAssetBundle.of(context).loadString(themeProvider.getMapStyle());
+    return value;
+  }
+
+  _initTiles(DateTime date) async {
+    final String overlayId = date.millisecondsSinceEpoch.toString();
+
+    final TileOverlay tileOverlay = TileOverlay(
+      tileOverlayId: TileOverlayId(overlayId),
+      tileProvider: ForecastTileProvider(
+        dateTime: date,
+        mapType: _controllerForecastTile.label.value,
+        opacity: 0.4,
+      ),
+    );
+    setState(() {
+      _tileOverlay = tileOverlay;
+    });
   }
 
   _getMarkerData() async {
