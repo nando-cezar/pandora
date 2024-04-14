@@ -3,7 +3,18 @@
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#757575"
+        "color": "#f7f7f7"
+      }
+    ]
+  },
+  {
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#d6d6d6"
+      },
+      {
+        "weight": 2
       }
     ]
   },
@@ -37,30 +48,6 @@
     "stylers": [
       {
         "color": "#bdbdbd"
-      }
-    ]
-  },
-  {
-    "featureType": "landscape.natural.landcover",
-    "stylers": [
-      {
-        "color": "#e8e8e8"
-      }
-    ]
-  },
-  {
-    "featureType": "landscape.natural.terrain",
-    "stylers": [
-      {
-        "color": "#f7f7f7"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "stylers": [
-      {
-        "color": "#ffffff"
       }
     ]
   },
@@ -176,7 +163,7 @@
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#c9c9c9"
+        "color": "#828282"
       }
     ]
   },
