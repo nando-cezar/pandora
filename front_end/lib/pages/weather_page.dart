@@ -10,27 +10,24 @@ import 'loading_page.dart';
 class WeatherPage extends StatelessWidget {
   WeatherPage({super.key});
 
-  static String API_OPEN_WEATHER_MAP_KEY =
-  dotenv.env['API_OPEN_WEATHER_MAP_KEY']!;
-  final WeatherService _weatherService =
-  WeatherService(API_OPEN_WEATHER_MAP_KEY);
+  static String dataOpenWeatherKey = dotenv.env['DATA_OPEN_WEATHER_KEY']!;
+  final WeatherService _weatherService = WeatherService(dataOpenWeatherKey);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      body: Center(
-        child: FutureBuilder<WeatherModel>(
-          future: _weatherService.getCurrentWeather(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const LoadingPage();
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else {
-              final weather = snapshot.data;
+    return FutureBuilder<WeatherModel>(
+      future: _weatherService.getCurrentWeather(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const LoadingPage();
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else {
+          final weather = snapshot.data;
 
-              return Column(
+          return Scaffold(
+            body: Center(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
@@ -68,11 +65,11 @@ class WeatherPage extends StatelessWidget {
                     ),
                   ),
                 ],
-              );
-            }
-          },
-        ),
-      ),
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 

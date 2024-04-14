@@ -7,7 +7,7 @@ import '../model/weather_model.dart';
 
 class WeatherService {
   final _controllerPosition = Get.put(PositionController());
-  static final String API_OPEN_WEATHER_MAP_URL = dotenv.env['API_OPEN_WEATHER_MAP_URL']!;
+  static final String dataOpenWeatherUrl = dotenv.env['DATA_OPEN_WEATHER_URL']!;
   final String apiOpenWeatherKey;
 
   WeatherService(this.apiOpenWeatherKey);
@@ -15,7 +15,7 @@ class WeatherService {
   Future<WeatherModel>  getCurrentWeather() async {
 
     final String apiUrl =
-        '$API_OPEN_WEATHER_MAP_URL?'
+        '$dataOpenWeatherUrl?'
         'lat=${_controllerPosition.latitude.value}&'
         'lon=${_controllerPosition.longitude.value}&'
         'appid=$apiOpenWeatherKey&'
