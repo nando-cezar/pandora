@@ -98,7 +98,7 @@ class _MapPageState extends State<MapPage> {
         _controllerPosition.latitude.value,
         _controllerPosition.longitude.value,
       ),
-      zoom: 15,
+      zoom: 5,
     );
   }
 

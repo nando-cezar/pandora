@@ -18,4 +18,10 @@ class ThemeProvider with ChangeNotifier {
       themeData = lightMode;
     }
   }
+
+  String getMapStyle() {
+    return _themeData == lightMode
+        ? 'assets/images/map/map_light.json'
+        : 'assets/images/map/map_dark.json';
+  }
 }

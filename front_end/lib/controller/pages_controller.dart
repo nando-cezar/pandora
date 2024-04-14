@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../pages/map_page_new.dart';
 import '../pages/settings_page.dart';
 import '../pages/home_page.dart';
-import '../pages/map_page.dart';
 import '../pages/weather_page.dart';
 
 class PagesController extends GetxController {
@@ -11,7 +11,7 @@ class PagesController extends GetxController {
 
   var pages = [
     const HomePage(),
-    const MapPage(),
+    const MapPageNew(),
     const Scaffold(),
     WeatherPage(),
     const SettingsPage(),

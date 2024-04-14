@@ -10,10 +10,10 @@ import 'loading_page.dart';
 class WeatherPage extends StatelessWidget {
   WeatherPage({super.key});
 
-  static String API_OPEN_WEATHER_MAP_KEY =
-  dotenv.env['API_OPEN_WEATHER_MAP_KEY']!;
+  static String dataOpenWeatherKey =
+  dotenv.env['DATA_OPEN_WEATHER_KEY']!;
   final WeatherService _weatherService =
-  WeatherService(API_OPEN_WEATHER_MAP_KEY);
+  WeatherService(dataOpenWeatherKey);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class WeatherPage extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const LoadingPage();
             } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
+              return Center(child: Text('Error: ${snapshot.error}'));
             } else {
               final weather = snapshot.data;
 

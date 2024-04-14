@@ -37,7 +37,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                MyCardProfile(),
+                //MyCardProfile(),
                 const SizedBox(height: 10.0),
                 const MyCardSettings(),
                 const SizedBox(height: 20.0),
