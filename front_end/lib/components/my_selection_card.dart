@@ -14,7 +14,7 @@ class MySelectionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 20,
+      top: 0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -22,11 +22,12 @@ class MySelectionCard extends StatelessWidget {
             onPressed: onTapLeft,
             style: ElevatedButton.styleFrom(
               shape: const CircleBorder(),
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(10),
             ),
             child: Icon(
               Icons.arrow_back_rounded,
               color: Theme.of(context).colorScheme.tertiary,
+              size: 20.0,
             ),
           ),
           Center(
@@ -35,8 +36,8 @@ class MySelectionCard extends StatelessWidget {
               shadowColor: Colors.black,
               child: Container(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
+                  horizontal: 30,
+                  vertical: 5,
                 ),
                 child: Text(
                   text,
@@ -53,11 +54,12 @@ class MySelectionCard extends StatelessWidget {
             onPressed: onTapRight,
             style: ElevatedButton.styleFrom(
               shape: const CircleBorder(),
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(10),
             ),
             child: Icon(
               Icons.arrow_forward_rounded,
               color: Theme.of(context).colorScheme.tertiary,
+              size: 20.0,
             ),
           ),
         ],

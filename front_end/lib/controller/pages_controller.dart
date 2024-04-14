@@ -11,7 +11,7 @@ class PagesController extends GetxController {
 
   var pages = [
     const HomePage(),
-    const MapPageNew(),
+    const MapPage(),
     const Scaffold(),
     WeatherPage(),
     const SettingsPage(),

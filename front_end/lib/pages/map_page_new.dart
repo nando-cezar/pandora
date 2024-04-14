@@ -7,22 +7,32 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../components/my_bottom_sheet.dart';
+import '../components/my_fab_menu_button.dart';
 import '../components/my_selection_card.dart';
+import '../constants.dart';
+import '../controller/extreme_event_controller.dart';
+import '../controller/forecast_tile_controller.dart';
 import '../controller/position_controller.dart';
+import '../model/location_model.dart';
 import '../services/forecast_tile_service.dart';
 import '../theme/theme_provider.dart';
 import 'loading_page.dart';
 
-class MapPageNew extends StatefulWidget {
-  const MapPageNew({super.key});
+class MapPage extends StatefulWidget {
+  const MapPage({super.key});
 
   @override
-  State<MapPageNew> createState() => _MapPageState();
+  State<MapPage> createState() => _MapPageState();
 }
 
-class _MapPageState extends State<MapPageNew> {
+class _MapPageState extends State<MapPage> {
   final _controllerPosition = Get.put(PositionController());
-  final  _controllerMap = Completer<GoogleMapController>();
+  final _controllerExtremeEvent = Get.put(ExtremeEventController());
+  final _controllerForecastTile = Get.put(ForecastTileController());
+  final _controllerMap = Completer<GoogleMapController>();
+  final Map<String, Marker> _markers = {};
+  bool _isInitialized = false;
   DateTime _forecastDate = DateTime.now();
   TileOverlay? _tileOverlay;
 
@@ -39,7 +49,7 @@ class _MapPageState extends State<MapPageNew> {
       tileOverlayId: TileOverlayId(overlayId),
       tileProvider: ForecastTileProvider(
         dateTime: date,
-        mapType: 'PR0',
+        mapType: _controllerForecastTile.label.value,
         opacity: 0.4,
       ),
     );
@@ -49,20 +59,34 @@ class _MapPageState extends State<MapPageNew> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    if (!_isInitialized) {
+      _getMarkerData();
+      _isInitialized = true;
+    }
+    _loadMapStyle();
+    ever(_controllerForecastTile.label, (_) {
+      _initTiles(_forecastDate);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-        future: _loadMapStyle(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const LoadingPage();
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else {
-            return _buildMap(snapshot.data!);
-          }
-        },
-      ),
+    return FutureBuilder(
+      future: _loadMapStyle(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const LoadingPage();
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else {
+          return Scaffold(
+            body: _buildMap(snapshot.data!),
+            floatingActionButton: const MyFabMenuButton(),
+          );
+        }
+      },
     );
   }
 
@@ -71,12 +95,14 @@ class _MapPageState extends State<MapPageNew> {
       alignment: Alignment.center,
       children: [
         GoogleMap(
+          zoomControlsEnabled: false,
           mapType: MapType.normal,
           style: mapStyle,
           initialCameraPosition: _getInitialCameraPosition(),
           onMapCreated: _onMapCreated,
           tileOverlays:
               _tileOverlay == null ? {} : <TileOverlay>{_tileOverlay!},
+          markers: Set<Marker>.of(_markers.values),
         ),
         MySelectionCard(
           onTapLeft: tapLeft,
@@ -102,6 +128,43 @@ class _MapPageState extends State<MapPageNew> {
     _initTiles(_forecastDate);
   }
 
+  _getMarkerData() async {
+    try {
+      for (var locationSnapshot in _controllerExtremeEvent.items) {
+        for (var locationDoc in locationSnapshot.locations) {
+          addMarker(locationDoc, locationSnapshot.dataSource);
+        }
+      }
+    } catch (e) {
+      myShowDialog(context, "Error completing: $e");
+    }
+    return _markers;
+  }
+
+  void addMarker(LocationModel data, List<String> dataSource) async {
+    var metaData = data.toFirestore();
+
+    var markerIcon = await BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(
+        size: Size(20, 20),
+      ),
+      metaData['icon'],
+    );
+
+    var marker = Marker(
+      icon: markerIcon,
+      markerId: MarkerId(metaData['markerID']),
+      position: LatLng(
+        metaData['latitude'],
+        metaData['longitude'],
+      ),
+      onTap: () => _openBottomSheet(metaData, dataSource),
+    );
+
+    _markers[metaData['markerID']] = marker;
+    setState(() {});
+  }
+
   CameraPosition _getInitialCameraPosition() {
     return CameraPosition(
       target: LatLng(
@@ -115,5 +178,12 @@ class _MapPageState extends State<MapPageNew> {
   Future<void> _onMapCreated(GoogleMapController controller) async {
     _controllerMap.complete(controller);
     _initTiles(_forecastDate);
+  }
+
+  void _openBottomSheet(Map<String, dynamic> metaData, List<String> dataSource) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => MyBottomSheet(metaData: metaData, dataSource: dataSource),
+    );
   }
 }
