@@ -27,14 +27,15 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  TileOverlay? _tileOverlay;
+  DateTime _forecastDate = DateTime.now();
+  late Future<String> _mapStyleFuture;
+  final Map<String, Marker> _markers = {};
+  final _controllerMap = Completer<GoogleMapController>();
   final _controllerPosition = Get.put(PositionController());
   final _controllerExtremeEvent = Get.put(ExtremeEventController());
   final _controllerForecastTile = Get.put(ForecastTileController());
-  final _controllerMap = Completer<GoogleMapController>();
-  final Map<String, Marker> _markers = {};
-  DateTime _forecastDate = DateTime.now();
-  TileOverlay? _tileOverlay;
-  late Future<String> _mapStyleFuture;
+
 
   @override
   void initState() {

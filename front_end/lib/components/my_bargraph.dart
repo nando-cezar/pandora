@@ -8,14 +8,9 @@ import '../controller/extreme_event_controller.dart';
 import '../model/extreme_event _model.dart';
 import '../state/device_state.dart';
 
-class MyBarGraph extends StatefulWidget {
-  const MyBarGraph({super.key});
+class MyBarGraph extends StatelessWidget {
+  MyBarGraph({super.key});
 
-  @override
-  State<MyBarGraph> createState() => _MyBarGraphState();
-}
-
-class _MyBarGraphState extends State<MyBarGraph> {
   final _controllerDevice = Get.put(DeviceController());
   final _controllerExtremeEvent = Get.put(ExtremeEventController());
 
@@ -33,10 +28,10 @@ class _MyBarGraphState extends State<MyBarGraph> {
                 minY: 0,
                 gridData: const FlGridData(show: false),
                 borderData: FlBorderData(show: false),
-                titlesData: titlesData,
-                barGroups: barGroups(
+                titlesData: buildTitlesData(_controllerExtremeEvent.items),
+                barGroups: buildBarGroups(
                     context, _controllerDevice, _controllerExtremeEvent.items),
-                barTouchData: barTouchData(context, _controllerDevice),
+                barTouchData: buildBarTouchData(context, _controllerDevice),
               ),
             ),
           ),
@@ -46,32 +41,40 @@ class _MyBarGraphState extends State<MyBarGraph> {
   }
 }
 
-FlTitlesData get titlesData => const FlTitlesData(
-      show: true,
-      topTitles: AxisTitles(
-        sideTitles: SideTitles(
-          showTitles: false,
-        ),
+FlTitlesData buildTitlesData(RxList<ExtremeEventModel> items) {
+  final bottomTitles = AxisTitles(
+    sideTitles: SideTitles(
+      showTitles: true,
+      getTitlesWidget: (value, meta) => getBottomTitles(
+        items.map((e) => e.codeFormatted).toList(),
+        value,
+        meta,
       ),
-      leftTitles: AxisTitles(
-        sideTitles: SideTitles(
-          showTitles: false,
-        ),
-      ),
-      rightTitles: AxisTitles(
-        sideTitles: SideTitles(
-          showTitles: false,
-        ),
-      ),
-      bottomTitles: AxisTitles(
-        sideTitles: SideTitles(
-          showTitles: true,
-          getTitlesWidget: getBottomTitles,
-        ),
-      ),
-    );
+    ),
+  );
 
-Widget getBottomTitles(double value, TitleMeta meta) {
+  return FlTitlesData(
+    show: true,
+    topTitles: const AxisTitles(
+      sideTitles: SideTitles(
+        showTitles: false,
+      ),
+    ),
+    leftTitles: const AxisTitles(
+      sideTitles: SideTitles(
+        showTitles: false,
+      ),
+    ),
+    rightTitles: const AxisTitles(
+      sideTitles: SideTitles(
+        showTitles: false,
+      ),
+    ),
+    bottomTitles: bottomTitles,
+  );
+}
+
+Widget getBottomTitles(List<String> titles, double value, TitleMeta meta) {
   var style = TextStyle(
     color: myActiveColor,
     fontWeight: FontWeight.bold,
@@ -80,37 +83,16 @@ Widget getBottomTitles(double value, TitleMeta meta) {
 
   Widget text;
 
-  switch (value.toInt()) {
-    case 0:
-      text = Text('CW', style: style);
-      break;
-    case 1:
-      text = Text('FF', style: style);
-      break;
-    case 2:
-      text = Text('FG', style: style);
-      break;
-    case 3:
-      text = Text('HW', style: style);
-      break;
-    case 4:
-      text = Text('RF', style: style);
-      break;
-    case 5:
-      text = Text('SG', style: style);
-      break;
-    case 6:
-      text = Text('TC', style: style);
-      break;
-    default:
-      text = Text('', style: style);
-      break;
+  if (value.toInt() >= 0 && value.toInt() < titles.length) {
+    text = Text(titles[value.toInt()], style: style);
+  } else {
+    text = Text('', style: style);
   }
 
   return SideTitleWidget(axisSide: meta.axisSide, child: text);
 }
 
-List<BarChartGroupData>? barGroups(
+List<BarChartGroupData>? buildBarGroups(
         context, controllerDevice, RxList<ExtremeEventModel> items) =>
     items.map((data) {
       final probabilityLength = data.probabilityOccurrence.length;
@@ -144,7 +126,7 @@ BackgroundBarChartRodData backgroundBarChartRodData(context) =>
       color: Theme.of(context).colorScheme.secondary,
     );
 
-BarTouchData barTouchData(context, controllerDevice) => BarTouchData(
+BarTouchData buildBarTouchData(context, controllerDevice) => BarTouchData(
       enabled: false,
       touchTooltipData: BarTouchTooltipData(
         tooltipBgColor: Colors.transparent,

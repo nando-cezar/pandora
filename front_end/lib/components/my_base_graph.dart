@@ -5,7 +5,14 @@ import 'my_bargraph.dart';
 import 'my_piegraph.dart';
 
 class MyBaseGraph extends StatelessWidget {
-  const MyBaseGraph({super.key});
+  final String title;
+  final String subtitle;
+
+  const MyBaseGraph({
+    super.key,
+    required this.title,
+    required this.subtitle
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +27,7 @@ class MyBaseGraph extends StatelessWidget {
             children: [
               const SizedBox(height: 10),
               Text(
-                'EXTREME EVENTS',
+                title,
                 style: TextStyle(
                   color: myActiveColor,
                   fontSize: 15,
@@ -29,7 +36,7 @@ class MyBaseGraph extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                'Prediction chart based on current location',
+                subtitle,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
@@ -77,7 +84,7 @@ class MyBaseGraph extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-            const Expanded(
+            Expanded(
               child: TabBarView(
                 children: [
                   MyBarGraph(),

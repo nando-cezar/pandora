@@ -22,7 +22,7 @@ class BaseLayout extends StatefulWidget {
 }
 
 class _BaseLayoutState extends State<BaseLayout> {
-  static String API_PANDORA_KEY = dotenv.env['API_PANDORA_KEY']!;
+  static String apiPandoraKey = dotenv.env['API_PANDORA_KEY']!;
   final _controllerPages = Get.put(PagesController());
   final _controllerPosition = Get.put(PositionController());
   final _controllerExtremeEvent = Get.put(ExtremeEventController());
@@ -36,7 +36,7 @@ class _BaseLayoutState extends State<BaseLayout> {
     await ExtremeEventService.getGeneralData(
         position.latitude,
         position.longitude,
-        API_PANDORA_KEY
+        apiPandoraKey
     );
 
     return extremeEvent;

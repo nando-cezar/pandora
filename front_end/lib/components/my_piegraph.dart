@@ -31,20 +31,7 @@ class _MyPieGraph extends State {
           Expanded(
             child: PieChart(
               PieChartData(
-                pieTouchData: PieTouchData(
-                  touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                    setState(() {
-                      if (!event.isInterestedForInteractions ||
-                          pieTouchResponse == null ||
-                          pieTouchResponse.touchedSection == null) {
-                        touchedIndex = -1;
-                        return;
-                      }
-                      touchedIndex =
-                          pieTouchResponse.touchedSection!.touchedSectionIndex;
-                    });
-                  },
-                ),
+                pieTouchData: buildPieTouchData(),
                 borderData: FlBorderData(
                   show: false,
                 ),
@@ -53,7 +40,8 @@ class _MyPieGraph extends State {
                     _controllerDevice.state.value == DeviceState.mobile
                         ? 40
                         : 60,
-                sections: showingSections(_controllerExtremeEvent.items, touchedIndex),
+                sections: showingSections(
+                    _controllerExtremeEvent.items, touchedIndex),
               ),
             ),
           ),
@@ -81,20 +69,37 @@ class _MyPieGraph extends State {
       ),
     );
   }
+
+  PieTouchData buildPieTouchData() {
+    return PieTouchData(
+      touchCallback: (FlTouchEvent event, pieTouchResponse) {
+        setState(
+          () {
+            if (!event.isInterestedForInteractions ||
+                pieTouchResponse == null ||
+                pieTouchResponse.touchedSection == null) {
+              touchedIndex = -1;
+              return;
+            }
+            touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
+          },
+        );
+      },
+    );
+  }
 }
 
-List<PieChartSectionData> showingSections(RxList<ExtremeEventModel> items, index) {
+List<PieChartSectionData> showingSections(
+    RxList<ExtremeEventModel> items, index) {
   return items.map((item) {
     final isTouched = items.indexOf(item) == index;
     final fontSize = isTouched ? 18.0 : 15.0;
     final radius = isTouched ? 65.0 : 60.0;
     const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
-    var numFormatted =
-        item.regionGreatestRecurrences[0].recurrence;
-    var title = isTouched
-        ? item.regionGreatestRecurrences[0].region
-        : numFormatted;
+    var numFormatted = item.regionGreatestRecurrences[0].recurrence;
+    var title =
+        isTouched ? item.regionGreatestRecurrences[0].region : numFormatted;
 
     return PieChartSectionData(
       color: item.color,

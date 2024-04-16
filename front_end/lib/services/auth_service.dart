@@ -6,7 +6,6 @@ import '../constants.dart';
 
 class AuthService {
 
-
   signInWithGoogle() async {
 
     try {

@@ -39,7 +39,10 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                 children: [
                   const SizedBox(
                     height: 500,
-                    child: MyBaseGraph(),
+                    child: MyBaseGraph(
+                      title: 'EXTREME EVENTS',
+                      subtitle: 'Prediction chart based on current location',
+                    ),
                   ),
                   MyExpansionPanel(),
                 ],
