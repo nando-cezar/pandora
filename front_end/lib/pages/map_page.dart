@@ -11,11 +11,13 @@ import '../components/my_bottom_sheet.dart';
 import '../components/my_fab_menu_button.dart';
 import '../components/my_selection_card.dart';
 import '../constants.dart';
+import '../controller/device_controller.dart';
 import '../controller/extreme_event_controller.dart';
 import '../controller/forecast_tile_controller.dart';
 import '../controller/position_controller.dart';
 import '../model/location_model.dart';
 import '../services/forecast_tile_service.dart';
+import '../state/device_state.dart';
 import '../theme/theme_provider.dart';
 import 'loading_page.dart';
 
@@ -32,10 +34,10 @@ class _MapPageState extends State<MapPage> {
   late Future<String> _mapStyleFuture;
   final Map<String, Marker> _markers = {};
   final _controllerMap = Completer<GoogleMapController>();
+  final _controllerDevice = Get.put(DeviceController());
   final _controllerPosition = Get.put(PositionController());
   final _controllerExtremeEvent = Get.put(ExtremeEventController());
   final _controllerForecastTile = Get.put(ForecastTileController());
-
 
   @override
   void initState() {
@@ -53,7 +55,13 @@ class _MapPageState extends State<MapPage> {
       future: _mapStyleFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const LoadingPage();
+          return _controllerDevice.state.value == DeviceState.mobile
+              ? const LoadingPage()
+              : Center(
+                  child: CircularProgressIndicator(
+                    color: myFirstColor,
+                  ),
+                );
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
@@ -107,7 +115,8 @@ class _MapPageState extends State<MapPage> {
 
   Future<String> _loadMapStyle() async {
     var themeProvider = Provider.of<ThemeProvider>(context, listen: false);
-    String value = await DefaultAssetBundle.of(context).loadString(themeProvider.getMapStyle());
+    String value = await DefaultAssetBundle.of(context)
+        .loadString(themeProvider.getMapStyle());
     return value;
   }
 
@@ -179,10 +188,12 @@ class _MapPageState extends State<MapPage> {
     _initTiles(_forecastDate);
   }
 
-  void _openBottomSheet(Map<String, dynamic> metaData, List<String> dataSource) {
+  void _openBottomSheet(
+      Map<String, dynamic> metaData, List<String> dataSource) {
     showModalBottomSheet(
       context: context,
-      builder: (context) => MyBottomSheet(metaData: metaData, dataSource: dataSource),
+      builder: (context) =>
+          MyBottomSheet(metaData: metaData, dataSource: dataSource),
     );
   }
 }

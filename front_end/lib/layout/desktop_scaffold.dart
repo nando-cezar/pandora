@@ -4,6 +4,7 @@ import '../components/my_expansion_panel.dart';
 import '../components/my_base_graph.dart';
 import '../constants.dart';
 import '../controller/device_controller.dart';
+import '../pages/map_page.dart';
 import '../state/device_state.dart';
 
 class DesktopScaffold extends StatefulWidget {
@@ -30,16 +31,19 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Row(
+      body: Flex(
+        direction: Axis.horizontal,
         children: [
           Expanded(
-            flex: 2,
+            flex: 1,
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 500,
-                    child: MyBaseGraph(
+                  SizedBox(
+                    height: _controllerDevice.state.value == DeviceState.mobile
+                        ? 500
+                        : 700,
+                    child: const MyBaseGraph(
                       title: 'EXTREME EVENTS',
                       subtitle: 'Prediction chart based on current location',
                     ),
@@ -49,13 +53,12 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
               ),
             ),
           ),
-          Expanded(
+          const Expanded(
+            flex: 1,
             child: Column(
               children: [
                 Expanded(
-                  child: Container(
-                    color: myActiveColor,
-                  ),
+                  child: MapPage(),
                 ),
               ],
             ),
