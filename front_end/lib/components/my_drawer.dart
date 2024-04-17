@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constants.dart';
 import '../controller/pages_controller.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -15,9 +14,9 @@ class MyDrawer extends StatelessWidget {
     FirebaseAuth.instance.signOut();
   }
 
-  void navigatorConfig(int index, BuildContext context) {
+  void navigatorConfig(int index) {
     _controller.index.value = index;
-    Navigator.pop(context);
+    Get.back();
   }
 
   @override
@@ -32,7 +31,7 @@ class MyDrawer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigatorConfig(0, context);
+              navigatorConfig(0);
             },
             child: const ListTile(
               leading: Icon(Icons.home),
@@ -41,7 +40,7 @@ class MyDrawer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigatorConfig(1, context);
+              navigatorConfig(1);
             },
             child: const ListTile(
               leading: Icon(Icons.map),
@@ -50,7 +49,7 @@ class MyDrawer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigatorConfig(3, context);
+              navigatorConfig(3);
             },
             child: const ListTile(
               leading: Icon(Icons.sunny),
@@ -59,7 +58,7 @@ class MyDrawer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigatorConfig(4, context);
+              navigatorConfig(4);
             },
             child: const ListTile(
               leading: Icon(Icons.settings),

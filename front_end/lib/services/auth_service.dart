@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../constants.dart';
 
 class AuthService {
-
 
   signInWithGoogle() async {
 
@@ -34,14 +34,14 @@ class AuthService {
         password: password,
       );
 
-      if (context.mounted) Navigator.of(context).pop();
+      if (context.mounted) Get.back();
     } on FirebaseAuthException catch (e) {
-      if (context.mounted) Navigator.of(context).pop();
+      if (context.mounted) Get.back();
 
       if (e.code == 'invalid-credential') {
-        if (context.mounted) myShowDialog(context, 'Invalid credential.');
+        if (context.mounted) myShowDialog('Invalid credential.');
       } else if (e.code == 'invalid-email') {
-        if (context.mounted) myShowDialog(context, 'Invalid e-mail.');
+        if (context.mounted) myShowDialog('Invalid e-mail.');
       }
     }
   }

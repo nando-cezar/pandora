@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pandora_front/components/my_button.dart';
 import 'package:pandora_front/components/my_textfield.dart';
 import 'package:pandora_front/components/square_tile.dart';
@@ -40,17 +41,17 @@ class _RegisterPage extends State<RegisterPage> {
           password: passwordController.text,
         );
       } else {
-        myShowDialog(context, 'Passwords don\'t match.');
+        myShowDialog('Passwords don\'t match.');
       }
 
-      Navigator.pop(context);
+      Get.back();
     } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
+      Get.back();
 
       if (e.code == 'weak-password') {
-        myShowDialog(context, 'Weak password.');
+        myShowDialog('Weak password.');
       } else if (e.code == 'invalid-email') {
-        myShowDialog(context, 'Invalid e-mail.');
+        myShowDialog('Invalid e-mail.');
       }
     }
   }
@@ -58,154 +59,159 @@ class _RegisterPage extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: myFifthColor,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 25),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.symmetric(horizontal: 25),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 25),
 
-                // logo
-                Image.asset(
-                  'assets/images/pandora.png',
-                  height: 100,
-                ),
-
-                const SizedBox(height: 25),
-
-                // welcome back, you've been missed!
-                Text(
-                  'PANDORA',
-                  style: TextStyle(
-                    color: myTenthColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
+                  // logo
+                  Image.asset(
+                    'assets/images/pandora.png',
+                    height: 100,
                   ),
-                ),
 
-                const SizedBox(height: 10),
+                  const SizedBox(height: 25),
 
-                // welcome back, you've been missed!
-                Text(
-                  'Let\'s create an account for you!',
-                  style: TextStyle(
-                    color: myNinthColor,
-                    fontSize: 16,
+                  // welcome back, you've been missed!
+                  Text(
+                    'PANDORA',
+                    style: TextStyle(
+                      color: myTenthColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 25),
+                  const SizedBox(height: 10),
 
-                // email textfield
-                MyTextField(
-                  controller: emailController,
-                  hintText: 'E-mail',
-                  obscureText: false,
-                ),
+                  // welcome back, you've been missed!
+                  Text(
+                    'Let\'s create an account for you!',
+                    style: TextStyle(
+                      color: myNinthColor,
+                      fontSize: 16,
+                    ),
+                  ),
 
-                const SizedBox(height: 10),
+                  const SizedBox(height: 25),
 
-                // password textfield
-                MyTextField(
-                  controller: passwordController,
-                  hintText: 'Password',
-                  obscureText: true,
-                ),
+                  // email textfield
+                  MyTextField(
+                    controller: emailController,
+                    hintText: 'E-mail',
+                    obscureText: false,
+                    enabled: true,
+                  ),
 
-                const SizedBox(height: 10),
+                  const SizedBox(height: 10),
 
-                MyTextField(
-                  controller: confirmPasswordController,
-                  hintText: 'Confirm password',
-                  obscureText: true,
-                ),
+                  // password textfield
+                  MyTextField(
+                    controller: passwordController,
+                    hintText: 'Password',
+                    obscureText: true,
+                    enabled: true,
+                  ),
 
-                const SizedBox(height: 25),
+                  const SizedBox(height: 10),
 
-                // sign in button
-                MyButton(
-                  onTap: signUserUp,
-                  text: "Sign Up",
-                ),
+                  MyTextField(
+                    controller: confirmPasswordController,
+                    hintText: 'Confirm password',
+                    obscureText: true,
+                    enabled: true,
+                  ),
 
-                const SizedBox(height: 50),
+                  const SizedBox(height: 25),
 
-                // or continue with
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
+                  // sign in button
+                  MyButton(
+                    onTap: signUserUp,
+                    text: "Sign Up",
+                  ),
+
+                  const SizedBox(height: 50),
+
+                  // or continue with
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Divider(
+                            thickness: 0.5,
+                            color: mySixthColor,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Text(
+                            'Or continue with',
+                            style: TextStyle(color: myNinthColor),
+                          ),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            thickness: 0.5,
+                            color: mySixthColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 50),
+
+                  // google + apple sign in buttons
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: mySixthColor,
-                        ),
+                      // google button
+                      SquareTile(
+                        onTap: () => AuthService().signInWithGoogle(),
+                        imagePath: 'assets/images/google.png',
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+
+                      const SizedBox(width: 25),
+
+                      // apple button
+                      SquareTile(
+                        onTap: () => {},
+                        imagePath: 'assets/images/apple.png',
+                      )
+                    ],
+                  ),
+
+                  const SizedBox(height: 50),
+
+                  // not a member? register now
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Already have an account?',
+                        style: TextStyle(color: myNinthColor),
+                      ),
+                      const SizedBox(width: 4),
+                      GestureDetector(
+                        onTap: widget.onTap,
                         child: Text(
-                          'Or continue with',
-                          style: TextStyle(color: myNinthColor),
-                        ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: mySixthColor,
+                          'Login now',
+                          style: TextStyle(
+                            color: myFirstColor,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],
-                  ),
-                ),
-
-                const SizedBox(height: 50),
-
-                // google + apple sign in buttons
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // google button
-                    SquareTile(
-                      onTap: () => AuthService().signInWithGoogle(),
-                      imagePath: 'assets/images/google.png',
-                    ),
-
-                    const SizedBox(width: 25),
-
-                    // apple button
-                    SquareTile(
-                      onTap: () => {},
-                      imagePath: 'assets/images/apple.png',
-                    )
-                  ],
-                ),
-
-                const SizedBox(height: 50),
-
-                // not a member? register now
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Already have an account?',
-                      style: TextStyle(color: myNinthColor),
-                    ),
-                    const SizedBox(width: 4),
-                    GestureDetector(
-                      onTap: widget.onTap,
-                      child: Text(
-                        'Login now',
-                        style: TextStyle(
-                          color: myFirstColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

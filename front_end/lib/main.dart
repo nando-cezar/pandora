@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:pandora_front/pages/auth_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pandora_front/theme/theme_provider.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: const AuthPage(),
       theme: Provider.of<ThemeProvider>(context).themeData,

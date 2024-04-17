@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
-class MyBottomSheet extends StatefulWidget {
+class MyBottomSheet extends StatelessWidget {
   final Map<String, dynamic> metaData;
   final List<String> dataSource;
 
-  const MyBottomSheet({super.key, required this.metaData, required this.dataSource});
+  const MyBottomSheet({
+    super.key,
+    required this.metaData,
+    required this.dataSource
+  });
 
-  @override
-  State<MyBottomSheet> createState() => _MyBottomSheetState();
-}
-
-class _MyBottomSheetState extends State<MyBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +24,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
               height: 150,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(widget.metaData['image']),
+                  image: AssetImage(metaData['image']),
                   fit: BoxFit.fitWidth,
                   filterQuality: FilterQuality.high,
                 ),
@@ -50,7 +49,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                     children: [
                       const Spacer(),
                       Text(
-                        '${widget.dataSource.first} - ${widget.metaData['uid']}',
+                        '${dataSource.first} - ${metaData['uid']}',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
@@ -69,7 +68,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        widget.metaData['type'],
+                        metaData['type'],
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
@@ -88,7 +87,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                     ),
                   ),
                   Text(
-                    widget.metaData['address'],
+                    metaData['address'],
                     overflow: TextOverflow.clip,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
@@ -106,7 +105,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        widget.metaData['state'],
+                        metaData['state'],
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
@@ -121,7 +120,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        widget.metaData['region'],
+                        metaData['region'],
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,

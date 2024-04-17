@@ -22,7 +22,7 @@ class BaseLayout extends StatefulWidget {
 }
 
 class _BaseLayoutState extends State<BaseLayout> {
-  static String API_PANDORA_KEY = dotenv.env['API_PANDORA_KEY']!;
+  static String apiPandoraKey = dotenv.env['API_PANDORA_KEY']!;
   final _controllerPages = Get.put(PagesController());
   final _controllerPosition = Get.put(PositionController());
   final _controllerExtremeEvent = Get.put(ExtremeEventController());
@@ -36,7 +36,9 @@ class _BaseLayoutState extends State<BaseLayout> {
     await ExtremeEventService.getGeneralData(
         position.latitude,
         position.longitude,
-        API_PANDORA_KEY
+        3,
+        5,
+        apiPandoraKey
     );
 
     return extremeEvent;
@@ -56,7 +58,7 @@ class _BaseLayoutState extends State<BaseLayout> {
         } else {
           _controllerExtremeEvent.items.value = snapshot.data!.events;
           return Scaffold(
-            appBar: myAppBar,
+            appBar: myAppBar(),
             drawer: MyDrawer(),
             body: Obx(() => _controllerPages.pages[_controllerPages.index.value]),
             bottomNavigationBar: Obx(
