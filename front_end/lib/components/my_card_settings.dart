@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
 import '../constants.dart';
+import '../controller/pages_controller.dart';
+import '../pages/change_parameters_page.dart';
+import 'my_dropdown.dart';
 
-class MyCardSettings extends StatelessWidget {
+class MyCardSettings extends StatefulWidget {
   const MyCardSettings({super.key});
+
+  @override
+  State<MyCardSettings> createState() => _MyCardSettingsState();
+}
+
+class _MyCardSettingsState extends State<MyCardSettings> {
+  final _controllerPages = Get.put(PagesController());
+
+  void navigatorConfig(int index) {
+    _controllerPages.index.value = index;
+    Get.back();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,25 +29,6 @@ class MyCardSettings extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       child: Column(
         children: <Widget>[
-          ListTile(
-            leading: Icon(
-              Icons.lock_outline,
-              color: myFirstColor,
-            ),
-            title: Text(
-              "Change Password",
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.tertiary,
-              ),
-            ),
-            trailing: const Icon(Icons.keyboard_arrow_right),
-            onTap: () {
-              //open change password
-            },
-          ),
-          Divider(
-            color: Theme.of(context).colorScheme.secondary,
-          ),
           ListTile(
             leading: Icon(
               FontAwesomeIcons.language,
@@ -45,6 +42,43 @@ class MyCardSettings extends StatelessWidget {
             ),
             trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () {
+              Get.defaultDialog(
+                title: 'Change Language',
+                titleStyle: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                content: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Select Language',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.tertiary,
+                      ),
+                    ),
+                    const MyDropdown(),
+                  ],
+                ),
+                actions: [
+                  TextButton(
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(color: myFirstColor),
+                    ),
+                    onPressed: () {
+                      Get.back();
+                    },
+                  ),
+                  TextButton(
+                    child: Text(
+                      "Confirm",
+                      style: TextStyle(color: myFirstColor),
+                    ),
+                    onPressed: () {},
+                  )
+                ],
+              );
               //open change language
             },
           ),
@@ -53,19 +87,22 @@ class MyCardSettings extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
-              Icons.location_on,
+              Icons.data_object,
               color: myFirstColor,
             ),
             title: Text(
-              "Change Location",
+              "Change Parameters",
               style: TextStyle(
                 color: Theme.of(context).colorScheme.tertiary,
               ),
             ),
             trailing: const Icon(Icons.keyboard_arrow_right),
-            onTap: () {
-              //open change location
-            },
+            onTap: () => Get.to(
+              () => const ChangeParametersPage(),
+              fullscreenDialog: true,
+              transition: Transition.rightToLeft,
+              duration: const Duration(milliseconds: 400),
+            ),
           ),
         ],
       ),

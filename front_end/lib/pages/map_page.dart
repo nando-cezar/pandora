@@ -79,9 +79,12 @@ class _MapPageState extends State<MapPage> {
       alignment: Alignment.center,
       children: [
         GoogleMap(
+          mapType: MapType.normal,
+          myLocationEnabled: false,
+          trafficEnabled: false,
           zoomControlsEnabled: false,
           myLocationButtonEnabled: false,
-          mapType: MapType.normal,
+          indoorViewEnabled: false,
           style: mapStyle,
           initialCameraPosition: _getInitialCameraPosition(),
           onMapCreated: _onMapCreated,
@@ -144,7 +147,7 @@ class _MapPageState extends State<MapPage> {
         }
       }
     } catch (e) {
-      myShowDialog(context, "Error completing: $e");
+      myShowDialog("Error completing: $e");
     }
     return _markers;
   }

@@ -3,15 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../constants.dart';
-import '../controller/device_controller.dart';
 import '../controller/extreme_event_controller.dart';
 import '../model/extreme_event _model.dart';
-import '../state/device_state.dart';
 
 class MyBarGraph extends StatelessWidget {
   MyBarGraph({super.key});
 
-  final _controllerDevice = Get.put(DeviceController());
   final _controllerExtremeEvent = Get.put(ExtremeEventController());
 
   @override
@@ -30,8 +27,8 @@ class MyBarGraph extends StatelessWidget {
                 borderData: FlBorderData(show: false),
                 titlesData: buildTitlesData(_controllerExtremeEvent.items),
                 barGroups: buildBarGroups(
-                    context, _controllerDevice, _controllerExtremeEvent.items),
-                barTouchData: buildBarTouchData(context, _controllerDevice),
+                    context, _controllerExtremeEvent.items),
+                barTouchData: buildBarTouchData(context),
               ),
             ),
           ),
@@ -93,7 +90,7 @@ Widget getBottomTitles(List<String> titles, double value, TitleMeta meta) {
 }
 
 List<BarChartGroupData>? buildBarGroups(
-        context, controllerDevice, RxList<ExtremeEventModel> items) =>
+        context, RxList<ExtremeEventModel> items) =>
     items.map((data) {
       final probabilityLength = data.probabilityOccurrence.length;
       final showingTooltipIndicators =
@@ -107,9 +104,7 @@ List<BarChartGroupData>? buildBarGroups(
               (e) => BarChartRodData(
                 toY: e.roundToDouble(),
                 color: data.color,
-                width: controllerDevice.state.value == DeviceState.mobile
-                    ? 15
-                    : 30,
+                width: 15,
                 borderRadius: BorderRadius.circular(4),
                 backDrawRodData: backgroundBarChartRodData(context),
               ),
@@ -126,7 +121,7 @@ BackgroundBarChartRodData backgroundBarChartRodData(context) =>
       color: Theme.of(context).colorScheme.secondary,
     );
 
-BarTouchData buildBarTouchData(context, controllerDevice) => BarTouchData(
+BarTouchData buildBarTouchData(context) => BarTouchData(
       enabled: false,
       touchTooltipData: BarTouchTooltipData(
         tooltipBgColor: Colors.transparent,
@@ -141,8 +136,7 @@ BarTouchData buildBarTouchData(context, controllerDevice) => BarTouchData(
           return BarTooltipItem(
             rod.toY.round().toString(),
             TextStyle(
-              fontSize:
-                  controllerDevice.state.value == DeviceState.mobile ? 10 : 15,
+              fontSize: 10,
               fontWeight: FontWeight.bold,
               color: Theme.of(context).colorScheme.tertiary,
             ),

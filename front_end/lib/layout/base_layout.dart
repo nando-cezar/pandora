@@ -36,6 +36,8 @@ class _BaseLayoutState extends State<BaseLayout> {
     await ExtremeEventService.getGeneralData(
         position.latitude,
         position.longitude,
+        3,
+        5,
         apiPandoraKey
     );
 
@@ -56,7 +58,7 @@ class _BaseLayoutState extends State<BaseLayout> {
         } else {
           _controllerExtremeEvent.items.value = snapshot.data!.events;
           return Scaffold(
-            appBar: myAppBar,
+            appBar: myAppBar(),
             drawer: MyDrawer(),
             body: Obx(() => _controllerPages.pages[_controllerPages.index.value]),
             bottomNavigationBar: Obx(

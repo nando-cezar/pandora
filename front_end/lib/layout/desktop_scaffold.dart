@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../components/my_expansion_panel.dart';
 import '../components/my_base_graph.dart';
-import '../constants.dart';
 import '../controller/device_controller.dart';
 import '../pages/map_page.dart';
 import '../state/device_state.dart';
@@ -54,7 +53,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
             ),
           ),
           const Expanded(
-            flex: 1,
+            flex: 2,
             child: Column(
               children: [
                 Expanded(

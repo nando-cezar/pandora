@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Color myFirstColor = const Color.fromRGBO(38, 103, 255, 1);
 
@@ -24,33 +25,41 @@ Color myActiveColor = Colors.pink;
 
 Color myPassiveColor = Colors.amber;
 
-var myAppBar = AppBar(
-  iconTheme: IconThemeData(color: myFifthColor),
-  backgroundColor: myFirstColor,
-  title: Text(
-    'P A N D O R A®',
-    style: TextStyle(
-      color: myFifthColor,
-      fontSize: 20,
-    ),
-  ),
-  centerTitle: true,
-);
-
-var myShowDialog = (context, message) => showDialog(
-  context: context,
-  builder: (context) {
-    return AlertDialog(
+var myAppBar = ({List<Widget>? actions}) => AppBar(
+      iconTheme: IconThemeData(color: myFifthColor),
       backgroundColor: myFirstColor,
-      title: Center(
-        child: Text(
-          message,
-          style: TextStyle(
-            color: myFifthColor,
-            fontSize: 16,
-          ),
+      title: Text(
+        'P A N D O R A®',
+        style: TextStyle(
+          color: myFifthColor,
+          fontSize: 20,
         ),
       ),
+      centerTitle: true,
+      actions: actions,
     );
-  },
-);
+
+var myShowDialog = (message) => Get.defaultDialog(
+      title: 'Notification',
+      titleStyle: const TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(message),
+        ],
+      ),
+      actions: [
+        TextButton(
+          child: Text(
+            "OK",
+            style: TextStyle(color: myFirstColor),
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+      ],
+    );

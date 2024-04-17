@@ -78,10 +78,7 @@ class MyNavBar extends StatelessWidget {
               icon: Icons.settings,
               text: 'Settings',
               active: verifyActive(4),
-              padding: const EdgeInsetsDirectional.symmetric(
-                horizontal: 5.0,
-                vertical: 10.0,
-              ),
+              padding: const EdgeInsetsDirectional.all(10),
             ),
           ],
         ),

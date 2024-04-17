@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../components/my_button.dart';
 import '../components/my_textfield.dart';
 import '../constants.dart';
@@ -30,70 +31,74 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         email: emailController.text,
       );
 
-      Navigator.pop(context);
-      myShowDialog(context, 'Password reset link sent! \nCheck your e-mail.');
+      Get.back();
+      myShowDialog('Password reset link sent! \nCheck your e-mail.');
 
     } on FirebaseAuthException catch (e) {
 
-      Navigator.pop(context);
-      myShowDialog(context, e.message.toString());
+      Get.back();
+      myShowDialog(e.message.toString());
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar,
+      appBar: myAppBar(),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(height: 50),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.symmetric(horizontal: 25),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 50),
 
-                Image.asset(
-                  'assets/images/pandora.png',
-                  height: 100,
-                ),
-
-                const SizedBox(height: 25),
-
-                // welcome back, you've been missed!
-                Text(
-                  'Forgot password!',
-                  style: TextStyle(
-                    color: myTenthColor,
-                    fontSize: 16,
+                  Image.asset(
+                    'assets/images/pandora.png',
+                    height: 100,
                   ),
-                ),
 
-                const SizedBox(height: 25),
+                  const SizedBox(height: 25),
 
-                Text(
-                  'Enter your e-mail ans we will send you a password reset link.',
-                  style: TextStyle(
-                    color: myEighthColor,
-                    fontSize: 13,
+                  // welcome back, you've been missed!
+                  Text(
+                    'Forgot password!',
+                    style: TextStyle(
+                      color: myTenthColor,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 25),
+                  const SizedBox(height: 25),
 
-                // email textfield
-                MyTextField(
-                  controller: emailController,
-                  hintText: 'E-mail',
-                  obscureText: false,
-                ),
+                  Text(
+                    'Enter your e-mail ans we will send you a password reset link.',
+                    style: TextStyle(
+                      color: myEighthColor,
+                      fontSize: 13,
+                    ),
+                  ),
 
-                const SizedBox(height: 25),
+                  const SizedBox(height: 25),
 
-                MyButton(
-                  onTap: resetPassword,
-                  text: "Reset password",
-                ),
-              ],
+                  // email textfield
+                  MyTextField(
+                    controller: emailController,
+                    hintText: 'E-mail',
+                    obscureText: false,
+                    enabled: true,
+                  ),
+
+                  const SizedBox(height: 25),
+
+                  MyButton(
+                    onTap: resetPassword,
+                    text: "Reset password",
+                  ),
+                ],
+              ),
             ),
           ),
         ),

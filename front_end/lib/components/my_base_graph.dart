@@ -88,7 +88,7 @@ class MyBaseGraph extends StatelessWidget {
               child: TabBarView(
                 children: [
                   MyBarGraph(),
-                  MyPieGraph(),
+                  const MyPieGraph(),
                 ],
               ),
             ),
