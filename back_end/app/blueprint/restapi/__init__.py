@@ -15,4 +15,3 @@ def init_app(app):
     }
     api.add_resource(ExtremeEventResource, "/extreme-events/data-general", resource_class_kwargs=resource_params)
     app.register_blueprint(bp)
-

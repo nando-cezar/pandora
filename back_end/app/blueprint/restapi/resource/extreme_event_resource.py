@@ -14,17 +14,17 @@ class ExtremeEventResource(Resource):
         self.probability_occurrence = probability_occurrence
         self.parser = reqparse.RequestParser(bundle_errors=True)
         self.parser.add_argument('Latitude', type=float, required=True,
-                                   help='Latitude not given', location='args')
+                                 help='Latitude not given', location='args')
         self.parser.add_argument('Longitude', type=float, required=True,
-                                   help='Longitude not given', location='args')
+                                 help='Longitude not given', location='args')
         self.parser.add_argument('Timezone', type=str, required=True,
-                                   help='Timezone not given', location='args')
+                                 help='Timezone not given', location='args')
         self.parser.add_argument('PastDays', type=int, required=True,
-                                   help='Past days not given', location='args')
+                                 help='Past days not given', location='args')
         self.parser.add_argument('ForecastDays', type=int, required=True,
-                                   help='Forecast days not given', location='args')
+                                 help='Forecast days not given', location='args')
         self.parser.add_argument('Token', type=str, required=True,
-                                   help='Token is mandatory', location='args')
+                                 help='Token is mandatory', location='args')
         args = self.parser.parse_args()
 
         self.latitude = args['Latitude']
@@ -40,7 +40,6 @@ class ExtremeEventResource(Resource):
 
     @marshal_with(fields=ExtremeEvent.resource_fields)
     def get(self):
-
         abort_if_unauthorized(self.token != self.secret_key)
 
         data = self._get_extreme_event_data()
