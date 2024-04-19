@@ -1,0 +1,2 @@
+docker build -t pandora-backend-docker .
+docker run -p 5000:5000 -d pandora-backend-docker
