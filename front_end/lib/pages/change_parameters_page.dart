@@ -114,8 +114,8 @@ class _ChangeParametersPageState extends State<ChangeParametersPage> {
                 ),
                 const SizedBox(height: 20),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: Get.width,
+                  height: Get.height * 0.3,
                   child: GoogleMap(
                     mapType: MapType.normal,
                     initialCameraPosition: _getInitialCameraPosition(),

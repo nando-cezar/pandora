@@ -17,11 +17,6 @@ class MyCardSettings extends StatefulWidget {
 class _MyCardSettingsState extends State<MyCardSettings> {
   final _controllerPages = Get.put(PagesController());
 
-  void navigatorConfig(int index) {
-    _controllerPages.index.value = index;
-    Get.back();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -107,5 +102,10 @@ class _MyCardSettingsState extends State<MyCardSettings> {
         ],
       ),
     );
+  }
+
+  void navigatorConfig(int index) {
+    _controllerPages.index.value = index;
+    Get.back();
   }
 }

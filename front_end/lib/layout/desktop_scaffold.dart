@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../components/my_expansion_panel.dart';
 import '../components/my_base_graph.dart';
-import '../controller/device_controller.dart';
 import '../pages/map_page.dart';
-import '../state/device_state.dart';
 
 class DesktopScaffold extends StatefulWidget {
   const DesktopScaffold({super.key});
@@ -14,18 +12,6 @@ class DesktopScaffold extends StatefulWidget {
 }
 
 class _DesktopScaffoldState extends State<DesktopScaffold> {
-  final _controllerDevice = Get.put(DeviceController());
-
-  _fetchDevice() async {
-    _controllerDevice.changeState(DeviceState.desktop);
-  }
-
-  @override
-  void initState() {
-    _fetchDevice();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +25,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: _controllerDevice.state.value == DeviceState.mobile
+                    height: GetPlatform.isMobile
                         ? 500
                         : 700,
                     child: const MyBaseGraph(

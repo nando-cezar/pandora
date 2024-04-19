@@ -5,19 +5,10 @@ import 'package:get/get.dart';
 import '../controller/pages_controller.dart';
 
 class MyDrawer extends StatelessWidget {
-  final _controller = Get.put(PagesController());
-  final user = FirebaseAuth.instance.currentUser!;
-
   MyDrawer({super.key});
 
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
-  }
-
-  void navigatorConfig(int index) {
-    _controller.index.value = index;
-    Get.back();
-  }
+  final _controller = Get.put(PagesController());
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
@@ -75,5 +66,14 @@ class MyDrawer extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
+
+  void navigatorConfig(int index) {
+    _controller.index.value = index;
+    Get.back();
   }
 }
