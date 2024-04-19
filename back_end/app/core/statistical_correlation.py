@@ -110,8 +110,6 @@ class StatisticalCorrelation(ProbabilityOccurrence):
                              .document(kwargs['continent'])
                              .collection(kwargs['country']))
 
-        print(extreme_event_ref)
-
         documents = extreme_event_ref.stream()
         for doc in documents:
             sub_docs = doc.reference.collection("Statistical Correlation Data").stream()
