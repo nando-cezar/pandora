@@ -38,6 +38,7 @@ replay_pid*
 /front_end/.buildlog/
 /front_end/.history
 /front_end/.svn/
+/front_end/.env
 
 # IntelliJ related
 /front_end/*.iml
