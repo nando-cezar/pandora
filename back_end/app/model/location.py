@@ -1,5 +1,6 @@
 from flask_restful import fields
 
+
 class Location(object):
     def __init__(self, data):
         self.id = data['id']

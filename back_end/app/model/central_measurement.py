@@ -1,5 +1,6 @@
 from flask_restful import fields
 
+
 class CentralMeasurement(object):
     def __init__(self, mean):
         self.mean = mean

@@ -11,7 +11,6 @@ from app.ext.database import db
 class StatisticalCorrelation(ProbabilityOccurrence):
 
     def calculate(self, **kwargs):
-        percentage_similarities = []
         ordered = [
             'temperature_2m_max',
             'temperature_2m_min',
@@ -41,8 +40,8 @@ class StatisticalCorrelation(ProbabilityOccurrence):
             ) for i in range(7)
         ]
 
-        def calculate_similarity(element):
-            historical = np.array(element).flatten()
+        def calculate_similarity(e):
+            historical = np.array(e).flatten()
             forecast = np.array(forecast_corr).flatten()
 
             if np.var(historical) == 0 or np.var(forecast) == 0:
@@ -98,7 +97,7 @@ class StatisticalCorrelation(ProbabilityOccurrence):
             abort(404)
 
         data = response.json().get('daily', [])
-        df = pd.DataFrame(data)
+        df = pd.DataFrame(data).drop(['time'], axis=1)
         forecast_corr = df.corr().fillna(0)
         return forecast_corr
 
@@ -107,7 +106,12 @@ class StatisticalCorrelation(ProbabilityOccurrence):
 
         response = []
 
-        extreme_event_ref = db.source.collection("Extreme Event").document(kwargs['continent']).collection(kwargs['country'])
+        extreme_event_ref = (db.source.collection("Extreme Event")
+                             .document(kwargs['continent'])
+                             .collection(kwargs['country']))
+
+        print(extreme_event_ref)
+
         documents = extreme_event_ref.stream()
         for doc in documents:
             sub_docs = doc.reference.collection("Statistical Correlation Data").stream()
