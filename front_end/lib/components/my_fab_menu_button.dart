@@ -7,13 +7,12 @@ import '../controller/forecast_tile_controller.dart';
 
 @immutable
 class MyFabMenuButton extends StatelessWidget {
-  const MyFabMenuButton({super.key});
+  MyFabMenuButton({super.key});
+
+  final controllerForecastTile = Get.put(ForecastTileController());
 
   @override
   Widget build(BuildContext context) {
-
-    final controllerForecastTile = Get.put(ForecastTileController());
-
     return ExpandableFab(
       distance: 80,
       children: [

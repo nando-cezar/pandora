@@ -4,9 +4,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pandora_front/model/user_credential_model.dart';
 
-import '../controller/device_controller.dart';
-import '../state/device_state.dart';
-
 class MyCardProfile extends StatefulWidget {
   const MyCardProfile({super.key});
 
@@ -16,7 +13,6 @@ class MyCardProfile extends StatefulWidget {
 
 class _MyCardProfileState extends State<MyCardProfile> {
   final _userCredential = UserCredentialModel();
-  final _controllerDevice = Get.put(DeviceController());
 
   @override
   void initState() {
@@ -36,7 +32,7 @@ class _MyCardProfileState extends State<MyCardProfile> {
         borderRadius: BorderRadius.circular(4),
       ),
       color: Theme.of(context).colorScheme.primary,
-      child: _controllerDevice.state.value == DeviceState.mobile
+      child: GetPlatform.isMobile
           ? _buildMobileProfile(context)
           : _buildDesktopProfile(context),
     );

@@ -6,15 +6,10 @@ import '../constants.dart';
 import '../controller/pages_controller.dart';
 
 class MyNavBar extends StatelessWidget {
-  final int value;
-
   MyNavBar({super.key, required this.value});
 
+  final int value;
   final _controller = Get.put(PagesController());
-
-  bool verifyActive(int target) {
-    return value == target;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,5 +79,9 @@ class MyNavBar extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  bool verifyActive(int target) {
+    return value == target;
   }
 }

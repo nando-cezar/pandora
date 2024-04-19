@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pandora_front/components/pie_graph/indicator.dart';
 
-import '../controller/device_controller.dart';
 import '../controller/extreme_event_controller.dart';
 import '../model/extreme_event _model.dart';
-import '../state/device_state.dart';
 
 class MyPieGraph extends StatefulWidget {
   const MyPieGraph({super.key});
@@ -17,7 +15,6 @@ class MyPieGraph extends StatefulWidget {
 
 class _MyPieGraph extends State {
   int touchedIndex = -1;
-  final _controllerDevice = Get.put(DeviceController());
   final _controllerExtremeEvent = Get.put(ExtremeEventController());
 
   @override
@@ -36,10 +33,7 @@ class _MyPieGraph extends State {
                   show: false,
                 ),
                 sectionsSpace: 0,
-                centerSpaceRadius:
-                    _controllerDevice.state.value == DeviceState.mobile
-                        ? 40
-                        : 60,
+                centerSpaceRadius: GetPlatform.isMobile ? 40 : 60,
                 sections: showingSections(
                     _controllerExtremeEvent.items, touchedIndex),
               ),
