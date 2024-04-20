@@ -27,14 +27,15 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  TileOverlay? _tileOverlay;
-  DateTime _forecastDate = DateTime.now();
-  late Future<String> _mapStyleFuture;
-  final Map<String, Marker> _markers = {};
   final _controllerMap = Completer<GoogleMapController>();
   final _controllerPosition = Get.put(PositionController());
   final _controllerExtremeEvent = Get.put(ExtremeEventController());
   final _controllerForecastTile = Get.put(ForecastTileController());
+  DateTime _forecastDate = DateTime.now();
+  TileOverlay? _tileOverlay;
+  late Future<String> _mapStyleFuture;
+  final Map<String, Marker> _markers = {};
+
 
   @override
   void initState() {
@@ -90,8 +91,8 @@ class _MapPageState extends State<MapPage> {
           markers: Set<Marker>.of(_markers.values),
         ),
         MySelectionCard(
-          onTapLeft: tapLeft,
-          onTapRight: tapRight,
+          onTapLeft: _tapLeft,
+          onTapRight: _tapRight,
           text:
               'Forecast Date:\n${DateFormat('yyyy-MM-dd ha').format(_forecastDate)}',
         ),
@@ -99,25 +100,38 @@ class _MapPageState extends State<MapPage> {
     );
   }
 
-  tapRight() {
-    setState(() {
-      _forecastDate = _forecastDate.add(const Duration(hours: 3));
-    });
-    _initTiles(_forecastDate);
+  Future<String> _loadMapStyle() async {
+    var themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    String value = await DefaultAssetBundle.of(context)
+        .loadString(themeProvider.getMapStyle());
+    return value;
   }
 
-  tapLeft() {
+  _getMarkerData() async {
+    try {
+      for (var locationSnapshot in _controllerExtremeEvent.items) {
+        for (var locationDoc in locationSnapshot.locations) {
+          addMarker(locationDoc, locationSnapshot.dataSource);
+        }
+      }
+    } catch (e) {
+      myShowDialog("Error completing: $e");
+    }
+    return _markers;
+  }
+
+  _tapLeft() {
     setState(() {
       _forecastDate = _forecastDate.subtract(const Duration(hours: 3));
     });
     _initTiles(_forecastDate);
   }
 
-  Future<String> _loadMapStyle() async {
-    var themeProvider = Provider.of<ThemeProvider>(context, listen: false);
-    String value = await DefaultAssetBundle.of(context)
-        .loadString(themeProvider.getMapStyle());
-    return value;
+  _tapRight() {
+    setState(() {
+      _forecastDate = _forecastDate.add(const Duration(hours: 3));
+    });
+    _initTiles(_forecastDate);
   }
 
   _initTiles(DateTime date) async {
@@ -134,19 +148,6 @@ class _MapPageState extends State<MapPage> {
     setState(() {
       _tileOverlay = tileOverlay;
     });
-  }
-
-  _getMarkerData() async {
-    try {
-      for (var locationSnapshot in _controllerExtremeEvent.items) {
-        for (var locationDoc in locationSnapshot.locations) {
-          addMarker(locationDoc, locationSnapshot.dataSource);
-        }
-      }
-    } catch (e) {
-      myShowDialog("Error completing: $e");
-    }
-    return _markers;
   }
 
   void addMarker(LocationModel data, List<String> dataSource) async {

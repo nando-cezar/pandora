@@ -18,24 +18,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // text editing controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
-  // sign user in method
-  void signUserIn() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-
-    AuthService()
-        .signIn(emailController.text, passwordController.text, context);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +41,6 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 25),
 
-                  // welcome back, you've been missed!
                   Text(
                     'PANDORA',
                     style: TextStyle(
@@ -69,7 +52,6 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 10),
 
-                  // welcome back, you've been missed!
                   Text(
                     'Welcome back you\'ve been missed!',
                     style: TextStyle(
@@ -80,7 +62,6 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 25),
 
-                  // email textfield
                   MyTextField(
                     controller: emailController,
                     hintText: 'E-mail',
@@ -90,7 +71,6 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 10),
 
-                  // password textfield
                   MyTextField(
                     controller: passwordController,
                     hintText: 'Password',
@@ -100,7 +80,6 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 10),
 
-                  // forgot password?
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
@@ -126,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
 
                   // sign in button
                   MyButton(
-                    onTap: signUserIn,
+                    onTap: _signUserIn,
                     text: "Sign In",
                   ),
 
@@ -212,5 +191,19 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void _signUserIn() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    AuthService()
+        .signIn(emailController.text, passwordController.text, context);
   }
 }

@@ -7,6 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../components/my_textfield.dart';
 import '../constants.dart';
 import '../controller/position_controller.dart';
+import '../layout/base_layout.dart';
 
 class ChangeParametersPage extends StatefulWidget {
   const ChangeParametersPage({super.key});
@@ -23,8 +24,7 @@ class _ChangeParametersPageState extends State<ChangeParametersPage> {
   LatLng? _selectedLocation;
   double _pastDaysSlider = 1;
   double _forecastDaysSlider = 5;
-
-  //final Set<Marker> _markers = {};
+  final Set<Marker> _markers = {};
 
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _ChangeParametersPageState extends State<ChangeParametersPage> {
       appBar: myAppBar(actions: [
         IconButton(
           icon: const Icon(Icons.check),
-          onPressed: () {},
+          onPressed: () => _persist(),
         ),
       ]),
       body: SafeArea(
@@ -115,13 +115,13 @@ class _ChangeParametersPageState extends State<ChangeParametersPage> {
                 const SizedBox(height: 20),
                 SizedBox(
                   width: Get.width,
-                  height: Get.height * 0.3,
+                  height: Get.height * 0.5,
                   child: GoogleMap(
                     mapType: MapType.normal,
                     initialCameraPosition: _getInitialCameraPosition(),
                     onMapCreated: _onMapCreated,
                     onTap: _onMapTapped,
-                    //markers: _markers,
+                    markers: _markers,
                   ),
                 ),
                 Divider(
@@ -203,13 +203,13 @@ class _ChangeParametersPageState extends State<ChangeParametersPage> {
     setState(() {
       _selectedLocation = location;
       latitudeController.text = _selectedLocation!.latitude.toString();
-      longitudeController.text = _selectedLocation!.latitude.toString();
+      longitudeController.text = _selectedLocation!.longitude.toString();
     });
 
-    //_updateMarkers();
+    _updateMarkers();
   }
 
-/*void _updateMarkers() {
+  void _updateMarkers() {
     setState(() {
       _markers.clear();
       if (_selectedLocation != null) {
@@ -221,5 +221,11 @@ class _ChangeParametersPageState extends State<ChangeParametersPage> {
         );
       }
     });
-  }*/
+  }
+
+  void _persist(){
+    _controllerPosition.latitude.value = _selectedLocation!.latitude;
+    _controllerPosition.longitude.value = _selectedLocation!.longitude;
+    Get.offAll(() => const BaseLayout());
+  }
 }

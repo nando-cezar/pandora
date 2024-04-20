@@ -45,7 +45,7 @@ class WeatherPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 100),
                   Lottie.asset(
-                    getWeatherAnimation(weather?.mainCondition),
+                    _getWeatherAnimation(weather?.mainCondition),
                   ),
                   const SizedBox(height: 100),
                   Text(
@@ -73,7 +73,7 @@ class WeatherPage extends StatelessWidget {
     );
   }
 
-  String getWeatherAnimation(String? mainCondition) {
+  String _getWeatherAnimation(String? mainCondition) {
     if (mainCondition == null) return 'assets/images/sunny.json';
 
     switch (mainCondition.toLowerCase()) {

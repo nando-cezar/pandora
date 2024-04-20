@@ -13,33 +13,7 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-
   final emailController = TextEditingController();
-
-  void resetPassword() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-
-    try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(
-        email: emailController.text,
-      );
-
-      Get.back();
-      myShowDialog('Password reset link sent! \nCheck your e-mail.');
-
-    } on FirebaseAuthException catch (e) {
-
-      Get.back();
-      myShowDialog(e.message.toString());
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +36,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
                   const SizedBox(height: 25),
 
-                  // welcome back, you've been missed!
                   Text(
                     'Forgot password!',
                     style: TextStyle(
@@ -83,7 +56,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
                   const SizedBox(height: 25),
 
-                  // email textfield
                   MyTextField(
                     controller: emailController,
                     hintText: 'E-mail',
@@ -94,7 +66,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   const SizedBox(height: 25),
 
                   MyButton(
-                    onTap: resetPassword,
+                    onTap: _resetPassword,
                     text: "Reset password",
                   ),
                 ],
@@ -104,5 +76,30 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         ),
       ),
     );
+  }
+
+  void _resetPassword() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(
+        email: emailController.text,
+      );
+
+      Get.back();
+      myShowDialog('Password reset link sent! \nCheck your e-mail.');
+
+    } on FirebaseAuthException catch (e) {
+
+      Get.back();
+      myShowDialog(e.message.toString());
+    }
   }
 }

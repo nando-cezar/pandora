@@ -18,43 +18,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPage extends State<RegisterPage> {
-  // text editing controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-
-  // sign user in method
-  void signUserUp() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-
-    try {
-      if (passwordController.text == confirmPasswordController.text) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
-        );
-      } else {
-        myShowDialog('Passwords don\'t match.');
-      }
-
-      Get.back();
-    } on FirebaseAuthException catch (e) {
-      Get.back();
-
-      if (e.code == 'weak-password') {
-        myShowDialog('Weak password.');
-      } else if (e.code == 'invalid-email') {
-        myShowDialog('Invalid e-mail.');
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +35,6 @@ class _RegisterPage extends State<RegisterPage> {
                 children: [
                   const SizedBox(height: 25),
 
-                  // logo
                   Image.asset(
                     'assets/images/pandora.png',
                     height: 100,
@@ -77,7 +42,6 @@ class _RegisterPage extends State<RegisterPage> {
 
                   const SizedBox(height: 25),
 
-                  // welcome back, you've been missed!
                   Text(
                     'PANDORA',
                     style: TextStyle(
@@ -89,7 +53,6 @@ class _RegisterPage extends State<RegisterPage> {
 
                   const SizedBox(height: 10),
 
-                  // welcome back, you've been missed!
                   Text(
                     'Let\'s create an account for you!',
                     style: TextStyle(
@@ -100,7 +63,6 @@ class _RegisterPage extends State<RegisterPage> {
 
                   const SizedBox(height: 25),
 
-                  // email textfield
                   MyTextField(
                     controller: emailController,
                     hintText: 'E-mail',
@@ -110,7 +72,6 @@ class _RegisterPage extends State<RegisterPage> {
 
                   const SizedBox(height: 10),
 
-                  // password textfield
                   MyTextField(
                     controller: passwordController,
                     hintText: 'Password',
@@ -129,15 +90,13 @@ class _RegisterPage extends State<RegisterPage> {
 
                   const SizedBox(height: 25),
 
-                  // sign in button
                   MyButton(
-                    onTap: signUserUp,
+                    onTap: _signUserUp,
                     text: "Sign Up",
                   ),
 
                   const SizedBox(height: 50),
 
-                  // or continue with
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
@@ -167,11 +126,9 @@ class _RegisterPage extends State<RegisterPage> {
 
                   const SizedBox(height: 50),
 
-                  // google + apple sign in buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // google button
                       SquareTile(
                         onTap: () => AuthService().signInWithGoogle(),
                         imagePath: 'assets/images/google.png',
@@ -179,7 +136,6 @@ class _RegisterPage extends State<RegisterPage> {
 
                       const SizedBox(width: 25),
 
-                      // apple button
                       SquareTile(
                         onTap: () => {},
                         imagePath: 'assets/images/apple.png',
@@ -189,7 +145,6 @@ class _RegisterPage extends State<RegisterPage> {
 
                   const SizedBox(height: 50),
 
-                  // not a member? register now
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -217,5 +172,37 @@ class _RegisterPage extends State<RegisterPage> {
         ),
       ),
     );
+  }
+
+  void _signUserUp() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    try {
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+      } else {
+        myShowDialog('Passwords don\'t match.');
+      }
+
+      Get.back();
+    } on FirebaseAuthException catch (e) {
+      Get.back();
+
+      if (e.code == 'weak-password') {
+        myShowDialog('Weak password.');
+      } else if (e.code == 'invalid-email') {
+        myShowDialog('Invalid e-mail.');
+      }
+    }
   }
 }
