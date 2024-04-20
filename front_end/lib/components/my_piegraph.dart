@@ -14,7 +14,7 @@ class MyPieGraph extends StatefulWidget {
 }
 
 class _MyPieGraph extends State {
-  final _controllerExtremeEvent = Get.put(ExtremeEventController());
+  final ExtremeEventController _controllerExtremeEvent = Get.find();
   int touchedIndex = -1;
 
   @override
@@ -35,7 +35,7 @@ class _MyPieGraph extends State {
                 sectionsSpace: 0,
                 centerSpaceRadius: GetPlatform.isMobile ? 40 : 60,
                 sections: showingSections(
-                    _controllerExtremeEvent.items, touchedIndex),
+                    _controllerExtremeEvent.getItems(), touchedIndex),
               ),
             ),
           ),
@@ -43,7 +43,7 @@ class _MyPieGraph extends State {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                for (var data in _controllerExtremeEvent.items)
+                for (var data in _controllerExtremeEvent.getItems())
                   Column(
                     children: <Widget>[
                       Indicator(

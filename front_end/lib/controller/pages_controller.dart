@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../pages/map_page.dart';
-import '../pages/settings_page.dart';
-import '../pages/home_page.dart';
-import '../pages/weather_page.dart';
+import '../pages/dashboard/dashboard_view.dart';
+import '../pages/map/map_view.dart';
+import '../pages/settings/settings_view.dart';
+import '../pages/weather/weather_view.dart';
 
 class PagesController extends GetxController {
-  RxInt index = 0.obs;
-
-  var pages = [
-    const HomePage(),
+  final RxInt _index = 0.obs;
+  final _pages = [
+    const DashboardPage(),
     const MapPage(),
     const Scaffold(),
-    WeatherPage(),
+    Weather(),
     const SettingsPage(),
   ];
+
+  void updateIndex(int data){
+    _index.value = data;
+  }
+
+  int getIndex() => _index.value;
+
+  Widget getPage(int i) => _pages[i];
 }

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pandora_front/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../components/my_card_profile.dart';
-import '../components/my_card_settings.dart';
-import '../constants.dart';
+import '../../components/my_card_profile.dart';
+import '../../components/my_card_settings.dart';
+import '../../constants.dart';
 
 class SettingsPage extends StatefulWidget {
   static const String path = "lib/src/pages/settings/settings1.dart";

@@ -5,10 +5,10 @@ import 'package:pandora_front/layout/responsive_layout.dart';
 import 'package:pandora_front/layout/tablet_scaffold.dart';
 import 'package:provider/provider.dart';
 
-import '../theme/theme_provider.dart';
+import '../../theme/theme_provider.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-
 import '../components/my_drawer.dart';
 import '../components/my_navbar.dart';
 import '../constants.dart';
@@ -39,15 +38,15 @@ class _BaseLayoutState extends State<BaseLayout> {
         } else if (!snapshot.hasData || snapshot.data!.events.isEmpty) {
           return const Center(child: Text('No data available'));
         } else {
-          _controllerExtremeEvent.items.value = snapshot.data!.events;
+          _controllerExtremeEvent.updateItems(snapshot.data!.events);
           return Scaffold(
             appBar: myAppBar(),
             drawer: MyDrawer(),
             body:
-                Obx(() => _controllerPages.pages[_controllerPages.index.value]),
+            Obx(() => _controllerPages.getPage(_controllerPages.getIndex())),
             bottomNavigationBar: Obx(
-              () => MyNavBar(
-                value: _controllerPages.index.value,
+                  () => MyNavBar(
+                value: _controllerPages.getIndex(),
               ),
             ),
           );
@@ -57,17 +56,16 @@ class _BaseLayoutState extends State<BaseLayout> {
   }
 
   Future<ExtremeEventWrapper> _fetchPositionAndEventData() async {
-    if (_controllerPosition.latitude.value == 0.0 &&
-        _controllerPosition.longitude.value == 0.0) {
+    if (_controllerPosition.getLatitude() == 0.0 &&
+        _controllerPosition.getLongitude() == 0.0) {
       final Position position = await PositionService.getPosition();
-      _controllerPosition.latitude.value = position.latitude;
-      _controllerPosition.longitude.value = position.longitude;
+      _controllerPosition.updateLatLng(position.latitude, position.longitude);
     }
 
     final ExtremeEventWrapper extremeEvent =
         await ExtremeEventService.getGeneralData(
-      _controllerPosition.latitude.value,
-      _controllerPosition.longitude.value,
+      _controllerPosition.getLatitude(),
+      _controllerPosition.getLatitude(),
       3,
       5,
       apiPandoraKey,

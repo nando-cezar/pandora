@@ -9,12 +9,12 @@ import 'my_base_expansion_panel.dart';
 class MyExpansionPanel extends StatelessWidget {
   MyExpansionPanel({super.key});
 
-  final _controllerExtremeEvent = Get.put(ExtremeEventController());
+  final ExtremeEventController _controllerExtremeEvent = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return MyBaseExpansionPanel<ExtremeEventModel>(
-      items: _controllerExtremeEvent.items,
+      items: _controllerExtremeEvent.getItems(),
       headerBuilder: (ExtremeEventModel model) {
         return ListTile(
           contentPadding: const EdgeInsets.all(5.0),
@@ -172,7 +172,7 @@ class MyExpansionPanel extends StatelessWidget {
         );
       },
       expansionCallback: (int index, bool isExpanded) {
-        _controllerExtremeEvent.items[index].isExpanded = isExpanded;
+        _controllerExtremeEvent.getItem(index).isExpanded = isExpanded;
       },
     );
   }

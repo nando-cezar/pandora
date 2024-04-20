@@ -9,7 +9,7 @@ import '../controller/forecast_tile_controller.dart';
 class MyFabMenuButton extends StatelessWidget {
   MyFabMenuButton({super.key});
 
-  final controllerForecastTile = Get.put(ForecastTileController());
+  final ForecastTileController controllerForecastTile = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +17,15 @@ class MyFabMenuButton extends StatelessWidget {
       distance: 80,
       children: [
         ActionButton(
-          onPressed: () => controllerForecastTile.changeLabel('HRD0'),
+          onPressed: () => controllerForecastTile.updateLabel('HRD0'),
           icon: const Icon(Icons.cloud),
         ),
         ActionButton(
-          onPressed: () => controllerForecastTile.changeLabel('PR0'),
+          onPressed: () => controllerForecastTile.updateLabel('PR0'),
           icon: const Icon(Icons.water_drop),
         ),
         ActionButton(
-          onPressed: () => controllerForecastTile.changeLabel('APM'),
+          onPressed: () => controllerForecastTile.updateLabel('APM'),
           icon: const Icon(Icons.arrow_circle_down),
         ),
       ],

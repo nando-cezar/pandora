@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../constants.dart';
-import '../pages/change_parameters_page.dart';
+import '../pages/parameters/parameters_view.dart';
 import 'my_dropdown.dart';
 
 class MyCardSettings extends StatefulWidget {
@@ -51,12 +51,7 @@ class _MyCardSettingsState extends State<MyCardSettings> {
               ),
             ),
             trailing: const Icon(Icons.keyboard_arrow_right),
-            onTap: () => Get.to(
-              () => const ChangeParametersPage(),
-              fullscreenDialog: true,
-              transition: Transition.rightToLeft,
-              duration: const Duration(milliseconds: 400),
-            ),
+            onTap: () => Get.toNamed('/parameters')
           ),
         ],
       ),
