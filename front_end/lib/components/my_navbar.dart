@@ -8,8 +8,8 @@ import '../controller/pages_controller.dart';
 class MyNavBar extends StatelessWidget {
   MyNavBar({super.key, required this.value});
 
-  final int value;
   final _controller = Get.put(PagesController());
+  final int value;
 
   @override
   Widget build(BuildContext context) {

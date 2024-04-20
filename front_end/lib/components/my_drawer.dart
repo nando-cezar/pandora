@@ -22,7 +22,7 @@ class MyDrawer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigatorConfig(0);
+              _navigatorConfig(0);
             },
             child: const ListTile(
               leading: Icon(Icons.home),
@@ -31,7 +31,7 @@ class MyDrawer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigatorConfig(1);
+              _navigatorConfig(1);
             },
             child: const ListTile(
               leading: Icon(Icons.map),
@@ -40,7 +40,7 @@ class MyDrawer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigatorConfig(3);
+              _navigatorConfig(3);
             },
             child: const ListTile(
               leading: Icon(Icons.sunny),
@@ -49,7 +49,7 @@ class MyDrawer extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigatorConfig(4);
+              _navigatorConfig(4);
             },
             child: const ListTile(
               leading: Icon(Icons.settings),
@@ -57,7 +57,7 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: signUserOut,
+            onTap: _signUserOut,
             child: const ListTile(
               leading: Icon(Icons.logout),
               title: Text('L O G O U T'),
@@ -68,11 +68,11 @@ class MyDrawer extends StatelessWidget {
     );
   }
 
-  void signUserOut() {
+  void _signUserOut() {
     FirebaseAuth.instance.signOut();
   }
 
-  void navigatorConfig(int index) {
+  void _navigatorConfig(int index) {
     _controller.index.value = index;
     Get.back();
   }

@@ -27,23 +27,6 @@ class _BaseLayoutState extends State<BaseLayout> {
   final _controllerPosition = Get.put(PositionController());
   final _controllerExtremeEvent = Get.put(ExtremeEventController());
 
-  Future<ExtremeEventWrapper> _fetchPositionAndEventData() async {
-    final Position position = await PositionService.getPosition();
-    _controllerPosition.latitude.value = position.latitude;
-    _controllerPosition.longitude.value = position.longitude;
-
-    final ExtremeEventWrapper extremeEvent =
-    await ExtremeEventService.getGeneralData(
-        position.latitude,
-        position.longitude,
-        3,
-        5,
-        apiPandoraKey
-    );
-
-    return extremeEvent;
-  }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<ExtremeEventWrapper>(
@@ -60,9 +43,10 @@ class _BaseLayoutState extends State<BaseLayout> {
           return Scaffold(
             appBar: myAppBar(),
             drawer: MyDrawer(),
-            body: Obx(() => _controllerPages.pages[_controllerPages.index.value]),
+            body:
+                Obx(() => _controllerPages.pages[_controllerPages.index.value]),
             bottomNavigationBar: Obx(
-                  () => MyNavBar(
+              () => MyNavBar(
                 value: _controllerPages.index.value,
               ),
             ),
@@ -70,5 +54,25 @@ class _BaseLayoutState extends State<BaseLayout> {
         }
       },
     );
+  }
+
+  Future<ExtremeEventWrapper> _fetchPositionAndEventData() async {
+    if (_controllerPosition.latitude.value == 0.0 &&
+        _controllerPosition.longitude.value == 0.0) {
+      final Position position = await PositionService.getPosition();
+      _controllerPosition.latitude.value = position.latitude;
+      _controllerPosition.longitude.value = position.longitude;
+    }
+
+    final ExtremeEventWrapper extremeEvent =
+        await ExtremeEventService.getGeneralData(
+      _controllerPosition.latitude.value,
+      _controllerPosition.longitude.value,
+      3,
+      5,
+      apiPandoraKey,
+    );
+
+    return extremeEvent;
   }
 }

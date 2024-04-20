@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../constants.dart';
-import '../controller/pages_controller.dart';
 import '../pages/change_parameters_page.dart';
 import 'my_dropdown.dart';
 
@@ -15,7 +14,6 @@ class MyCardSettings extends StatefulWidget {
 }
 
 class _MyCardSettingsState extends State<MyCardSettings> {
-  final _controllerPages = Get.put(PagesController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,46 +34,7 @@ class _MyCardSettingsState extends State<MyCardSettings> {
               ),
             ),
             trailing: const Icon(Icons.keyboard_arrow_right),
-            onTap: () {
-              Get.defaultDialog(
-                title: 'Change Language',
-                titleStyle: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-                content: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Select Language',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.tertiary,
-                      ),
-                    ),
-                    const MyDropdown(),
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                    child: Text(
-                      "Cancel",
-                      style: TextStyle(color: myFirstColor),
-                    ),
-                    onPressed: () {
-                      Get.back();
-                    },
-                  ),
-                  TextButton(
-                    child: Text(
-                      "Confirm",
-                      style: TextStyle(color: myFirstColor),
-                    ),
-                    onPressed: () {},
-                  )
-                ],
-              );
-              //open change language
-            },
+            onTap: () => _buildDefaultDialog(context)
           ),
           Divider(
             color: Theme.of(context).colorScheme.secondary,
@@ -104,8 +63,44 @@ class _MyCardSettingsState extends State<MyCardSettings> {
     );
   }
 
-  void navigatorConfig(int index) {
-    _controllerPages.index.value = index;
-    Get.back();
+  void _buildDefaultDialog(BuildContext context) {
+    Get.defaultDialog(
+      title: 'Change Language',
+      titleStyle: const TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Select Language',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.tertiary,
+            ),
+          ),
+          const MyDropdown(),
+        ],
+      ),
+      actions: [
+        TextButton(
+          child: Text(
+            "Cancel",
+            style: TextStyle(color: myFirstColor),
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        TextButton(
+          child: Text(
+            "Confirm",
+            style: TextStyle(color: myFirstColor),
+          ),
+          onPressed: () {},
+        )
+      ],
+    );
   }
+
 }

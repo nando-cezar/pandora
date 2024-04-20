@@ -7,44 +7,44 @@ class LoadingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            'assets/images/pandora.png',
-            height: 100,
-          ),
-
-          const SizedBox(height: 20),
-
-          // welcome back, you've been missed!
-          Text(
-            'PANDORA',
-            style: TextStyle(
-              color: myTenthColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/pandora.png',
+              height: 100,
             ),
-          ),
 
-          const SizedBox(height: 10),
+            const SizedBox(height: 20),
 
-          // welcome back, you've been missed!
-          Text(
-            'Loading...',
-            style: TextStyle(
-              color: myNinthColor,
-              fontSize: 16,
+            Text(
+              'PANDORA',
+              style: TextStyle(
+                color: myTenthColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
             ),
-          ),
 
-          const SizedBox(height: 30),
+            const SizedBox(height: 10),
 
-          CircularProgressIndicator(
-            color: myFirstColor,
-          ),
-        ],
+            Text(
+              'Loading...',
+              style: TextStyle(
+                color: myNinthColor,
+                fontSize: 16,
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            CircularProgressIndicator(
+              color: myFirstColor,
+            ),
+          ],
+        ),
       ),
     );
   }
