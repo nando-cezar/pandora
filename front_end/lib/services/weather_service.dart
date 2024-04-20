@@ -12,12 +12,12 @@ class WeatherService {
 
   WeatherService(this.apiOpenWeatherKey);
 
-  Future<WeatherModel>  getCurrentWeather() async {
+  Future<WeatherModel> getCurrentWeather() async {
 
     final String apiUrl =
         '$dataOpenWeatherUrl?'
-        'lat=${_controllerPosition.latitude.value}&'
-        'lon=${_controllerPosition.longitude.value}&'
+        'lat=${_controllerPosition.getLatitude()}&'
+        'lon=${_controllerPosition.getLongitude()}&'
         'appid=$apiOpenWeatherKey&'
         'units=metric';
 

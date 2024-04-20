@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pandora_front/model/weather_model.dart';
-import 'package:pandora_front/services/weather_service.dart';
 
-import '../constants.dart';
-import 'loading_page.dart';
+import '../../constants.dart';
+import '../../services/weather_service.dart';
+import '../loading_page.dart';
 
-class WeatherPage extends StatelessWidget {
-  WeatherPage({super.key});
+class Weather extends StatelessWidget {
+  Weather({super.key});
 
   static String dataOpenWeatherKey = dotenv.env['DATA_OPEN_WEATHER_KEY']!;
   final WeatherService _weatherService = WeatherService(dataOpenWeatherKey);
@@ -26,6 +26,7 @@ class WeatherPage extends StatelessWidget {
           final weather = snapshot.data;
 
           return Scaffold(
+            backgroundColor: Theme.of(context).colorScheme.background,
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

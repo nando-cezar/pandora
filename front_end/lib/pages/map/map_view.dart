@@ -7,17 +7,17 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../components/my_bottom_sheet.dart';
-import '../components/my_fab_menu_button.dart';
-import '../components/my_selection_card.dart';
-import '../constants.dart';
-import '../controller/extreme_event_controller.dart';
-import '../controller/forecast_tile_controller.dart';
-import '../controller/position_controller.dart';
-import '../model/location_model.dart';
-import '../services/forecast_tile_service.dart';
-import '../theme/theme_provider.dart';
-import 'loading_page.dart';
+import '../../components/my_bottom_sheet.dart';
+import '../../components/my_fab_menu_button.dart';
+import '../../components/my_selection_card.dart';
+import '../../constants.dart';
+import '../../controller/extreme_event_controller.dart';
+import '../../controller/forecast_tile_controller.dart';
+import '../../controller/position_controller.dart';
+import '../../model/location_model.dart';
+import '../../services/forecast_tile_service.dart';
+import '../../theme/theme_provider.dart';
+import '../loading_page.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -28,8 +28,8 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   final _controllerMap = Completer<GoogleMapController>();
-  final _controllerPosition = Get.put(PositionController());
-  final _controllerExtremeEvent = Get.put(ExtremeEventController());
+  final PositionController _controllerPosition = Get.find();
+  final ExtremeEventController _controllerExtremeEvent = Get.find();
   final _controllerForecastTile = Get.put(ForecastTileController());
   DateTime _forecastDate = DateTime.now();
   TileOverlay? _tileOverlay;
@@ -42,7 +42,7 @@ class _MapPageState extends State<MapPage> {
     super.initState();
     _mapStyleFuture = _loadMapStyle();
     _getMarkerData();
-    ever(_controllerForecastTile.label, (_) {
+    ever(_controllerForecastTile.getRxLabel(), (_) {
       _initTiles(_forecastDate);
     });
   }
@@ -64,6 +64,7 @@ class _MapPageState extends State<MapPage> {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
           return Scaffold(
+            backgroundColor: Theme.of(context).colorScheme.background,
             body: _buildMap(snapshot.data!),
             floatingActionButton: MyFabMenuButton(),
           );
@@ -109,7 +110,7 @@ class _MapPageState extends State<MapPage> {
 
   _getMarkerData() async {
     try {
-      for (var locationSnapshot in _controllerExtremeEvent.items) {
+      for (var locationSnapshot in _controllerExtremeEvent.getItems()) {
         for (var locationDoc in locationSnapshot.locations) {
           addMarker(locationDoc, locationSnapshot.dataSource);
         }
@@ -141,7 +142,7 @@ class _MapPageState extends State<MapPage> {
       tileOverlayId: TileOverlayId(overlayId),
       tileProvider: ForecastTileProvider(
         dateTime: date,
-        mapType: _controllerForecastTile.label.value,
+        mapType: _controllerForecastTile.getLabel(),
         opacity: 0.4,
       ),
     );
@@ -177,8 +178,8 @@ class _MapPageState extends State<MapPage> {
   CameraPosition _getInitialCameraPosition() {
     return CameraPosition(
       target: LatLng(
-        _controllerPosition.latitude.value,
-        _controllerPosition.longitude.value,
+        _controllerPosition.getLatitude(),
+        _controllerPosition.getLongitude(),
       ),
       zoom: 5,
     );

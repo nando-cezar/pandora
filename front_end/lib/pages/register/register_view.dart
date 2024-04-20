@@ -6,7 +6,7 @@ import 'package:pandora_front/components/my_textfield.dart';
 import 'package:pandora_front/components/square_tile.dart';
 import 'package:pandora_front/services/auth_service.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;

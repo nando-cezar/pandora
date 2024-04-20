@@ -28,9 +28,9 @@ class MyNavBar extends StatelessWidget {
           tabBackgroundColor: mySecondColor,
           gap: 10,
           padding: const EdgeInsets.all(15.0),
-          selectedIndex: _controller.index.value,
+          selectedIndex: _controller.getIndex(),
           onTabChange: (index) {
-            _controller.index.value = index;
+            _controller.updateIndex(index);
           },
           tabs: [
             GButton(

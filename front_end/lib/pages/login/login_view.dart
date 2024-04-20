@@ -5,8 +5,7 @@ import 'package:pandora_front/components/my_textfield.dart';
 import 'package:pandora_front/components/square_tile.dart';
 import 'package:pandora_front/services/auth_service.dart';
 
-import '../constants.dart';
-import 'forgot_pw_page.dart';
+import '../../constants.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -86,12 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         GestureDetector(
-                          onTap: () => Get.to(
-                            const ForgotPasswordPage(),
-                            fullscreenDialog: true,
-                            transition: Transition.rightToLeft,
-                            duration: const Duration(milliseconds: 400),
-                          ),
+                          onTap: () => Get.toNamed('/forgot-password'),
                           child: Text(
                             'Forgot Password?',
                             style: TextStyle(color: myNinthColor),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../components/my_expansion_panel.dart';
 import '../components/my_base_graph.dart';
-import '../pages/map_page.dart';
+import '../pages/map/map_view.dart';
 
 class DesktopScaffold extends StatefulWidget {
   const DesktopScaffold({super.key});

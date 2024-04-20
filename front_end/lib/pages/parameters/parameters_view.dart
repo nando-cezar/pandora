@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../components/my_textfield.dart';
-import '../constants.dart';
-import '../controller/position_controller.dart';
-import '../layout/base_layout.dart';
+import '../../components/my_textfield.dart';
+import '../../constants.dart';
+import '../../controller/position_controller.dart';
+import '../../layout/base_layout.dart';
 
-class ChangeParametersPage extends StatefulWidget {
-  const ChangeParametersPage({super.key});
+class ParametersPage extends StatefulWidget {
+  const ParametersPage({super.key});
 
   @override
-  State<ChangeParametersPage> createState() => _ChangeParametersPageState();
+  State<ParametersPage> createState() => _ParametersPageState();
 }
 
-class _ChangeParametersPageState extends State<ChangeParametersPage> {
-  final _controllerPosition = Get.put(PositionController());
+class _ParametersPageState extends State<ParametersPage> {
+  final PositionController _controllerPosition = Get.find();
   final _controllerMap = Completer<GoogleMapController>();
   var latitudeController = TextEditingController();
   var longitudeController = TextEditingController();
@@ -28,8 +28,8 @@ class _ChangeParametersPageState extends State<ChangeParametersPage> {
 
   @override
   void initState() {
-    latitudeController.text = _controllerPosition.latitude.value.toString();
-    longitudeController.text = _controllerPosition.longitude.value.toString();
+    latitudeController.text = _controllerPosition.getLatitude().toString();
+    longitudeController.text = _controllerPosition.getLongitude().toString();
     super.initState();
   }
 
@@ -188,8 +188,8 @@ class _ChangeParametersPageState extends State<ChangeParametersPage> {
   CameraPosition _getInitialCameraPosition() {
     return CameraPosition(
       target: LatLng(
-        _controllerPosition.latitude.value,
-        _controllerPosition.longitude.value,
+        _controllerPosition.getLatitude(),
+        _controllerPosition.getLongitude(),
       ),
       zoom: 5,
     );
@@ -223,9 +223,16 @@ class _ChangeParametersPageState extends State<ChangeParametersPage> {
     });
   }
 
-  void _persist(){
-    _controllerPosition.latitude.value = _selectedLocation!.latitude;
-    _controllerPosition.longitude.value = _selectedLocation!.longitude;
-    Get.offAll(() => const BaseLayout());
+  void _persist() {
+    _controllerPosition.updateLatLng(
+      _selectedLocation!.latitude,
+      _selectedLocation!.longitude,
+    );
+    Get.off(
+      () => const BaseLayout(),
+      fullscreenDialog: true,
+      transition: Transition.rightToLeft,
+      duration: const Duration(milliseconds: 400),
+    );
   }
 }

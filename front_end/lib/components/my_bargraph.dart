@@ -9,7 +9,7 @@ import '../model/extreme_event _model.dart';
 class MyBarGraph extends StatelessWidget {
   MyBarGraph({super.key});
 
-  final _controllerExtremeEvent = Get.put(ExtremeEventController());
+  final ExtremeEventController _controllerExtremeEvent = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,9 @@ class MyBarGraph extends StatelessWidget {
                 minY: 0,
                 gridData: const FlGridData(show: false),
                 borderData: FlBorderData(show: false),
-                titlesData: buildTitlesData(_controllerExtremeEvent.items),
+                titlesData: buildTitlesData(_controllerExtremeEvent.getItems()),
                 barGroups: buildBarGroups(
-                    context, _controllerExtremeEvent.items),
+                    context, _controllerExtremeEvent.getItems()),
                 barTouchData: buildBarTouchData(context),
               ),
             ),

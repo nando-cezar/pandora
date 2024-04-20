@@ -70,10 +70,11 @@ class MyDrawer extends StatelessWidget {
 
   void _signUserOut() {
     FirebaseAuth.instance.signOut();
+    Get.toNamed('/auth');
   }
 
   void _navigatorConfig(int index) {
-    _controller.index.value = index;
+    _controller.updateIndex(index);
     Get.back();
   }
 }
