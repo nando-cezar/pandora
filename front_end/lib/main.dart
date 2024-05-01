@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart';
-import 'package:pandora_front/pages/auth/auth_page.dart';
+import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:pandora_front/pages/forgot/forgot_view.dart';
-import 'package:pandora_front/pages/parameters/parameters_view.dart';
-import 'package:pandora_front/theme/theme_provider.dart';
+import 'package:pandora_front/app/routes/app_pages.dart';
+import 'package:pandora_front/app/ui/theme/theme_provider.dart';
+import 'package:pandora_front/firebase_options.dart';
 import 'package:provider/provider.dart';
-import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,26 +27,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      title: 'Pandora',
       debugShowCheckedModeBanner: false,
+      smartManagement: SmartManagement.onlyBuilder,
+      initialRoute: Routes.initial,
       theme: Provider.of<ThemeProvider>(context).themeData,
-      initialRoute: '/auth',
-      getPages: [
-        GetPage(
-          name: '/auth',
-          page: () => const AuthPage(),
-          transition: Transition.rightToLeft,
-        ),
-        GetPage(
-          name: '/forgot-password',
-          page: () => const ForgotPasswordPage(),
-          transition: Transition.leftToRight,
-        ),
-        GetPage(
-          name: '/parameters',
-          page: () => const ParametersPage(),
-          transition: Transition.leftToRight,
-        ),
-      ],
+      defaultTransition: Transition.rightToLeft,
+      getPages: AppPages.routes,
     );
   }
 }

@@ -1,0 +1,80 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pandora_front/app/modules/settings/controllers/settings_controller.dart';
+import 'package:pandora_front/app/modules/settings/widgets/my_card_profile.dart';
+import 'package:pandora_front/app/modules/settings/widgets/my_card_settings.dart';
+import 'package:pandora_front/app/ui/theme/theme_provider.dart';
+import 'package:pandora_front/app/ui/widgets/my_drawer.dart';
+import 'package:pandora_front/constants.dart';
+import 'package:provider/provider.dart';
+
+class SettingsPage extends GetView<SettingsController> {
+  const SettingsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var verifyDarkMode =
+        Provider.of<ThemeProvider>(context).themeData.brightness ==
+            Brightness.dark;
+
+    return Scaffold(
+      appBar: myAppBar(),
+      drawer: const MyDrawer(),
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const MyCardProfile(),
+                const SizedBox(height: 10.0),
+                const MyCardSettings(),
+                const SizedBox(height: 20.0),
+                Text(
+                  "General Settings",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: myFirstColor,
+                  ),
+                ),
+                SwitchListTile(
+                  activeColor: myFirstColor,
+                  contentPadding: const EdgeInsets.all(0),
+                  value: verifyDarkMode ? true : false,
+                  title: const Text("Dark mode"),
+                  onChanged: controller.toggleTheme,
+                ),
+                const SizedBox(height: 20.0),
+                Text(
+                  "Notification Settings",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: myFirstColor,
+                  ),
+                ),
+                SwitchListTile(
+                  activeColor: myFirstColor,
+                  contentPadding: const EdgeInsets.all(0),
+                  value: true,
+                  title: const Text("Received notification"),
+                  onChanged: (val) {},
+                ),
+                SwitchListTile(
+                  activeColor: myFirstColor,
+                  contentPadding: const EdgeInsets.all(0),
+                  value: false,
+                  title: const Text("Received newsletter"),
+                  onChanged: null,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

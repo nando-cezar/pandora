@@ -1,0 +1,2 @@
+#DAR METRICS
+flutter pub add --dev dart_code_metrics_presets
