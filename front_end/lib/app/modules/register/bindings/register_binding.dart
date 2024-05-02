@@ -5,6 +5,10 @@ import 'package:pandora_front/app/modules/register/controllers/register_controll
 class RegisterBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<RegisterController>(() => RegisterController(repository: AuthRepository()));
+    Get.lazyPut<RegisterController>(
+      () => RegisterController(
+        repository: AuthRepository(),
+      ),
+    );
   }
 }

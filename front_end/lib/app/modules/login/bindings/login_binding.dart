@@ -5,6 +5,10 @@ import 'package:pandora_front/app/modules/login/controllers/login_controller.dar
 class LoginBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<LoginController>(() => LoginController(repository: AuthRepository()));
+    Get.lazyPut<LoginController>(
+      () => LoginController(
+        repository: AuthRepository(),
+      ),
+    );
   }
 }

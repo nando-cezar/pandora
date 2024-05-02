@@ -84,8 +84,8 @@ class AuthProvider {
     }
   }
 
-  signOut() {
+  Future<void> signOut() {
     _logger.i("AuthProvider: Successfully!");
-    _firebaseAuth.signOut();
+    return _firebaseAuth.signOut();
   }
 }

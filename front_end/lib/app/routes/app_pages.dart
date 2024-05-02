@@ -16,6 +16,7 @@ import 'package:pandora_front/app/modules/register/bindings/register_binding.dar
 import 'package:pandora_front/app/modules/register/pages/register_page.dart';
 import 'package:pandora_front/app/modules/root/bindings/root_binding.dart';
 import 'package:pandora_front/app/modules/settings/bindings/settings_binding.dart';
+import 'package:pandora_front/app/modules/settings/middleware/settings_middleware.dart';
 import 'package:pandora_front/app/modules/settings/pages/settings_page.dart';
 import 'package:pandora_front/app/modules/world_map/bindings/world_map_binding.dart';
 import 'package:pandora_front/app/modules/world_map/pages/world_map_page.dart';
@@ -83,6 +84,7 @@ class AppPages {
           name: Routes.forecastWeather,
           page: () => const ForecastWeatherPage(),
           bindings: [
+            AuthBinding(),
             ForecastWeatherBinding(),
           ],
           participatesInRootNavigator: true,
@@ -92,6 +94,7 @@ class AppPages {
           name: Routes.settings,
           page: () => const SettingsPage(),
           bindings: [
+            AuthBinding(),
             SettingsBinding(),
           ],
           preventDuplicates: true,
@@ -105,7 +108,9 @@ class AppPages {
             ),
           ],
           participatesInRootNavigator: true,
-          middlewares: const [],
+          middlewares: [
+            SettingsMiddleware(),
+          ],
         ),
       ],
     ),
