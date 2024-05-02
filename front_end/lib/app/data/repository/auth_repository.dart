@@ -20,10 +20,12 @@ class AuthRepository {
     return authProvider.signInWithEmailAndPassword(email, password);
   }
 
-  Future<void> sendPasswordResetEmail({email}) async {
+  Future<void> sendPasswordResetEmail({email}) {
     return authProvider.sendPasswordResetEmail(email);
   }
 
-  signOut() => authProvider.signOut();
+  Future<void> signOut() {
+    return authProvider.signOut();
+  }
 
 }

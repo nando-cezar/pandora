@@ -16,10 +16,12 @@ class UserModel {
   });
 
   UserModel.fromFirebase(User? data) {
-    uid = data?.uid;
-    displayName = data?.displayName;
-    email = data?.email;
-    photoURL = data?.photoURL;
+    uid = data!.uid;
+    displayName = data.displayName;
+    email = data.email;
+    photoURL = data.photoURL;
+    creationTime = data.metadata.creationTime!;
+    lastSignInTime = data.metadata.lastSignInTime!;
   }
 
   Object toJson() {

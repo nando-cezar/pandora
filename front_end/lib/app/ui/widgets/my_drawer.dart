@@ -56,8 +56,8 @@ class MyDrawer extends GetView<AuthController> {
     );
   }
 
-  void _signUserOut() {
-    controller.signOut();
+  Future<void> _signUserOut() async {
+    await controller.signOut();
     Get.offAllNamed(Routes.initial);
   }
 }

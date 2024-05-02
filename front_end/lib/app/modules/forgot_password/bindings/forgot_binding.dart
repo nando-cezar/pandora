@@ -5,6 +5,10 @@ import 'package:pandora_front/app/modules/forgot_password/controllers/forgot_con
 class ForgotPasswordBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ForgotPasswordController>(() => ForgotPasswordController(repository: AuthRepository()));
+    Get.lazyPut<ForgotPasswordController>(
+      () => ForgotPasswordController(
+        repository: AuthRepository(),
+      ),
+    );
   }
 }

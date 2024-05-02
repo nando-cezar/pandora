@@ -5,12 +5,10 @@ import 'package:provider/provider.dart';
 
 
 class MapController extends GetxController {
-
   Future<String> loadMapStyle() async {
     var themeProvider = Provider.of<ThemeProvider>(Get.context!, listen: false);
     String value = await DefaultAssetBundle.of(Get.context!)
         .loadString(themeProvider.getMapStyle());
     return value;
   }
-
 }

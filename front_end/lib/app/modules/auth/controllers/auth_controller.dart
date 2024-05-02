@@ -11,5 +11,5 @@ class AuthController extends GetxController {
 
   UserModel get currentUser => repository.currentUser;
 
-  signOut() => repository.signOut();
+  Future<void> signOut() => repository.signOut();
 }
