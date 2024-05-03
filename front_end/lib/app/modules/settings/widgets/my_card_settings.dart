@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:pandora_front/app/modules/settings/controllers/settings_controller.dart';
 import 'package:pandora_front/app/routes/app_pages.dart';
 import 'package:pandora_front/app/ui/widgets/my_dropdown.dart';
 import 'package:pandora_front/constants.dart';
 
-class MyCardSettings extends StatelessWidget {
+class MyCardSettings extends GetView<SettingsController> {
   const MyCardSettings({super.key});
 
   @override
@@ -85,7 +86,10 @@ class MyCardSettings extends StatelessWidget {
             'confirm'.tr,
             style: TextStyle(color: myFirstColor),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Get.updateLocale(controller.getLocale());
+            Get.back();
+          },
         )
       ],
     );

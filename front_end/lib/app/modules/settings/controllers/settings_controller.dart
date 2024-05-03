@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:get/get.dart';
 import 'package:pandora_front/app/data/model/user_model.dart';
 import 'package:pandora_front/app/data/repository/auth_repository.dart';
@@ -13,6 +15,9 @@ class SettingsController extends GetxController {
   );
   UserModel user = UserModel.mock();
 
+  String locale = 'Portuguese - BR';
+  List<String> list = <String>['...', 'Portuguese - BR', 'English'];
+
   toggleTheme(val) {
     Provider.of<ThemeProvider>(Get.context!, listen: false).toggleTheme();
   }
@@ -22,5 +27,17 @@ class SettingsController extends GetxController {
   _updateUser(UserModel value) {
     user = value;
     update();
+  }
+
+  changeLocale(String val) {
+    locale = val;
+  }
+
+  Locale getLocale() {
+    if (locale == 'Portuguese - BR') {
+      return const Locale('pt', 'BR');
+    } else {
+      return const Locale('en', 'US');
+    }
   }
 }

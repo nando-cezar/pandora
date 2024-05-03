@@ -1,28 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pandora_front/app/modules/settings/controllers/settings_controller.dart';
 
-const List<String> list = <String>['One', 'Two', 'Three', 'Four'];
-
-class MyDropdown extends StatefulWidget {
+class MyDropdown extends GetView<SettingsController> {
   const MyDropdown({super.key});
-
-  @override
-  State<MyDropdown> createState() => _MyDropdownState();
-}
-
-class _MyDropdownState extends State<MyDropdown> {
-  String dropdownValue = list.first;
 
   @override
   Widget build(BuildContext context) {
     return DropdownMenu<String>(
       width: 250,
-      initialSelection: list.first,
+      initialSelection: controller.list.first,
       onSelected: (String? value) {
-        setState(() {
-          dropdownValue = value!;
-        });
+        controller.changeLocale(value!);
       },
-      dropdownMenuEntries: list.map<DropdownMenuEntry<String>>((String value) {
+      dropdownMenuEntries: controller.list.map<DropdownMenuEntry<String>>((String value) {
         return DropdownMenuEntry<String>(value: value, label: value);
       }).toList(),
     );
