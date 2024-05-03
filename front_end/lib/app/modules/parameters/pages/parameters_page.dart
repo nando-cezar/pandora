@@ -16,10 +16,10 @@ class ParametersPage extends GetView<ParamatersController> {
       future: controller.getConfig(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const MessagePage(message: 'Preparing data');
+          return MessagePage(message: 'preparing_data'.tr);
         } else if (snapshot.hasError) {
-          return const MessagePage(
-            message: 'Unexpected error,\ncontact your system administrator',
+          return MessagePage(
+            message: 'error_message'.tr,
           );
         } else {
           return Scaffold(
@@ -38,7 +38,7 @@ class ParametersPage extends GetView<ParamatersController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Change Parameters',
+                          'change_parameters'.tr,
                           style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
@@ -47,7 +47,7 @@ class ParametersPage extends GetView<ParamatersController> {
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          'Location',
+                          'location'.tr,
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -104,7 +104,7 @@ class ParametersPage extends GetView<ParamatersController> {
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          'Monitoring',
+                          'monitoring'.tr,
                           style: TextStyle(
                             fontSize: 15.0,
                             fontWeight: FontWeight.bold,
@@ -113,7 +113,7 @@ class ParametersPage extends GetView<ParamatersController> {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          'Past days',
+                          'past_days'.tr,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                           ),
@@ -129,7 +129,7 @@ class ParametersPage extends GetView<ParamatersController> {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          'Forecast days',
+                          'forecast_days'.tr,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                           ),

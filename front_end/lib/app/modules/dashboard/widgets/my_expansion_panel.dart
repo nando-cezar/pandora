@@ -15,11 +15,11 @@ class MyExpansionPanel extends GetView<DashboardController> {
       headerBuilder: (ExtremeEventModel model) {
         return ListTile(
           contentPadding: const EdgeInsets.all(5.0),
-          title: Text(model.description!),
+          title: Text(model.description!.tr),
           leading: CircleAvatar(
             backgroundColor: model.color,
             child: Text(
-              model.codeFormatted.toString(),
+              model.codeFormatted.toString().tr,
               style: TextStyle(color: myFifthColor),
             ),
           ),
@@ -38,7 +38,7 @@ class MyExpansionPanel extends GetView<DashboardController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'Data source:',
+                              'data_source:'.tr,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.tertiary,
                               ),
@@ -58,13 +58,13 @@ class MyExpansionPanel extends GetView<DashboardController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Medium Duration:',
+                          'medium_duration:'.tr,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                           ),
                         ),
                         Text(
-                          '${model.mediumDuration?.round().toString()} day(s)',
+                          '${model.mediumDuration?.round().toString()} ${'day_s'.tr}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).colorScheme.tertiary,
@@ -82,7 +82,7 @@ class MyExpansionPanel extends GetView<DashboardController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Probability Occurrence:',
+                          'probability_occurrence:'.tr,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                           ),
@@ -103,7 +103,7 @@ class MyExpansionPanel extends GetView<DashboardController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Total Location Records:',
+                          'total_location_records:'.tr,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                           ),
@@ -127,7 +127,7 @@ class MyExpansionPanel extends GetView<DashboardController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Region Greatest Recurrence:',
+                          'region_greatest_recurrence:'.tr,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                           ),
@@ -147,7 +147,7 @@ class MyExpansionPanel extends GetView<DashboardController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'Total Recurrence:',
+                          'total_recurrence:'.tr,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                           ),

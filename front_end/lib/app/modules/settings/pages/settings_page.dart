@@ -33,7 +33,7 @@ class SettingsPage extends GetView<SettingsController> {
                 const MyCardSettings(),
                 const SizedBox(height: 20.0),
                 Text(
-                  "General Settings",
+                  "general_settings".tr,
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
@@ -44,12 +44,12 @@ class SettingsPage extends GetView<SettingsController> {
                   activeColor: myFirstColor,
                   contentPadding: const EdgeInsets.all(0),
                   value: verifyDarkMode ? true : false,
-                  title: const Text("Dark mode"),
+                  title: Text('dark_mode'.tr),
                   onChanged: controller.toggleTheme,
                 ),
                 const SizedBox(height: 20.0),
                 Text(
-                  "Notification Settings",
+                  "notification_settings".tr,
                   style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
@@ -59,15 +59,15 @@ class SettingsPage extends GetView<SettingsController> {
                 SwitchListTile(
                   activeColor: myFirstColor,
                   contentPadding: const EdgeInsets.all(0),
-                  value: true,
-                  title: const Text("Received notification"),
-                  onChanged: (val) {},
+                  value: false,
+                  title: Text("received_notification".tr),
+                  onChanged: null,
                 ),
                 SwitchListTile(
                   activeColor: myFirstColor,
                   contentPadding: const EdgeInsets.all(0),
                   value: false,
-                  title: const Text("Received newsletter"),
+                  title: Text("received_newsletter".tr),
                   onChanged: null,
                 ),
               ],

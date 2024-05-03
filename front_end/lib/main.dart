@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pandora_front/app/routes/app_pages.dart';
+import 'package:pandora_front/app/translations/app_translations.dart';
 import 'package:pandora_front/app/ui/theme/theme_provider.dart';
 import 'package:pandora_front/firebase_options.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +35,8 @@ class MyApp extends StatelessWidget {
       theme: Provider.of<ThemeProvider>(context).themeData,
       defaultTransition: Transition.rightToLeft,
       getPages: AppPages.routes,
+      locale: const Locale('pt', 'BR'),
+      translationsKeys: AppTranslation.translations
     );
   }
 }

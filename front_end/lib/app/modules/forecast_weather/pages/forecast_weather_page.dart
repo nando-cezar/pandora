@@ -15,10 +15,10 @@ class ForecastWeatherPage extends GetView<ForecastWeatherController> {
       future: controller.getCurrentForecastWeather(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const MessagePage(message: 'Preparing data');
+          return MessagePage(message: 'preparing_data'.tr);
         } else if (snapshot.hasError) {
-          return const MessagePage(
-            message: 'Unexpected error,\ncontact your system administrator',
+          return MessagePage(
+            message: 'error_message'.tr,
           );
         } else {
           return Scaffold(
@@ -56,7 +56,7 @@ class ForecastWeatherPage extends GetView<ForecastWeatherController> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    controller.forecastWeatherModel.mainCondition!,
+                    controller.forecastWeatherModel.mainCondition!.tr,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,

@@ -21,7 +21,7 @@ class MyCardSettings extends StatelessWidget {
               color: myFirstColor,
             ),
             title: Text(
-              "Change Language",
+              'change_language'.tr,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.tertiary,
               ),
@@ -38,7 +38,7 @@ class MyCardSettings extends StatelessWidget {
               color: myFirstColor,
             ),
             title: Text(
-              "Change Parameters",
+              'change_parameters'.tr,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.tertiary,
               ),
@@ -53,7 +53,7 @@ class MyCardSettings extends StatelessWidget {
 
   void _buildDefaultDialog(BuildContext context) {
     Get.defaultDialog(
-      title: 'Change Language',
+      title: 'change_language'.tr,
       titleStyle: const TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,
@@ -62,7 +62,7 @@ class MyCardSettings extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Select Language',
+            'select_language'.tr,
             style: TextStyle(
               color: Theme.of(context).colorScheme.tertiary,
             ),
@@ -73,7 +73,7 @@ class MyCardSettings extends StatelessWidget {
       actions: [
         TextButton(
           child: Text(
-            "Cancel",
+            'cancel'.tr,
             style: TextStyle(color: myFirstColor),
           ),
           onPressed: () {
@@ -82,7 +82,7 @@ class MyCardSettings extends StatelessWidget {
         ),
         TextButton(
           child: Text(
-            "Confirm",
+            'confirm'.tr,
             style: TextStyle(color: myFirstColor),
           ),
           onPressed: () {},

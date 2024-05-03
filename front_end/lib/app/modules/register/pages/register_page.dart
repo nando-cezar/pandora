@@ -28,7 +28,7 @@ class RegisterPage extends GetView<RegisterController> {
                   ),
                   const SizedBox(height: 25),
                   Text(
-                    'Let\'s create an account for you!',
+                    'register_account_message'.tr,
                     style: TextStyle(
                       color: myNinthColor,
                       fontSize: 16,
@@ -44,14 +44,14 @@ class RegisterPage extends GetView<RegisterController> {
                   const SizedBox(height: 10),
                   MyTextField(
                     controller: controller.passwordController,
-                    hintText: 'Password',
+                    hintText: 'password'.tr,
                     obscureText: true,
                     enabled: true,
                   ),
                   const SizedBox(height: 10),
                   MyTextField(
                     controller: controller.confirmPasswordController,
-                    hintText: 'Confirm password',
+                    hintText: 'confirm_password'.tr,
                     obscureText: true,
                     enabled: true,
                   ),
@@ -60,7 +60,7 @@ class RegisterPage extends GetView<RegisterController> {
                     onTap: () {
                       controller.createUserWithEmailAndPassword();
                     },
-                    text: "Sign Up",
+                    text: 'signup'.tr,
                   ),
                   const SizedBox(height: 30),
                   Padding(
@@ -76,7 +76,7 @@ class RegisterPage extends GetView<RegisterController> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Text(
-                            'Or continue with',
+                            'or_continue_with'.tr,
                             style: TextStyle(color: myNinthColor),
                           ),
                         ),

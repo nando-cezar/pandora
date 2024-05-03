@@ -18,37 +18,37 @@ class MyDrawer extends GetView<AuthController> {
           ),
           GestureDetector(
             onTap: () => Get.offAllNamed(Routes.dashboard),
-            child: const ListTile(
-              leading: Icon(Icons.home),
-              title: Text('D A S H B O A R D'),
+            child: ListTile(
+              leading: const Icon(Icons.home),
+              title: Text('dashboard'.tr),
             ),
           ),
           GestureDetector(
             onTap: () => Get.offAllNamed(Routes.worldMap),
-            child: const ListTile(
-              leading: Icon(Icons.map),
-              title: Text('M A P'),
+            child: ListTile(
+              leading: const Icon(Icons.map),
+              title: Text('map'.tr),
             ),
           ),
           GestureDetector(
             onTap: () => Get.offAllNamed(Routes.forecastWeather),
-            child: const ListTile(
-              leading: Icon(Icons.sunny),
-              title: Text('W E A T H E R'),
+            child: ListTile(
+              leading: const Icon(Icons.sunny),
+              title: Text('weather'.tr),
             ),
           ),
           GestureDetector(
             onTap: () => Get.offAllNamed(Routes.settings),
-            child: const ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('S E T T I N G S'),
+            child: ListTile(
+              leading: const Icon(Icons.settings),
+              title: Text('settings'.tr),
             ),
           ),
           GestureDetector(
             onTap: _signUserOut,
-            child: const ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('L O G O U T'),
+            child: ListTile(
+              leading: const Icon(Icons.logout),
+              title: Text('logout'.tr),
             ),
           )
         ],

@@ -49,7 +49,7 @@ class _MyPieGraph extends State<MyPieGraph> {
                     children: <Widget>[
                       Indicator(
                         color: data.color!,
-                        text: data.description!,
+                        text: data.description!.tr,
                         isSquare: true,
                       ),
                       const SizedBox(
@@ -93,7 +93,7 @@ List<PieChartSectionData> showingSections(
     const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
 
     var numFormatted = item.regionGreatestRecurrences?[0].recurrence;
-    var region = item.regionGreatestRecurrences?[0].region;
+    var region = item.regionGreatestRecurrences?[0].region!.tr;
     var title = isTouched ? region : numFormatted;
 
     return PieChartSectionData(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pandora_front/app/modules/dashboard/widgets/base_graph.dart';
 import 'package:pandora_front/app/modules/dashboard/widgets/my_expansion_panel.dart';
 import 'package:pandora_front/app/modules/dashboard/widgets/my_dashboard_map.dart';
@@ -8,7 +9,7 @@ class MobileScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Flex(
+    return Flex(
       direction: Axis.vertical,
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,16 +22,16 @@ class MobileScaffold extends StatelessWidget {
                 SizedBox(
                   height: 500,
                   child: BaseGraph(
-                    title: 'EXTREME EVENTS',
-                    subtitle: 'Prediction chart based on current location',
+                    title: 'title'.tr,
+                    subtitle: 'subtitle'.tr,
                   ),
                 ),
-                MyExpansionPanel(),
+                const MyExpansionPanel(),
               ],
             ),
           ),
         ),
-        Expanded(
+        const Expanded(
           flex: 1,
           child: MyDashboardMap(),
         ),
