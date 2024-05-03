@@ -60,7 +60,7 @@ class BaseGraph extends GetView<DashboardController> {
                   size: 20.0,
                 ),
                 child: Text(
-                  'Chance of Occurrence',
+                  'chance_of_occurrence'.tr,
                   style: TextStyle(
                     color: myFirstColor,
                     fontSize: 14.0,
@@ -74,7 +74,7 @@ class BaseGraph extends GetView<DashboardController> {
                   size: 20.0,
                 ),
                 child: Text(
-                  'Highest Recurrence',
+                  'highest_recurrence'.tr,
                   style: TextStyle(
                     color: myFirstColor,
                     fontSize: 14.0,

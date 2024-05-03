@@ -79,7 +79,7 @@ class MyCardProfile extends StatelessWidget {
               title: Row(
                 children: [
                   Text(
-                    'Account creation date:',
+                    'account_creation_date:'.tr,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                     ),
@@ -97,7 +97,7 @@ class MyCardProfile extends StatelessWidget {
                   const Spacer(),
                   const SizedBox(width: 20),
                   Text(
-                    'Last login date:',
+                    'last_login_date:'.tr,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                     ),
@@ -119,7 +119,7 @@ class MyCardProfile extends StatelessWidget {
               title: Row(
                 children: [
                   Text(
-                    'Current location:',
+                    'current_location:'.tr,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                     ),
@@ -127,44 +127,6 @@ class MyCardProfile extends StatelessWidget {
                   const SizedBox(width: 5),
                   Text(
                     'Salvador - BA, Brazil',
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              title: Row(
-                children: [
-                  Text(
-                    'Number of alerts issued:',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    '100',
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Spacer(),
-                  const SizedBox(width: 20),
-                  Text(
-                    'Date of last alert issuance:',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    '25/05/1997 - 3:00 PM',
                     overflow: TextOverflow.clip,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
@@ -243,7 +205,7 @@ class MyCardProfile extends StatelessWidget {
               title: Column(
                 children: [
                   Text(
-                    'Account creation date:',
+                    'account_creation_date:'.tr,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                     ),
@@ -265,7 +227,7 @@ class MyCardProfile extends StatelessWidget {
               title: Column(
                 children: [
                   Text(
-                    'Last login date:',
+                    'last_login_date:'.tr,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                     ),
@@ -287,7 +249,7 @@ class MyCardProfile extends StatelessWidget {
               title: Column(
                 children: [
                   Text(
-                    'Current location:',
+                    'current_location:'.tr,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                     ),
@@ -295,48 +257,6 @@ class MyCardProfile extends StatelessWidget {
                   const SizedBox(width: 5),
                   Text(
                     'Salvador - BA, Brazil',
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              title: Column(
-                children: [
-                  Text(
-                    'Number of alerts issued:',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    '100',
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              title: Column(
-                children: [
-                  Text(
-                    'Date of last alert issuance:',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    '25/05/1997 - 3:00 PM',
                     overflow: TextOverflow.clip,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,

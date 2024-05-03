@@ -19,10 +19,10 @@ class DashboardPage extends GetView<DashboardController> {
       future: controller.dataController.getGeneralData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const MessagePage(message: 'Preparing data');
+          return MessagePage(message: 'preparing_data'.tr);
         } else if (snapshot.hasError) {
-          return const MessagePage(
-            message: 'Unexpected error,\ncontact your system administrator',
+          return MessagePage(
+            message: 'error_message'.tr,
           );
         } else {
           return Scaffold(

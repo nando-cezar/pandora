@@ -27,7 +27,7 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                   ),
                   const SizedBox(height: 25),
                   Text(
-                    'Forgot password!',
+                    'forgot_password!'.tr,
                     style: TextStyle(
                       color: myTenthColor,
                       fontSize: 16,
@@ -35,7 +35,7 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                   ),
                   const SizedBox(height: 25),
                   Text(
-                    'Enter your e-mail ans we will send you a password reset link.',
+                    'forgot_password_message'.tr,
                     style: TextStyle(
                       color: myEighthColor,
                       fontSize: 13,
@@ -53,7 +53,7 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                     onTap: () {
                       controller.sendPasswordResetEmail();
                     },
-                    text: "Reset password",
+                    text: 'reset_password'.tr,
                   ),
                 ],
               ),

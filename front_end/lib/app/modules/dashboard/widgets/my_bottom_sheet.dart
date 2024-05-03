@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyBottomSheet extends StatelessWidget {
   final Map<String, dynamic> metaData;
@@ -61,7 +62,7 @@ class MyBottomSheet extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'Extreme event type:',
+                        'extreme_event_type:'.tr,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                         ),
@@ -81,7 +82,7 @@ class MyBottomSheet extends StatelessWidget {
                     color: Theme.of(context).colorScheme.secondary,
                   ),
                   Text(
-                    'Address:',
+                    'address:'.tr,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
                     ),
@@ -98,7 +99,7 @@ class MyBottomSheet extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'State:',
+                        'state:'.tr,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                         ),
@@ -113,7 +114,7 @@ class MyBottomSheet extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        'Region:',
+                        'region:'.tr,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                         ),
@@ -135,7 +136,7 @@ class MyBottomSheet extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'Start date:',
+                        'start_date:'.tr,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                         ),
@@ -151,7 +152,7 @@ class MyBottomSheet extends StatelessWidget {
                       const Spacer(),
                       const SizedBox(width: 20),
                       Text(
-                        'End date:',
+                        'end_date:'.tr,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                         ),
@@ -170,7 +171,7 @@ class MyBottomSheet extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'Total Deaths:',
+                        'total_deaths:'.tr,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                         ),
@@ -187,7 +188,7 @@ class MyBottomSheet extends StatelessWidget {
                       const Spacer(),
                       const SizedBox(width: 20),
                       Text(
-                        'Total Affected:',
+                        'total_affected:'.tr,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                         ),

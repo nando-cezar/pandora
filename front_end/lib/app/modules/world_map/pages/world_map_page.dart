@@ -19,7 +19,7 @@ class WorldMapPage extends GetView<WorldMapController> {
       future: controller.getConfig(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const MessagePage(message: 'Preparing data');
+          return MessagePage(message: 'preparing_data'.tr);
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
@@ -63,7 +63,7 @@ class WorldMapPage extends GetView<WorldMapController> {
             onTapLeft: () => controller.tapLeft(),
             onTapRight: () => controller.tapRight(),
             text:
-                'Forecast Date:\n${DateFormat('yyyy-MM-dd ha').format(controller.forecastDate)}',
+                '${'forecast_date'.tr}:\n${DateFormat('yyyy-MM-dd ha').format(controller.forecastDate)}',
           ),
         ],
       );

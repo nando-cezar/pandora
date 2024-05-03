@@ -42,7 +42,7 @@ class LoginPage extends GetView<LoginController> {
                   const SizedBox(height: 10),
 
                   Text(
-                    'Welcome back you\'ve been missed!',
+                    'welcome'.tr,
                     style: TextStyle(
                       color: myNinthColor,
                       fontSize: 16,
@@ -62,7 +62,7 @@ class LoginPage extends GetView<LoginController> {
 
                   MyTextField(
                     controller: controller.passwordController,
-                    hintText: 'Password',
+                    hintText: 'password'.tr,
                     obscureText: true,
                     enabled: true,
                   ),
@@ -77,7 +77,7 @@ class LoginPage extends GetView<LoginController> {
                         GestureDetector(
                           onTap: () => Get.toNamed(Routes.forgotPassword),
                           child: Text(
-                            'Forgot Password?',
+                            'forgot_password?'.tr,
                             style: TextStyle(color: myNinthColor),
                           ),
                         ),
@@ -91,7 +91,7 @@ class LoginPage extends GetView<LoginController> {
                     onTap: () {
                       controller.signInWithEmailAndPassword();
                     },
-                    text: "Sign In",
+                    text: 'signin'.tr,
                   ),
 
                   const SizedBox(height: 30),
@@ -109,7 +109,7 @@ class LoginPage extends GetView<LoginController> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Text(
-                            'Or continue with',
+                            'or_continue_with'.tr,
                             style: TextStyle(color: myNinthColor),
                           ),
                         ),
@@ -148,14 +148,14 @@ class LoginPage extends GetView<LoginController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Not a member?',
+                        'not_a_member?'.tr,
                         style: TextStyle(color: myNinthColor),
                       ),
                       const SizedBox(width: 4),
                       GestureDetector(
                         onTap: () => Get.toNamed(Routes.register),
                         child: Text(
-                          'Register now',
+                          'register_now'.tr,
                           style: TextStyle(
                             color: myFirstColor,
                             fontWeight: FontWeight.bold,
