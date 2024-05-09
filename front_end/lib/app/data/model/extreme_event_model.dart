@@ -13,7 +13,6 @@ class ExtremeEventModel {
   List<LocationModel>? locations;
   List<SiteGreatestRecurrenceModel>? siteGreatestRecurrences;
   List<RegionGreatestRecurrenceModel>? regionGreatestRecurrences;
-  Map<String, double>? average;
   double? mediumDuration;
   List<double>? probabilityOccurrence;
   int? totalLocationRecords;
@@ -30,7 +29,6 @@ class ExtremeEventModel {
     required this.locations,
     required this.siteGreatestRecurrences,
     required this.regionGreatestRecurrences,
-    required this.average,
     required this.mediumDuration,
     required this.probabilityOccurrence,
     required this.totalLocationRecords,
@@ -64,10 +62,6 @@ class ExtremeEventModel {
     locations = locationList;
     siteGreatestRecurrences = siteList;
     regionGreatestRecurrences = regionList;
-    average = (data['central_measurement_data']['mean'] is Map)
-    ? Map<String, double>.from(
-    data['central_measurement_data']['mean'])
-        : {};
     mediumDuration = data['medium_duration'].toDouble();
     probabilityOccurrence = (data['probability_occurrence'] is List)
     ? List.from(data['probability_occurrence'])
@@ -94,7 +88,6 @@ class ExtremeEventModel {
     addIfPresent('locations', locations);
     addIfPresent('siteGreatestRecurrences', siteGreatestRecurrences);
     addIfPresent('regionGreatestRecurrences', regionGreatestRecurrences);
-    addIfPresent('average', average);
     addIfPresent('mediumDuration', mediumDuration);
     addIfPresent('probabilityOccurrence', probabilityOccurrence);
     addIfPresent('totalLocationRecords', totalLocationRecords);

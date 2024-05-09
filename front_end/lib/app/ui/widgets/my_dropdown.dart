@@ -9,13 +9,13 @@ class MyDropdown extends GetView<SettingsController> {
   Widget build(BuildContext context) {
     return DropdownMenu<String>(
       width: 250,
-      initialSelection: controller.list.first,
       onSelected: (String? value) {
         controller.changeLocale(value!);
       },
       dropdownMenuEntries: controller.list.map<DropdownMenuEntry<String>>((String value) {
         return DropdownMenuEntry<String>(value: value, label: value);
       }).toList(),
+      hintText: 'select'.tr,
     );
   }
 }

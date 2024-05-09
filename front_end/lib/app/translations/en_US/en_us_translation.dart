@@ -91,6 +91,7 @@ final Map<String, String> enUs = {
   'received_notification': 'Received notification',
   'notification_settings': 'Notification Settings',
   'general_settings': 'General Settings',
+  'select': 'Select...',
 
   'location': 'Location',
   'monitoring': 'Monitoring',
@@ -102,4 +103,11 @@ final Map<String, String> enUs = {
   'weather': 'W E A T H E R',
   'settings': 'S E T T I N G S',
   'logout': 'L O G O U T',
+
+  'success_message': 'Data processed successfully!',
+  'success': 'Success',
+  'error': 'Error',
+  'info': 'Information',
+
+  'update_location': 'Updated location'
 };

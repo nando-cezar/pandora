@@ -132,13 +132,6 @@ class LoginPage extends GetView<LoginController> {
                         onTap: () => controller.signInWithGoogle(),
                         imagePath: 'assets/images/google.png',
                       ),
-
-                      const SizedBox(width: 25),
-
-                      MySquareTile(
-                        onTap: () {},
-                        imagePath: 'assets/images/apple.png',
-                      )
                     ],
                   ),
 

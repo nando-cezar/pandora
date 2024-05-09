@@ -91,6 +91,7 @@ final Map<String, String> ptBR = {
   'received_notification': 'Notificação recebida',
   'notification_settings': 'Configurações de notificação',
   'general_settings': 'Configurações Gerais',
+  'select': 'Selecione...',
 
   'location': 'Localização',
   'monitoring': 'Monitoramento',
@@ -102,4 +103,11 @@ final Map<String, String> ptBR = {
   'weather': 'C L I M A',
   'settings': 'C O N F I G U R A Ç Õ E S',
   'logout': 'S A I R',
+
+  'success_message': 'Dados processados com sucesso!',
+  'success': 'Sucesso',
+  'error': 'Erro',
+  'info': 'Informação',
+
+  'update_location': 'Localização atualizada'
 };

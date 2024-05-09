@@ -11,6 +11,7 @@ import 'package:pandora_front/app/modules/initial/bindings/initial_binding.dart'
 import 'package:pandora_front/app/modules/initial/pages/initial_page.dart';
 import 'package:pandora_front/app/modules/login/bindings/login_binding.dart';
 import 'package:pandora_front/app/modules/parameters/bindings/parameters_binding.dart';
+import 'package:pandora_front/app/modules/parameters/middleware/parameters_middleware.dart';
 import 'package:pandora_front/app/modules/parameters/pages/parameters_page.dart';
 import 'package:pandora_front/app/modules/register/bindings/register_binding.dart';
 import 'package:pandora_front/app/modules/register/pages/register_page.dart';
@@ -105,6 +106,9 @@ class AppPages {
               bindings: [
                 ParamatersBinding()
               ],
+              middlewares: [
+                ParametersMiddleware(),
+              ]
             ),
           ],
           participatesInRootNavigator: true,

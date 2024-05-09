@@ -15,8 +15,8 @@ class SettingsController extends GetxController {
   );
   UserModel user = UserModel.mock();
 
-  String locale = 'Portuguese - BR';
-  List<String> list = <String>['...', 'Portuguese - BR', 'English'];
+  String locale = '';
+  List<String> list = <String>['Portuguese - BR', 'English'];
 
   toggleTheme(val) {
     Provider.of<ThemeProvider>(Get.context!, listen: false).toggleTheme();

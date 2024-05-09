@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pandora_front/app/modules/register/controllers/register_controller.dart';
 import 'package:pandora_front/app/ui/widgets/my_button.dart';
-import 'package:pandora_front/app/ui/widgets/my_square_tile.dart';
 import 'package:pandora_front/app/ui/widgets/my_textfield.dart';
 import 'package:pandora_front/constants.dart';
 
@@ -61,48 +60,6 @@ class RegisterPage extends GetView<RegisterController> {
                       controller.createUserWithEmailAndPassword();
                     },
                     text: 'signup'.tr,
-                  ),
-                  const SizedBox(height: 30),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Divider(
-                            thickness: 0.5,
-                            color: mySixthColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Text(
-                            'or_continue_with'.tr,
-                            style: TextStyle(color: myNinthColor),
-                          ),
-                        ),
-                        Expanded(
-                          child: Divider(
-                            thickness: 0.5,
-                            color: mySixthColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      MySquareTile(
-                        onTap: () => {},
-                        imagePath: 'assets/images/google.png',
-                      ),
-                      const SizedBox(width: 25),
-                      MySquareTile(
-                        onTap: () => {},
-                        imagePath: 'assets/images/apple.png',
-                      )
-                    ],
                   ),
                 ],
               ),

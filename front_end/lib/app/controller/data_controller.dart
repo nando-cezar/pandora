@@ -10,6 +10,8 @@ import 'package:pandora_front/app/modules/dashboard/widgets/my_bottom_sheet.dart
 
 class DataController extends GetxController {
   List<ExtremeEventModel> _items = <ExtremeEventModel>[];
+  int _pastDays = 4;
+  int _forecastDays = 5;
   final Map<String, Marker> _markers = {};
 
   final positionController = Get.put(
@@ -22,26 +24,26 @@ class DataController extends GetxController {
 
   DataController({required this.dataRepository});
 
-  Future<void> getGeneralData({pastDays = 4, forecastDays = 5}) async {
+  Future<void> getGeneralData() async {
     await positionController.getLocationData();
     await dataRepository
         .getGeneralData(
       latitude: positionController.getLatitude(),
       longitude: positionController.getLongitude(),
-      pastDays: pastDays,
-      forecastDays: forecastDays,
+      pastDays: _pastDays,
+      forecastDays: _forecastDays,
     )
         .then((value) async {
       updateItems(value.events);
       await _getMarkerData();
       Get.snackbar(
-        'Success',
-        'Successfully obtained data',
+        'success'.tr,
+        'success_message'.tr,
         icon: const Icon(Icons.check),
       );
     }).catchError((e) {
       Get.snackbar(
-        'Error',
+        'error'.tr,
         e.toString(),
         icon: const Icon(Icons.cancel_outlined),
       );
@@ -57,7 +59,7 @@ class DataController extends GetxController {
       }
     } catch (e) {
       Get.snackbar(
-        'Error',
+        'error'.tr,
         e.toString(),
         icon: const Icon(Icons.cancel_outlined),
       );
@@ -95,7 +97,19 @@ class DataController extends GetxController {
     );
   }
 
+  updatePastDays(int pastDays){
+    _pastDays = pastDays;
+  }
+
+  updateForecastDays(int forecastDays){
+    _forecastDays = forecastDays;
+  }
+
   updateItems(List<ExtremeEventModel> items) => _items = items;
+
+  double getPastDays() => _pastDays.toDouble();
+
+  double getForecastDays() => _forecastDays.toDouble();
 
   List<ExtremeEventModel> getItems() => _items;
 
