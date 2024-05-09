@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pandora_front/app/data/model/extreme_event_model.dart';
 import 'package:pandora_front/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:pandora_front/constants.dart';
@@ -17,6 +18,9 @@ class MyBarGraph extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          const SizedBox(
+            height: 10,
+          ),
           Expanded(
             child: BarChart(
               BarChartData(
@@ -42,7 +46,7 @@ FlTitlesData buildTitlesData(List<ExtremeEventModel> items) {
     sideTitles: SideTitles(
       showTitles: true,
       getTitlesWidget: (value, meta) => getBottomTitles(
-        items.map((e) => e.codeFormatted!).toList(),
+        items.map((e) => e.codeFormatted!.tr).toList(),
         value,
         meta,
       ),

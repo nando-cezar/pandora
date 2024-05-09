@@ -123,7 +123,7 @@ class ParametersPage extends GetView<ParamatersController> {
                           value: controller.getPastDaysSlider(),
                           min: 1,
                           max: 5,
-                          divisions: 5,
+                          divisions: 4,
                           label: controller.getPastDaysSlider().round().toString(),
                           onChanged: (value) => controller.setPastDaysSlider(value),
                         ),
@@ -139,7 +139,7 @@ class ParametersPage extends GetView<ParamatersController> {
                           value: controller.getForecastDaysSlider(),
                           min: 1,
                           max: 14,
-                          divisions: 14,
+                          divisions: 13,
                           label:
                           controller.getForecastDaysSlider().round().toString(),
                           onChanged: (value) => controller.setForecastDaysSlider(value),
