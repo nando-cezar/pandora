@@ -33,6 +33,6 @@ class _InitialPageState extends State<InitialPage>
 
   @override
   Widget build(BuildContext context) {
-    return const MessagePage(message: 'Welcome to your prediction system');
+    return MessagePage(message: 'welcome_initial'.tr);
   }
 }

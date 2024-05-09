@@ -30,14 +30,14 @@ class ForecastWeatherController extends GetxController {
     )
         .then((value) {
       Get.snackbar(
-        'Success',
-        'Successfully obtained data',
+        'success'.tr,
+        'success_message'.tr,
         icon: const Icon(Icons.check),
       );
       _updateData(value);
     }).catchError((e) {
       Get.snackbar(
-        'Error',
+        'error'.tr,
         e.toString(),
         icon: const Icon(Icons.cancel_outlined),
       );

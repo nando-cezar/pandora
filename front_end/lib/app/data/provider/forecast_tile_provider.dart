@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:logger/logger.dart';
@@ -36,11 +37,11 @@ class ForecastTileProvider implements TileProvider {
         tileBytes = response.bodyBytes;
       } else {
         _logger.e("Error log", error: response.statusCode);
-        throw Exception('Failed to load forecast tile data');
+        throw Exception('error_load_data'.tr);
       }
     } catch (error) {
       _logger.e("Error log", error: error);
-      throw Exception('Failed to load forecast tile data');
+      throw Exception('error_load_data'.tr);
     }
     return Tile(tileSize, tileSize, tileBytes);
   }
