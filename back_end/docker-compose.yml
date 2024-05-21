@@ -1,5 +1,7 @@
+version: '3.8'
+
 services:
-  pandora:
+  pandora-backend:
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,3 +10,4 @@ services:
       - .env
     ports:
       - '5000:5000'
+    restart: always

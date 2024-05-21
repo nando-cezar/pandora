@@ -1,6 +1,5 @@
 from flask_restful import fields
 
-from app.model.central_measurement import CentralMeasurement
 from app.model.location import Location
 
 
@@ -31,7 +30,6 @@ class ExtremeEvent(object):
                 'recurrence': fields.Integer,
             })),
             'probability_occurrence': fields.List(fields.Float),
-            'central_measurement_data': CentralMeasurement.resource_fields,
             'locations': Location.resource_fields
         }))
     }

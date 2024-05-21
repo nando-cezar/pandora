@@ -1,0 +1,6 @@
+projectKey=pandora_backend
+serverUrl=http://localhost:9000
+serverVersion=10.5.0.89998
+dashboardUrl=http://localhost:9000/dashboard?id=pandora_backend
+ceTaskId=3f619afd-ee6b-4b7c-9e49-5cf627471add
+ceTaskUrl=http://localhost:9000/api/ce/task?id=3f619afd-ee6b-4b7c-9e49-5cf627471add
