@@ -80,12 +80,13 @@ class ExtremeEventResource(Resource):
                     "state": sub_doc.get('state'),
                     "region": sub_doc.get('region'),
                     "latitude": sub_doc.get('position').latitude,
-                    "longitude": sub_doc.get('position').longitude
+                    "longitude": sub_doc.get('position').longitude,
+                    "start_date": sub_doc.get('start_date'),
+                    "end_date": sub_doc.get('end_date'),
+                    "total_affected": sub_doc.get('total_affected'),
+                    "total_death": sub_doc.get('total_death'),
                 }).__dict__ for sub_doc in location_data_ref
             ]
-
-            central_measurement_data_ref = doc.reference.collection("Central Measurement Data").stream()
-            central_measurement_data = [sub_doc.to_dict() for sub_doc in central_measurement_data_ref]
 
             extreme_event_data = {
                 "code": doc.get('code'),
@@ -99,7 +100,6 @@ class ExtremeEventResource(Resource):
                 "total_recurrence": doc.get('total_recurrence'),
                 "region_greatest_recurrences": doc.get('region_greatest_recurrence'),
                 "probability_occurrence": probability_occurrence_result[count],
-                "central_measurement_data": central_measurement_data[0],
                 "locations": location_data
             }
 

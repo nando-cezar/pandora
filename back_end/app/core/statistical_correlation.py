@@ -37,7 +37,7 @@ class StatisticalCorrelation(ProbabilityOccurrence):
                     index=ordered,
                     columns=ordered
                 )
-            ) for i in range(7)
+            ) for i in range(8)
         ]
 
         def calculate_similarity(e):
