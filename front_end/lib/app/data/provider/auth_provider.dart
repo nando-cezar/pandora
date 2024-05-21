@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
 import 'package:pandora_front/app/data/model/user_model.dart';
@@ -31,7 +32,7 @@ class AuthProvider {
       return UserModel.fromFirebase(currentUser!);
     } on FirebaseAuthException catch (error) {
       _logger.e("Error log", error: error);
-      throw Exception('Failed to firebase authentication!\n${error.message!}');
+      throw Exception('${'error_message_firebase'.tr}\n${error.message!}');
     }
   }
 
@@ -53,7 +54,7 @@ class AuthProvider {
       return UserModel.fromFirebase(currentUser!);
     } on FirebaseAuthException catch (error) {
       _logger.e("Error log", error: error);
-      throw Exception('Failed to firebase authentication!\n${error.message!}');
+      throw Exception('${'error_message_firebase'.tr}\n${error.message!}');
     }
   }
 
@@ -68,7 +69,7 @@ class AuthProvider {
       return UserModel.fromFirebase(currentUser!);
     } on FirebaseAuthException catch (error) {
       _logger.e("Error log", error: error);
-      throw Exception('Failed to firebase authentication!\n${error.message!}');
+      throw Exception('${'error_message_firebase'.tr}\n${error.message!}');
     }
   }
 
@@ -80,7 +81,7 @@ class AuthProvider {
       );
     } on FirebaseAuthException catch (error) {
       _logger.e("Error log", error: error);
-      throw Exception('Failed to firebase authentication!\n${error.message!}');
+      throw Exception('${'error_message_firebase'.tr}\n${error.message!}');
     }
   }
 

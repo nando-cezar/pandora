@@ -15,8 +15,8 @@ class ForgotPasswordController extends GetxController {
     )
         .then((value) {
       Get.snackbar(
-        'Success',
-        'Password reset link sent! \nCheck your e-mail.',
+        'success'.tr,
+        'reset_password_message'.tr,
         icon: const Icon(Icons.check),
       );
     }).catchError((e) {

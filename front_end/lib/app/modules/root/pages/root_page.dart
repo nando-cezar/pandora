@@ -34,6 +34,6 @@ class _RootPageState extends State<RootPage>
 
   @override
   Widget build(BuildContext context) {
-    return const MessagePage(message: 'Preparing application');
+    return MessagePage(message: 'preparing_application'.tr);
   }
 }

@@ -1,4 +1,8 @@
 final Map<String, String> ptBR = {
+
+  'welcome_initial': 'Bem-vindo ao seu sistema de previsão',
+  'preparing_application': 'Preparando aplicação',
+
   'welcome': 'Bem-vindo de volta, sua falta foi sentida!',
   'password': 'Senha',
   'forgot_password?': 'Esqueceu a senha?',
@@ -6,17 +10,23 @@ final Map<String, String> ptBR = {
   'or_continue_with': 'Ou continuar com',
   'not_a_member?': 'Não é membro?',
   'register_now': 'Registre-se agora',
+  'login_message': 'Login com sucesso',
 
   'forgot_password!': 'Esqueci a senha!',
   'forgot_password_message': 'Digite seu e-mail e enviaremos um link para redefinição de senha.',
   'reset_password': 'Redefinir senha',
+  'reset_password_message':'Link de redefinição de senha enviado! \nVerifique seu e-mail.',
 
   'register_account_message': 'Vamos criar uma conta para você!',
   'confirm_password': 'Confirmar senha',
   'signup': 'Registrar',
+  'incompatible_passwords': 'Senhas incompatíveis',
+  'register_successfully': 'Registro com sucesso',
 
   'preparing_data': 'Preparando dados',
   'error_message': 'Erro inesperado,\nentre em contato com o administrador do sistema',
+  'error_message_firebase': 'Falha na autenticação do Firebase!',
+  'error_load_data': 'Falha ao carregar dados!',
 
   'title': 'EVENTOS EXTREMOS',
   'subtitle': 'Gráfico de previsão baseado na localização atual',
@@ -28,6 +38,7 @@ final Map<String, String> ptBR = {
   'Riverine flood': 'Inundação ribeirinha',
   'Storm, General': 'Tempestade, Geral',
   'Tropical cyclone': 'Ciclone tropical',
+  'Extra-tropical storm': 'Tempestade extratropical',
 
   'CW': 'OF',
   'FF': 'IRE',
@@ -36,6 +47,7 @@ final Map<String, String> ptBR = {
   'RF': 'IR',
   'SG': 'TG',
   'TC': 'CT',
+  'ETS': 'TET',
 
   'North': 'Norte',
   'South': 'Sul',

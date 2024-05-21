@@ -18,14 +18,14 @@ class LoginController extends GetxController {
         .then((value) {
       if (value != null) {
         Get.snackbar(
-          'Success',
-          'Login successfully',
+          'success'.tr,
+          'login_message'.tr,
           icon: const Icon(Icons.check),
         );
       }
     }).catchError((e) {
       Get.snackbar(
-        'Error',
+        'error'.tr,
         e.toString(),
         icon: const Icon(Icons.cancel_outlined),
       );
@@ -36,14 +36,14 @@ class LoginController extends GetxController {
     await repository.signInWithGoogle().then((value) {
       if (value != null) {
         Get.snackbar(
-          'Success',
-          'Login successfully',
+          'success'.tr,
+          'login_message'.tr,
           icon: const Icon(Icons.check),
         );
       }
     }).catchError((e) {
       Get.snackbar(
-        'Error',
+        'error'.tr,
         e.toString(),
         icon: const Icon(Icons.cancel_outlined),
       );

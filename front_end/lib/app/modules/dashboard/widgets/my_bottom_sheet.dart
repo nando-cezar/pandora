@@ -143,7 +143,7 @@ class MyBottomSheet extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        '25-05-1997',
+                        metaData['startDate'],
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
@@ -159,7 +159,7 @@ class MyBottomSheet extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        '30-03-2024',
+                        metaData['endDate'],
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
@@ -178,7 +178,7 @@ class MyBottomSheet extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        '100.000',
+                        metaData['totalDeath'].toString(),
                         overflow: TextOverflow.clip,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
@@ -195,7 +195,7 @@ class MyBottomSheet extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        '70.000',
+                        metaData['totalAffected'].toString(),
                         overflow: TextOverflow.clip,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,

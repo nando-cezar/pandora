@@ -1,4 +1,8 @@
 final Map<String, String> enUs = {
+
+  'welcome_initial': 'Welcome to your prediction system',
+  'preparing_application': 'Preparing Application',
+
   'welcome': 'Welcome back you\'ve been missed!',
   'password': 'Password',
   'forgot_password?': 'Forgot Password?',
@@ -6,17 +10,23 @@ final Map<String, String> enUs = {
   'or_continue_with': 'Or continue with',
   'not_a_member?': 'Not a member?',
   'register_now': 'Register now',
+  'login_message': 'Login successfully',
 
   'forgot_password!': 'Forgot password!',
   'forgot_password_message': 'Enter your e-mail ans we will send you a password reset link.',
   'reset_password': 'Reset password',
+  'reset_password_message':'Password reset link sent! \nCheck your e-mail.',
 
   'register_account_message': 'Let\'s create an account for you!',
   'confirm_password': 'Confirm password',
   'signup': 'Sign Up',
+  'incompatible_passwords': 'Incompatible passwords',
+  'register_successfully': 'Register successfully',
 
   'preparing_data': 'Preparing data',
   'error_message': 'Unexpected error,\ncontact your system administrator',
+  'error_message_firebase': 'Failed to firebase authentication!',
+  'error_load_data': 'Failed to load data!',
 
   'title': 'EXTREME EVENTS',
   'subtitle': 'Prediction chart based on current location',
@@ -28,6 +38,7 @@ final Map<String, String> enUs = {
   'Riverine flood': 'Riverine flood',
   'Storm, General': 'Storm, General',
   'Tropical cyclone': 'Tropical cyclone',
+  'Extra-tropical storm': 'Extra-tropical storm',
 
   'CW': 'CW',
   'FF': 'FF',
@@ -36,6 +47,7 @@ final Map<String, String> enUs = {
   'RF': 'RF',
   'SG': 'SG',
   'TC': 'TC',
+  'ETS': 'ETS',
 
   'North': 'North',
   'South': 'South',

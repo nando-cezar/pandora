@@ -18,16 +18,16 @@ class RegisterController extends GetxController {
       ).then((value){
         if(value!= null){
           Get.snackbar(
-            'Success',
-            'Register successfully',
+            'success'.tr,
+            'register_successfully'.tr,
             icon: const Icon(Icons.check),
           );
         }
       }).catchError((e){
-        Get.snackbar('Error', e.toString());
+        Get.snackbar('error'.tr, e.toString());
       });
     } else {
-      Get.snackbar('Error', 'Incompatible passwords');
+      Get.snackbar('error'.tr, 'incompatible_passwords'.tr);
     }
 
   }
