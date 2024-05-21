@@ -38,6 +38,7 @@ final Map<String, String> ptBR = {
   'Riverine flood': 'Inundação ribeirinha',
   'Storm, General': 'Tempestade, Geral',
   'Tropical cyclone': 'Ciclone tropical',
+  'Extra-tropical storm': 'Tempestade extratropical',
 
   'CW': 'OF',
   'FF': 'IRE',
@@ -46,6 +47,7 @@ final Map<String, String> ptBR = {
   'RF': 'IR',
   'SG': 'TG',
   'TC': 'CT',
+  'ETS': 'TET',
 
   'North': 'Norte',
   'South': 'Sul',

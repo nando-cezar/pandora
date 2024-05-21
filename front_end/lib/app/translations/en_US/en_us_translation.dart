@@ -38,6 +38,7 @@ final Map<String, String> enUs = {
   'Riverine flood': 'Riverine flood',
   'Storm, General': 'Storm, General',
   'Tropical cyclone': 'Tropical cyclone',
+  'Extra-tropical storm': 'Extra-tropical storm',
 
   'CW': 'CW',
   'FF': 'FF',
@@ -46,6 +47,7 @@ final Map<String, String> enUs = {
   'RF': 'RF',
   'SG': 'SG',
   'TC': 'TC',
+  'ETS': 'ETS',
 
   'North': 'North',
   'South': 'South',

@@ -53,8 +53,12 @@ class DataController extends GetxController {
   Future<void> _getMarkerData() async {
     try {
       for (var locationSnapshot in getItems()) {
-        for (var locationDoc in locationSnapshot.locations!) {
-          _addMarker(locationDoc, locationSnapshot.dataSource!);
+        if(locationSnapshot.code == 5){
+          for (var locationDoc in locationSnapshot.locations!) {
+            if(locationDoc.region == 'Southeast'){
+              _addMarker(locationDoc, locationSnapshot.dataSource!);
+            }
+          }
         }
       }
     } catch (e) {
