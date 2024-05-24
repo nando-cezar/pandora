@@ -49,6 +49,7 @@ final Map<String, String> ptBR = {
   'TC': 'CT',
   'ETS': 'TET',
 
+  'All': 'Todos',
   'North': 'Norte',
   'South': 'Sul',
   'Southeast': 'Sudeste',
@@ -75,6 +76,9 @@ final Map<String, String> ptBR = {
   'end_date:': 'Data de término:',
   'total_deaths:': 'Total de mortes:',
   'total_affected:': 'Total afetado:',
+  'change_map_view': 'Alterar exibição do mapa',
+  'select_region': 'Selecionar região',
+  'select_event': 'Selecionar evento extremo',
 
   'forecast_date': 'Data de previsão',
 

@@ -9,7 +9,6 @@ import 'package:pandora_front/app/ui/pages/message_page.dart';
 import 'package:pandora_front/app/ui/widgets/my_drawer.dart';
 import 'package:pandora_front/constants.dart';
 
-
 class DashboardPage extends GetView<DashboardController> {
   const DashboardPage({super.key});
 

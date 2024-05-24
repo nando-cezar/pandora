@@ -17,19 +17,18 @@ class MyCardSettings extends GetView<SettingsController> {
       child: Column(
         children: <Widget>[
           ListTile(
-            leading: Icon(
-              FontAwesomeIcons.language,
-              color: myFirstColor,
-            ),
-            title: Text(
-              'change_language'.tr,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.tertiary,
+              leading: Icon(
+                FontAwesomeIcons.language,
+                color: myFirstColor,
               ),
-            ),
-            trailing: const Icon(Icons.keyboard_arrow_right),
-            onTap: () => _buildDefaultDialog(context)
-          ),
+              title: Text(
+                'change_language'.tr,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
+              ),
+              trailing: const Icon(Icons.keyboard_arrow_right),
+              onTap: () => _buildDefaultDialog(context)),
           Divider(
             color: Theme.of(context).colorScheme.secondary,
           ),
@@ -68,19 +67,13 @@ class MyCardSettings extends GetView<SettingsController> {
               color: Theme.of(context).colorScheme.tertiary,
             ),
           ),
-          const MyDropdown(),
+          MyDropdown(
+            controller: controller.localeController,
+            options: const ['Portuguese - BR', 'English'],
+          ),
         ],
       ),
       actions: [
-        TextButton(
-          child: Text(
-            'cancel'.tr,
-            style: TextStyle(color: myFirstColor),
-          ),
-          onPressed: () {
-            Get.back();
-          },
-        ),
         TextButton(
           child: Text(
             'confirm'.tr,
@@ -88,7 +81,7 @@ class MyCardSettings extends GetView<SettingsController> {
           ),
           onPressed: () {
             Get.updateLocale(controller.getLocale());
-            Get.back();
+            Get.back(closeOverlays: true);
           },
         )
       ],
