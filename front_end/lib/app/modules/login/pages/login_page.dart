@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:pandora_front/app/modules/login/controllers/login_controller.dart';
 import 'package:pandora_front/app/routes/app_pages.dart';
@@ -37,7 +38,10 @@ class LoginPage extends GetView<LoginController> {
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
                     ),
-                  ),
+                  ).animate()
+                      .fadeIn(duration: 600.ms)
+                      .then(delay: 200.ms) // baseline=800ms
+                      .slide(),
 
                   const SizedBox(height: 10),
 

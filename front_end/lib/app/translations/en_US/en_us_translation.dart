@@ -49,6 +49,7 @@ final Map<String, String> enUs = {
   'TC': 'TC',
   'ETS': 'ETS',
 
+  'All': 'All',
   'North': 'North',
   'South': 'South',
   'Southeast': 'Southeast',
@@ -75,6 +76,9 @@ final Map<String, String> enUs = {
   'end_date:': 'End date:',
   'total_deaths:': 'Total Deaths:',
   'total_affected:': 'Total Affected:',
+  'change_map_view': 'Change map view',
+  'select_region': 'Select region',
+  'select_event': 'Select extreme event',
 
   'forecast_date': 'Forecast Date',
 

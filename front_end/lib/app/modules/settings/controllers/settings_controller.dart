@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pandora_front/app/data/model/user_model.dart';
 import 'package:pandora_front/app/data/repository/auth_repository.dart';
@@ -8,15 +7,14 @@ import 'package:pandora_front/app/ui/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class SettingsController extends GetxController {
+  final localeController = TextEditingController();
+
   final repository = Get.put<AuthController>(
     AuthController(
       repository: AuthRepository(),
     ),
   );
   UserModel user = UserModel.mock();
-
-  String locale = '';
-  List<String> list = <String>['Portuguese - BR', 'English'];
 
   toggleTheme(val) {
     Provider.of<ThemeProvider>(Get.context!, listen: false).toggleTheme();
@@ -29,12 +27,8 @@ class SettingsController extends GetxController {
     update();
   }
 
-  changeLocale(String val) {
-    locale = val;
-  }
-
   Locale getLocale() {
-    if (locale == 'Portuguese - BR') {
+    if (localeController.text == 'Portuguese - BR') {
       return const Locale('pt', 'BR');
     } else {
       return const Locale('en', 'US');

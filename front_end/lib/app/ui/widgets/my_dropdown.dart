@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pandora_front/app/modules/settings/controllers/settings_controller.dart';
 
-class MyDropdown extends GetView<SettingsController> {
-  const MyDropdown({super.key});
+class MyDropdown extends StatelessWidget {
+  final TextEditingController controller;
+  final List<String> options;
+
+  const MyDropdown({
+    super.key,
+    required this.controller,
+    required this.options,
+  });
 
   @override
   Widget build(BuildContext context) {
     return DropdownMenu<String>(
+      controller: controller,
       width: 250,
-      onSelected: (String? value) {
-        controller.changeLocale(value!);
-      },
-      dropdownMenuEntries: controller.list.map<DropdownMenuEntry<String>>((String value) {
+      dropdownMenuEntries:
+          options.map<DropdownMenuEntry<String>>((String value) {
         return DropdownMenuEntry<String>(value: value, label: value);
       }).toList(),
       hintText: 'select'.tr,

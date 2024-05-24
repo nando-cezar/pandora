@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:pandora_front/constants.dart';
 
 class MessagePage extends StatelessWidget {
   final String message;
@@ -10,9 +12,9 @@ class MessagePage extends StatelessWidget {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.blue, Colors.white],
+            colors: [myFirstColor, myFifthColor],
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
           ),
@@ -20,7 +22,7 @@ class MessagePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               'P A N D O R A',
               style: TextStyle(
                 color: Colors.white,
@@ -28,27 +30,29 @@ class MessagePage extends StatelessWidget {
                 fontSize: 30.0,
                 shadows: [
                   Shadow(
-                    offset: Offset(2.0, 2.0),
+                    offset: const Offset(2.0, 2.0),
                     blurRadius: 3.0,
-                    color: Colors.grey,
+                    color: myTenthColor!,
                   ),
                 ],
               ),
-            ),
+            ).animate()
+            .fadeIn(duration: 600.ms)
+            .slide(),
 
             const SizedBox(height: 10),
 
             Text(
               message,
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.normal,
                 fontSize: 15.0,
                 shadows: [
                   Shadow(
-                    offset: Offset(2.0, 2.0),
+                    offset: const Offset(2.0, 2.0),
                     blurRadius: 3.0,
-                    color: Colors.grey,
+                    color: myTenthColor!,
                   ),
                 ],
               ),
