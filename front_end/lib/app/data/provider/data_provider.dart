@@ -8,7 +8,10 @@ import 'package:pandora_front/app/data/model/extreme_event_wrapper.dart';
 class DataProvider {
   final String _apiPandoraCorrelationUrl = dotenv.env['API_PANDORA_CORRELATION_URL']!;
   final String _apiPandoraKey = dotenv.env['API_PANDORA_KEY']!;
+  final http.Client httpClient;
   final _logger = Logger();
+
+  DataProvider({required this.httpClient});
 
   Future<ExtremeEventWrapper> getGeneralData(
       double latitude,
@@ -25,7 +28,7 @@ class DataProvider {
         'Token=$_apiPandoraKey';
 
     try {
-      final http.Response response = await http.get(Uri.parse(apiUrl));
+      var response = await httpClient.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
         _logger.i("DataProvider: Successfully!");
         return ExtremeEventWrapper.fromJson(jsonDecode(response.body));

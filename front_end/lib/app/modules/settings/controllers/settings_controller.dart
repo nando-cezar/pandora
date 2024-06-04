@@ -8,12 +8,7 @@ import 'package:provider/provider.dart';
 
 class SettingsController extends GetxController {
   final localeController = TextEditingController();
-
-  final repository = Get.put<AuthController>(
-    AuthController(
-      repository: AuthRepository(),
-    ),
-  );
+  final repository = Get.find<AuthController>();
   UserModel user = UserModel.mock();
 
   toggleTheme(val) {

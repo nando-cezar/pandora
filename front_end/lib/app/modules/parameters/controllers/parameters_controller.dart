@@ -4,21 +4,11 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pandora_front/app/controller/data_controller.dart';
 import 'package:pandora_front/app/controller/position_controller.dart';
-import 'package:pandora_front/app/data/repository/data_repository.dart';
-import 'package:pandora_front/app/data/repository/position_repository.dart';
 import 'package:pandora_front/app/routes/app_pages.dart';
 
 class ParamatersController extends GetxController {
-  final positionController = Get.put(
-    PositionController(
-      positionRepository: PositionRepository(),
-    ),
-  );
-  final dataController = Get.put(
-    DataController(
-      dataRepository: DataRepository(),
-    ),
-  );
+  final positionController = Get.find<PositionController>();
+  final dataController = Get.find<DataController>();
 
   final gMapController = Completer<GoogleMapController>();
   final Set<Marker> _markers = {};

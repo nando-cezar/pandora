@@ -10,11 +10,7 @@ class ForecastWeatherController extends GetxController {
   ForecastWeatherModel forecastWeatherModel = ForecastWeatherModel.mock();
 
   static String dataOpenWeatherKey = dotenv.env['DATA_OPEN_WEATHER_KEY']!;
-  final positionController = Get.put(
-    PositionController(
-      positionRepository: PositionRepository(),
-    ),
-  );
+  final positionController = Get.find<PositionController>();
   final ForecastWeatherRepository forecastWeatherRepository;
 
   ForecastWeatherController({required this.forecastWeatherRepository});

@@ -10,19 +10,14 @@ import 'package:pandora_front/app/modules/world_map/controllers/forecast_tile_co
 import 'package:uuid/uuid.dart';
 
 class WorldMapController extends GetxController {
-  final mapController = Get.find<MapController>();
   final gMapController = Completer<GoogleMapController>();
+  final mapController = Get.find<MapController>();
+  final positionController = Get.find<PositionController>();
   final forecastTileController = Get.find<ForecastTileController>();
   var forecastDate = DateTime.now();
   var tileOverlay = TileOverlay(
     tileOverlayId: TileOverlayId(
       const Uuid().v4(),
-    ),
-  );
-
-  final positionController = Get.put(
-    PositionController(
-      positionRepository: PositionRepository(),
     ),
   );
 

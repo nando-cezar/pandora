@@ -3,18 +3,13 @@ import 'package:get/get.dart';
 import 'package:pandora_front/app/controller/position_controller.dart';
 import 'package:pandora_front/app/data/model/extreme_event_model.dart';
 import 'package:pandora_front/app/data/repository/data_repository.dart';
-import 'package:pandora_front/app/data/repository/position_repository.dart';
 
 class DataController extends GetxController {
   List<ExtremeEventModel> _items = <ExtremeEventModel>[];
   int _pastDays = 1;
   int _forecastDays = 5;
 
-  final positionController = Get.put(
-    PositionController(
-      positionRepository: PositionRepository(),
-    ),
-  );
+  final positionController = Get.find<PositionController>();
 
   final DataRepository dataRepository;
 

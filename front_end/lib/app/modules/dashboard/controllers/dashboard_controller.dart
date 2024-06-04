@@ -7,13 +7,14 @@ import 'package:pandora_front/app/controller/data_controller.dart';
 import 'package:pandora_front/app/controller/map_controller.dart';
 import 'package:pandora_front/app/data/model/location_model.dart';
 import 'package:pandora_front/app/modules/dashboard/widgets/my_bottom_sheet.dart';
+import 'package:pandora_front/constants.dart';
 
 class DashboardController extends GetxController {
   final regionController = TextEditingController();
   final extremeEventController = TextEditingController();
+  final gMapController = Completer<GoogleMapController>();
   final dataController = Get.find<DataController>();
   final mapController = Get.find<MapController>();
-  final gMapController = Completer<GoogleMapController>();
 
   final Map<String, Marker> _markers = {};
 
@@ -22,13 +23,15 @@ class DashboardController extends GetxController {
     return await mapController.loadMapStyle();
   }
 
-  Future<void> getMarkerData({String extremeEventDescription = 'Flood, General', String region = 'All'}) async {
+  Future<void> getMarkerData(
+      {String extremeEventDescription = 'Flood, General',
+      String region = 'All'}) async {
     _markers.clear();
     try {
       for (var locationSnapshot in dataController.getItems()) {
-        if(locationSnapshot.description?.tr == extremeEventDescription.tr){
+        if (locationSnapshot.description?.tr == extremeEventDescription.tr) {
           for (var locationDoc in locationSnapshot.locations!) {
-            if(locationDoc.region?.tr == region.tr || region.tr == 'All'.tr){
+            if (locationDoc.region?.tr == region.tr || region.tr == 'All'.tr) {
               _addMarker(locationDoc, locationSnapshot.dataSource!);
             }
           }
@@ -70,10 +73,12 @@ class DashboardController extends GetxController {
 
   void _openBottomSheet(
       Map<String, dynamic> metaData, List<String> dataSource) {
-    showModalBottomSheet(
-      context: Get.context!,
-      builder: (context) =>
-          MyBottomSheet(metaData: metaData, dataSource: dataSource),
+    Get.bottomSheet(
+      MyBottomSheet(
+        metaData: metaData,
+        dataSource: dataSource,
+      ),
+      backgroundColor: mySeventhColor,
     );
   }
 }
