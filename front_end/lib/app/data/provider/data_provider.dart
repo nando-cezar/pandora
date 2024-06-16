@@ -29,6 +29,7 @@ class DataProvider {
 
     try {
       var response = await httpClient.get(Uri.parse(apiUrl));
+
       if (response.statusCode == 200) {
         _logger.i("DataProvider: Successfully!");
         return ExtremeEventWrapper.fromJson(jsonDecode(response.body));

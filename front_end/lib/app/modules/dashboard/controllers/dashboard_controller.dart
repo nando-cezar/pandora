@@ -10,22 +10,26 @@ import 'package:pandora_front/app/modules/dashboard/widgets/my_bottom_sheet.dart
 import 'package:pandora_front/constants.dart';
 
 class DashboardController extends GetxController {
+  final DataController dataController;
+  final MapController mapController;
   final regionController = TextEditingController();
   final extremeEventController = TextEditingController();
   final gMapController = Completer<GoogleMapController>();
-  final dataController = Get.find<DataController>();
-  final mapController = Get.find<MapController>();
 
   final Map<String, Marker> _markers = {};
+
+  DashboardController(
+      {required this.dataController, required this.mapController});
 
   getConfig() async {
     await getMarkerData();
     return await mapController.loadMapStyle();
   }
 
-  Future<void> getMarkerData(
-      {String extremeEventDescription = 'Flood, General',
-      String region = 'All'}) async {
+  Future<void> getMarkerData({
+    String extremeEventDescription = 'Flood, General',
+    String region = 'All',
+  }) async {
     _markers.clear();
     try {
       for (var locationSnapshot in dataController.getItems()) {

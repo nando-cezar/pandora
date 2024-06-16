@@ -2,27 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pandora_front/app/controller/position_controller.dart';
 import 'package:pandora_front/app/data/model/extreme_event_model.dart';
+import 'package:pandora_front/app/data/repository/auth_repository.dart';
 import 'package:pandora_front/app/data/repository/data_repository.dart';
+import 'package:pandora_front/app/data/repository/local_data_repository.dart';
 
 class DataController extends GetxController {
-  List<ExtremeEventModel> _items = <ExtremeEventModel>[];
-  int _pastDays = 1;
-  int _forecastDays = 5;
-
-  final positionController = Get.find<PositionController>();
-
+  final AuthRepository authRepository;
+  final PositionController positionController;
   final DataRepository dataRepository;
+  final LocalDataRepository localDataRepository;
+  List<ExtremeEventModel> _items = <ExtremeEventModel>[];
 
-  DataController({required this.dataRepository});
+  DataController({
+    required this.dataRepository,
+    required this.authRepository,
+    required this.positionController,
+    required this.localDataRepository,
+  });
 
   Future<void> getGeneralData() async {
     await positionController.getLocationData();
+
+    print(localDataRepository.getDouble('latitude'));
+    print(localDataRepository.getDouble('longitude'));
+    print(localDataRepository.getInt('pastDays'));
+    print(localDataRepository.getInt('forecastDays'));
+
     await dataRepository
         .getGeneralData(
-      latitude: positionController.getLatitude(),
-      longitude: positionController.getLongitude(),
-      pastDays: _pastDays,
-      forecastDays: _forecastDays,
+      latitude: localDataRepository.getDouble('latitude'),
+      longitude: localDataRepository.getDouble('longitude'),
+      pastDays: localDataRepository.getInt('pastDays'),
+      forecastDays: localDataRepository.getInt('forecastDays'),
     )
         .then((value) async {
       updateItems(value.events);
@@ -40,22 +51,21 @@ class DataController extends GetxController {
     });
   }
 
-  updatePastDays(int pastDays){
-    _pastDays = pastDays;
+  updatePastDays(int value) {
+    localDataRepository.saveInt('pastDays', value);
   }
 
-  updateForecastDays(int forecastDays){
-    _forecastDays = forecastDays;
+  updateForecastDays(int value) {
+    localDataRepository.saveInt('forecastDays', value);
   }
 
   updateItems(List<ExtremeEventModel> items) => _items = items;
 
-  double getPastDays() => _pastDays.toDouble();
+  double getPastDays() => localDataRepository.getInt('pastDays').toDouble();
 
-  double getForecastDays() => _forecastDays.toDouble();
+  double getForecastDays() => localDataRepository.getInt('forecastDays').toDouble();
 
   List<ExtremeEventModel> getItems() => _items;
 
   ExtremeEventModel getItem(int i) => _items[i];
-
 }

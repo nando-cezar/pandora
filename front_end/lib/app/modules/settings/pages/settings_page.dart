@@ -14,7 +14,7 @@ class SettingsPage extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
     var verifyDarkMode =
-        Provider.of<ThemeProvider>(context).themeData.brightness ==
+        Provider.of<ThemeProvider>(Get.context!).themeData.brightness ==
             Brightness.dark;
 
     return Scaffold(
@@ -22,12 +22,12 @@ class SettingsPage extends GetView<SettingsController> {
       drawer: const MyDrawer(),
       body: Stack(
         fit: StackFit.expand,
-        children: <Widget>[
+        children: [
           SingleChildScrollView(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 const MyCardProfile(),
                 const SizedBox(height: 10.0),
                 const MyCardSettings(),

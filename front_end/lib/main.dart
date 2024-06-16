@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pandora_front/app/data/provider/local_data_provider.dart';
 import 'package:pandora_front/app/routes/app_pages.dart';
 import 'package:pandora_front/app/translations/app_translations.dart';
 import 'package:pandora_front/app/ui/theme/theme_provider.dart';
@@ -14,6 +15,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await dotenv.load(fileName: ".env");
+  await LocalDataProvider.init();
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => ThemeProvider(),

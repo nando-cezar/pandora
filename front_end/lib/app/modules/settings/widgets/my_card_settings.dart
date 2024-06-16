@@ -24,13 +24,14 @@ class MyCardSettings extends GetView<SettingsController> {
               title: Text(
                 'change_language'.tr,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.tertiary,
+                  color: Theme.of(Get.context!).colorScheme.tertiary,
                 ),
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
-              onTap: () => _buildDefaultDialog(context)),
+              onTap: () => _buildDefaultDialog()
+          ),
           Divider(
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(Get.context!).colorScheme.secondary,
           ),
           ListTile(
             leading: Icon(
@@ -40,7 +41,7 @@ class MyCardSettings extends GetView<SettingsController> {
             title: Text(
               'change_parameters'.tr,
               style: TextStyle(
-                color: Theme.of(context).colorScheme.tertiary,
+                color: Theme.of(Get.context!).colorScheme.tertiary,
               ),
             ),
             trailing: const Icon(Icons.keyboard_arrow_right),
@@ -51,7 +52,7 @@ class MyCardSettings extends GetView<SettingsController> {
     );
   }
 
-  void _buildDefaultDialog(BuildContext context) {
+  void _buildDefaultDialog() {
     Get.defaultDialog(
       title: 'change_language'.tr,
       titleStyle: const TextStyle(
@@ -64,7 +65,7 @@ class MyCardSettings extends GetView<SettingsController> {
           Text(
             'select_language'.tr,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.tertiary,
+              color: Theme.of(Get.context!).colorScheme.tertiary,
             ),
           ),
           MyDropdown(

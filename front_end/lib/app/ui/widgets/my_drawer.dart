@@ -9,7 +9,7 @@ class MyDrawer extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Theme.of(context).colorScheme.primary,
+      backgroundColor: Theme.of(Get.context!).colorScheme.primary,
       child: Column(
         children: [
           DrawerHeader(

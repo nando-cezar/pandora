@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pandora_front/app/data/repository/local_data_repository.dart';
 import 'package:pandora_front/app/data/repository/position_repository.dart';
 
-
 class PositionController extends GetxController {
-  double _latitude = 0.0;
-  double _longitude = 0.0;
 
   final PositionRepository positionRepository;
+  final LocalDataRepository localDataRepository;
 
-  PositionController({required this.positionRepository});
+  PositionController({
+    required this.positionRepository,
+    required this.localDataRepository,
+  });
 
   getLocationData() async {
-    if (getLatitude() == 0.0 && getLongitude() == 0.0) {
+    if (getLatitude() == 1.0 && getLongitude() == 1.0) {
       final position = await positionRepository.getPosition();
-      updateLatLng(position.latitude, position.longitude);
+      updateLatitude(position.latitude);
+      updateLongitude(position.longitude);
     } else {
       Get.snackbar(
         'info'.tr,
@@ -24,13 +27,11 @@ class PositionController extends GetxController {
     }
   }
 
-  void updateLatLng(double newLatitude, double newLongitude){
-    _latitude = newLatitude;
-    _longitude = newLongitude;
-  }
+  updateLatitude(double value) => localDataRepository.saveDouble('latitude', value);
 
-  double getLatitude() =>  _latitude;
+  updateLongitude(double value) => localDataRepository.saveDouble('longitude', value);
 
-  double getLongitude() =>  _longitude;
+  double getLatitude() => localDataRepository.getDouble('latitude');
 
+  double getLongitude() => localDataRepository.getDouble('longitude');
 }

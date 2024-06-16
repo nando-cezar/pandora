@@ -4,20 +4,24 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pandora_front/app/controller/data_controller.dart';
 import 'package:pandora_front/app/controller/position_controller.dart';
+import 'package:pandora_front/app/modules/auth/controllers/auth_controller.dart';
 import 'package:pandora_front/app/routes/app_pages.dart';
 
 class ParamatersController extends GetxController {
-  final positionController = Get.find<PositionController>();
-  final dataController = Get.find<DataController>();
-
+  final AuthController authController;
+  final PositionController positionController;
+  final DataController dataController;
   final gMapController = Completer<GoogleMapController>();
-  final Set<Marker> _markers = {};
   LatLng? _selectedLocation;
-  int _pastDaysSlider = 0;
-  int _forecastDaysSlider = 0;
+  final Set<Marker> _markers = {};
+
+  ParamatersController({
+    required this.authController,
+    required this.positionController,
+    required this.dataController,
+  });
 
   getConfig() async {
-    await positionController.getLocationData();
     _setSelectedLocation(
       positionController.getLatitude(),
       positionController.getLongitude(),
@@ -26,17 +30,13 @@ class ParamatersController extends GetxController {
   }
 
   void persist() {
-    dataController.updatePastDays(_pastDaysSlider);
-    dataController.updateForecastDays(_forecastDaysSlider);
-    positionController.updateLatLng(
-      _selectedLocation!.latitude,
-      _selectedLocation!.longitude,
-    );
     Get.offAllNamed(Routes.dashboard);
   }
 
   void onMapTapped(LatLng location) {
     _selectedLocation = location;
+    positionController.updateLatitude(location.latitude);
+    positionController.updateLongitude(location.longitude);
     _updateMarkers();
   }
 
@@ -53,17 +53,17 @@ class ParamatersController extends GetxController {
 
   Set<Marker> getMarkers() => _markers;
 
-  double getPastDaysSlider() => _pastDaysSlider.toDouble();
+  double getPastDaysSlider() => dataController.localDataRepository.getInt('pastDays').toDouble();
 
-  void setPastDaysSlider(double value) {
-    _pastDaysSlider = value.toInt();
+  setPastDaysSlider(double value) async {
+    dataController.localDataRepository.saveInt('pastDays', value.toInt());
     update();
   }
 
-  double getForecastDaysSlider() => _forecastDaysSlider.toDouble();
+  double getForecastDaysSlider() => dataController.localDataRepository.getInt('forecastDays').toDouble();
 
   void setForecastDaysSlider(double value) {
-    _forecastDaysSlider = value.toInt();
+    dataController.localDataRepository.saveInt('forecastDays', value.toInt());
     update();
   }
 

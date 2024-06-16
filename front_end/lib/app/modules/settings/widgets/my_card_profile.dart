@@ -15,12 +15,12 @@ class MyCardProfile extends StatelessWidget {
       ),
       color: Theme.of(context).colorScheme.primary,
       child: GetPlatform.isMobile
-          ? _buildMobileProfile(context)
-          : _buildDesktopProfile(context),
+          ? _buildMobileProfile()
+          : _buildDesktopProfile(),
     );
   }
 
-  Widget _buildDesktopProfile(BuildContext context) {
+  Widget _buildDesktopProfile() {
     return GetBuilder<SettingsController>(
       builder: (controller) {
         return Column(
@@ -29,7 +29,7 @@ class MyCardProfile extends StatelessWidget {
               title: Text(
                 controller.user.displayName!,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.tertiary,
+                  color: Theme.of(Get.context!).colorScheme.tertiary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -43,7 +43,7 @@ class MyCardProfile extends StatelessWidget {
                   Text(
                     'E-mail:',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -51,7 +51,7 @@ class MyCardProfile extends StatelessWidget {
                     controller.user.email!,
                     overflow: TextOverflow.clip,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -60,7 +60,7 @@ class MyCardProfile extends StatelessWidget {
                   Text(
                     'ID:',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -68,7 +68,7 @@ class MyCardProfile extends StatelessWidget {
                     controller.user.uid!,
                     overflow: TextOverflow.clip,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -81,7 +81,7 @@ class MyCardProfile extends StatelessWidget {
                   Text(
                     'account_creation_date:'.tr,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -90,7 +90,7 @@ class MyCardProfile extends StatelessWidget {
                         .format(controller.user.creationTime),
                     overflow: TextOverflow.clip,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -99,7 +99,7 @@ class MyCardProfile extends StatelessWidget {
                   Text(
                     'last_login_date:'.tr,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -108,7 +108,7 @@ class MyCardProfile extends StatelessWidget {
                         .format(controller.user.lastSignInTime),
                     overflow: TextOverflow.clip,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -121,7 +121,7 @@ class MyCardProfile extends StatelessWidget {
                   Text(
                     'current_location:'.tr,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -129,7 +129,7 @@ class MyCardProfile extends StatelessWidget {
                     'Salvador - BA, Brazil',
                     overflow: TextOverflow.clip,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -142,7 +142,7 @@ class MyCardProfile extends StatelessWidget {
     );
   }
 
-  Widget _buildMobileProfile(BuildContext context) {
+  Widget _buildMobileProfile() {
     return GetBuilder<SettingsController>(
       builder: (controller) {
         return Column(
@@ -151,7 +151,7 @@ class MyCardProfile extends StatelessWidget {
               title: Text(
                 controller.user.displayName!,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.tertiary,
+                  color: Theme.of(Get.context!).colorScheme.tertiary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -165,7 +165,7 @@ class MyCardProfile extends StatelessWidget {
                   Text(
                     'ID:',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -173,7 +173,7 @@ class MyCardProfile extends StatelessWidget {
                     controller.user.uid!,
                     overflow: TextOverflow.clip,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -186,7 +186,7 @@ class MyCardProfile extends StatelessWidget {
                   Text(
                     'E-mail:',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -194,7 +194,7 @@ class MyCardProfile extends StatelessWidget {
                     controller.user.email!,
                     overflow: TextOverflow.clip,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -207,7 +207,7 @@ class MyCardProfile extends StatelessWidget {
                   Text(
                     'account_creation_date:'.tr,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -216,7 +216,7 @@ class MyCardProfile extends StatelessWidget {
                         .format(controller.user.creationTime),
                     overflow: TextOverflow.clip,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -229,7 +229,7 @@ class MyCardProfile extends StatelessWidget {
                   Text(
                     'last_login_date:'.tr,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -238,7 +238,7 @@ class MyCardProfile extends StatelessWidget {
                         .format(controller.user.lastSignInTime),
                     overflow: TextOverflow.clip,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -251,7 +251,7 @@ class MyCardProfile extends StatelessWidget {
                   Text(
                     'current_location:'.tr,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -259,7 +259,7 @@ class MyCardProfile extends StatelessWidget {
                     'Salvador - BA, Brazil',
                     overflow: TextOverflow.clip,
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(Get.context!).colorScheme.tertiary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

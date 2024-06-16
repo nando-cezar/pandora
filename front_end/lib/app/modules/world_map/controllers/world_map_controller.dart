@@ -5,15 +5,15 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pandora_front/app/controller/map_controller.dart';
 import 'package:pandora_front/app/controller/position_controller.dart';
 import 'package:pandora_front/app/data/repository/forecast_tile_repository.dart';
-import 'package:pandora_front/app/data/repository/position_repository.dart';
 import 'package:pandora_front/app/modules/world_map/controllers/forecast_tile_controller.dart';
 import 'package:uuid/uuid.dart';
 
 class WorldMapController extends GetxController {
+  final ForecastTileRepository repository;
+  final MapController mapController;
+  final PositionController positionController;
+  final ForecastTileController forecastTileController;
   final gMapController = Completer<GoogleMapController>();
-  final mapController = Get.find<MapController>();
-  final positionController = Get.find<PositionController>();
-  final forecastTileController = Get.find<ForecastTileController>();
   var forecastDate = DateTime.now();
   var tileOverlay = TileOverlay(
     tileOverlayId: TileOverlayId(
@@ -21,9 +21,12 @@ class WorldMapController extends GetxController {
     ),
   );
 
-  final ForecastTileRepository repository;
-
-  WorldMapController({required this.repository});
+  WorldMapController({
+    required this.repository,
+    required this.mapController,
+    required this.positionController,
+    required this.forecastTileController,
+  });
 
   getConfig() async {
     await positionController.getLocationData();
