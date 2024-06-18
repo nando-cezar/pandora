@@ -2,17 +2,17 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pandora_front/app/controller/local_data_controller.dart';
 import 'package:pandora_front/app/controller/map_controller.dart';
 import 'package:pandora_front/app/controller/position_controller.dart';
-import 'package:pandora_front/app/data/repository/forecast_tile_repository.dart';
 import 'package:pandora_front/app/modules/world_map/controllers/forecast_tile_controller.dart';
 import 'package:uuid/uuid.dart';
 
 class WorldMapController extends GetxController {
-  final ForecastTileRepository repository;
   final MapController mapController;
   final PositionController positionController;
   final ForecastTileController forecastTileController;
+  final LocalDataController localDataController;
   final gMapController = Completer<GoogleMapController>();
   var forecastDate = DateTime.now();
   var tileOverlay = TileOverlay(
@@ -22,14 +22,19 @@ class WorldMapController extends GetxController {
   );
 
   WorldMapController({
-    required this.repository,
     required this.mapController,
     required this.positionController,
     required this.forecastTileController,
+    required this.localDataController,
   });
 
   getConfig() async {
-    await positionController.getLocationData();
+    var position = await positionController.getLocationData();
+
+    if (localDataController.getLatitude() == 1.0 && localDataController.getLongitude() == 1.0) {
+      localDataController.updateLatitude(position.latitude);
+      localDataController.updateLongitude(position.longitude);
+    }
     return await mapController.loadMapStyle();
   }
 
@@ -48,7 +53,7 @@ class WorldMapController extends GetxController {
 
     final TileOverlay tile = TileOverlay(
       tileOverlayId: TileOverlayId(overlayId),
-      tileProvider: repository.getForecastTileProvider(
+      tileProvider: forecastTileController.getForecastTileProvider(
         mapType: forecastTileController.getLabel(),
         opacity: 0.4,
         dateTime: forecastDate,

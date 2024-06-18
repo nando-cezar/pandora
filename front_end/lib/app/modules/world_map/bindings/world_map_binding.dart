@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pandora_front/app/controller/local_data_controller.dart';
 import 'package:pandora_front/app/controller/map_controller.dart';
 import 'package:pandora_front/app/controller/position_controller.dart';
 import 'package:pandora_front/app/data/provider/forecast_tile_provider.dart';
@@ -13,26 +14,34 @@ import 'package:http/http.dart' as http;
 class WorldMapBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<MapController>(() => MapController());
     Get.lazyPut<PositionController>(
       () => PositionController(
         positionRepository: PositionRepository(),
+      ),
+    );
+    Get.lazyPut<LocalDataController>(
+          () => LocalDataController(
         localDataRepository: LocalDataRepository(
           localDataProvider: LocalDataProvider(),
         ),
       ),
     );
-    Get.lazyPut<ForecastTileController>(() => ForecastTileController());
-    Get.lazyPut<WorldMapController>(
-      () => WorldMapController(
-        repository: ForecastTileRepository(
+    Get.lazyPut<ForecastTileController>(
+      () => ForecastTileController(
+        forecastTileRepository: ForecastTileRepository(
           forecastTileProvider: ForecastTileProvider(
             httpClient: http.Client(),
           ),
         ),
+      ),
+    );
+    Get.lazyPut<MapController>(() => MapController());
+    Get.lazyPut<WorldMapController>(
+      () => WorldMapController(
         mapController: Get.find<MapController>(),
         positionController: Get.find<PositionController>(),
         forecastTileController: Get.find<ForecastTileController>(),
+        localDataController: Get.find<LocalDataController>(),
       ),
     );
   }

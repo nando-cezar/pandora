@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pandora_front/app/controller/local_data_controller.dart';
 import 'package:pandora_front/app/controller/position_controller.dart';
 import 'package:pandora_front/app/data/provider/forecast_weather_provider.dart';
 import 'package:pandora_front/app/data/provider/local_data_provider.dart';
@@ -12,8 +13,12 @@ class ForecastWeatherBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<PositionController>(
-      () => PositionController(
+          () => PositionController(
         positionRepository: PositionRepository(),
+      ),
+    );
+    Get.lazyPut<LocalDataController>(
+          () => LocalDataController(
         localDataRepository: LocalDataRepository(
           localDataProvider: LocalDataProvider(),
         ),
@@ -27,6 +32,7 @@ class ForecastWeatherBinding implements Bindings {
           ),
         ),
         positionController: Get.find<PositionController>(),
+        localDataController: Get.find<LocalDataController>(),
       ),
     );
   }

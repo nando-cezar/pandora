@@ -72,8 +72,8 @@ class WorldMapPage extends GetView<WorldMapController> {
   CameraPosition _getInitialCameraPosition() {
     return CameraPosition(
       target: LatLng(
-        controller.positionController.getLatitude(),
-        controller.positionController.getLongitude(),
+        controller.localDataController.getLatitude(),
+        controller.localDataController.getLongitude(),
       ),
       zoom: 5,
     );
