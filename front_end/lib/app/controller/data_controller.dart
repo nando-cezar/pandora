@@ -6,8 +6,8 @@ import 'package:pandora_front/app/data/model/extreme_event_model.dart';
 import 'package:pandora_front/app/data/repository/data_repository.dart';
 
 class DataController extends GetxController {
-  final PositionController positionController;
   final DataRepository dataRepository;
+  final PositionController positionController;
   final LocalDataController localDataController;
   List<ExtremeEventModel> _items = <ExtremeEventModel>[];
 
@@ -17,10 +17,11 @@ class DataController extends GetxController {
     required this.localDataController,
   });
 
-  Future<void> getGeneralData() async {
+  getGeneralData() async {
     var position = await positionController.getLocationData();
 
-    if (localDataController.getLatitude() == 1.0 && localDataController.getLongitude() == 1.0) {
+    if (localDataController.getLatitude() == 1.0 &&
+        localDataController.getLongitude() == 1.0) {
       localDataController.updateLatitude(position.latitude);
       localDataController.updateLongitude(position.longitude);
     }
@@ -48,19 +49,7 @@ class DataController extends GetxController {
     });
   }
 
-  updatePastDays(int value) {
-    localDataController.updatePastDays(value);
-  }
-
-  updateForecastDays(int value) {
-    localDataController.updateForecastDays(value);
-  }
-
   updateItems(List<ExtremeEventModel> items) => _items = items;
-
-  double getPastDays() => localDataController.getPastDays().toDouble();
-
-  double getForecastDays() => localDataController.getForecastDays().toDouble();
 
   List<ExtremeEventModel> getItems() => _items;
 

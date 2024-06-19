@@ -75,7 +75,11 @@ class ParamatersController extends GetxController {
   }
 
   getInitialData() {
-    setPastDaysSlider(dataController.getPastDays());
-    setForecastDaysSlider(dataController.getForecastDays());
+    setPastDaysSlider(
+      dataController.localDataController.getPastDays().toDouble(),
+    );
+    setForecastDaysSlider(
+      dataController.localDataController.getForecastDays().toDouble(),
+    );
   }
 }
