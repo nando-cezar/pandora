@@ -9,29 +9,38 @@ import 'package:logger/logger.dart';
 class ForecastTileProvider implements TileProvider {
   final String _mapOpenWeatherUrl = dotenv.env['MAP_OPEN_WEATHER_URL']!;
   final String _mapOpenWeatherKey = dotenv.env['MAP_OPEN_WEATHER_KEY']!;
+  final http.Client httpClient;
   final _logger = Logger();
 
-  final String mapType;
-  final double opacity;
-  final DateTime dateTime;
+  String mapType = '';
+  double opacity = 0.0;
+  DateTime dateTime = DateTime.now();
   int tileSize = 256;
 
   ForecastTileProvider({
-    required this.mapType,
-    required this.opacity,
-    required this.dateTime,
+    required this.httpClient,
   });
+
+  ForecastTileProvider setData({
+    required String mapType,
+    required double opacity,
+    required DateTime dateTime,
+  }) {
+    this.mapType = mapType;
+    this.opacity = opacity;
+    this.dateTime = dateTime;
+    return this;
+  }
 
   @override
   Future<Tile> getTile(int x, int y, int? zoom) async {
     Uint8List tileBytes = Uint8List(0);
     final date = dateTime.millisecondsSinceEpoch ~/ 1000;
+    final String apiUrl =
+        '$_mapOpenWeatherUrl/$mapType/$zoom/$x/$y?date=$date&opacity=$opacity&appid=$_mapOpenWeatherKey';
 
     try {
-      final String apiUrl =
-          '$_mapOpenWeatherUrl/$mapType/$zoom/$x/$y?date=$date&opacity=$opacity&appid=$_mapOpenWeatherKey';
-
-      final response = await http.get(Uri.parse(apiUrl));
+      var response = await httpClient.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
         _logger.i("ForecastTileProvider: Successfully!");
         tileBytes = response.bodyBytes;

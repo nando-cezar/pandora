@@ -1,33 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pandora_front/app/controller/local_data_controller.dart';
 import 'package:pandora_front/app/controller/position_controller.dart';
 import 'package:pandora_front/app/data/model/extreme_event_model.dart';
 import 'package:pandora_front/app/data/repository/data_repository.dart';
-import 'package:pandora_front/app/data/repository/position_repository.dart';
 
 class DataController extends GetxController {
-  List<ExtremeEventModel> _items = <ExtremeEventModel>[];
-  int _pastDays = 1;
-  int _forecastDays = 5;
-
-  final positionController = Get.put(
-    PositionController(
-      positionRepository: PositionRepository(),
-    ),
-  );
-
   final DataRepository dataRepository;
+  final PositionController positionController;
+  final LocalDataController localDataController;
+  List<ExtremeEventModel> _items = <ExtremeEventModel>[];
 
-  DataController({required this.dataRepository});
+  DataController({
+    required this.dataRepository,
+    required this.positionController,
+    required this.localDataController,
+  });
 
-  Future<void> getGeneralData() async {
-    await positionController.getLocationData();
+  getGeneralData() async {
+    var position = await positionController.getLocationData();
+
+    if (localDataController.getLatitude() == 1.0 &&
+        localDataController.getLongitude() == 1.0) {
+      localDataController.updateLatitude(position.latitude);
+      localDataController.updateLongitude(position.longitude);
+    }
+
     await dataRepository
         .getGeneralData(
-      latitude: positionController.getLatitude(),
-      longitude: positionController.getLongitude(),
-      pastDays: _pastDays,
-      forecastDays: _forecastDays,
+      latitude: localDataController.getLatitude(),
+      longitude: localDataController.getLongitude(),
+      pastDays: localDataController.getPastDays(),
+      forecastDays: localDataController.getForecastDays(),
     )
         .then((value) async {
       updateItems(value.events);
@@ -45,22 +49,9 @@ class DataController extends GetxController {
     });
   }
 
-  updatePastDays(int pastDays){
-    _pastDays = pastDays;
-  }
-
-  updateForecastDays(int forecastDays){
-    _forecastDays = forecastDays;
-  }
-
   updateItems(List<ExtremeEventModel> items) => _items = items;
-
-  double getPastDays() => _pastDays.toDouble();
-
-  double getForecastDays() => _forecastDays.toDouble();
 
   List<ExtremeEventModel> getItems() => _items;
 
   ExtremeEventModel getItem(int i) => _items[i];
-
 }

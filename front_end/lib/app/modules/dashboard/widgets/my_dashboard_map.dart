@@ -73,8 +73,8 @@ class MyDashboardMap extends GetView<DashboardController> {
   CameraPosition _getInitialCameraPosition() {
     return CameraPosition(
       target: LatLng(
-        controller.dataController.positionController.getLatitude(),
-        controller.dataController.positionController.getLongitude(),
+        controller.dataController.localDataController.getLatitude(),
+        controller.dataController.localDataController.getLongitude(),
       ),
       zoom: 5,
     );
