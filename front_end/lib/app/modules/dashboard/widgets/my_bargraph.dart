@@ -121,7 +121,7 @@ BackgroundBarChartRodData backgroundBarChartRodData(context) =>
     BackgroundBarChartRodData(
       show: true,
       toY: 100,
-      color: Theme.of(context).colorScheme.secondary,
+      color: Theme.of(context).colorScheme.primary,
     );
 
 BarTouchData buildBarTouchData(context) => BarTouchData(

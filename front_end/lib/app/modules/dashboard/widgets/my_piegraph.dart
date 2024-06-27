@@ -42,6 +42,7 @@ class _MyPieGraph extends State<MyPieGraph> {
           ),
           SingleChildScrollView(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 for (var data in widget.controller.dataController.getItems())
@@ -49,7 +50,7 @@ class _MyPieGraph extends State<MyPieGraph> {
                     children: <Widget>[
                       Indicator(
                         color: data.color!,
-                        text: data.description!.tr,
+                        text: data.codeFormatted!.tr,
                         isSquare: true,
                       ),
                       const SizedBox(

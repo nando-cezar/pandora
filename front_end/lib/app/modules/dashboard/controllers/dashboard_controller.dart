@@ -55,8 +55,8 @@ class DashboardController extends GetxController {
     var metaData = data.toJson();
 
     var markerIcon = await BitmapDescriptor.fromAssetImage(
-      const ImageConfiguration(
-        size: Size(20, 20),
+      ImageConfiguration(
+        size: GetPlatform.isMobile ? const Size(5, 5) : const Size(20, 20),
       ),
       metaData['icon'] as String,
     );

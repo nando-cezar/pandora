@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pandora_front/app/modules/dashboard/widgets/my_procedure.dart';
 
 class MyBottomSheet extends StatelessWidget {
   final Map<String, dynamic> metaData;
   final List<String> dataSource;
 
-  const MyBottomSheet({
-    super.key,
-    required this.metaData,
-    required this.dataSource
-  });
+  const MyBottomSheet(
+      {super.key, required this.metaData, required this.dataSource});
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +67,7 @@ class MyBottomSheet extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        metaData['type'],
+                        metaData['type'].toString().tr,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
@@ -121,7 +119,7 @@ class MyBottomSheet extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        metaData['region'],
+                        metaData['region'].toString().tr,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
@@ -136,30 +134,14 @@ class MyBottomSheet extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'start_date:'.tr,
+                        'occurrence_interval:'.tr,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                         ),
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        metaData['startDate'],
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.tertiary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Spacer(),
-                      const SizedBox(width: 20),
-                      Text(
-                        'end_date:'.tr,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.tertiary,
-                        ),
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        metaData['endDate'],
+                        '${metaData['startDate']} ~ ${metaData['endDate']}',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold,
@@ -186,7 +168,6 @@ class MyBottomSheet extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      const SizedBox(width: 20),
                       Text(
                         'total_affected:'.tr,
                         style: TextStyle(
@@ -204,10 +185,76 @@ class MyBottomSheet extends StatelessWidget {
                       ),
                     ],
                   ),
+                  Divider(
+                    height: 20,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                  Row(
+                    children: [
+                      const Spacer(),
+                      Text(
+                        'procedure'.tr,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  MyProcedure(
+                    title: 'Cold wave'.tr,
+                    procedures: [
+                      'procedure1'.tr,
+                      'procedure2'.tr,
+                      'procedure3'.tr,
+                      'procedure4'.tr,
+                      'procedure5'.tr,
+                    ],
+                  ),
+                  MyProcedure(
+                    title: 'Flood'.tr,
+                    procedures: [
+                      'procedure6'.tr,
+                      'procedure7'.tr,
+                      'procedure8'.tr,
+                      'procedure9'.tr,
+                      'procedure10'.tr,
+                    ],
+                  ),
+                  MyProcedure(
+                    title: 'Storm, General'.tr,
+                    procedures: [
+                      'procedure11'.tr,
+                      'procedure12'.tr,
+                      'procedure13'.tr,
+                      'procedure14'.tr,
+                      'procedure15'.tr,
+                    ],
+                  ),
+                  MyProcedure(
+                    title: 'Heat wave'.tr,
+                    procedures: [
+                      'procedure16'.tr,
+                      'procedure17'.tr,
+                      'procedure18'.tr,
+                      'procedure19'.tr,
+                      'procedure20'.tr,
+                    ],
+                  ),
+                  MyProcedure(
+                    title: 'Tropical cyclone'.tr,
+                    procedures: [
+                      'procedure21'.tr,
+                      'procedure22'.tr,
+                      'procedure23'.tr,
+                      'procedure24'.tr,
+                      'procedure25'.tr,
+                    ],
+                  ),
+                  const SizedBox(height: 30.0),
                 ],
               ),
             ),
-            const SizedBox(height: 50),
           ],
         ),
       ),

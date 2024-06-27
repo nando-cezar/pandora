@@ -32,6 +32,7 @@ final Map<String, String> enUs = {
   'subtitle': 'Prediction chart based on current location',
 
   'Cold wave': 'Cold Wave',
+  'Flood': 'Flood',
   'Flash flood': 'Flash flood',
   'Flood, General': 'Flood, General',
   'Heat wave': 'Heat wave',
@@ -72,13 +73,14 @@ final Map<String, String> enUs = {
   'address:': 'Address:',
   'state:': 'State:',
   'region:': 'Region:',
-  'start_date:': 'Start date:',
-  'end_date:': 'End date:',
+  'occurrence_interval:': 'Occurrence Interval:',
   'total_deaths:': 'Total Deaths:',
   'total_affected:': 'Total Affected:',
   'change_map_view': 'Change map view',
   'select_region': 'Select region',
   'select_event': 'Select extreme event',
+
+  'procedure': 'PROCIDURE',
 
   'forecast_date': 'Forecast Date',
 
@@ -125,5 +127,35 @@ final Map<String, String> enUs = {
   'error': 'Error',
   'info': 'Information',
 
-  'update_location': 'Updated location'
+  'update_location': 'Updated location',
+
+  'procedure1': 'Stay informed about weather forecasts and cold wave alerts.',
+  'procedure2': 'Keep warm appropriately by wearing layered clothing and protecting extremities.',
+  'procedure3': 'Protect your home by insulating exposed water pipes and protecting sensitive plants.',
+  'procedure4': 'Avoid unnecessary travel and stay indoors whenever possible.',
+  'procedure5': 'Check the well-being of elderly and vulnerable neighbors.',
+
+  'procedure6': 'Stay informed about flood alerts and warnings.',
+  'procedure7': 'Move to higher ground if authorities recommend evacuation.',
+  'procedure8': 'Turn off electricity and gas if there is a risk of flooding in your home.',
+  'procedure9': 'Avoid flooded areas by not crossing on foot or by car.',
+  'procedure10': 'Prepare emergency supplies such as non-perishable food and drinking water.',
+
+  'procedure11': 'Stay informed about weather alerts and follow recommendations from authorities.',
+  'procedure12': 'Protect yourself at home, away from windows, avoiding the use of water and electrical equipment.',
+  'procedure13': 'Prepare an emergency kit with flashlights, portable radios, batteries, medicine and canned food.',
+  'procedure14': 'Avoid open areas and do not take shelter under trees or metal structures.',
+  'procedure15': 'Check for damage after the storm, avoiding touching fallen electrical wiring.',
+
+  'procedure16': 'Stay informed about heat wave warnings and weather forecasts.',
+  'procedure17': 'Stay cool in air-conditioned spaces, use fans, and take cool showers.',
+  'procedure18': 'Hydrate regularly, even if you don\'t feel thirsty.',
+  'procedure19': 'Protect yourself from the sun by using sunscreen, light clothing and a hat.',
+  'procedure20': 'Check the well-being of vulnerable people, such as the elderly and young children.',
+
+  'procedure21': 'Stay informed about cyclone warnings and follow instructions from local authorities.',
+  'procedure22': 'Prepare to evacuate if necessary by having an evacuation plan and knowing where to go.',
+  'procedure23': 'Strengthen the house by boarding up windows and tying down loose objects.',
+  'procedure24': 'Stock emergency supplies like canned food, water, flashlights, portable radios, and medicine.',
+  'procedure25': 'During the storm, stay in a safe location, avoiding coastal areas and protecting yourself from strong winds and heavy rain.',
 };
