@@ -6,6 +6,7 @@ import 'package:pandora_front/app/ui/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class SettingsController extends GetxController {
+  final _isDarkMode = false.obs;
   UserModel user = UserModel.mock();
   final AuthController authController;
   final localeController = TextEditingController();
@@ -18,7 +19,10 @@ class SettingsController extends GetxController {
     user = authController.currentUser;
   }
 
-  toggleTheme(val) {
+  bool get isDarkMode => _isDarkMode.value;
+
+  void toggleTheme(bool value) {
+    _isDarkMode.value = value;
     Provider.of<ThemeProvider>(Get.context!, listen: false).toggleTheme();
   }
 

@@ -112,6 +112,7 @@ class MyDashboardMap extends GetView<DashboardController> {
               'Northeast'.tr,
               'Midwest'.tr,
             ],
+            initialValue: controller.dataController.localDataController.getRegion().tr,
           ),
           const SizedBox(height: 10),
           Text(
@@ -133,6 +134,7 @@ class MyDashboardMap extends GetView<DashboardController> {
               'Tropical cyclone'.tr,
               'Extra-tropical storm'.tr,
             ],
+            initialValue: controller.dataController.localDataController.getExtremeEvent().tr,
           ),
         ],
       ),
@@ -143,13 +145,10 @@ class MyDashboardMap extends GetView<DashboardController> {
             style: TextStyle(color: myFirstColor),
           ),
           onPressed: () {
-            controller.getMarkerData(
-              extremeEventDescription: controller.extremeEventController.text,
-              region: controller.regionController.text,
-            );
-
+            controller.dataController.localDataController.updateRegion(controller.regionController.text);
+            controller.dataController.localDataController.updateExtremeEvent(controller.extremeEventController.text);
+            controller.getMarkerData();
             Get.back(closeOverlays: true);
-
           },
         )
       ],

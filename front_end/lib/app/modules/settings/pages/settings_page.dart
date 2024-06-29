@@ -3,20 +3,14 @@ import 'package:get/get.dart';
 import 'package:pandora_front/app/modules/settings/controllers/settings_controller.dart';
 import 'package:pandora_front/app/modules/settings/widgets/my_card_profile.dart';
 import 'package:pandora_front/app/modules/settings/widgets/my_card_settings.dart';
-import 'package:pandora_front/app/ui/theme/theme_provider.dart';
 import 'package:pandora_front/app/ui/widgets/my_drawer.dart';
 import 'package:pandora_front/constants.dart';
-import 'package:provider/provider.dart';
 
 class SettingsPage extends GetView<SettingsController> {
   const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var verifyDarkMode =
-        Provider.of<ThemeProvider>(Get.context!).themeData.brightness ==
-            Brightness.dark;
-
     return Scaffold(
       appBar: myAppBar(),
       drawer: const MyDrawer(),
@@ -40,12 +34,14 @@ class SettingsPage extends GetView<SettingsController> {
                     color: myFirstColor,
                   ),
                 ),
-                SwitchListTile(
-                  activeColor: myFirstColor,
-                  contentPadding: const EdgeInsets.all(0),
-                  value: verifyDarkMode ? true : false,
-                  title: Text('dark_mode'.tr),
-                  onChanged: controller.toggleTheme,
+                Obx(
+                  () => SwitchListTile(
+                    activeColor: myFirstColor,
+                    contentPadding: const EdgeInsets.all(0),
+                    value: controller.isDarkMode,
+                    title: Text('dark_mode'.tr),
+                    onChanged: controller.toggleTheme,
+                  ),
                 ),
                 const SizedBox(height: 20.0),
                 Text(

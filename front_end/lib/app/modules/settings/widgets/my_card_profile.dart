@@ -56,22 +56,6 @@ class MyCardProfile extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  const SizedBox(width: 20),
-                  Text(
-                    'ID:',
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    controller.user.uid!,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -157,27 +141,6 @@ class MyCardProfile extends StatelessWidget {
               ),
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(controller.user.photoURL!),
-              ),
-            ),
-            ListTile(
-              title: Column(
-                children: [
-                  Text(
-                    'ID:',
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    controller.user.uid!,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
               ),
             ),
             ListTile(
