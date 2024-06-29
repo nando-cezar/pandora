@@ -4,11 +4,13 @@ import 'package:pandora_front/constants.dart';
 class MyRadioButton extends StatefulWidget {
   final TextEditingController controller;
   final List<String> options;
+  final String initialValue;
 
   const MyRadioButton({
     super.key,
     required this.controller,
     required this.options,
+    required this.initialValue,
   });
 
   @override
@@ -16,6 +18,12 @@ class MyRadioButton extends StatefulWidget {
 }
 
 class _MyRadioButtonState extends State<MyRadioButton> {
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.text = widget.initialValue;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

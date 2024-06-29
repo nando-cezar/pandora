@@ -12,8 +12,8 @@ import 'package:pandora_front/constants.dart';
 class DashboardController extends GetxController {
   final DataController dataController;
   final MapController mapController;
-  final regionController = TextEditingController();
-  final extremeEventController = TextEditingController();
+  var regionController = TextEditingController();
+  var extremeEventController = TextEditingController();
   final gMapController = Completer<GoogleMapController>();
 
   final Map<String, Marker> _markers = {};
@@ -26,10 +26,11 @@ class DashboardController extends GetxController {
     return await mapController.loadMapStyle();
   }
 
-  Future<void> getMarkerData({
-    String extremeEventDescription = 'Flood, General',
-    String region = 'All',
-  }) async {
+  Future<void> getMarkerData() async {
+    String extremeEventDescription = dataController.localDataController.getExtremeEvent();
+    String region = dataController.localDataController.getRegion();
+    extremeEventController.text = extremeEventDescription;
+    regionController.text = region;
     _markers.clear();
     try {
       for (var locationSnapshot in dataController.getItems()) {
@@ -55,8 +56,8 @@ class DashboardController extends GetxController {
     var metaData = data.toJson();
 
     var markerIcon = await BitmapDescriptor.fromAssetImage(
-      ImageConfiguration(
-        size: GetPlatform.isMobile ? const Size(5, 5) : const Size(20, 20),
+      const ImageConfiguration(
+        size: Size(20, 20),
       ),
       metaData['icon'] as String,
     );
@@ -76,7 +77,9 @@ class DashboardController extends GetxController {
   Set<Marker> getMarkers() => Set<Marker>.of(_markers.values);
 
   void _openBottomSheet(
-      Map<String, dynamic> metaData, List<String> dataSource) {
+    Map<String, dynamic> metaData,
+    List<String> dataSource,
+  ) {
     Get.bottomSheet(
       MyBottomSheet(
         metaData: metaData,

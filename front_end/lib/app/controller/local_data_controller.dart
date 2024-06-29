@@ -17,6 +17,10 @@ class LocalDataController extends GetxController {
 
   updateForecastDays(int value) => localDataRepository.saveInt('forecastDays', value);
 
+  updateRegion(String value) => localDataRepository.saveString('region', value);
+
+  updateExtremeEvent(String value) => localDataRepository.saveString('extremeEvent', value);
+
   double getLatitude() => localDataRepository.getDouble('latitude');
 
   double getLongitude() => localDataRepository.getDouble('longitude');
@@ -24,4 +28,8 @@ class LocalDataController extends GetxController {
   int getPastDays() => localDataRepository.getInt('pastDays');
 
   int getForecastDays() => localDataRepository.getInt('forecastDays');
+
+  String getRegion() => localDataRepository.getString('region');
+
+  String getExtremeEvent() => localDataRepository.getString('extremeEvent');
 }

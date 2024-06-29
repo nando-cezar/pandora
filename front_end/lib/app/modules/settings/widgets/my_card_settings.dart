@@ -23,9 +23,6 @@ class MyCardSettings extends GetView<SettingsController> {
               ),
               title: Text(
                 'change_language'.tr,
-                style: TextStyle(
-                  color: Theme.of(Get.context!).colorScheme.tertiary,
-                ),
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
               onTap: () => _buildDefaultDialog()
@@ -40,9 +37,6 @@ class MyCardSettings extends GetView<SettingsController> {
             ),
             title: Text(
               'change_parameters'.tr,
-              style: TextStyle(
-                color: Theme.of(Get.context!).colorScheme.tertiary,
-              ),
             ),
             trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () => Get.toNamed(Routes.settingsParameters),

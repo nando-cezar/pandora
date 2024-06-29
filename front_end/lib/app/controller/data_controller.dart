@@ -24,6 +24,8 @@ class DataController extends GetxController {
         localDataController.getLongitude() == 1.0) {
       localDataController.updateLatitude(position.latitude);
       localDataController.updateLongitude(position.longitude);
+      localDataController.updateRegion('All');
+      localDataController.updateExtremeEvent('Flash flood');
     }
 
     await dataRepository
