@@ -18,8 +18,10 @@ class DashboardController extends GetxController {
 
   final Map<String, Marker> _markers = {};
 
-  DashboardController(
-      {required this.dataController, required this.mapController});
+  DashboardController({
+    required this.dataController,
+    required this.mapController,
+  });
 
   getConfig() async {
     await getMarkerData();
@@ -27,14 +29,15 @@ class DashboardController extends GetxController {
   }
 
   Future<void> getMarkerData() async {
-    String extremeEventDescription = dataController.localDataController.getExtremeEvent();
+    String extremeEvent =
+        dataController.localDataController.getExtremeEvent();
     String region = dataController.localDataController.getRegion();
-    extremeEventController.text = extremeEventDescription;
+    extremeEventController.text = extremeEvent;
     regionController.text = region;
     _markers.clear();
     try {
       for (var locationSnapshot in dataController.getItems()) {
-        if (locationSnapshot.description?.tr == extremeEventDescription.tr) {
+        if (locationSnapshot.description?.tr == extremeEvent.tr) {
           for (var locationDoc in locationSnapshot.locations!) {
             if (locationDoc.region?.tr == region.tr || region.tr == 'All'.tr) {
               _addMarker(locationDoc, locationSnapshot.dataSource!);

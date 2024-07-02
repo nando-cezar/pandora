@@ -12,25 +12,42 @@ import 'package:http/http.dart' as http;
 class ForecastWeatherBinding implements Bindings {
   @override
   void dependencies() {
+    _registerRepositories();
+    _registerControllers();
+  }
+
+  void _registerRepositories() {
+    Get.lazyPut<PositionRepository>(
+      () => PositionRepository(),
+    );
+    Get.lazyPut<LocalDataRepository>(
+      () => LocalDataRepository(
+        localDataProvider: LocalDataProvider(),
+      ),
+    );
+    Get.lazyPut<ForecastWeatherRepository>(
+      () => ForecastWeatherRepository(
+        forecastWeatherProvider: ForecastWeatherProvider(
+          httpClient: http.Client(),
+        ),
+      ),
+    );
+  }
+
+  void _registerControllers() {
     Get.lazyPut<PositionController>(
-          () => PositionController(
-        positionRepository: PositionRepository(),
+      () => PositionController(
+        positionRepository: Get.find<PositionRepository>(),
       ),
     );
     Get.lazyPut<LocalDataController>(
-          () => LocalDataController(
-        localDataRepository: LocalDataRepository(
-          localDataProvider: LocalDataProvider(),
-        ),
+      () => LocalDataController(
+        localDataRepository: Get.find<LocalDataRepository>(),
       ),
     );
     Get.lazyPut<ForecastWeatherController>(
       () => ForecastWeatherController(
-        repository: ForecastWeatherRepository(
-          forecastWeatherProvider: ForecastWeatherProvider(
-            httpClient: http.Client(),
-          ),
-        ),
+        repository: Get.find<ForecastWeatherRepository>(),
         positionController: Get.find<PositionController>(),
         localDataController: Get.find<LocalDataController>(),
       ),

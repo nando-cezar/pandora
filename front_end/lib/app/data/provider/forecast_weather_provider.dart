@@ -15,28 +15,36 @@ class ForecastWeatherProvider {
   Future<ForecastWeatherModel> getCurrentForecastWeather(
       double latitude,
       double longitude,
-      String token
+      String token,
       ) async {
-
-    final String apiUrl =
-        '$_dataOpenWeatherUrl?'
+    final String apiUrl = '$_dataOpenWeatherUrl?'
         'lat=$latitude&'
         'lon=$longitude&'
-        'appid=$token&'
-        'units=metric';
+        'appid=$token&units=metric';
 
     try {
       var response = await httpClient.get(Uri.parse(apiUrl));
+
       if (response.statusCode == 200) {
-        _logger.i("ForecastWeatherProvider: Successfully!");
+        _logInfo("Successfully fetched current forecast weather data.");
         return ForecastWeatherModel.fromJson(jsonDecode(response.body));
       } else {
-        _logger.e("Error log", error: response.statusCode);
-        throw Exception('error_load_data'.tr);
+        _handleError(response.statusCode);
       }
     } catch (error) {
-      _logger.e("Error log", error: error);
-      throw Exception('error_load_data'.tr);
+      _handleError(error.toString());
     }
+
+    // Em caso de erro, lançar uma exceção genérica
+    throw Exception('error_load_data'.tr);
+  }
+
+  void _handleError(dynamic error) {
+    _logger.e("ForecastWeatherProvider Error", error: error);
+    throw Exception('error_load_data'.tr);
+  }
+
+  void _logInfo(String message) {
+    _logger.i("ForecastWeatherProvider: $message");
   }
 }

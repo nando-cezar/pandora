@@ -5,6 +5,10 @@ import 'package:pandora_front/app/modules/settings/controllers/settings_controll
 class SettingsBinding implements Bindings {
   @override
   void dependencies() {
+    _registerControllers();
+  }
+
+  void _registerControllers() {
     Get.lazyPut<SettingsController>(
       () => SettingsController(
         authController: Get.find<AuthController>(),

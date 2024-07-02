@@ -4,6 +4,12 @@ import 'package:pandora_front/app/modules/initial/controllers/initial_controller
 class InitialBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<InitialController>(() => InitialController());
+    _registerControllers();
+  }
+
+  void _registerControllers() {
+    Get.lazyPut<InitialController>(
+      () => InitialController(),
+    );
   }
 }

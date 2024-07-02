@@ -12,10 +12,10 @@ class ForecastTileProvider implements TileProvider {
   final http.Client httpClient;
   final _logger = Logger();
 
-  String mapType = '';
-  double opacity = 0.0;
-  DateTime dateTime = DateTime.now();
-  int tileSize = 256;
+  late String mapType;
+  late double opacity;
+  late DateTime dateTime;
+  final int tileSize = 256;
 
   ForecastTileProvider({
     required this.httpClient,
@@ -34,7 +34,8 @@ class ForecastTileProvider implements TileProvider {
 
   @override
   Future<Tile> getTile(int x, int y, int? zoom) async {
-    Uint8List tileBytes = Uint8List(0);
+    late Uint8List tileBytes;
+
     final date = dateTime.millisecondsSinceEpoch ~/ 1000;
     final String apiUrl =
         '$_mapOpenWeatherUrl/$mapType/$zoom/$x/$y?date=$date&opacity=$opacity&appid=$_mapOpenWeatherKey';
@@ -42,16 +43,24 @@ class ForecastTileProvider implements TileProvider {
     try {
       var response = await httpClient.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
-        _logger.i("ForecastTileProvider: Successfully!");
+        _logInfo("Successfully fetched tile from API.");
         tileBytes = response.bodyBytes;
       } else {
-        _logger.e("Error log", error: response.statusCode);
-        throw Exception('error_load_data'.tr);
+        _handleError(response.statusCode);
       }
     } catch (error) {
-      _logger.e("Error log", error: error);
-      throw Exception('error_load_data'.tr);
+      _handleError(error.toString());
     }
+
     return Tile(tileSize, tileSize, tileBytes);
+  }
+
+  void _handleError(dynamic error) {
+    _logger.e("ForecastTileProvider Error", error: error);
+    throw Exception('error_load_data'.tr);
+  }
+
+  void _logInfo(String message) {
+    _logger.i("ForecastTileProvider: $message");
   }
 }
