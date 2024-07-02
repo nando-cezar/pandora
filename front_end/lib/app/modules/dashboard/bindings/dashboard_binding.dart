@@ -14,30 +14,47 @@ import 'package:http/http.dart' as http;
 class DashboardBinding implements Bindings {
   @override
   void dependencies() {
+    _registerRepositories();
+    _registerControllers();
+  }
+
+  void _registerRepositories() {
+    Get.lazyPut<PositionRepository>(
+      () => PositionRepository(),
+    );
+    Get.lazyPut<LocalDataRepository>(
+      () => LocalDataRepository(
+        localDataProvider: LocalDataProvider(),
+      ),
+    );
+    Get.lazyPut<DataRepository>(
+      () => DataRepository(
+        dataProvider: DataProvider(
+          httpClient: http.Client(),
+        ),
+      ),
+    );
+  }
+
+  void _registerControllers() {
     Get.lazyPut<PositionController>(
-          () => PositionController(
-        positionRepository: PositionRepository(),
+      () => PositionController(
+        positionRepository: Get.find<PositionRepository>(),
       ),
     );
     Get.lazyPut<LocalDataController>(
       () => LocalDataController(
-        localDataRepository: LocalDataRepository(
-          localDataProvider: LocalDataProvider(),
-        ),
+        localDataRepository: Get.find<LocalDataRepository>(),
       ),
     );
-    Get.lazyPut<DataController>(
-      () => DataController(
-        dataRepository: DataRepository(
-          dataProvider: DataProvider(
-            httpClient: http.Client(),
-          ),
-        ),
-        positionController: Get.find<PositionController>(),
-        localDataController: Get.find<LocalDataController>(),
-      ),
+    Get.lazyPut<DataController>(() => DataController(
+          dataRepository: Get.find<DataRepository>(),
+          positionController: Get.find<PositionController>(),
+          localDataController: Get.find<LocalDataController>(),
+        ));
+    Get.lazyPut<MapController>(
+      () => MapController(),
     );
-    Get.lazyPut<MapController>(() => MapController());
     Get.lazyPut<DashboardController>(
       () => DashboardController(
         dataController: Get.find<DataController>(),

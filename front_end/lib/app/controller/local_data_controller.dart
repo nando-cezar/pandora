@@ -32,4 +32,5 @@ class LocalDataController extends GetxController {
   String getRegion() => localDataRepository.getString('region');
 
   String getExtremeEvent() => localDataRepository.getString('extremeEvent');
+
 }

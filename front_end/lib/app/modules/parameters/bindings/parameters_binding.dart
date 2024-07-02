@@ -14,25 +14,42 @@ import 'package:http/http.dart' as http;
 class ParamatersBinding implements Bindings {
   @override
   void dependencies() {
+    _registerRepositories();
+    _registerControllers();
+  }
+
+  void _registerRepositories() {
+    Get.lazyPut<PositionRepository>(
+      () => PositionRepository(),
+    );
+    Get.lazyPut<LocalDataRepository>(
+      () => LocalDataRepository(
+        localDataProvider: LocalDataProvider(),
+      ),
+    );
+    Get.lazyPut<DataRepository>(
+      () => DataRepository(
+        dataProvider: DataProvider(
+          httpClient: http.Client(),
+        ),
+      ),
+    );
+  }
+
+  void _registerControllers() {
     Get.lazyPut<PositionController>(
-          () => PositionController(
-        positionRepository: PositionRepository(),
+      () => PositionController(
+        positionRepository: Get.find<PositionRepository>(),
       ),
     );
     Get.lazyPut<LocalDataController>(
-          () => LocalDataController(
-        localDataRepository: LocalDataRepository(
-          localDataProvider: LocalDataProvider(),
-        ),
+      () => LocalDataController(
+        localDataRepository: Get.find<LocalDataRepository>(),
       ),
     );
     Get.lazyPut<DataController>(
-          () => DataController(
-        dataRepository: DataRepository(
-          dataProvider: DataProvider(
-            httpClient: http.Client(),
-          ),
-        ),
+      () => DataController(
+        dataRepository: Get.find<DataRepository>(),
         positionController: Get.find<PositionController>(),
         localDataController: Get.find<LocalDataController>(),
       ),

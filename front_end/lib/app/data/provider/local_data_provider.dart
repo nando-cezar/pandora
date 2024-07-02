@@ -7,35 +7,44 @@ class LocalDataProvider {
 
   static Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
+    _logger.i("LocalDataProvider: Initialized SharedPreferences.");
   }
 
-  saveString(String key, String value) {
+  void saveString(String key, String value) {
     _prefs.setString(key, value);
-    _logger.i("LocalDataProvider: Save string successfully!");
+    _logSaved(key);
   }
 
   String getString(String key) {
-    _logger.i("LocalDataProvider: Get string successfully!");
-    return _prefs.getString(key) ?? "Empty";
+    _logRetrieved(key);
+    return _prefs.getString(key) ?? "";
   }
 
-  saveInt(String key, int value) {
+  void saveInt(String key, int value) {
     _prefs.setInt(key, value);
-    _logger.i("LocalDataProvider: Save int successfully!");
+    _logSaved(key);
   }
 
   int getInt(String key) {
-    _logger.i("LocalDataProvider: Get int successfully!");
+    _logRetrieved(key);
     return _prefs.getInt(key) ?? 1;
   }
 
-  saveDouble(String key, double value) {
+  void saveDouble(String key, double value) {
     _prefs.setDouble(key, value);
-    _logger.i("LocalDataProvider: Save double successfully!");
+    _logSaved(key);
   }
 
   double getDouble(String key) {
-    _logger.i("LocalDataProvider: Get double successfully!");
+    _logRetrieved(key);
     return _prefs.getDouble(key) ?? 1.0;
+  }
+
+  void _logSaved(String key) {
+    _logger.i("LocalDataProvider: Saved $key successfully!");
+  }
+
+  void _logRetrieved(String key) {
+    _logger.i("LocalDataProvider: Retrieved $key successfully!");
   }
 }

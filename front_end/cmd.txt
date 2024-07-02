@@ -1,2 +1,6 @@
-#DAR METRICS
-flutter pub add --dev dart_code_metrics_presets
+# DOCKER COMPOSE
+docker-compose up --build
+
+# DOCKER PUBLISH
+docker build -t nandocezar/pandora-frontend:v1 .
+docker push nandocezar/pandora-frontend:v1

@@ -6,7 +6,8 @@ import 'package:logger/logger.dart';
 import 'package:pandora_front/app/data/model/extreme_event_wrapper.dart';
 
 class DataProvider {
-  final String _apiPandoraCorrelationUrl = dotenv.env['API_PANDORA_CORRELATION_URL']!;
+  final String _apiPandoraCorrelationUrl =
+      dotenv.env['API_PANDORA_CORRELATION_URL']!;
   final String _apiPandoraKey = dotenv.env['API_PANDORA_KEY']!;
   final http.Client httpClient;
   final _logger = Logger();
@@ -14,12 +15,13 @@ class DataProvider {
   DataProvider({required this.httpClient});
 
   Future<ExtremeEventWrapper> getGeneralData(
-      double latitude,
-      double longitude,
-      int pastDays,
-      int forecastDays
-      ) async {
-    final String apiUrl = '$_apiPandoraCorrelationUrl?'
+    double latitude,
+    double longitude,
+    int pastDays,
+    int forecastDays,
+  ) async {
+    final String apiUrl =
+        '$_apiPandoraCorrelationUrl?'
         'Latitude=$latitude&'
         'Longitude=$longitude&'
         'Timezone=America/Sao_Paulo&'
@@ -31,15 +33,24 @@ class DataProvider {
       var response = await httpClient.get(Uri.parse(apiUrl));
 
       if (response.statusCode == 200) {
-        _logger.i("DataProvider: Successfully!");
+        _logInfo("Successfully fetched data from API.");
         return ExtremeEventWrapper.fromJson(jsonDecode(response.body));
       } else {
-        _logger.e("Error log", error: response.statusCode);
-        throw Exception('error_load_data'.tr);
+        _handleError(response.statusCode);
       }
     } catch (error) {
-      _logger.e("Error log", error: error);
-      throw Exception('error_load_data'.tr);
+      _handleError(error.toString());
     }
+
+    throw Exception('error_load_data'.tr);
+  }
+
+  void _handleError(dynamic error) {
+    _logger.e("DataProvider Error", error: error);
+    throw Exception('error_load_data'.tr);
+  }
+
+  void _logInfo(String message) {
+    _logger.i("DataProvider: $message");
   }
 }

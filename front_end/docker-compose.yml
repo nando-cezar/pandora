@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pandora-frontend:latest
+    container_name: frontend
+    env_file:
+      - .env
+    ports:
+      - "8080:80"
+    environment:
+      - FLUTTER_WEB_PORT=8080

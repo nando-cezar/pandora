@@ -5,9 +5,20 @@ import 'package:pandora_front/app/modules/auth/controllers/auth_controller.dart'
 class AuthBinding implements Bindings {
   @override
   void dependencies() {
+    _registerRepositories();
+    _registerControllers();
+  }
+
+  void _registerRepositories() {
+    Get.lazyPut<AuthRepository>(
+      () => AuthRepository(),
+    );
+  }
+
+  void _registerControllers() {
     Get.lazyPut<AuthController>(
       () => AuthController(
-        repository: AuthRepository(),
+        repository: Get.find<AuthRepository>(),
       ),
     );
   }

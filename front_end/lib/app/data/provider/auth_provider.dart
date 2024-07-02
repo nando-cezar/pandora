@@ -11,13 +11,14 @@ class AuthProvider {
   Stream<UserModel?> get onAuthStateChanged =>
       _firebaseAuth.authStateChanges().map((User? currentUser) {
         if (currentUser != null) {
-          _logger.i("AuthProvider: Successfully!");
+          _logInfo("Successfully authenticated.");
           return UserModel.fromFirebase(currentUser);
         }
         return null;
       });
 
-  UserModel get currentUser => UserModel.fromFirebase(_firebaseAuth.currentUser);
+  UserModel get currentUser =>
+      UserModel.fromFirebase(_firebaseAuth.currentUser!);
 
   Future<UserModel?> createUserWithEmailAndPassword(
       String email, String password) async {
@@ -28,12 +29,12 @@ class AuthProvider {
       ))
           .user;
 
-      _logger.i("AuthProvider: Successfully!");
+      _logInfo("Successfully created user with email and password.");
       return UserModel.fromFirebase(currentUser!);
     } on FirebaseAuthException catch (error) {
-      _logger.e("Error log", error: error);
-      throw Exception('${'error_message_firebase'.tr}\n${error.message!}');
+      _handleAuthError(error);
     }
+    return null;
   }
 
   Future<UserModel?> signInWithGoogle() async {
@@ -50,43 +51,53 @@ class AuthProvider {
       final currentUser =
           (await _firebaseAuth.signInWithCredential(credential)).user;
 
-      _logger.i("AuthProvider: Successfully!");
+      _logInfo("Successfully authenticated with Google.");
       return UserModel.fromFirebase(currentUser!);
     } on FirebaseAuthException catch (error) {
-      _logger.e("Error log", error: error);
-      throw Exception('${'error_message_firebase'.tr}\n${error.message!}');
+      _handleAuthError(error);
     }
+    return null;
   }
 
-  Future<UserModel?> signInWithEmailAndPassword(email, password) async {
+  Future<UserModel?> signInWithEmailAndPassword(
+      String email, String password) async {
     try {
       final currentUser = (await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       ))
           .user;
-      _logger.i("AuthProvider: Successfully!");
+
+      _logInfo("Successfully authenticated with email and password.");
       return UserModel.fromFirebase(currentUser!);
     } on FirebaseAuthException catch (error) {
-      _logger.e("Error log", error: error);
-      throw Exception('${'error_message_firebase'.tr}\n${error.message!}');
+      _handleAuthError(error);
     }
+    return null;
   }
 
-  Future<void> sendPasswordResetEmail(email) async {
+  Future<void> sendPasswordResetEmail(String email) async {
     try {
-      _logger.i("AuthProvider: Successfully!");
-      return await FirebaseAuth.instance.sendPasswordResetEmail(
+      _logInfo("Password reset email sent successfully.");
+      await FirebaseAuth.instance.sendPasswordResetEmail(
         email: email,
       );
     } on FirebaseAuthException catch (error) {
-      _logger.e("Error log", error: error);
-      throw Exception('${'error_message_firebase'.tr}\n${error.message!}');
+      _handleAuthError(error);
     }
   }
 
   Future<void> signOut() {
-    _logger.i("AuthProvider: Successfully!");
+    _logInfo("User signed out.");
     return _firebaseAuth.signOut();
+  }
+
+  void _handleAuthError(FirebaseAuthException error) {
+    _logger.e("Firebase Authentication Error", error: error);
+    throw Exception('${'error_message_firebase'.tr}\n${error.message!}');
+  }
+
+  void _logInfo(String message) {
+    _logger.i("AuthProvider: $message");
   }
 }
