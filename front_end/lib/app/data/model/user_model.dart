@@ -16,10 +16,21 @@ class UserModel {
   });
 
   UserModel.fromFirebase(User? data) {
+
+    String? addIfPresent(String? target, String? value) {
+      if (value != null) {
+        target = value;
+      }
+      return target;
+    }
+
+    displayName = UserModel.mock().displayName;
+    photoURL = UserModel.mock().photoURL;
+
     uid = data!.uid;
-    displayName = data.displayName;
+    displayName = addIfPresent(displayName, data.displayName);
     email = data.email;
-    photoURL = data.photoURL;
+    photoURL = addIfPresent(photoURL, data.photoURL);
     creationTime = data.metadata.creationTime!;
     lastSignInTime = data.metadata.lastSignInTime!;
   }
