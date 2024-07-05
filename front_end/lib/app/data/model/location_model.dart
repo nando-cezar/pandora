@@ -35,8 +35,8 @@ class LocationModel {
     address = data['address'];
     state = data['state'];
     region = data['region'];
-    latitude = data['latitude'].toDouble();
-    longitude = data['longitude'].toDouble();
+    latitude = data['latitude']?.toDouble();
+    longitude = data['longitude']?.toDouble();
     type = descriptionType;
     startDate = data['start_date'];
     endDate = data['end_date'];
@@ -44,8 +44,8 @@ class LocationModel {
     totalDeath = data['total_death'];
   }
 
-  Map<String, Object> toJson() {
-    final Map<String, Object> json = <String, Object>{};
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, Object>{};
 
     void addIfPresent(String fieldName, Object? value) {
       if (value != null) {
@@ -65,8 +65,8 @@ class LocationModel {
     addIfPresent('totalAffected', totalAffected);
     addIfPresent('totalDeath', totalDeath);
     addIfPresent('type', type);
-    addIfPresent('icon', _getIcon(type!));
-    addIfPresent('image', _getImage(type!));
+    addIfPresent('icon', type != null ? _getIcon(type!) : null);
+    addIfPresent('image', type != null ? _getImage(type!) : null);
 
     return json;
   }

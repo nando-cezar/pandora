@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pandora_front/app/data/model/extreme_event_model.dart';
 import 'package:pandora_front/app/modules/dashboard/controllers/dashboard_controller.dart';
-import 'package:pandora_front/app/modules/dashboard/widgets/base_expansion_panel.dart';
+import 'package:pandora_front/app/ui/widgets/base_expansion_panel.dart';
 import 'package:pandora_front/constants.dart';
 
 class MyExpansionPanel extends GetView<DashboardController> {
@@ -133,7 +133,7 @@ class MyExpansionPanel extends GetView<DashboardController> {
                           ),
                         ),
                         Text(
-                          model.regionGreatestRecurrences![0].region.toString(),
+                          model.regionGreatestRecurrences![0].region.toString().tr,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).colorScheme.tertiary,

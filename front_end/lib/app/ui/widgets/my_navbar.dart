@@ -6,7 +6,11 @@ class MyNavBar extends StatelessWidget {
   final int value;
   final Function(int)? onTap;
 
-  const MyNavBar({super.key, required this.value, required this.onTap});
+  const MyNavBar({
+    super.key,
+    required this.value,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

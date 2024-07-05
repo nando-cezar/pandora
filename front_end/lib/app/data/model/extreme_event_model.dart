@@ -71,8 +71,8 @@ class ExtremeEventModel {
     color = _getColor(code!);
   }
 
-  Object toJson() {
-    final Map<String, Object> json = <String, Object>{};
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, Object>{};
 
     void addIfPresent(String fieldName, Object? value) {
       if (value != null) {
