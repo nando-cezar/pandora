@@ -131,7 +131,6 @@ class MyDashboardMap extends GetView<DashboardController> {
               'Heat wave'.tr,
               'Riverine flood'.tr,
               'Storm, General'.tr,
-              'Tropical cyclone'.tr,
               'Extra-tropical storm'.tr,
             ],
             initialValue: controller.dataController.localDataController.getExtremeEvent().tr,
