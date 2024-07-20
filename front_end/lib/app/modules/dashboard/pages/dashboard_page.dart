@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:pandora_front/app/modules/dashboard/controllers/dashboard_controller.dart';
-import 'package:pandora_front/app/modules/dashboard/layout/desktop_scaffold.dart';
-import 'package:pandora_front/app/modules/dashboard/layout/mobile_scaffold.dart';
-import 'package:pandora_front/app/modules/dashboard/layout/responsive_layout.dart';
-import 'package:pandora_front/app/modules/dashboard/layout/tablet_scaffold.dart';
 import 'package:pandora_front/app/ui/pages/message_page.dart';
 import 'package:pandora_front/app/ui/widgets/my_drawer.dart';
 import 'package:pandora_front/constants.dart';
@@ -27,10 +24,27 @@ class DashboardPage extends GetView<DashboardController> {
           return Scaffold(
             appBar: myAppBar(),
             drawer: const MyDrawer(),
-            body: const ResponsiveLayout(
-              mobileScaffold: MobileScaffold(),
-              tabletScaffold: TableScaffold(),
-              desktopScaffold: DesktopScaffold(),
+            body: Obx(() => controller.listPages[controller.index.value]),
+            bottomNavigationBar: GNav(
+              padding: const EdgeInsetsDirectional.symmetric(vertical: 10),
+              backgroundColor: mySecondColor,
+              activeColor: myFifthColor,
+              color: myFifthColor,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              gap: 8,
+              tabs: const [
+                GButton(
+                  icon: Icons.dashboard,
+                  text: 'Dashboard',
+                ),
+                GButton(
+                  icon: Icons.map,
+                  text: 'Map',
+                ),
+              ],
+              onTabChange: (index) {
+                controller.index.value = index;
+              },
             ),
           );
         }

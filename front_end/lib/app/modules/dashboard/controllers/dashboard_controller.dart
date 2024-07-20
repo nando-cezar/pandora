@@ -6,10 +6,24 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pandora_front/app/controller/data_controller.dart';
 import 'package:pandora_front/app/controller/map_controller.dart';
 import 'package:pandora_front/app/data/model/location_model.dart';
+import 'package:pandora_front/app/modules/dashboard/layout/desktop_scaffold.dart';
+import 'package:pandora_front/app/modules/dashboard/layout/mobile_scaffold.dart';
+import 'package:pandora_front/app/modules/dashboard/layout/responsive_layout.dart';
+import 'package:pandora_front/app/modules/dashboard/layout/tablet_scaffold.dart';
 import 'package:pandora_front/app/modules/dashboard/widgets/my_bottom_sheet.dart';
+import 'package:pandora_front/app/modules/dashboard/widgets/my_dashboard_map.dart';
 import 'package:pandora_front/constants.dart';
 
 class DashboardController extends GetxController {
+  var index = 0.obs;
+  var listPages = [
+    const ResponsiveLayout(
+      mobileScaffold: MobileScaffold(),
+      tabletScaffold: TableScaffold(),
+      desktopScaffold: DesktopScaffold(),
+    ),
+    const MyDashboardMap(),
+  ];
   final DataController dataController;
   final MapController mapController;
   var regionController = TextEditingController();

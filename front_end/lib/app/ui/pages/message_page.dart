@@ -13,11 +13,11 @@ class MessagePage extends StatelessWidget {
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [myFirstColor, myFifthColor],
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-          ),
+          image: DecorationImage(
+            image: AssetImage('assets/images/bg/bg_pandora.jpg'),
+            fit: BoxFit.cover,
+            filterQuality: FilterQuality.high,
+          )
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
