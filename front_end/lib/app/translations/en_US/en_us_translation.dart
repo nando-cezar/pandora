@@ -29,7 +29,7 @@ final Map<String, String> enUs = {
   'error_load_data': 'Failed to load data!',
 
   'title': 'EXTREME EVENTS',
-  'subtitle': 'Prediction chart based on current location',
+  'subtitle': 'Prediction chart based on current location (%)',
 
   'Cold wave': 'Cold Wave',
   'Flood': 'Flood',

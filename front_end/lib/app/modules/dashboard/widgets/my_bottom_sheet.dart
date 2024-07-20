@@ -90,8 +90,7 @@ class MyBottomSheet extends StatelessWidget {
               constraints: BoxConstraints(maxWidth: constraints.maxWidth - 70),
               child: Text(
                 value,
-                overflow: TextOverflow.fade,
-                softWrap: false,
+                softWrap: true,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.tertiary,
                   fontWeight: FontWeight.bold,

@@ -29,7 +29,7 @@ final Map<String, String> ptBR = {
   'error_load_data': 'Falha ao carregar dados!',
 
   'title': 'EVENTOS EXTREMOS',
-  'subtitle': 'Gráfico de previsão baseado na localização atual',
+  'subtitle': 'Gráfico de previsão baseado na localização atual (%)',
 
   'Cold wave': 'Onda Fria',
   'Flood': 'Inundação',
