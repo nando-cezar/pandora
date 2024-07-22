@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pandora_front/app/controller/data_controller.dart';
 import 'package:pandora_front/app/modules/auth/controllers/auth_controller.dart';
-import 'package:pandora_front/app/routes/app_pages.dart';
 
 class ParamatersController extends GetxController {
   final AuthController authController;
@@ -24,10 +23,6 @@ class ParamatersController extends GetxController {
       dataController.localDataController.getLongitude(),
     );
     _updateMarkers();
-  }
-
-  void persist() {
-    Get.offAllNamed(Routes.dashboard);
   }
 
   void onMapTapped(LatLng location) {

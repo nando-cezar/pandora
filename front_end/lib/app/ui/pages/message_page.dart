@@ -12,7 +12,7 @@ class MessagePage extends StatelessWidget {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/bg/bg_pandora.jpg'),
             fit: BoxFit.cover,
