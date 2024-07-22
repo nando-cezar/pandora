@@ -40,10 +40,9 @@ class ParametersPage extends GetView<ParamatersController> {
                       children: [
                         Text(
                           'change_parameters'.tr,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
-                            color: myFirstColor,
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -120,7 +119,7 @@ class ParametersPage extends GetView<ParamatersController> {
                           ),
                         ),
                         Slider(
-                          activeColor: myFirstColor,
+                          activeColor: myThirdColor,
                           value: controller.getPastDaysSlider(),
                           min: 1,
                           max: 5,
@@ -136,7 +135,7 @@ class ParametersPage extends GetView<ParamatersController> {
                           ),
                         ),
                         Slider(
-                          activeColor: myFirstColor,
+                          activeColor: myThirdColor,
                           value: controller.getForecastDaysSlider(),
                           min: 1,
                           max: 14,

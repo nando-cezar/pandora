@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:pandora_front/app/modules/world_map/controllers/world_map_controller.dart';
 import 'package:pandora_front/app/modules/world_map/widgets/my_fab_menu_button.dart';
 import 'package:pandora_front/app/modules/world_map/widgets/my_selection_card.dart';
+import 'package:pandora_front/app/routes/app_pages.dart';
 import 'package:pandora_front/app/ui/pages/message_page.dart';
 import 'package:pandora_front/app/ui/widgets/my_drawer.dart';
 import 'package:pandora_front/constants.dart';
@@ -23,7 +24,9 @@ class WorldMapPage extends GetView<WorldMapController> {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
           return Scaffold(
-            appBar: myAppBar(),
+            appBar: myAppBar(
+              onPressed: () => Get.offAllNamed(Routes.dashboard),
+            ),
             drawer: const MyDrawer(),
             body: Container(
               decoration: BoxDecoration(

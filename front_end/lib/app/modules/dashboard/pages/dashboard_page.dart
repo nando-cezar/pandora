@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:pandora_front/app/modules/dashboard/controllers/dashboard_controller.dart';
+import 'package:pandora_front/app/routes/app_pages.dart';
 import 'package:pandora_front/app/ui/pages/message_page.dart';
 import 'package:pandora_front/app/ui/widgets/my_drawer.dart';
 import 'package:pandora_front/constants.dart';
@@ -22,7 +23,9 @@ class DashboardPage extends GetView<DashboardController> {
           );
         } else {
           return Scaffold(
-            appBar: myAppBar(),
+            appBar: myAppBar(
+              onPressed: () => Get.offAllNamed(Routes.dashboard),
+            ),
             drawer: const MyDrawer(),
             body: Obx(() => controller.listPages[controller.index.value]),
             bottomNavigationBar: GNav(

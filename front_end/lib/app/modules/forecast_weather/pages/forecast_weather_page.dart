@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pandora_front/app/modules/forecast_weather/controllers/forecast_weather_controller.dart';
+import 'package:pandora_front/app/routes/app_pages.dart';
 import 'package:pandora_front/app/ui/pages/message_page.dart';
 import 'package:pandora_front/app/ui/widgets/my_drawer.dart';
 import 'package:pandora_front/constants.dart';
@@ -22,7 +23,9 @@ class ForecastWeatherPage extends GetView<ForecastWeatherController> {
           );
         } else {
           return Scaffold(
-            appBar: myAppBar(),
+            appBar: myAppBar(
+              onPressed: () => Get.offAllNamed(Routes.dashboard),
+            ),
             drawer: const MyDrawer(),
             body: Center(
               child: Column(

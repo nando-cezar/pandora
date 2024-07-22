@@ -51,12 +51,12 @@ class BaseGraph extends GetView<DashboardController> {
             ),
           ),
           TabBar(
-            indicatorColor: Theme.of(context).colorScheme.secondary,
+            indicatorColor: myThirdColor,
             tabs: [
               Tab(
                 icon: Icon(
                   Icons.graphic_eq,
-                  color: myFirstColor,
+                  color: myThirdColor,
                   size: 20.0,
                 ),
                 child: Text(
@@ -70,7 +70,7 @@ class BaseGraph extends GetView<DashboardController> {
               Tab(
                 icon: Icon(
                   Icons.auto_graph,
-                  color: myFirstColor,
+                  color: myThirdColor,
                   size: 20.0,
                 ),
                 child: Text(

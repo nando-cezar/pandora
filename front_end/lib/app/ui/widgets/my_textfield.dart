@@ -33,6 +33,7 @@ class MyTextField extends StatelessWidget {
         hintStyle: TextStyle(color: myEighthColor),
         enabled: enabled,
       ),
+      cursorColor: myEighthColor,
     );
   }
 }

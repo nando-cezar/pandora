@@ -19,7 +19,7 @@ class MyCardSettings extends GetView<SettingsController> {
           ListTile(
               leading: Icon(
                 FontAwesomeIcons.language,
-                color: myFirstColor,
+                color: myThirdColor,
               ),
               title: Text(
                 'change_language'.tr,
@@ -33,7 +33,7 @@ class MyCardSettings extends GetView<SettingsController> {
           ListTile(
             leading: Icon(
               Icons.data_object,
-              color: myFirstColor,
+              color: myThirdColor,
             ),
             title: Text(
               'change_parameters'.tr,
