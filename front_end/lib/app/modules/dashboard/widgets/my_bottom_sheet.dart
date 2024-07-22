@@ -12,6 +12,13 @@ class MyBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primary,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(25.0),
+          topRight: Radius.circular(25.0),
+        ),
+      ),
       padding: EdgeInsets.zero,
       height: double.infinity,
       width: double.infinity,

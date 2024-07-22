@@ -9,15 +9,22 @@ class MyCardProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 8.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4),
-      ),
-      color: Theme.of(context).colorScheme.primary,
-      child: GetPlatform.isMobile
-          ? _buildMobileProfile()
-          : _buildDesktopProfile(),
-    );
+        elevation: 8.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+        ),
+        color: Theme.of(context).colorScheme.primary,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            if (GetPlatform.isMobile) {
+              return _buildMobileProfile();
+            } else if (constraints.maxWidth < 800) {
+              return _buildMobileProfile();
+            } else {
+              return _buildDesktopProfile();
+            }
+          },
+        ));
   }
 
   Widget _buildDesktopProfile() {

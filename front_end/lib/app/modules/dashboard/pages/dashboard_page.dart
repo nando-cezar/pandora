@@ -34,10 +34,12 @@ class DashboardPage extends GetView<DashboardController> {
               gap: 8,
               tabs: const [
                 GButton(
+                  padding: EdgeInsets.all(10),
                   icon: Icons.dashboard,
                   text: 'Dashboard',
                 ),
                 GButton(
+                  padding: EdgeInsets.all(10),
                   icon: Icons.map,
                   text: 'Map',
                 ),

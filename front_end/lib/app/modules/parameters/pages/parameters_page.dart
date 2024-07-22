@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pandora_front/app/modules/parameters/controllers/parameters_controller.dart';
+import 'package:pandora_front/app/routes/app_pages.dart';
 import 'package:pandora_front/app/ui/pages/message_page.dart';
 import 'package:pandora_front/constants.dart';
 
@@ -26,7 +27,7 @@ class ParametersPage extends GetView<ParamatersController> {
             appBar: myAppBar(actions: [
               IconButton(
                 icon: const Icon(Icons.check),
-                onPressed: () => controller.persist(),
+                onPressed: () => Get.offAllNamed(Routes.dashboard),
               ),
             ]),
             body: GetBuilder<ParamatersController>(

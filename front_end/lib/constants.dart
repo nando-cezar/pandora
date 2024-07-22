@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'app/routes/app_pages.dart';
+
 
 Color myFirstColor = const Color.fromRGBO(38, 103, 255, 1);
 
@@ -23,12 +27,15 @@ Color myActiveColor = Colors.pink;
 var myAppBar = ({List<Widget>? actions}) => AppBar(
       iconTheme: IconThemeData(color: myFifthColor),
       backgroundColor: myFirstColor,
-      title: Text(
-        'P A N D O R A®',
-        style: TextStyle(
-          color: myFifthColor,
-          fontSize: 20,
+      title: TextButton(
+        child: Text(
+          'P A N D O R A®',
+          style: TextStyle(
+            color: myFifthColor,
+            fontSize: 20,
+          ),
         ),
+        onPressed: () => Get.offAllNamed(Routes.dashboard),
       ),
       centerTitle: true,
       actions: actions,
