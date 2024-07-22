@@ -61,7 +61,7 @@ class MyDashboardMap extends GetView<DashboardController> {
             child: FloatingActionButton.small(
               onPressed: () => _buildDefaultDialog(controller),
               tooltip: 'change_map_view'.tr,
-              backgroundColor: myFirstColor,
+              backgroundColor: myThirdColor,
               child: const Icon(Icons.compare_arrows),
             ),
           ),
@@ -141,7 +141,7 @@ class MyDashboardMap extends GetView<DashboardController> {
         TextButton(
           child: Text(
             'confirm'.tr,
-            style: TextStyle(color: myFirstColor),
+            style: TextStyle(color: myThirdColor),
           ),
           onPressed: () {
             controller.dataController.localDataController.updateRegion(controller.regionController.text);

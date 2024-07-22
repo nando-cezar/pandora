@@ -154,7 +154,7 @@ class LoginPage extends GetView<LoginController> {
                         child: Text(
                           'register_now'.tr,
                           style: TextStyle(
-                            color: myFirstColor,
+                            color: myThirdColor,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

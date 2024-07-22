@@ -41,7 +41,7 @@ class _MyRadioButtonState extends State<MyRadioButton> {
                     widget.controller.text = value!;
                   });
                 },
-                activeColor: myFirstColor,
+                activeColor: myThirdColor,
               ),
             );
           }).toList(),

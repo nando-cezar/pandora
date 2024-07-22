@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pandora_front/app/modules/settings/controllers/settings_controller.dart';
 import 'package:pandora_front/app/modules/settings/widgets/my_card_profile.dart';
 import 'package:pandora_front/app/modules/settings/widgets/my_card_settings.dart';
+import 'package:pandora_front/app/routes/app_pages.dart';
 import 'package:pandora_front/app/ui/widgets/my_drawer.dart';
 import 'package:pandora_front/constants.dart';
 
@@ -12,7 +13,9 @@ class SettingsPage extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar(),
+      appBar: myAppBar(
+        onPressed: () => Get.offAllNamed(Routes.dashboard),
+      ),
       drawer: const MyDrawer(),
       body: Stack(
         fit: StackFit.expand,
@@ -28,10 +31,9 @@ class SettingsPage extends GetView<SettingsController> {
                 const SizedBox(height: 20.0),
                 Text(
                   "general_settings".tr,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
-                    color: myFirstColor,
                   ),
                 ),
                 Obx(
@@ -46,10 +48,9 @@ class SettingsPage extends GetView<SettingsController> {
                 const SizedBox(height: 20.0),
                 Text(
                   "notification_settings".tr,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
-                    color: myFirstColor,
                   ),
                 ),
                 SwitchListTile(
