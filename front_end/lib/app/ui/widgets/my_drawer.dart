@@ -24,7 +24,7 @@ class MyDrawer extends GetView<AuthController> {
                 'dashboard'.tr,
                 style: const TextStyle(
                   fontFamily: 'Roboto',
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.normal,
                 ),
               ),
             ),

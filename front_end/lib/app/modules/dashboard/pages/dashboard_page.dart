@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:pandora_front/app/modules/dashboard/controllers/dashboard_controller.dart';
-import 'package:pandora_front/app/routes/app_pages.dart';
 import 'package:pandora_front/app/ui/pages/message_page.dart';
 import 'package:pandora_front/app/ui/widgets/my_drawer.dart';
 import 'package:pandora_front/constants.dart';
@@ -23,9 +22,7 @@ class DashboardPage extends GetView<DashboardController> {
           );
         } else {
           return Scaffold(
-            appBar: myAppBar(
-              onPressed: () => Get.offAllNamed(Routes.dashboard),
-            ),
+            appBar: myAppBar(),
             drawer: const MyDrawer(),
             body: Obx(() => controller.listPages[controller.index.value]),
             bottomNavigationBar: GNav(
@@ -35,24 +32,25 @@ class DashboardPage extends GetView<DashboardController> {
               color: myFifthColor,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               gap: 8,
-              tabs: const [
+              tabs: [
                 GButton(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   icon: Icons.dashboard,
                   text: 'Dashboard',
                   textStyle: TextStyle(
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold,
-                    color: Colors.white
+                    color: myFifthColor,
                   ),
                 ),
                 GButton(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   icon: Icons.map,
                   text: 'Map',
                   textStyle: TextStyle(
                     fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold,
+                    color: myFifthColor,
                   ),
                 ),
               ],

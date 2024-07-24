@@ -21,34 +21,31 @@ class BaseGraph extends GetView<DashboardController> {
       length: 2,
       child: Column(
         children: [
-          PreferredSize(
-            preferredSize: const Size.fromHeight(100),
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-              color: Theme.of(context).colorScheme.background,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: myActiveColor,
-                      fontSize: 15,
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.bold,
-                    ),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            color: Theme.of(context).colorScheme.background,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: myActiveColor,
+                    fontSize: 15,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.bold,
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                    subtitle,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.normal,
-                    ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  subtitle,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.normal,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           TabBar(
@@ -88,7 +85,7 @@ class BaseGraph extends GetView<DashboardController> {
               )
             ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Expanded(
             child: TabBarView(
               children: [
@@ -101,7 +98,7 @@ class BaseGraph extends GetView<DashboardController> {
               ],
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
         ],
       ),
     );
