@@ -22,7 +22,9 @@ class MyTextField extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Theme.of(context).colorScheme.primary,),
+          borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: myThirdColor),
@@ -30,7 +32,11 @@ class MyTextField extends StatelessWidget {
         fillColor: Theme.of(context).colorScheme.primary,
         filled: true,
         hintText: hintText,
-        hintStyle: TextStyle(color: myEighthColor),
+        hintStyle: TextStyle(
+          color: myEighthColor,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.normal,
+        ),
         enabled: enabled,
       ),
       cursorColor: myEighthColor,

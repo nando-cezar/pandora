@@ -26,8 +26,9 @@ class MessagePage extends StatelessWidget {
               'P A N D O R A',
               style: TextStyle(
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
                 fontSize: 30.0,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.bold,
                 shadows: [
                   Shadow(
                     offset: const Offset(2.0, 2.0),
@@ -46,8 +47,9 @@ class MessagePage extends StatelessWidget {
               message,
               style: TextStyle(
                 color: Colors.white,
-                fontWeight: FontWeight.normal,
                 fontSize: 15.0,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.normal,
                 shadows: [
                   Shadow(
                     offset: const Offset(2.0, 2.0),

@@ -33,15 +33,22 @@ class SettingsPage extends GetView<SettingsController> {
                   "general_settings".tr,
                   style: const TextStyle(
                     fontSize: 20.0,
+                    fontFamily: 'Roboto',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Obx(
                   () => SwitchListTile(
-                    activeColor: myFirstColor,
+                    activeColor: myThirdColor,
                     contentPadding: const EdgeInsets.all(0),
                     value: controller.isDarkMode,
-                    title: Text('dark_mode'.tr),
+                    title: Text(
+                      'dark_mode'.tr,
+                      style: const TextStyle(
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
                     onChanged: controller.toggleTheme,
                   ),
                 ),
@@ -50,21 +57,32 @@ class SettingsPage extends GetView<SettingsController> {
                   "notification_settings".tr,
                   style: const TextStyle(
                     fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
                 SwitchListTile(
                   activeColor: myFirstColor,
                   contentPadding: const EdgeInsets.all(0),
                   value: false,
-                  title: Text("received_notification".tr),
+                  title: Text("received_notification".tr,
+                      style: const TextStyle(
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.normal,
+                      )),
                   onChanged: null,
                 ),
                 SwitchListTile(
                   activeColor: myFirstColor,
                   contentPadding: const EdgeInsets.all(0),
                   value: false,
-                  title: Text("received_newsletter".tr),
+                  title: Text(
+                    "received_newsletter".tr,
+                    style: const TextStyle(
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
                   onChanged: null,
                 ),
               ],

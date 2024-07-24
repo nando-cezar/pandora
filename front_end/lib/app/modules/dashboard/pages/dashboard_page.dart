@@ -40,11 +40,20 @@ class DashboardPage extends GetView<DashboardController> {
                   padding: EdgeInsets.all(10),
                   icon: Icons.dashboard,
                   text: 'Dashboard',
+                  textStyle: TextStyle(
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white
+                  ),
                 ),
                 GButton(
                   padding: EdgeInsets.all(10),
                   icon: Icons.map,
                   text: 'Map',
+                  textStyle: TextStyle(
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
               onTabChange: (index) {

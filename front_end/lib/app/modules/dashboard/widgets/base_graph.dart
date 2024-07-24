@@ -34,16 +34,17 @@ class BaseGraph extends GetView<DashboardController> {
                     style: TextStyle(
                       color: myActiveColor,
                       fontSize: 15,
+                      fontFamily: 'Roboto',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 5),
                   Text(
                     subtitle,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
+                      fontFamily: 'Roboto',
                       fontWeight: FontWeight.normal,
-                      color: Theme.of(context).colorScheme.tertiary,
                     ),
                   ),
                 ],
@@ -62,7 +63,9 @@ class BaseGraph extends GetView<DashboardController> {
                 child: Text(
                   'chance_of_occurrence'.tr,
                   style: TextStyle(
-                    color: myFirstColor,
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.normal,
                     fontSize: 14.0,
                   ),
                 ),
@@ -76,7 +79,9 @@ class BaseGraph extends GetView<DashboardController> {
                 child: Text(
                   'highest_recurrence'.tr,
                   style: TextStyle(
-                    color: myFirstColor,
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.normal,
                     fontSize: 14.0,
                   ),
                 ),

@@ -31,6 +31,8 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                     style: TextStyle(
                       color: myTenthColor,
                       fontSize: 16,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
                   const SizedBox(height: 25),
@@ -39,6 +41,8 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                     style: TextStyle(
                       color: myEighthColor,
                       fontSize: 13,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
                   const SizedBox(height: 25),

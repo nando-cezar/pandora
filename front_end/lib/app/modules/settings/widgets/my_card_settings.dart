@@ -23,10 +23,13 @@ class MyCardSettings extends GetView<SettingsController> {
               ),
               title: Text(
                 'change_language'.tr,
+                style: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.normal,
+                ),
               ),
               trailing: const Icon(Icons.keyboard_arrow_right),
-              onTap: () => _buildDefaultDialog()
-          ),
+              onTap: () => _buildDefaultDialog()),
           Divider(
             color: Theme.of(Get.context!).colorScheme.secondary,
           ),
@@ -37,6 +40,10 @@ class MyCardSettings extends GetView<SettingsController> {
             ),
             title: Text(
               'change_parameters'.tr,
+              style: const TextStyle(
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.normal,
+              ),
             ),
             trailing: const Icon(Icons.keyboard_arrow_right),
             onTap: () => Get.toNamed(Routes.settingsParameters),
@@ -51,6 +58,7 @@ class MyCardSettings extends GetView<SettingsController> {
       title: 'change_language'.tr,
       titleStyle: const TextStyle(
         fontSize: 20,
+        fontFamily: 'Roboto',
         fontWeight: FontWeight.bold,
       ),
       content: Column(
@@ -60,6 +68,8 @@ class MyCardSettings extends GetView<SettingsController> {
             'select_language'.tr,
             style: TextStyle(
               color: Theme.of(Get.context!).colorScheme.tertiary,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.normal,
             ),
           ),
           MyDropdown(
@@ -72,7 +82,11 @@ class MyCardSettings extends GetView<SettingsController> {
         TextButton(
           child: Text(
             'confirm'.tr,
-            style: TextStyle(color: myFirstColor),
+            style: TextStyle(
+              color: myThirdColor,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.bold,
+            ),
           ),
           onPressed: () {
             Get.updateLocale(controller.getLocale());

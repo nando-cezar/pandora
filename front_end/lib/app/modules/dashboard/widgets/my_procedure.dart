@@ -22,6 +22,7 @@ class MyProcedure extends StatelessWidget {
             Text(
               title,
               style: const TextStyle(
+                fontFamily: 'Roboto',
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
@@ -45,7 +46,11 @@ class MyProcedure extends StatelessWidget {
                           Expanded(
                             child: Text(
                               procedure,
-                              style: const TextStyle(fontSize: 14),
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.normal,
+                              ),
                             ),
                           ),
                         ],

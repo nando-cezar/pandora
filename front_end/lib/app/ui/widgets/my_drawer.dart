@@ -20,35 +20,78 @@ class MyDrawer extends GetView<AuthController> {
             onTap: () => Get.offAllNamed(Routes.dashboard),
             child: ListTile(
               leading: const Icon(Icons.home),
-              title: Text('dashboard'.tr),
+              title: Text(
+                'dashboard'.tr,
+                style: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
           GestureDetector(
             onTap: () => Get.offAllNamed(Routes.worldMap),
             child: ListTile(
               leading: const Icon(Icons.map),
-              title: Text('map'.tr),
+              title: Text(
+                'map'.tr,
+                style: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
             ),
           ),
           GestureDetector(
             onTap: () => Get.offAllNamed(Routes.forecastWeather),
             child: ListTile(
               leading: const Icon(Icons.sunny),
-              title: Text('weather'.tr),
+              title: Text(
+                'weather'.tr,
+                style: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () => {},
+            child: const ListTile(
+              leading: Icon(Icons.newspaper),
+              title: Text(
+                'N O T I C I A S',
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
             ),
           ),
           GestureDetector(
             onTap: () => Get.offAllNamed(Routes.settings),
             child: ListTile(
               leading: const Icon(Icons.settings),
-              title: Text('settings'.tr),
+              title: Text(
+                'settings'.tr,
+                style: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
             ),
           ),
           GestureDetector(
             onTap: _signUserOut,
             child: ListTile(
               leading: const Icon(Icons.logout),
-              title: Text('logout'.tr),
+              title: Text(
+                'logout'.tr,
+                style: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
             ),
           )
         ],

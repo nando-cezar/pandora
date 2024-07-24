@@ -42,6 +42,7 @@ class ParametersPage extends GetView<ParamatersController> {
                           'change_parameters'.tr,
                           style: const TextStyle(
                             fontSize: 20.0,
+                            fontFamily: 'Roboto',
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -50,6 +51,7 @@ class ParametersPage extends GetView<ParamatersController> {
                           'location'.tr,
                           style: TextStyle(
                             fontSize: 15.0,
+                            fontFamily: 'Roboto',
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).colorScheme.tertiary,
                           ),
@@ -65,6 +67,8 @@ class ParametersPage extends GetView<ParamatersController> {
                                     'Latitude: ${controller.getSelectedLocation().latitude}',
                                     style: TextStyle(
                                       color: Theme.of(context).colorScheme.tertiary,
+                                      fontFamily: 'Roboto',
+                                      fontWeight: FontWeight.normal,
                                     ),
                                   ),
                                 ],
@@ -79,6 +83,8 @@ class ParametersPage extends GetView<ParamatersController> {
                                     'Longitude: ${controller.getSelectedLocation().longitude}',
                                     style: TextStyle(
                                       color: Theme.of(context).colorScheme.tertiary,
+                                      fontFamily: 'Roboto',
+                                      fontWeight: FontWeight.normal,
                                     ),
                                   ),
                                 ],
@@ -107,8 +113,9 @@ class ParametersPage extends GetView<ParamatersController> {
                           'monitoring'.tr,
                           style: TextStyle(
                             fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
                             color: Theme.of(context).colorScheme.tertiary,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -116,6 +123,8 @@ class ParametersPage extends GetView<ParamatersController> {
                           'past_days'.tr,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.normal,
                           ),
                         ),
                         Slider(
@@ -132,6 +141,8 @@ class ParametersPage extends GetView<ParamatersController> {
                           'forecast_days'.tr,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.normal,
                           ),
                         ),
                         Slider(

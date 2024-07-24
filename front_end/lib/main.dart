@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.rightToLeft,
       getPages: AppPages.routes,
       locale: const Locale('pt', 'BR'),
-      translationsKeys: AppTranslation.translations
+      translationsKeys: AppTranslation.translations,
     );
   }
 }
