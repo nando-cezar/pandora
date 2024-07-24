@@ -45,6 +45,8 @@ class MySelectionCard extends StatelessWidget {
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.tertiary,
                     fontSize: 12,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),

@@ -12,7 +12,7 @@ class MobileScaffold extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 700,
+            height: context.height * 70 / 100,
             child: BaseGraph(
               title: 'title'.tr,
               subtitle: 'subtitle'.tr,

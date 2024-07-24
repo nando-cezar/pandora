@@ -32,7 +32,13 @@ class _MyRadioButtonState extends State<MyRadioButton> {
         child: Column(
           children: widget.options.map((option) {
             return ListTile(
-              title: Text(option),
+              title: Text(
+                option,
+                style: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
               leading: Radio<String>(
                 value: option,
                 groupValue: widget.controller.text,

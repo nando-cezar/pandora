@@ -31,6 +31,8 @@ class RegisterPage extends GetView<RegisterController> {
                     style: TextStyle(
                       color: myNinthColor,
                       fontSize: 16,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
                   const SizedBox(height: 25),

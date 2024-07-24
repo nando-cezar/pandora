@@ -90,6 +90,8 @@ class MyBottomSheet extends StatelessWidget {
               label,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.tertiary,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.normal,
               ),
             ),
             const SizedBox(width: 5),
@@ -100,6 +102,7 @@ class MyBottomSheet extends StatelessWidget {
                 softWrap: true,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.tertiary,
+                  fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
                 ),
               ),

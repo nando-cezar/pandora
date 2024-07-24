@@ -77,6 +77,7 @@ FlTitlesData buildTitlesData(List<ExtremeEventModel> items) {
 Widget getBottomTitles(List<String> titles, double value, TitleMeta meta) {
   var style = TextStyle(
     color: myActiveColor,
+    fontFamily: 'Roboto',
     fontWeight: FontWeight.bold,
     fontSize: 12,
   );
@@ -140,6 +141,7 @@ BarTouchData buildBarTouchData(context) => BarTouchData(
             rod.toY.round().toString(),
             TextStyle(
               fontSize: 10,
+              fontFamily: 'Roboto',
               fontWeight: FontWeight.bold,
               color: Theme.of(context).colorScheme.tertiary,
             ),

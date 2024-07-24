@@ -18,7 +18,10 @@ class MyRichText extends StatelessWidget {
         children: <TextSpan>[
           TextSpan(
             text: '$title\n',
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.bold,
+            ),
           ),
           TextSpan(
             text: content,

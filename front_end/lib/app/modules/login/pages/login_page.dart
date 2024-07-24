@@ -23,56 +23,49 @@ class LoginPage extends GetView<LoginController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 50),
-
                   Image.asset(
                     'assets/images/pandora.png',
                     height: 100,
                   ),
-
                   const SizedBox(height: 25),
-
                   Text(
                     'PANDORA',
                     style: TextStyle(
                       color: myTenthColor,
-                      fontWeight: FontWeight.bold,
                       fontSize: 25,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.bold,
                     ),
-                  ).animate()
+                  )
+                      .animate()
                       .fadeIn(duration: 600.ms)
                       .then(delay: 200.ms) // baseline=800ms
                       .slide(),
-
                   const SizedBox(height: 10),
-
                   Text(
                     'welcome'.tr,
                     style: TextStyle(
                       color: myNinthColor,
                       fontSize: 16,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
-
                   const SizedBox(height: 25),
-
                   MyTextField(
                     controller: controller.emailController,
                     hintText: 'E-mail',
                     obscureText: false,
                     enabled: true,
                   ),
-
                   const SizedBox(height: 10),
-
                   MyTextField(
                     controller: controller.passwordController,
                     hintText: 'password'.tr,
                     obscureText: true,
                     enabled: true,
                   ),
-
                   const SizedBox(height: 10),
-
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
@@ -82,24 +75,24 @@ class LoginPage extends GetView<LoginController> {
                           onTap: () => Get.toNamed(Routes.forgotPassword),
                           child: Text(
                             'forgot_password?'.tr,
-                            style: TextStyle(color: myNinthColor),
+                            style: TextStyle(
+                              color: myNinthColor,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.normal,
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
-
                   const SizedBox(height: 25),
-
                   MyButton(
                     onTap: () {
                       controller.signInWithEmailAndPassword();
                     },
                     text: 'signin'.tr,
                   ),
-
                   const SizedBox(height: 30),
-
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
@@ -114,7 +107,11 @@ class LoginPage extends GetView<LoginController> {
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Text(
                             'or_continue_with'.tr,
-                            style: TextStyle(color: myNinthColor),
+                            style: TextStyle(
+                              color: myNinthColor,
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.normal,
+                            ),
                           ),
                         ),
                         Expanded(
@@ -126,9 +123,7 @@ class LoginPage extends GetView<LoginController> {
                       ],
                     ),
                   ),
-
                   const SizedBox(height: 25),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -138,15 +133,17 @@ class LoginPage extends GetView<LoginController> {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 25),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'not_a_member?'.tr,
-                        style: TextStyle(color: myNinthColor),
+                        style: TextStyle(
+                          color: myNinthColor,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                       const SizedBox(width: 4),
                       GestureDetector(
@@ -155,6 +152,7 @@ class LoginPage extends GetView<LoginController> {
                           'register_now'.tr,
                           style: TextStyle(
                             color: myThirdColor,
+                            fontFamily: 'Roboto',
                             fontWeight: FontWeight.bold,
                           ),
                         ),

@@ -9,34 +9,31 @@ class MyCardProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        elevation: 8.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4),
-        ),
-        color: Theme.of(context).colorScheme.primary,
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            if (GetPlatform.isMobile) {
-              return _buildMobileProfile();
-            } else if (constraints.maxWidth < 800) {
-              return _buildMobileProfile();
-            } else {
-              return _buildDesktopProfile();
-            }
-          },
-        ));
+      elevation: 8.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+      ),
+      color: Theme.of(context).colorScheme.primary,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return _buildProfileContent(context);
+        },
+      ),
+    );
   }
 
-  Widget _buildDesktopProfile() {
+  Widget _buildProfileContent(BuildContext context) {
     return GetBuilder<SettingsController>(
       builder: (controller) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             ListTile(
               title: Text(
                 controller.user.displayName!,
                 style: TextStyle(
-                  color: Theme.of(Get.context!).colorScheme.tertiary,
+                  color: Theme.of(context).colorScheme.tertiary,
+                  fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -44,88 +41,25 @@ class MyCardProfile extends StatelessWidget {
                 backgroundImage: NetworkImage(controller.user.photoURL!),
               ),
             ),
-            ListTile(
-              title: Row(
-                children: [
-                  Text(
-                    'E-mail:',
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    controller.user.email!,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Spacer(),
-                ],
-              ),
+            _buildInfoRow(
+              context,
+              'E-mail:',
+              controller.user.email!,
             ),
-            ListTile(
-              title: Row(
-                children: [
-                  Text(
-                    'account_creation_date:'.tr,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    DateFormat('dd/MM/yyyy HH:mm:ss')
-                        .format(controller.user.creationTime),
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Spacer(),
-                  const SizedBox(width: 20),
-                  Text(
-                    'last_login_date:'.tr,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    DateFormat('dd/MM/yyyy HH:mm:ss')
-                        .format(controller.user.lastSignInTime),
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
+            _buildInfoRow(
+              context,
+              'account_creation_date:'.tr,
+              DateFormat('dd/MM/yyyy HH:mm:ss').format(controller.user.creationTime),
             ),
-            ListTile(
-              title: Row(
-                children: [
-                  Text(
-                    'current_location:'.tr,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    'Salvador - BA, Brazil',
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
+            _buildInfoRow(
+              context,
+              'last_login_date:'.tr,
+              DateFormat('dd/MM/yyyy HH:mm:ss').format(controller.user.lastSignInTime),
+            ),
+            _buildInfoRow(
+              context,
+              'current_location:'.tr,
+              'Salvador - BA, Brazil',
             ),
           ],
         );
@@ -133,112 +67,32 @@ class MyCardProfile extends StatelessWidget {
     );
   }
 
-  Widget _buildMobileProfile() {
-    return GetBuilder<SettingsController>(
-      builder: (controller) {
-        return Column(
-          children: <Widget>[
-            ListTile(
-              title: Text(
-                controller.user.displayName!,
-                style: TextStyle(
-                  color: Theme.of(Get.context!).colorScheme.tertiary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(controller.user.photoURL!),
+  Widget _buildInfoRow(BuildContext context, String label, String value) {
+    return ListTile(
+      title: Row(
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.tertiary,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+          const SizedBox(width: 5),
+          Expanded(
+            child: Text(
+              value,
+              overflow: TextOverflow.clip,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.tertiary,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.bold,
               ),
             ),
-            ListTile(
-              title: Column(
-                children: [
-                  Text(
-                    'E-mail:',
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    controller.user.email!,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              title: Column(
-                children: [
-                  Text(
-                    'account_creation_date:'.tr,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    DateFormat('dd/MM/yyyy HH:mm:ss')
-                        .format(controller.user.creationTime),
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              title: Column(
-                children: [
-                  Text(
-                    'last_login_date:'.tr,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    DateFormat('dd/MM/yyyy HH:mm:ss')
-                        .format(controller.user.lastSignInTime),
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              title: Column(
-                children: [
-                  Text(
-                    'current_location:'.tr,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    'Salvador - BA, Brazil',
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      color: Theme.of(Get.context!).colorScheme.tertiary,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      },
+          ),
+        ],
+      ),
     );
   }
 }

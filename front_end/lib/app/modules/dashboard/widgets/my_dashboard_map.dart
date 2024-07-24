@@ -30,14 +30,14 @@ class MyDashboardMap extends GetView<DashboardController> {
                 color: Colors.blue,
               ),
             ),
-            child: _buildMap(snapshot.data as String),
+            child: _buildMap(context, snapshot.data as String),
           );
         }
       },
     );
   }
 
-  Widget _buildMap(String mapStyle) {
+  Widget _buildMap(BuildContext context, String mapStyle) {
     return GetBuilder<DashboardController>(builder: (controller) {
       return Stack(
         alignment: Alignment.center,
@@ -62,7 +62,10 @@ class MyDashboardMap extends GetView<DashboardController> {
               onPressed: () => _buildDefaultDialog(controller),
               tooltip: 'change_map_view'.tr,
               backgroundColor: myThirdColor,
-              child: const Icon(Icons.compare_arrows),
+              child: Icon(
+                Icons.compare_arrows,
+                color: myFifthColor,
+              ),
             ),
           ),
         ],
@@ -112,7 +115,8 @@ class MyDashboardMap extends GetView<DashboardController> {
               'Northeast'.tr,
               'Midwest'.tr,
             ],
-            initialValue: controller.dataController.localDataController.getRegion().tr,
+            initialValue:
+                controller.dataController.localDataController.getRegion().tr,
           ),
           const SizedBox(height: 10),
           Text(
@@ -133,7 +137,9 @@ class MyDashboardMap extends GetView<DashboardController> {
               'Storm, General'.tr,
               'Extra-tropical storm'.tr,
             ],
-            initialValue: controller.dataController.localDataController.getExtremeEvent().tr,
+            initialValue: controller.dataController.localDataController
+                .getExtremeEvent()
+                .tr,
           ),
         ],
       ),
@@ -144,8 +150,10 @@ class MyDashboardMap extends GetView<DashboardController> {
             style: TextStyle(color: myThirdColor),
           ),
           onPressed: () {
-            controller.dataController.localDataController.updateRegion(controller.regionController.text);
-            controller.dataController.localDataController.updateExtremeEvent(controller.extremeEventController.text);
+            controller.dataController.localDataController
+                .updateRegion(controller.regionController.text);
+            controller.dataController.localDataController
+                .updateExtremeEvent(controller.extremeEventController.text);
             controller.getMarkerData();
             Get.back(closeOverlays: true);
           },

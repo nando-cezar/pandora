@@ -26,8 +26,9 @@ class MyButton extends StatelessWidget {
             text,
             style: TextStyle(
               color: myFifthColor,
-              fontWeight: FontWeight.bold,
               fontSize: 16,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),

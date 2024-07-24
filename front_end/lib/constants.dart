@@ -31,6 +31,8 @@ var myAppBar = ({void Function()? onPressed, List<Widget>? actions}) => AppBar(
           style: TextStyle(
             color: myFifthColor,
             fontSize: 20,
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

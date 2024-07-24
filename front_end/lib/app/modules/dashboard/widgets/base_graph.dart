@@ -21,33 +21,31 @@ class BaseGraph extends GetView<DashboardController> {
       length: 2,
       child: Column(
         children: [
-          PreferredSize(
-            preferredSize: const Size.fromHeight(100),
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-              color: Theme.of(context).colorScheme.background,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      color: myActiveColor,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            color: Theme.of(context).colorScheme.background,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: myActiveColor,
+                    fontSize: 15,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.bold,
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.normal,
-                      color: Theme.of(context).colorScheme.tertiary,
-                    ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  subtitle,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.normal,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           TabBar(
@@ -62,7 +60,9 @@ class BaseGraph extends GetView<DashboardController> {
                 child: Text(
                   'chance_of_occurrence'.tr,
                   style: TextStyle(
-                    color: myFirstColor,
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.normal,
                     fontSize: 14.0,
                   ),
                 ),
@@ -76,14 +76,16 @@ class BaseGraph extends GetView<DashboardController> {
                 child: Text(
                   'highest_recurrence'.tr,
                   style: TextStyle(
-                    color: myFirstColor,
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.normal,
                     fontSize: 14.0,
                   ),
                 ),
               )
             ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Expanded(
             child: TabBarView(
               children: [
@@ -96,7 +98,7 @@ class BaseGraph extends GetView<DashboardController> {
               ],
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
         ],
       ),
     );
