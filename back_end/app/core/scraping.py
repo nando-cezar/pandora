@@ -1,7 +1,7 @@
 from abc import abstractmethod, ABC
 
 
-class ProbabilityOccurrence(ABC):
+class Scraping(ABC):
     @abstractmethod
-    def calculate(self, **kwargs):
+    def execute(self, **kwargs):
         pass

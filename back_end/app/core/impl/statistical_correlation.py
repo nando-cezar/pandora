@@ -4,11 +4,11 @@ from flask_restful import abort
 from scipy.stats import ttest_ind, ttest_rel
 import requests
 
-from app.core.probability_occurrence import ProbabilityOccurrence
+from app.core.probability import Probability
 from app.ext.database import db
 
 
-class StatisticalCorrelation(ProbabilityOccurrence):
+class StatisticalCorrelation(Probability):
 
     def calculate(self, **kwargs):
         ordered = [
