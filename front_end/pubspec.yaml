@@ -57,6 +57,7 @@ dependencies:
   logger: ^2.2.0
   flutter_animate: ^4.5.0
   shared_preferences: ^2.2.3
+  url_launcher: ^6.1.10
 
 dev_dependencies:
   flutter_test:

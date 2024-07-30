@@ -119,6 +119,7 @@ final Map<String, String> enUs = {
   'dashboard': 'D A S H B O A R D',
   'map': 'M A P',
   'weather': 'W E A T H E R',
+  'notice': 'N O T I C E S',
   'settings': 'S E T T I N G S',
   'logout': 'L O G O U T',
 

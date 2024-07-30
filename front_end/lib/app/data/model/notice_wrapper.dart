@@ -1,20 +1,20 @@
-import 'package:pandora_front/app/data/model/extreme_event_model.dart';
+import 'package:pandora_front/app/data/model/notice_model.dart';
 
-class ExtremeEventWrapper {
-  final List<ExtremeEventModel> events;
+class NoticeWrapper {
+  final List<NoticeModel> notices;
 
-  ExtremeEventWrapper({required this.events});
+  NoticeWrapper({required this.notices});
 
-  factory ExtremeEventWrapper.fromJson(Map<String, dynamic> json) {
+  factory NoticeWrapper.fromJson(Map<String, dynamic> json) {
 
-    List<ExtremeEventModel> eventList = [];
+    List<NoticeModel> noticeList = [];
 
     if (json.containsKey('resource') && json['resource'] is List) {
       json['resource'].forEach((snapshot) {
-        final ExtremeEventModel extremeEventModel = ExtremeEventModel.fromJson(snapshot);
-        eventList.add(extremeEventModel);
+        final NoticeModel noticeModel = NoticeModel.fromJson(snapshot);
+        noticeList.add(noticeModel);
       });
     }
-    return ExtremeEventWrapper(events: eventList);
+    return NoticeWrapper(notices: noticeList);
   }
 }

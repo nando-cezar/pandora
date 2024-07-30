@@ -56,12 +56,12 @@ class MyDrawer extends GetView<AuthController> {
             ),
           ),
           GestureDetector(
-            onTap: () => {},
-            child: const ListTile(
-              leading: Icon(Icons.newspaper),
+            onTap: () => Get.offAllNamed(Routes.notice),
+            child: ListTile(
+              leading: const Icon(Icons.newspaper),
               title: Text(
-                'N O T I C I A S',
-                style: TextStyle(
+                'notice'.tr,
+                style: const TextStyle(
                   fontFamily: 'Roboto',
                   fontWeight: FontWeight.normal,
                 ),

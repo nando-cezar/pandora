@@ -1,12 +1,12 @@
-import 'package:pandora_front/app/data/model/forecast_weather_model.dart';
-import 'package:pandora_front/app/data/provider/forecast_weather_provider.dart';
+import 'package:pandora_front/app/data/model/notice_wrapper.dart';
+import 'package:pandora_front/app/data/provider/notice_provider.dart';
 
-class ForecastWeatherRepository {
-  final ForecastWeatherProvider forecastWeatherProvider;
+class NoticeRepository {
+  final NoticeProvider noticeProvider;
 
-  ForecastWeatherRepository({required this.forecastWeatherProvider});
+  NoticeRepository({required this.noticeProvider});
 
-  Future<ForecastWeatherModel> getCurrentForecastWeather({latitude, longitude, token}) {
-      return forecastWeatherProvider.getCurrentForecastWeather(latitude, longitude, token);
+  Future<NoticeWrapper> getNotices({search, hl, gl, ceid}) {
+      return noticeProvider.getNotices(search, hl, gl, ceid);
   }
 }
