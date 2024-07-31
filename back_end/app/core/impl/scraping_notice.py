@@ -42,7 +42,8 @@ class ScrapingNotice(Scraping):
 
             title_tag = notice.find('a', class_=target_class1)
             if title_tag:
-                data_dict['url'] = f'{base_url}{title_tag['href'][1:]}'
+                href = title_tag['href'][1:]
+                data_dict['url'] = f'{base_url}{href}'
 
             title_tag = notice.find('a', class_=target_class2)
             if title_tag:
@@ -50,9 +51,8 @@ class ScrapingNotice(Scraping):
 
             image_tag = notice.find('figure', class_=target_class3)
             if image_tag and image_tag.find('img'):
-                srcset = image_tag.find('img')['srcset']
-                image_url = srcset.split(',')[0].split()[0]
-                data_dict['image'] = f'{base_url}{image_url}'
+                src = image_tag.find('img')['src']
+                data_dict['image'] = f'{base_url}{src}'
 
             date_tag = notice.find('time', class_=target_class4)
             if date_tag:

@@ -10,6 +10,8 @@ import 'package:pandora_front/app/modules/forgot_password/pages/forgot_page.dart
 import 'package:pandora_front/app/modules/initial/bindings/initial_binding.dart';
 import 'package:pandora_front/app/modules/initial/pages/initial_page.dart';
 import 'package:pandora_front/app/modules/login/bindings/login_binding.dart';
+import 'package:pandora_front/app/modules/notice/bindings/notice_binding.dart';
+import 'package:pandora_front/app/modules/notice/pages/notice_page.dart';
 import 'package:pandora_front/app/modules/parameters/bindings/parameters_binding.dart';
 import 'package:pandora_front/app/modules/parameters/pages/parameters_page.dart';
 import 'package:pandora_front/app/modules/register/bindings/register_binding.dart';
@@ -73,7 +75,6 @@ class AppPages {
           name: Routes.worldMap,
           page: () => const WorldMapPage(),
           bindings: [
-            AuthBinding(),
             WorldMapBinding(),
           ],
           participatesInRootNavigator: true,
@@ -83,8 +84,16 @@ class AppPages {
           name: Routes.forecastWeather,
           page: () => const ForecastWeatherPage(),
           bindings: [
-            AuthBinding(),
             ForecastWeatherBinding(),
+          ],
+          participatesInRootNavigator: true,
+          middlewares: const [],
+        ),
+        GetPage(
+          name: Routes.notice,
+          page: () => const NoticePage(),
+          bindings: [
+            NoticeBinding(),
           ],
           participatesInRootNavigator: true,
           middlewares: const [],
@@ -124,6 +133,7 @@ abstract class Routes {
   static const dashboard = '/dashboard';
   static const worldMap = '/world-map';
   static const forecastWeather = '/forecast-weather';
+  static const notice = '/notices';
   static const settings = '/settings';
   static const parameters = '/parameters';
 

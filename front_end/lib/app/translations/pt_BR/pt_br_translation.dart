@@ -119,6 +119,7 @@ final Map<String, String> ptBR = {
   'dashboard': 'P A I N E L',
   'map': 'M A P A',
   'weather': 'C L I M A',
+  'notice': 'N O T Í C I A S',
   'settings': 'C O N F I G U R A Ç Õ E S',
   'logout': 'S A I R',
 
