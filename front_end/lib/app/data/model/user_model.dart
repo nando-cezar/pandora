@@ -15,7 +15,7 @@ class UserModel {
     required this.photoURL,
   });
 
-  UserModel.fromFirebase(User? data) {
+  UserModel.fromFirebase(User? user) {
 
     String? addIfPresent(String? target, String? value) {
       if (value != null) {
@@ -24,13 +24,16 @@ class UserModel {
       return target;
     }
 
+    var data = user!;
+
     displayName = UserModel.mock().displayName;
+    email = UserModel.mock().email;
     photoURL = UserModel.mock().photoURL;
 
-    uid = data!.uid;
-    displayName = addIfPresent(displayName, data.displayName);
-    email = data.email;
-    photoURL = addIfPresent(photoURL, data.photoURL);
+    uid = data.uid;
+    displayName = addIfPresent(displayName, data.displayName!);
+    email = addIfPresent(email, data.email!);
+    photoURL = addIfPresent(photoURL, data.photoURL!);
     creationTime = data.metadata.creationTime!;
     lastSignInTime = data.metadata.lastSignInTime!;
   }
