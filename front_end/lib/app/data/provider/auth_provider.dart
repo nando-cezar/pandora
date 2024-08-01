@@ -18,7 +18,7 @@ class AuthProvider {
       });
 
   UserModel get currentUser =>
-      UserModel.fromFirebase(_firebaseAuth.currentUser!);
+      UserModel.fromFirebase(_firebaseAuth.currentUser);
 
   Future<UserModel?> createUserWithEmailAndPassword(
       String email, String password) async {
