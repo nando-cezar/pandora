@@ -1,0 +1,103 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36" version="24.7.6">
+  <diagram name="Página-1" id="5r0kbrC52f1X0RK4liDK">
+    <mxGraphModel dx="989" dy="532" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3" value="Extreme Events (collection)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=#808080;" parent="1" vertex="1">
+          <mxGeometry x="10" y="35" width="780" height="945" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="South America (document)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=#666666;fontColor=#F5F5F5;" parent="1" vertex="1">
+          <mxGeometry x="20" y="60" width="760" height="910" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-34" value="Brazil (collection)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=#4D4D4D;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="30" y="90" width="740" height="870" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-35" value="Cold Wave (document)" style="whiteSpace=wrap;strokeWidth=2;verticalAlign=top;fillColor=#333333;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="720" height="830" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-36" value="code&lt;div&gt;&lt;b&gt;number&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="51.87" y="150" width="48.13" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-37" value="code_formatted&lt;div&gt;&lt;b&gt;string&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="111.87" y="150" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-38" value="data_source&lt;div&gt;&lt;b&gt;array[string]&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="210" y="150" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-39" value="description&lt;div&gt;&lt;b&gt;string&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="432.5" y="150" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-40" value="description_formatted&lt;div&gt;&lt;b&gt;string&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="302.5" y="150" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-42" value="medium_duration&lt;div&gt;&lt;b&gt;number&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="509.9999999999999" y="150" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-43" value="total_location_records&lt;div&gt;&lt;b&gt;number&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="629.9999999999999" y="150" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-44" value="&lt;div&gt;total_recurrence&lt;/div&gt;&lt;div&gt;&lt;b&gt;number&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="50" y="190" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-54" value="region_greatest_recurrence: {&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;recurrence: &lt;b&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;region: s&lt;b&gt;tring&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;}&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="155.61" y="190" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-55" value="site_greatest_recurrence: {&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;address: &lt;b&gt;string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;region: &lt;b&gt;string&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-weight: bold; white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;state&lt;b&gt;: string&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;subtotal_records&lt;b&gt;: number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;}&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="337.5" y="190" width="190" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-56" value="Location Data (collection)/&amp;lt;position document id&amp;gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fillColor=#1A1A1A;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="50" y="300" width="700" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-57" value="id&lt;div&gt;&lt;b&gt;string&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="75" y="330" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-58" value="&lt;div&gt;address&lt;/div&gt;&lt;div&gt;&lt;b&gt;string&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="127.5" y="330" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-59" value="position&lt;div&gt;&lt;b&gt;geopoint&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="197.5" y="330" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-60" value="region&lt;div&gt;&lt;b&gt;string&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="277.5" y="330" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-61" value="state&lt;div&gt;&lt;b&gt;string&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="347.5" y="330" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-62" value="start_date&lt;div&gt;&lt;b&gt;timestamp&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="407.5" y="330" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-63" value="&lt;div&gt;end_date&lt;/div&gt;&lt;div&gt;&lt;b&gt;timestamp&lt;/b&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="487.34" y="330" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-64" value="total_affected&lt;div&gt;&lt;b&gt;geopoint&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="565" y="330" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-65" value="total_death&lt;div&gt;&lt;b&gt;string&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="655" y="330" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-68" value="Weather Data (collection)" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#000000;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="111.87" y="370" width="561.25" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-69" value="&amp;lt;random document id&amp;gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#000000;fontColor=#FCFCFC;strokeColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="122.18" y="400" width="540.94" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-70" value="date_ocurred&lt;div&gt;&lt;b&gt;timestamp&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="142.02" y="430" width="197.19" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-72" value="weather_data: {&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;div&gt;apparent_temperature_max: &lt;b&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;apparent_temperature_min&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;et0_fao_evapotranspiration&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;precipitation_hours&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;precipitation_sum&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;rain_sum&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;shortwave_radiation_sum&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;snowfall_sum&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;temperature_2m_max&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;temperature_2m_min&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;wind_direction_10m_dominant&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;wind_gusts_10m_max&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;wind_speed_10m_max:&amp;nbsp;&lt;b&gt;number&lt;/b&gt;&lt;/div&gt;&lt;/blockquote&gt;&lt;div&gt;&lt;div&gt;}&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="356.87" y="430" width="280" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-73" value="Statistical Correlation Data" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fillColor=#1A1A1A;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="50" y="690" width="700" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-74" value="apparent_temperature_max: {&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;div&gt;apparent_temperature_max: &lt;b&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;apparent_temperature_min&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;et0_fao_evapotranspiration&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;precipitation_hours&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;precipitation_sum&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;rain_sum&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;shortwave_radiation_sum&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;snowfall_sum&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;temperature_2m_max&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;temperature_2m_min&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;wind_direction_10m_dominant&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;wind_gusts_10m_max&lt;span style=&quot;background-color: initial;&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;number&lt;/b&gt;&lt;/div&gt;&lt;div&gt;wind_speed_10m_max:&amp;nbsp;&lt;b&gt;number&lt;/b&gt;&lt;/div&gt;&lt;/blockquote&gt;&lt;div&gt;&lt;div&gt;}&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="57.5" y="720" width="280" height="215" as="geometry" />
+        </mxCell>
+        <mxCell id="nVJJm7_HszwqwvovilvP-75" value="&lt;br&gt;&lt;div&gt;&lt;b&gt;Estrutura aplicada para cada variável&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#F5F5F5;fontColor=#F5F5F5;" vertex="1" parent="1">
+          <mxGeometry x="472.34000000000003" y="765" width="111.41" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

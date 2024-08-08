@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:pandora_front/app/config/cookie.dart';
 import 'package:pandora_front/app/data/provider/local_data_provider.dart';
 import 'package:pandora_front/app/routes/app_pages.dart';
 import 'package:pandora_front/app/translations/app_translations.dart';
@@ -17,8 +16,6 @@ void main() async {
   );
   await dotenv.load(fileName: ".env");
   await LocalDataProvider.init();
-
-  setCookie('SameSite', 'Secure', 7);
 
   runApp(
     ChangeNotifierProvider(
